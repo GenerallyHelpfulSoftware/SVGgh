@@ -37,12 +37,6 @@ const double kStandardSVGFontScale = 1.2;
 
 BOOL IsFontFamilyAvailable(NSString* fontFamilyName);
 
-@interface NSCharacterSet(SVG)
-
-+(NSCharacterSet*) characterSetWithSVGDescription:(NSString*)svgDescription;
-@end
-
-
 
 @interface SVGTextUtilities ()
 
@@ -244,13 +238,61 @@ BOOL IsFontFamilyAvailable(NSString* fontFamilyName);
 	return result;
 }
 
++(NSCharacterSet*) characterSetWithSVGDescription:(NSString*)svgDescription
+{
+	NSCharacterSet* result = nil;
+	NSString*	trimmedDescription = [svgDescription stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+	if([svgDescription hasPrefix:@"U+"])
+	{
+		BOOL	gotARange = NO;
+		NSArray* blocks = [trimmedDescription componentsSeparatedByString:@","];
+		NSMutableCharacterSet* mutableResult = [[NSMutableCharacterSet alloc] init];
+		for(NSString* aBlock in blocks)
+		{
+			NSString* trimmedBlock = [aBlock stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+			if([trimmedBlock hasPrefix:@"U+"])
+			{
+				trimmedBlock= [trimmedBlock substringFromIndex:2];
+				NSArray* subRange = [trimmedBlock componentsSeparatedByString:@"-"];
+				NSString* lowString = nil;
+				NSString* highString = nil;
+				if([subRange count] == 1)
+				{
+					lowString = [aBlock stringByReplacingOccurrencesOfString:@"?" withString:@"0"];
+					highString = [aBlock stringByReplacingOccurrencesOfString:@"?" withString:@"F"];
+				}
+				else if([subRange count] == 2)
+				{
+					lowString = [subRange objectAtIndex:0];
+					highString = [subRange objectAtIndex:1];
+				}
+				NSScanner* lowScanner = [NSScanner scannerWithString:lowString];
+				NSScanner* highScanner = [NSScanner  scannerWithString:highString];
+				long long	lowValue, highValue;
+				if([lowScanner scanLongLong:&lowValue]
+				   && [highScanner scanLongLong:&highValue])
+				{
+					gotARange = YES;
+					NSRange blockRange = NSMakeRange((NSUInteger)lowValue, (NSUInteger)(highValue-lowValue+1));
+					[mutableResult addCharactersInRange:blockRange];
+				}
+			}
+		}
+		if(gotARange)
+		{
+			result = mutableResult;
+		}
+	}
+	return result;
+}
+
 
 +(void) limitCharacterSetFromSVGStyleAttributes:(NSDictionary*)svgStyle toCoreTextAttributes:(NSMutableDictionary*)outAttributes
 {
 	NSString*	svgCharacterSet = [svgStyle objectForKey:@"unicode-range"];
 	if([svgCharacterSet length])
 	{
-		NSCharacterSet* characterSetToUse = [NSCharacterSet characterSetWithSVGDescription:svgCharacterSet];
+		NSCharacterSet* characterSetToUse = [SVGTextUtilities characterSetWithSVGDescription:svgCharacterSet];
 		
 		if(characterSetToUse == nil)
 		{
@@ -884,59 +926,6 @@ BOOL IsFontFamilyAvailable(NSString* fontFamilyName);
 @end
 
 
-
-
-@implementation NSCharacterSet(SVG)
-
-+(NSCharacterSet*) characterSetWithSVGDescription:(NSString*)svgDescription
-{
-	NSCharacterSet* result = nil;
-	NSString*	trimmedDescription = [svgDescription stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-	if([svgDescription hasPrefix:@"U+"])
-	{
-		BOOL	gotARange = NO;
-		NSArray* blocks = [trimmedDescription componentsSeparatedByString:@","];
-		NSMutableCharacterSet* mutableResult = [[NSMutableCharacterSet alloc] init];
-		for(NSString* aBlock in blocks)
-		{
-			NSString* trimmedBlock = [aBlock stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-			if([trimmedBlock hasPrefix:@"U+"])
-			{
-				trimmedBlock= [trimmedBlock substringFromIndex:2];
-				NSArray* subRange = [trimmedBlock componentsSeparatedByString:@"-"];
-				NSString* lowString = nil;
-				NSString* highString = nil;
-				if([subRange count] == 1)
-				{
-					lowString = [aBlock stringByReplacingOccurrencesOfString:@"?" withString:@"0"];
-					highString = [aBlock stringByReplacingOccurrencesOfString:@"?" withString:@"F"];
-				}
-				else if([subRange count] == 2)
-				{
-					lowString = [subRange objectAtIndex:0];
-					highString = [subRange objectAtIndex:1];
-				}
-				NSScanner* lowScanner = [NSScanner scannerWithString:lowString];
-				NSScanner* highScanner = [NSScanner  scannerWithString:highString];
-				long long	lowValue, highValue;
-				if([lowScanner scanLongLong:&lowValue]
-				   && [highScanner scanLongLong:&highValue])
-				{
-					gotARange = YES;
-					NSRange blockRange = NSMakeRange((NSUInteger)lowValue, (NSUInteger)(highValue-lowValue+1));
-					[mutableResult addCharactersInRange:blockRange];
-				}
-			}
-		}
-		if(gotARange)
-		{
-			result = mutableResult;
-		}
-	}
-	return result;
-}
-
-@end
 
 BOOL IsFontFamilyAvailable(NSString* fontFamilyName)
 {
