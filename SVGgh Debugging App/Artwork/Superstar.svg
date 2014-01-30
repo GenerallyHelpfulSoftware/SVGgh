@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg x="0px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewport-fill="green" y="0px" viewBox="0, 0, 512, 512" version="1.1" height="512" width="512">
+<defs>
+
+<g id="Football Helmet Front">
+<path d="M50 5C20 4 12 30 15 49 17 60 19 77 26 88A3 3 0 0 0 29 88C21 67 22 52 23 49 26 47 29 43 50 43 71 43 74 47 77 49 78 52 79 67 71 88A3 3 0 0 0 74 88C81 77 83 60 85 49 88 30 80 4 50 5Z" stroke="none"/>
+<path d="M19 75Q48 64 81 75A3 3 0 0 1 80 77L76 87Q50 96 24 87L20 77A3 3 0 0 1 19 75Z M41 73Q30 74 24 77L27 85Q33 88 43 88ZM59 73 57 88Q67 88 73 85L76 77Q70 74 59 73ZM45 73 46 87 54 87 55 73Z" stroke="none" fill="black"/>
+<path d="M43 5 45 43 Q50 43 55 43 L57 5 Q50 5 43 5Z" fill-opacity="0.2" stroke-width="2" fill="black" vector-effect="non-scaling-stroke" stroke="currentColor"/>
+</g>
+<path id="Star 5" d="M 50 5 L 59.54 36.1 L 92.8 36.1 66.08 57.42 76.5 91.4 50 70.25 23.5 91.4 33.92 57.42 7.2 36.1 40.46 36.1 50 5z"/>
+<radialGradient id="balltoblack_#FFA500" color="#FFA500">
+<stop stop-color="currentColor" offset="0"/>
+<stop stop-color="currentColor" offset=".22"/>
+<stop stop-color="#444" offset="1"/>
+</radialGradient>
+<linearGradient id="uptoblack_#B0E0E6" gradientTransform="rotate(90)" color="#B0E0E6">
+<stop stop-color="black" offset="0"/>
+<stop stop-color="currentColor" offset=".75"/>
+<stop stop-color="currentColor" offset="1"/>
+</linearGradient>
+<linearGradient id="uptoblack_#ff69b4" gradientTransform="rotate(90)" color="#ff69b4">
+<stop stop-color="black" offset="0"/>
+<stop stop-color="currentColor" offset=".75"/>
+<stop stop-color="currentColor" offset="1"/>
+</linearGradient>
+</defs>
+<g>
+<g>
+
+	<rect width="256" height="256" fill="url(#uptoblack_#B0E0E6)" transform="rotate(45)"/>
+	<rect width="256" height="256" fill="url(#uptoblack_#ff69b4)" transform="translate(128, 128)"/>
+</g>
+</g>
+</svg>
