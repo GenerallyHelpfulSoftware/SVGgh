@@ -39,13 +39,13 @@
  */
 -(UIColor*) colorForSVGColorString:(NSString*)svgColorString;
 /*! @brief make a URL relative to the document being parsed
- * @param subPath
+ * @param subPath a location inside the app's resource bundle
  * @return an NSURL to some resource (hopefully)
  */
 -(NSURL*)	relativeURL:(NSString*)subPath;
 
 /*! @brief make a URL
- * @param absolutePath
+ * @param absolutePath a file path
  * @return an NSURL to some resource (hopefully)
  */
 -(NSURL*)   absoluteURL:(NSString*)absolutePath; // sort of...
@@ -57,7 +57,7 @@
 -(id)       objectNamed:(NSString*)objectName;
 
 /*! @brief sometimes objects in SVG are referenced in the form 'URL(#aRef)'. This returns them.
- * @param aLocation
+ * @param aLocation some object in this document probably
  * @return some object (usually an id<GHRenderable> but not always
  */
 -(id)       objectAtURL:(NSString*)aLocation;

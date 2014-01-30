@@ -46,7 +46,7 @@
 @property(nonatomic, assign) BOOL   beTransparent;
 
 /*! @brief method that tries to locate an object located at the given point inside the coordinate system of the layer
- * @param a point in the coordinate system of the layer
+ * @param testPoint point in the coordinate system of the layer
  * @return an object hit by the point
  */
 -(id<GHRenderable>) findRenderableObject:(CGPoint)testPoint;

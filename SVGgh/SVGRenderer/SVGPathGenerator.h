@@ -66,7 +66,7 @@ typedef enum SVGPathValidationError
 
 @end
 
-/*! @brief
+/*! @brief a bundle of mehtods that deal with the interaction between CGPaths and the text strings to build them
 */
 @interface SVGPathGenerator : NSObject
 /*! @brief given a CGPathRef, convert it to an SVG Path
@@ -100,7 +100,7 @@ typedef enum SVGPathValidationError
 +(PathValidationResult*) findFailure:(NSString*)anSVGPath;
 
 /*! @brief given an SVG operator e.g. 'm', 'z', 'l', 'H', etc., give the number of expected parameters
-* @param svgOperator, one of the expected operators for an SVG path
+* @param svgOperator one of the expected operators for an SVG path
 * @return number of parameters needed for given operator, e.g. 'z' would return 0
 */
 +(NSInteger) parametersNeededForOperator:(unsigned char)svgOperator;

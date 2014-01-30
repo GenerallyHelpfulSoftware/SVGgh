@@ -86,6 +86,6 @@
  * @param baseFontDescriptor font descriptor that is the starting point for creating the attributed string
  * @param includeParagraphStyle most text we render don't need Core Text paragraph attributes
  */
-+(NSAttributedString*) attributedStringFromString:(NSString*)text nonFontSVGStyleAttributes:(NSDictionary*)nonFontSVGStyleAttributes baseFont:(CTFontRef)myFontRef baseFontDescriptor:(CTFontDescriptorRef)myFontDescription  includeParagraphStyle:(BOOL)includeParagraphStyle;
++(NSAttributedString*) attributedStringFromString:(NSString*)text nonFontSVGStyleAttributes:(NSDictionary*)nonFontSVGStyleAttributes baseFont:(CTFontRef)baseFont baseFontDescriptor:(CTFontDescriptorRef)baseFontDescriptor  includeParagraphStyle:(BOOL)includeParagraphStyle;
 
 @end

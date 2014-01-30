@@ -52,7 +52,7 @@
 
 /*! @brief Draw the glyphs to the context (draw more as lines than individually positioned glyphs).
  * @param quartzContext context to draw into
- * @param svgContext svg state information at this point of the render
+ * @param theContext svg state information at this point of the render
  */
 -(void) renderIntoContext:(CGContextRef)quartzContext withSVGContext:(id<SVGContext>)theContext;
 
@@ -98,7 +98,7 @@
 * @param aGlyph the Core Graphics glyph we are wrapping
 * @param aTransform a transform for positioning and scaling
 * @param offset offset along a line
-* @param the pre-calculated width of the glyph
+* @param theWidth pre-calculated width of the glyph
 * @see coreTextAttributesFromSVGStyleAttributes:
 */
 -(id) initWithDictionary:(NSDictionary *)theAttributes textAttributes:(NSDictionary*) textAttributes font:(CTFontRef)aFont glyph:(CGGlyph)aGlyph transform:(CGAffineTransform)aTransform offset:(CGPoint)offset andWidth:(CGFloat)theWidth;

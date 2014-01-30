@@ -84,8 +84,8 @@ void CGPathApplyCallbackFunction(void* aVisitor, const CGPathElement *element);
 
 
 /*! @brief get the total length of a Core Graphics path (somewhat of an approximation)
- * @param aPath
- * @param return a length
+ * @param aPath a Core Graphics path to find the lengh of
+ * @return a length
  */
 +(CGFloat) totalLengthOfCGPath:(CGPathRef)aPath; // does not include jumps via move to
 

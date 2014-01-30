@@ -45,7 +45,6 @@ typedef void (^handleRetrievedImage_t)(UIImage* anImage, NSURL* location);
 typedef void (^handleExtractedFaces_t)(NSError* error, NSArray* images, NSArray* locations);
 
 /*! @brief  instance-less class which caches images
-* @brief This is a central repository for images that can be purged and may be reloadable
 * @note uses NSCache to handle low memory warnings.
  * @see NSCache
 */

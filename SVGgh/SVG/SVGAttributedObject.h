@@ -41,7 +41,7 @@
 -(BOOL)environmentOKWithSVGContext:(id<SVGContext>)svgContext;
 
 /*! @brief answers the question if this particular object should be rendered given the user's language settings.
- * @param svgContext state information needed to make this decision
+ * @param isoLanguage something like 'en', 'zh' 
  * @return YES if object should be drawn
  */
 -(BOOL)environmentOKWithISOCode:(NSString*)isoLanguage;

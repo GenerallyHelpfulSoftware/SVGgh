@@ -76,7 +76,7 @@ NSString* SVGTransformMorph(NSString* oldtransform, NSString* newTransform, CGFl
 CGAffineTransform SVGTransformToCGAffineTransformSlow(NSString* transformAttribute);// older better tested version
 
 /*! \brief serialize an affine transform back to an SVG style string version of a transform (probably in matrix form)
-* \param a Core Graphics affine transform
+* \param aTransform Core Graphics affine transform
 * \return a string appropriate for an SVG entities 'transform' attribute
 */
 NSString* CGAffineTransformToSVGTransform(CGAffineTransform aTransform);
@@ -90,8 +90,8 @@ NSString* CGAffineTransformToSVGTransform(CGAffineTransform aTransform);
 NSDictionary* SVGMorphStyleAttributes(NSDictionary*oldAttributes, NSDictionary* newAttributes, CGFloat fractionThere);
 
 /*! \brief a routine to allocate an offscreen bitmap drawing context
-* \param pixelsWide
-* \param pixelsHigh
+* \param pixelsWide width of the bitmap
+* \param pixelsHigh height of the bitmap
 * \return a Core Graphics context to draw into caller responsible for deallocation
 */
 CGContextRef BitmapContextCreate (size_t pixelsWide, size_t pixelsHigh);
@@ -115,7 +115,7 @@ NSSet* StandardPathAttributes();
 
 /*! \brief given a set of attributes, build a new set by selectiving merging in attributes from a superceding set
 * \param parentAttributes the starting attributes from higher up in the document
-* \param attributesToMergIn attributes which should supercede (probably) the values in the parentAttributes
+* \param attributesToMergeIn attributes which should supercede (probably) the values in the parentAttributes
 * \param filter callback block which allows the calling routine to selectively do this merging
 * \return a dictionary of attributes which is the result of the merger
 */
@@ -140,14 +140,14 @@ NSString* ExtractURLContents(NSString* aString);
 NSDictionary* AttributesFromSVGCompactAttributes(NSString* compactedAttributes);
 
 /*! \brief remove the " character
-* \pram possiblyQuotedString
+* \param possiblyQuotedString string with SVG quoting in it
 * \return input string shorn of quotes
 */
 NSString* UnquotedSVGString(NSString* possiblyQuotedString);
 
 /*! \brief given two vectors, caclculate the angle
-* \param vector1
-* \param vector2
+* \param vector1 a vector
+* \param vector2 a vector
 * \return an angle in radians
 */
 CGFloat CalculateVectorAngle(CGPoint	vector1, CGPoint vector2);
@@ -201,7 +201,7 @@ extern const CGColorRenderingIntent	kColoringRenderingIntent;
 
 /*! @brief try to find the value for a style attribute inside a dictionary of attributes. Might be free-standing or in a 'style' attribute
 * @param attributeName which style type attribute are we looking for?
-* @param elmentAttributes attributes to look inside
+* @param elementAttributes attributes to look inside
 * @return the value if it is found
 */
 +(NSString*) valueForStyleAttribute:(NSString*)attributeName fromDefinition:(NSDictionary*)elementAttributes;

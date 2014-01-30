@@ -63,7 +63,7 @@
 @property(nonatomic, assign)    BOOL beTransparent;
 
 /*! @brief method that tries to locate an object located at the given point inside the coordinate system of the view
-* @param a point in the coordinate system of the view
+* @param testPoint a point in the coordinate system of the view
 * @return an object hit by the point
 */
 -(id<GHRenderable>) findRenderableObject:(CGPoint)testPoint;
