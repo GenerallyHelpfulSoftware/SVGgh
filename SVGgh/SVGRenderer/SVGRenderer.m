@@ -42,7 +42,6 @@
 @property (strong, nonatomic, retain)   NSString* isoLanguage;
 @property (strong, nonatomic, readonly) GHShapeGroup*		contents;
 +(NSDictionary*) defaultAttributes;
-+(NSOperationQueue*) rendererQueue;
 @end
 
 

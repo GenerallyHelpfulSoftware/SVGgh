@@ -37,6 +37,11 @@
 */
 @property (nonatomic, readonly)         CGRect	viewRect;
 
+/*! @brief a queue where it is convenient to renders when the main queue is not necessary
+* @return a shared operation queue
+*/
++(NSOperationQueue*) rendererQueue;
+
 /*! @brief draw the SVG
 * @param quartzContext context into which to draw, cold be a CALayer, a PDF, an offscreen bitmap, whatever
 */
