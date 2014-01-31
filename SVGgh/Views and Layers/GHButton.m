@@ -460,7 +460,7 @@ useRadialGradient=_useRadialGradient,scheme=_scheme;
 
 -(void)drawArtworkAtPath:(NSString*)theArtworkPath intoContext:(CGContextRef)quartzContext
 {
-    NSURL*  myArtwork = [self locateArtworkAtPath:theArtworkPath];
+    NSURL*  myArtwork = [GHControlFactory locateArtworkForObject:self atSubpath:theArtworkPath];
     
     if(myArtwork != nil)
     {// draw my SVG
@@ -728,7 +728,7 @@ useRadialGradient=_useRadialGradient,scheme=_scheme;
 -(void)drawArtworkAtPath:(NSString*)theArtworkPath intoContext:(CGContextRef)quartzContext
 {
     
-    NSURL*  myArtwork = [self locateArtworkAtPath:theArtworkPath];
+    NSURL*  myArtwork = [GHControlFactory locateArtworkForObject:self atSubpath:theArtworkPath];;
     if(myArtwork != nil)
     {
         CGContextSaveGState(quartzContext);

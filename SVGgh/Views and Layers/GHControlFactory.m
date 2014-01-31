@@ -40,12 +40,16 @@ const CGFloat kPressedButtonDarkeningOffset = 0.25;
 NSUInteger gDefaultScheme = kColorSchemeNone;
 UIColor* gDefaultButtonColor = nil;
 
-
-@implementation UIView (ControlFactory)
--(NSURL*) locateArtworkAtPath:(NSString*)theArtworkPath
+@implementation GHControlFactory
++(ColorScheme) defaultScheme
 {
-    
-    NSBundle* myBundle = [NSBundle bundleForClass:[self class]];
+    return gDefaultScheme;
+}
+
+
++(NSURL*) locateArtworkForObject:(id<NSObject>)anObject atSubpath:(NSString*)theArtworkPath
+{
+    NSBundle* myBundle = [NSBundle bundleForClass:[anObject class]];
     NSURL*  result = [myBundle URLForResource:theArtworkPath withExtension:@"svg"];
     if(result == nil)
     {
@@ -55,18 +59,10 @@ UIColor* gDefaultButtonColor = nil;
     return result;
 }
 
-@end
-
-@implementation GHControlFactory
-+(ColorScheme) defaultScheme
-{
-    return gDefaultScheme;
-}
-
 +(BOOL)isValidColorScheme:(ColorScheme)scheme
 {
     BOOL result = (scheme <= kLastColorScheme);
-    NSAssert(result, @"ControlFactory: out of range color scheme %lu", (unsigned long)scheme);
+    NSAssert(result, @"GHControlFactory: out of range color scheme %lu", (unsigned long)scheme);
     return result;
 }
 

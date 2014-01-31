@@ -158,14 +158,12 @@ typedef NSUInteger ColorScheme;
  */
 +(CGPathRef) newRoundRectPathForRect:(CGRect)aRect withRadius:(CGFloat) radius;
 
-@end
-
-
-@interface UIView (ControlFactory)
-/*! @brief Just a routine to look for SVG documents in the resource folder
-* @param theArtworkPath a subpath to the svg document
-* @attention Does not contain the ".svg" extension
-* @return aURL if found, nil otherwise
+/*! @brief utility routine to find the location of an SVG document relative to either the main bundle or the bundle in which the object is located
+* @param anObject for instance a GHButton
+* @param theArtworkPath subpath within a bundle does not include the .svg extension which is assumed.
 */
--(NSURL*) locateArtworkAtPath:(NSString*)theArtworkPath;
++(NSURL*) locateArtworkForObject:(id<NSObject>)anObject atSubpath:(NSString*)theArtworkPath;
+
 @end
+
+extern UIColor* UIColorFromSVGColorString (NSString * stringToConvert);
