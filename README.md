@@ -24,13 +24,36 @@ If you just want to use the code in your app and are uninterested in the underly
 * GHControlFactory.h *A singleton class devoted to be a central location for widget theme look*
 * GHImageCache.h *A singleton class devoted to caching and loading bitmap images*
 
+To compile the static library. 
+* Load the included **SVGgh.xcodeproj** project in Xcode 5 or above 
+* **Build** the **Framework** target.
+* **Right Click** on the **libSVGgh.a** item in the **Products** folder
+* Select **Show in Finder**
+* Locate the **SVGgh.framework** framework
+* Drag the framework into your own Xcode project
+
 To use, you'll want to follow the following steps:
 * Add the **SVGgh** library to your Xcode project.
 * \#include &lt;SVGgh/SVGgh.h&gt;
 * early in the launch of your app call 
     **[ControlFactory kColorSchemeClear];**
 * early in the launch of your app call
-**MakeSureSVGghLinks();** in order to link classes only referenced in storyboards or nibs.
+**MakeSureSVGghLinks();** in order to link classes only referenced in storyboards or nibs. As in:
+
+````
+#import <SVGgh/SVGgh.h>
+
+@implementation YourAppDelegate
+
++(void) initialize
+{
+    [super initialize];
+    MakeSureSVGghLinks(); // classes only used in Storyboards might not link otherwise
+    [GHControlFactory setDefaultScheme:kColorSchemeClear];
+    
+}
+...
+````
 
 To add a button to a .xib file or storyboard:
 * Drag a UIView into your view
@@ -39,14 +62,16 @@ To add a button to a .xib file or storyboard:
 
 | Key Path | Type | Value |
 | -------- | ---- | ----- |
-| artworkPath | String | Artwork/MenuButton |
+| artworkPath | String | Artwork/MenuButton (assumes you have such an asset) |
 | schemeNumber | Number | 3 |
 
+
+* Note that the **.svg** extension is assumed
 * or if you are making a text button:
 
 | Key Path | Type | Value |
 | -------- | ---- | ----- |
-| title | Localized String | "My Label" |
+| title | Localized String | My Label |
 | schemeNumber | Number | 3 |
 
 To add a static view to a .xib file or storyboard:
