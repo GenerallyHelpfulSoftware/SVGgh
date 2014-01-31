@@ -50,7 +50,6 @@ To use, you'll want to follow the following steps:
     [super initialize];
     MakeSureSVGghLinks(); // classes only used in Storyboards might not link otherwise
     [GHControlFactory setDefaultScheme:kColorSchemeClear];
-    
 }
 ...
 ````
@@ -114,4 +113,4 @@ I've gone through and added Doxygen style comments to all the header files, so t
 While the vast majority of the code in this first release was written by me. There are a couple of classes or categories that were found online but have a flexible enough license for me to include here.
 * Jonathan Wight wrote a Base64 Transcoder which I found quite useful for handling embedded images.
 * Ian Baird wrote a category for NSData for Base64 which I also found very easy to use. 
-
+* [Jeff Verkoeyen] (https://github.com/jverkoey/iOS-Framework) provided the instructions for building a static library. Be sure to set **Build Active Architecture Only** to **NO**
