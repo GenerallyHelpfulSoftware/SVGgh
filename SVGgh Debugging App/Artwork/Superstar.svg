@@ -2,7 +2,7 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
 "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg x="0px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewport-fill="green" y="0px" viewBox="0, 0, 512, 512" version="1.1" height="512" width="512">
-<defs>
+<defs id="Defs">
 <clipPath id="clip_F4C745ED-E424-4951-95FE-630E468A7770.jpg">
 <path d="M192.000000 0 A 192.000000 277.000000 0 1 1 192.000000 554.000000 A 192.000000 277.000000 0 1 1 192.000000 0Z" fill="none"/>
 </clipPath>
@@ -889,6 +889,7 @@ iehp1OXpQ1AH/9k=" width="384.000000" clip-path="url(#clip_F4C745ED-E424-4951-95F
 <path d="M43 5 45 43 Q50 43 55 43 L57 5 Q50 5 43 5Z" fill-opacity="0.2" stroke-width="2" fill="black" vector-effect="non-scaling-stroke" stroke="currentColor"/>
 </g>
 <path id="Star 5" d="M 50 5 L 59.54 36.1 L 92.8 36.1 66.08 57.42 76.5 91.4 50 70.25 23.5 91.4 33.92 57.42 7.2 36.1 40.46 36.1 50 5z"/>
+<path d="M 40 100 A 60 60 0 1 1 40 100.1 Z" id="CIRCLE_TEXT_PATH" fill="none" stroke="none"/>
 <radialGradient id="balltoblack_#FFA500" color="#FFA500">
 <stop stop-color="currentColor" offset="0"/>
 <stop stop-color="currentColor" offset=".22"/>
@@ -916,8 +917,9 @@ iehp1OXpQ1AH/9k=" width="384.000000" clip-path="url(#clip_F4C745ED-E424-4951-95F
 <use xlink:href="#IMG_F4C745ED-E424-4951-95FE-630E468A7770.jpg" transform="matrix(3.05921 0 0 3.05921 105.092 107.992)"/>
 <use xlink:href="#Football Helmet Front" transform="matrix(3.23999 0.194152 -0.194152 3.23999 102.771 64.9279)" fill="url(#balltoblack_#FFA500)" color="#FFA500"/>
 <text x="0" font-family="Georgia" y="50" font-size="28" color="#ff69b4" fill="url(#uptoblack_#ff69b4)" transform="matrix(1.31961 0 0 1.31961 100.936 367.628)" stroke="none">✧SVGgh Test File✧</text>
-<text x="0" font-family="Helvetica" y="50" font-size="28" color="#ff69b4" fill="black" transform="matrix(1.31961 0 0 1.31961 150 410)" stroke="none">✧Welcome✧</text>
 <use xlink:href="#Star 5" transform="matrix(0.5984 0 0 0.5984 230.432 132.832)" fill="url(#uptoblack_#B0E0E6)" color="#B0E0E6"/>
+<text stroke="none" font-size="40" font-family="Verdana" transform="matrix(0.559392 -0.583437 0.583437 0.559392 316.081 115.379)" fill="#228B22" color="#228B22"><textPath xlink:href="#CIRCLE_TEXT_PATH">Generally Helpful</textPath>
+</text>
 </g>
 </g>
 </svg>

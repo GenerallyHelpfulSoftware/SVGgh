@@ -1,5 +1,5 @@
 //
-//  TextLine.m
+//  GHTextLine.m
 //  SVGgh
 // The MIT License (MIT)
 

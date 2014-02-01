@@ -189,7 +189,8 @@ extern const CGColorRenderingIntent	kColoringRenderingIntent;
 @interface SVGToQuartz : NSObject
 
 /*! @brief utility to dump the state of a quartz context to the debugging output. 
-* @attention feel free to log this from XCode's debugger console if you happen to have a Core Graphics context handy.
+* @attention feel free to log this from XCode's debugger console if you happen to have a Core Graphics context handy. 
+* @attention (lldb) call (void) [SVGToQuartz LogQuartzContextState:quartzContext];
 */
 +(void) LogQuartzContextState:(CGContextRef)quartzContext;
 

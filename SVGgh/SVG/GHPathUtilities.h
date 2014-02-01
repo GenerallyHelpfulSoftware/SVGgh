@@ -1,5 +1,5 @@
 //
-//  PathUtilities.h
+//  GHPathUtilities.h
 //  SVGgh
 // The MIT License (MIT)
 
