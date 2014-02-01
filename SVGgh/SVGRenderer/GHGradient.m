@@ -192,14 +192,14 @@
     CGFloat     x1Float = [SVGGradientUtilities extractFractionFromCoordinateString:x1  givenDefault:0.0];
     CGFloat     x2Float = [SVGGradientUtilities extractFractionFromCoordinateString:x2  givenDefault:1.0];
     CGFloat     y1Float = [SVGGradientUtilities extractFractionFromCoordinateString:y1  givenDefault:0.0];
-    CGFloat     y2Float = [SVGGradientUtilities extractFractionFromCoordinateString:y2  givenDefault:0.0];
+    CGFloat     y2Float = [SVGGradientUtilities extractFractionFromCoordinateString:y2  givenDefault:1.0];
     
     CGContextSaveGState(quartzContext);
     if(!CGContextIsPathEmpty(quartzContext))
     {
         CGContextClip(quartzContext);
     }
-    if(![self useUserSpace])
+    if(![[self.attributes objectForKey:@"gradientUnits"] isEqualToString:@"userSpaceOnUse"])
     {
         CGFloat deltaX = x2Float-x1Float;
         CGFloat deltaY  = y2Float-y1Float;
@@ -216,16 +216,38 @@
             y2Float = objectBox.origin.y+ y2Float*objectBox.size.height;
         }
     }
+    
+    CGPoint startPoint = CGPointMake(x1Float, y1Float);
+    CGPoint endPoint = CGPointMake(x2Float, y2Float);
+    
+    
+    
+    
     NSString* gradientTransformString = [self.attributes objectForKey:@"gradientTransform"];
-    if(gradientTransformString.length)
+    if(gradientTransformString.length == 0 || [gradientTransformString isEqualToString:@"rotate(0)"])
     {
-        CGAffineTransform gradientTransform = SVGTransformToCGAffineTransform(gradientTransformString);
-        CGContextConcatCTM(quartzContext, gradientTransform);
+        if(y2.length == 0)
+        {
+            endPoint.y= startPoint.y;
+        }
     }
-    CGGradientDrawingOptions options = kCGGradientDrawsBeforeStartLocation | kCGGradientDrawsAfterEndLocation;
+    else
+    {
+        // this code is not working for anything but a 90 degree rotation. FIX ME
+        CGAffineTransform gradientTransform = (gradientTransformString.length == 0)?CGAffineTransformIdentity:SVGTransformToCGAffineTransform(gradientTransformString);
+        
+        CGRect transformedRect = CGRectMake(startPoint.x, startPoint.y, endPoint.x-startPoint.x, endPoint.y-startPoint.y);
+        transformedRect  = CGRectStandardize(transformedRect);
+        transformedRect = CGRectApplyAffineTransform(transformedRect, gradientTransform);
+        
+        startPoint = CGPointMake(transformedRect.origin.x, transformedRect.origin.y);
+        endPoint = CGPointMake(transformedRect.origin.x, transformedRect.origin.y+transformedRect.size.height);
+    }
+    
+    CGGradientDrawingOptions options = 0;//kCGGradientDrawsBeforeStartLocation | kCGGradientDrawsAfterEndLocation;
     CGGradientRef   gradient = [self newGradientRefWithSVGContext:svgContext];
     CGContextDrawLinearGradient(quartzContext,
-                                gradient, CGPointMake(x1Float, y1Float), CGPointMake(x2Float, y2Float),
+                                gradient, startPoint, endPoint,
                                 options);
     CGGradientRelease(gradient);
     CGContextRestoreGState(quartzContext);
