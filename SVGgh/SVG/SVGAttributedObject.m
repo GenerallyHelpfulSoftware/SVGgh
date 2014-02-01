@@ -783,7 +783,7 @@
         CGContextSaveGState(quartzContext);
 		[self addPathToQuartzContext:quartzContext];
         CGContextRestoreGState(quartzContext);
-        CGRect myBox = [self getBoundingBoxWithSVGContext:svgContext];
+        CGRect myBox  =  CGPathGetPathBoundingBox(self.quartzPath);
         if(fillOpacity < 1.0)
         {
             CGContextSaveGState(quartzContext);
@@ -805,7 +805,7 @@
     {
         [self addPathToQuartzContext:quartzContext];
         CGContextReplacePathWithStrokedPath(quartzContext);
-        CGRect myBox = [self getBoundingBoxWithSVGContext:svgContext];
+        CGRect myBox  =  CGPathGetPathBoundingBox(self.quartzPath);
         myBox = CGRectApplyAffineTransform(myBox, self.transform);
         [gradientToStroke fillPathToContext:quartzContext withSVGContext:svgContext objectBoundingBox:myBox];
         strokeIt = false;
