@@ -15,6 +15,8 @@ There are undoubtably bugs but I've used this library in all 6 apps I have in th
 
 The included library assumes ARC style memory management. It's also been arbitrarily set to support iOS 6 and up. The code would likely run on iOS 5 and up, but I'm not supporting that going forward. 
 
+Because I'm intending on allowing this to be used as a static library, I'm avoiding the use of **categories** in my Objective-C code in order to avoid the use of the **-ObjC** other linker flag. For example, I'd normally have declared a SVGRender+Printing category when I implemented printing.
+
 ### As a Black Box Library
 If you just want to use the code in your app and are uninterested in the underlying engine, the included Xcode project generates a static library (**SVGgh**) with the following public headers. By the way, the reason that classes tend to have a GH (Generally Helpful, or Glenn Howes) prefix is not narcissism, but an attempt of getting around the lack of a namespace in plain Objective-C.
 * SVGDocumentView.h *A simple UIView capable of displaying a SVG document*
@@ -23,6 +25,8 @@ If you just want to use the code in your app and are uninterested in the underly
 * SVGRenderer.h *A class to render SVG documents into a CGContextRef*
 * GHControlFactory.h *A singleton class devoted to be a central location for widget theme look*
 * GHImageCache.h *A singleton class devoted to caching and loading bitmap images*
+* SVGToPDFConverter.h A class to convert the renderer's contents to a PDF.
+* SVGPrinter.h A class to send a renderer's contents to a printer.
 
 To compile the static library. 
 * Load the included **SVGgh.xcodeproj** project in Xcode 5 or above 
@@ -101,6 +105,7 @@ To add a static view to a .xib file or storyboard:
 	</g>
 </switch>
 ```	
+* I've provided an Example.xcodeproj which displays an SVG in a view and displays a sharing button. 
 
 ### Under the Hood
 If you are inclined to fix bugs or add features, and please do, then you'll be interested in the general mechanism by which an SVG document is converted to an onscreen image.     

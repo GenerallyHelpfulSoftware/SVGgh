@@ -11,5 +11,5 @@
 
 @interface ExampleSVGghViewController : UIViewController
 @property(nonatomic, weak) IBOutlet SVGDocumentView* svgView;
--(IBAction)handlePress:(id)sender;
+-(IBAction)share:(id)sender;
 @end

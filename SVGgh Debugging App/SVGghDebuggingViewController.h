@@ -31,5 +31,5 @@
 @interface SVGghDebuggingViewController : UIViewController
 @property(nonatomic, weak) IBOutlet SVGDocumentView* svgView;
 -(IBAction)redrawSVG:(id)sender;
-
+-(IBAction)print:(id)sender;
 @end

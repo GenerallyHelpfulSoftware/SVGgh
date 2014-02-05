@@ -57,6 +57,14 @@
 		21155B1C189A6F0800C830A7 /* Artwork in Resources */ = {isa = PBXBuildFile; fileRef = 21155B1B189A6F0800C830A7 /* Artwork */; };
 		21537227189966FB006EBCD5 /* SVGgh.h in Headers */ = {isa = PBXBuildFile; fileRef = 21BDEB461893BF08003A0644 /* SVGgh.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2153722B189969EA006EBCD5 /* SVGContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 21BCA1B71897FD5100A1F170 /* SVGContext.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2161B49218A1812A00081167 /* SVGtoPDFConverter.h in Headers */ = {isa = PBXBuildFile; fileRef = 2161B49018A1812A00081167 /* SVGtoPDFConverter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2161B49318A1812A00081167 /* SVGtoPDFConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2161B49118A1812A00081167 /* SVGtoPDFConverter.m */; };
+		2161B49418A1812A00081167 /* SVGtoPDFConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2161B49118A1812A00081167 /* SVGtoPDFConverter.m */; };
+		2161B49518A1812A00081167 /* SVGtoPDFConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2161B49118A1812A00081167 /* SVGtoPDFConverter.m */; };
+		21AEB0E918A1A46C0097200B /* SVGPrinter.h in Headers */ = {isa = PBXBuildFile; fileRef = 21AEB0E718A1A46C0097200B /* SVGPrinter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		21AEB0EA18A1A46C0097200B /* SVGPrinter.m in Sources */ = {isa = PBXBuildFile; fileRef = 21AEB0E818A1A46C0097200B /* SVGPrinter.m */; };
+		21AEB0EB18A1A46C0097200B /* SVGPrinter.m in Sources */ = {isa = PBXBuildFile; fileRef = 21AEB0E818A1A46C0097200B /* SVGPrinter.m */; };
+		21AEB0EC18A1A46C0097200B /* SVGPrinter.m in Sources */ = {isa = PBXBuildFile; fileRef = 21AEB0E818A1A46C0097200B /* SVGPrinter.m */; };
 		21BCA1BA1898179000A1F170 /* GHText.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BCA1B81898179000A1F170 /* GHText.m */; };
 		21BCA1BB1898179000A1F170 /* GHText.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BCA1B81898179000A1F170 /* GHText.m */; };
 		21BCA1BC1898179000A1F170 /* GHTextLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BCA1B91898179000A1F170 /* GHTextLine.m */; };
@@ -166,6 +174,10 @@
 		21155AE8189A6DCC00C830A7 /* SVGghDebuggingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SVGghDebuggingViewController.m; sourceTree = "<group>"; };
 		21155AEA189A6DCC00C830A7 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		21155B1B189A6F0800C830A7 /* Artwork */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Artwork; sourceTree = "<group>"; };
+		2161B49018A1812A00081167 /* SVGtoPDFConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVGtoPDFConverter.h; sourceTree = "<group>"; };
+		2161B49118A1812A00081167 /* SVGtoPDFConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVGtoPDFConverter.m; sourceTree = "<group>"; };
+		21AEB0E718A1A46C0097200B /* SVGPrinter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVGPrinter.h; sourceTree = "<group>"; };
+		21AEB0E818A1A46C0097200B /* SVGPrinter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVGPrinter.m; sourceTree = "<group>"; };
 		21BCA1B71897FD5100A1F170 /* SVGContext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SVGContext.h; sourceTree = "<group>"; };
 		21BCA1B81898179000A1F170 /* GHText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHText.m; sourceTree = "<group>"; };
 		21BCA1B91898179000A1F170 /* GHTextLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHTextLine.m; sourceTree = "<group>"; };
@@ -404,8 +416,12 @@
 				21BDEBC71893CBF7003A0644 /* GHRenderable.h */,
 				21BDEB8F1893C7C3003A0644 /* SVGPathGenerator.h */,
 				21BDEB901893C7C3003A0644 /* SVGPathGenerator.m */,
+				21AEB0E718A1A46C0097200B /* SVGPrinter.h */,
+				21AEB0E818A1A46C0097200B /* SVGPrinter.m */,
 				21BDEB911893C7C3003A0644 /* SVGRenderer.h */,
 				21BDEB921893C7C3003A0644 /* SVGRenderer.m */,
+				2161B49018A1812A00081167 /* SVGtoPDFConverter.h */,
+				2161B49118A1812A00081167 /* SVGtoPDFConverter.m */,
 			);
 			path = SVGRenderer;
 			sourceTree = "<group>";
@@ -461,6 +477,8 @@
 				21BDEBC81893CBF7003A0644 /* GHRenderable.h in Headers */,
 				21BDEBC51893CB23003A0644 /* GHPathDescription.h in Headers */,
 				2153722B189969EA006EBCD5 /* SVGContext.h in Headers */,
+				21AEB0E918A1A46C0097200B /* SVGPrinter.h in Headers */,
+				2161B49218A1812A00081167 /* SVGtoPDFConverter.h in Headers */,
 				21BDEBD618952CDE003A0644 /* SVGPathGenerator.h in Headers */,
 				21BDEBCB1893CD66003A0644 /* SVGAttributedObject.h in Headers */,
 				21BDEBC61893CB60003A0644 /* GHAttributedObject.h in Headers */,
@@ -630,6 +648,7 @@
 				21155B14189A6E0F00C830A7 /* SVGAttributedObject.m in Sources */,
 				21155B0D189A6E0F00C830A7 /* GHGradient.m in Sources */,
 				21155B16189A6E0F00C830A7 /* SVGParser.m in Sources */,
+				2161B49518A1812A00081167 /* SVGtoPDFConverter.m in Sources */,
 				21155AE9189A6DCC00C830A7 /* SVGghDebuggingViewController.m in Sources */,
 				21155B0E189A6E0F00C830A7 /* SVGPathGenerator.m in Sources */,
 				21155B10189A6E0F00C830A7 /* GHAttributedObject.m in Sources */,
@@ -639,6 +658,7 @@
 				21155B15189A6E0F00C830A7 /* SVGGradientUtilities.m in Sources */,
 				21155B18189A6E0F00C830A7 /* SVGUtilities.m in Sources */,
 				21155B17189A6E0F00C830A7 /* SVGTextUtilities.m in Sources */,
+				21AEB0EC18A1A46C0097200B /* SVGPrinter.m in Sources */,
 				21155B0B189A6E0F00C830A7 /* SVGRendererLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -657,8 +677,10 @@
 				21BDEBAA1893C7CE003A0644 /* GHControlFactory.m in Sources */,
 				21BDEB491893BF08003A0644 /* SVGgh.m in Sources */,
 				21BDEB801893C7B7003A0644 /* GHPathUtilities.m in Sources */,
+				21AEB0EA18A1A46C0097200B /* SVGPrinter.m in Sources */,
 				21BDEBCC1893CD66003A0644 /* SVGAttributedObject.m in Sources */,
 				21BDEB9B1893C7C3003A0644 /* SVGPathGenerator.m in Sources */,
+				2161B49318A1812A00081167 /* SVGtoPDFConverter.m in Sources */,
 				21BDEB841893C7B7003A0644 /* SVGParser.m in Sources */,
 				21BDEB861893C7B7003A0644 /* SVGTextUtilities.m in Sources */,
 				21BDEB881893C7B7003A0644 /* SVGUtilities.m in Sources */,
@@ -685,8 +707,10 @@
 				21BDEBAB1893C7CE003A0644 /* GHControlFactory.m in Sources */,
 				21BDEB5E1893BF08003A0644 /* SVGghTests.m in Sources */,
 				21BDEB811893C7B7003A0644 /* GHPathUtilities.m in Sources */,
+				21AEB0EB18A1A46C0097200B /* SVGPrinter.m in Sources */,
 				21BDEBCD1893CD66003A0644 /* SVGAttributedObject.m in Sources */,
 				21BDEB9C1893C7C3003A0644 /* SVGPathGenerator.m in Sources */,
+				2161B49418A1812A00081167 /* SVGtoPDFConverter.m in Sources */,
 				21BDEB851893C7B7003A0644 /* SVGParser.m in Sources */,
 				21BDEB871893C7B7003A0644 /* SVGTextUtilities.m in Sources */,
 				21BDEB891893C7B7003A0644 /* SVGUtilities.m in Sources */,

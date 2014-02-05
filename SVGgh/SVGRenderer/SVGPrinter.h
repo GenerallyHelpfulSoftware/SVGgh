@@ -1,5 +1,5 @@
 //
-//  SVGgh.h
+//  SVGRenderer+Printing.h
 //  SVGgh
 // The MIT License (MIT)
 
@@ -22,17 +22,20 @@
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
+//  Created by Glenn Howes on 2/4/14.
+//
 
-#import <Foundation/Foundation.h>
+#import <SVGgh/SVGgh.h>
 
-#import <SVGgh/GHButton.h>
-#import <SVGgh/GHControlFactory.h>
-#import <SVGgh/GHImageCache.h>
-#import <SVGgh/GHRenderable.h>
-#import <SVGgh/SVGDocumentView.h>
-#import <SVGgh/SVGParser.h>
-#import <SVGgh/SVGRenderer.h>
-#import <SVGgh/SVGPrinter.h>
-#import <SVGgh/SVGtoPDFConverter.h>
+typedef enum PrintingResults
+{
+    kSuccessfulPrintingResult = 0,
+    kCouldntCreatePrintingDataResult,
+    kCouldntInterfaceWithPrinterResult,
+    kPrintingErrorResult
+}PrintingResults;
 
-void MakeSureSVGghLinks();
+typedef void(^printingCallback_t)(NSError* error, PrintingResults printingResult);
+@interface SVGPrinter :NSObject
++(void) printRenderer:(SVGRenderer*)renderer  withJobName:(NSString*)jobName withCallback:(printingCallback_t)callback;
+@end

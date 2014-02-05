@@ -1,5 +1,5 @@
 //
-//  SVGgh.h
+//  SVGRenderer+PDF.h
 //  SVGgh
 // The MIT License (MIT)
 
@@ -22,17 +22,24 @@
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
+//  Created by Glenn Howes on 2/4/14.
+//
+#import <SVGgh/SVGgh.h>
 
-#import <Foundation/Foundation.h>
+typedef void(^renderPDFCallback_t)(NSData* pdfData);
 
-#import <SVGgh/GHButton.h>
-#import <SVGgh/GHControlFactory.h>
-#import <SVGgh/GHImageCache.h>
-#import <SVGgh/GHRenderable.h>
-#import <SVGgh/SVGDocumentView.h>
-#import <SVGgh/SVGParser.h>
-#import <SVGgh/SVGRenderer.h>
-#import <SVGgh/SVGPrinter.h>
-#import <SVGgh/SVGtoPDFConverter.h>
+@interface SVGtoPDFConverter : NSObject
+/*! @brief call to create a PDF, does so on another queue
+* @param aRenderer a configured renderer
+* @param callback the block to get called when done
+* @attention will callback on another queue may return nil pdfData
+*/
++(void) createPDFFromRenderer:(SVGRenderer*)aRenderer intoCallback:(renderPDFCallback_t)callback;
+@end
 
-void MakeSureSVGghLinks();
+/*! \brief utility method to create a PDF context
+* \param mediaRect the resulting PDFs boundary (zero origin preferred)
+* \param theData an allocated but empty block of data which will be filled with the PDF
+* \return a Core Graphics context. Caller responsible for disposal.
+*/
+CGContextRef	CreatePDFContext(const CGRect mediaRect, CFMutableDataRef theData);

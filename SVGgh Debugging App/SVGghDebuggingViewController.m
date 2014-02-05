@@ -52,4 +52,32 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(IBAction)print:(id)sender
+{
+    [SVGPrinter printRenderer:self.svgView.renderer
+                withJobName:NSLocalizedString(@"SVGgh Test Printing", @"")
+                 withCallback:^(NSError *error, PrintingResults printingResult) {
+        if(error != nil)
+        {
+            UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Printing Error", @"Error Printing") message:error.localizedDescription   delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alertView show];
+        }
+        else if(printingResult != kSuccessfulPrintingResult)
+        {
+            switch(printingResult)
+            {
+                default:
+                case kCouldntCreatePrintingDataResult:
+                case kCouldntInterfaceWithPrinterResult:
+                {
+                    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Printing Error", @"Error Printing") message:NSLocalizedString(@"Couldn't Connect to Printer", @"")   delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                    [alertView show];
+                }
+                break;
+            }
+            
+        }
+    }];
+}
+
 @end
