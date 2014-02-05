@@ -335,9 +335,10 @@ NSString* const kFacesURLsAddedKey = @"urls";
         {
             if([aFeature isKindOfClass:[CIFaceFeature class]])
             {
-                NSDictionary* options =@{kCIContextUseSoftwareRenderer:@1};
 #if TARGET_IPHONE_SIMULATOR
-                options = @{};
+                NSDictionary* options = @{};
+#else 
+                NSDictionary* options =@{kCIContextUseSoftwareRenderer:@1};
 #endif
                 
                 CIContext* coreImageContext = [CIContext contextWithOptions:options];
