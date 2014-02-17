@@ -217,14 +217,36 @@
                     CGContextSetFillColorWithColor(quartzContext, theColor.CGColor);
                     CGContextFillRect(quartzContext, myBounds);
                 }
-                else  if(self.backgroundColor == 0)
-                {
-                    CGContextClearRect(quartzContext, myBounds);
-                }
                 else
                 {
-                    CGContextSetFillColorWithColor(quartzContext, self.backgroundColor);
-                    CGContextFillRect(quartzContext, myBounds);
+                    CGColorRef myBackgroundColor = self.backgroundColor;
+                    if(myBackgroundColor == 0 && [self.delegate respondsToSelector:@selector(copyFillColor)])
+                    {
+                        UIColor* delegatesColor = [self.delegate copyFillColor];
+                        myBackgroundColor = delegatesColor.CGColor;
+                        CGColorRetain(myBackgroundColor);
+                    }
+                    else if(myBackgroundColor != 0)
+                    {
+                        CGColorRetain(myBackgroundColor);
+                    }
+                    if(myBackgroundColor == 0)
+                    {
+                        UIColor*	theColor = UIColorFromSVGColorString(@"white");
+                        CGContextSetFillColorWithColor(quartzContext, theColor.CGColor);
+                        CGContextFillRect(quartzContext, myBounds);
+                    }
+                    else if(CGColorGetAlpha(myBackgroundColor) == 0)
+                    {
+                        CGContextClearRect(quartzContext, myBounds);
+                        CGColorRelease(myBackgroundColor);
+                    }
+                    else
+                    {
+                        CGContextSetFillColorWithColor(quartzContext, myBackgroundColor);
+                        CGContextFillRect(quartzContext, myBounds);
+                        CGColorRelease(myBackgroundColor);
+                    }
                 }
             }
         }

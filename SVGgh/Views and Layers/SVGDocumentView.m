@@ -90,9 +90,14 @@
     }
 }
 
+-(UIColor*)copyFillColor
+{
+    UIColor* result = self.backgroundColor;
+    return result;
+}
+
 -(void)drawRect:(CGRect)rect
 { // do not remove this unless you like to lose Retina graphics
-    
 }
 
 +(void)makeSureLoaded

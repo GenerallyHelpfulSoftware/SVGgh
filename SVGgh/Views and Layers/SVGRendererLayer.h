@@ -29,6 +29,11 @@
 #import <Foundation/Foundation.h>
 #import <QuartzCore/CALayer.h>
 #import "SVGRenderer.h"
+
+@protocol FillColorProtocol <NSObject>
+-(UIColor*) copyFillColor;
+@end
+
 /*! @brief a layer which takes an SVGRenderer and uses it to draw itself
 * @see SVGDocumentView
 * @see SVGRenderer
