@@ -675,20 +675,20 @@
         }
     }
 	
-	NSString* fillString = [self.attributes objectForKey:@"fill"];
+	NSString* fillString = [self valueForStyleAttribute:@"fill"];
 	CGPathDrawingMode drawingMode = kCGPathStroke;
 	
 	
-	NSString* fillRuleString = [self.attributes objectForKey:@"fill-rule"];
+	NSString* fillRuleString = [self valueForStyleAttribute:@"fill-rule"];
 	BOOL	evenOddFill = [fillRuleString isEqualToString:@"evenodd"];
     if(!evenOddFill)
     {// we might be in a clip path
-        fillRuleString = [self.attributes objectForKey:@"clip-rule"];
+        fillRuleString = [self valueForStyleAttribute:@"clip-rule"];
         evenOddFill = [fillRuleString isEqualToString:@"evenodd"];
     }
     
     
-	NSString* fillOpacityString = [self.attributes objectForKey:@"fill-opacity"];
+	NSString* fillOpacityString = [self valueForStyleAttribute:@"fill-opacity"];
 	CGFloat	fillOpacity = 1.0;
 	if([fillOpacityString length])
 	{
@@ -696,7 +696,7 @@
 		if(fillOpacity < 0.0) fillOpacity = 0.0;
 		if(fillOpacity > 1.0) fillOpacity = 1.0;
 	}
-	NSString* strokeOpacityString = [self.attributes objectForKey:@"stroke-opacity"];
+	NSString* strokeOpacityString = [self valueForStyleAttribute:@"stroke-opacity"];
 	CGFloat strokeOpacity = 1.0;
 	
 	if([strokeOpacityString length])
@@ -844,7 +844,7 @@
     CGContextConcatCTM(quartzContext, self.transform);
     [self addPathToQuartzContext:quartzContext];
 	CGContextRestoreGState(quartzContext);
-	NSString* fillRuleString = [self.attributes objectForKey:@"clip-rule"];
+	NSString* fillRuleString = [self valueForStyleAttribute:@"clip-rule"];
 	BOOL	evenOddFill = [fillRuleString isEqualToString:@"evenodd"];
     if(evenOddFill)
     {
@@ -869,7 +869,7 @@
 {
     ClippingType result = kPathClippingType;
     
-	NSString* fillRuleString = [self.attributes objectForKey:@"clip-rule"];
+	NSString* fillRuleString = [self valueForStyleAttribute:@"clip-rule"];
 	BOOL	evenOddFill = [fillRuleString isEqualToString:@"evenodd"];
     if(evenOddFill)
     {
