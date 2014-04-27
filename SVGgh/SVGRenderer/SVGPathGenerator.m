@@ -1955,7 +1955,7 @@ int ParameterCountForOperator(unichar anOperator)
 }
 @end
 
-CGPathRef NewPathFromSVGPathString(NSString* dAttribute, CGAffineTransform transformToApply)
+CGPathRef CreatePathFromSVGPathString(NSString* dAttribute, CGAffineTransform transformToApply)
 {
     CGPathRef result = [SVGPathGenerator newCGPathFromSVGPath:dAttribute whileApplyingTransform:transformToApply];
     return result;

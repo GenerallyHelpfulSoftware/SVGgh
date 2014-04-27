@@ -167,4 +167,4 @@ typedef NSUInteger ColorScheme;
 @end
 
 extern UIColor* UIColorFromSVGColorString (NSString * stringToConvert);
-extern CGPathRef NewPathFromSVGPathString(NSString* dAttribute, CGAffineTransform transformToApply);
+extern CGPathRef CreatePathFromSVGPathString(NSString* dAttribute, CGAffineTransform transformToApply);
