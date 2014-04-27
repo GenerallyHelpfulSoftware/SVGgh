@@ -942,6 +942,15 @@
 {
 	NSString* result = [self.attributes objectForKey:@"points"];
 	NSArray* testComponent = [result componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@", "]];
+    
+    NSMutableArray* mutableTestComponent = [testComponent mutableCopy];
+    [mutableTestComponent removeObject:@""];// what if there was both a space and a ,
+    if(mutableTestComponent.count != testComponent.count)
+    { // got some blank spaces
+        testComponent = mutableTestComponent;
+        result = [mutableTestComponent componentsJoinedByString:@","];
+    }
+    
 	if([testComponent count] & 1)
 	{
 		result = nil;
@@ -962,8 +971,15 @@
 {		// followed by a close
 	NSString* result = [self.attributes objectForKey:@"points"];
 	NSArray* testComponent = [result componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@", "]];
+    NSMutableArray* mutableTestComponent = [testComponent mutableCopy];
+    [mutableTestComponent removeObject:@""];// what if there was both a space and a ,
+    if(mutableTestComponent.count != testComponent.count)
+    { // got some blank spaces
+        testComponent = mutableTestComponent;
+        result = [mutableTestComponent componentsJoinedByString:@","];
+    }
 	if([testComponent count] & 1)
-	{
+	{// need an even number of x, y values
 		result = nil;
 	}
 	result = [result stringByAppendingString:@" z"];
