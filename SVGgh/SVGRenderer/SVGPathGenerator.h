@@ -81,12 +81,6 @@ typedef enum SVGPathValidationError
 */
 +(CGPathRef) newCGPathFromSVGPath:(NSString*)anSVGPath whileApplyingTransform:(CGAffineTransform)aTransform;
 
-/*! @brief returns an attributed string with the path operators in a different color
-* @param plainString a string from a path entity's 'd' attribute
-* @return an attributed string with the operator letters colorized
-*/
-+(NSAttributedString*)editingStringForPlainPlath:(NSString*)plainString;
-
 /*! @brief given a SVG path in text form, return a bounding box (includes control points)
 * @param anSVGPath a string from a path entity's 'd' attribute
 * @return a rectangle which encapulates all the points on the path and any control points

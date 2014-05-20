@@ -156,25 +156,6 @@ int ParameterCountForOperator(unichar anOperator)
     return sResult;
 }
 
-+(NSAttributedString*)editingStringForPlainPlath:(NSString*)plainString
-{
-    NSCharacterSet* invalidPathCharacters = [self invalidPathCharacters]; // characters that should never be in an SVG Path
-    NSString* strippedString = [plainString stringByRemovingCharactersInSet:invalidPathCharacters];
-    
-    NSDictionary* operatorAttributes = @{NSForegroundColorAttributeName:[[UIColor alloc] initWithHue:203.0/360.0 saturation:1.0 brightness:.73 alpha:1.0]};
-    
-    NSDictionary* numberAttributes = @{NSForegroundColorAttributeName:[UIColor darkGrayColor]};
-    
-    NSMutableAttributedString* result = [[NSMutableAttributedString alloc] initWithString:strippedString attributes:numberAttributes];
-    
-    
-    NSCharacterSet* operatorSet = [NSCharacterSet characterSetWithCharactersInString:@"mMlLtTsScCqQaAzZhHvV"];
-    
-    [result setAttributes:operatorAttributes forCharactersInSet:operatorSet];
-    
-    return [result copy];
-}
-
 +(CGRect) addPoint:(CGPoint)aPoint toRect:(CGRect)aRect
 {
     CGRect result = aRect;
