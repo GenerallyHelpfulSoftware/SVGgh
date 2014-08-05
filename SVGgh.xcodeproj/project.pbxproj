@@ -61,6 +61,7 @@
 		2161B49318A1812A00081167 /* SVGtoPDFConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2161B49118A1812A00081167 /* SVGtoPDFConverter.m */; };
 		2161B49418A1812A00081167 /* SVGtoPDFConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2161B49118A1812A00081167 /* SVGtoPDFConverter.m */; };
 		2161B49518A1812A00081167 /* SVGtoPDFConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2161B49118A1812A00081167 /* SVGtoPDFConverter.m */; };
+		2172C24F198D8DF500354353 /* SVGRendererLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 21BDEBA81893C7CE003A0644 /* SVGRendererLayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		21AEB0E918A1A46C0097200B /* SVGPrinter.h in Headers */ = {isa = PBXBuildFile; fileRef = 21AEB0E718A1A46C0097200B /* SVGPrinter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		21AEB0EA18A1A46C0097200B /* SVGPrinter.m in Sources */ = {isa = PBXBuildFile; fileRef = 21AEB0E818A1A46C0097200B /* SVGPrinter.m */; };
 		21AEB0EB18A1A46C0097200B /* SVGPrinter.m in Sources */ = {isa = PBXBuildFile; fileRef = 21AEB0E818A1A46C0097200B /* SVGPrinter.m */; };
@@ -480,6 +481,7 @@
 				21AEB0E918A1A46C0097200B /* SVGPrinter.h in Headers */,
 				2161B49218A1812A00081167 /* SVGtoPDFConverter.h in Headers */,
 				21BDEBD618952CDE003A0644 /* SVGPathGenerator.h in Headers */,
+				2172C24F198D8DF500354353 /* SVGRendererLayer.h in Headers */,
 				21BDEBCB1893CD66003A0644 /* SVGAttributedObject.h in Headers */,
 				21BDEBC61893CB60003A0644 /* GHAttributedObject.h in Headers */,
 				21BDEBBD1893C9BC003A0644 /* SVGParser.h in Headers */,
