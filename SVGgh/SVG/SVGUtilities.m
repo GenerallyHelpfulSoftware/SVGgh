@@ -1566,7 +1566,7 @@ CGFloat	GetNextCoordinate(const char* buffer, NSUInteger* indexPtr, NSUInteger b
     if(srcBufferIndex < bufferLength)
     {
         theChar = buffer[srcBufferIndex];
-        if((theChar >= '0' && theChar <= '9') || theChar == '-' || theChar == '.' || theChar == '+' || theChar == ' ' || theChar == '\n')
+        if((theChar >= '0' && theChar <= '9') || theChar == '-' || theChar == '.' || theChar == '+' || theChar == ' ' || theChar == '\n' || theChar == 'e')
         {
             srcBufferIndex++;
         }
@@ -1580,7 +1580,7 @@ CGFloat	GetNextCoordinate(const char* buffer, NSUInteger* indexPtr, NSUInteger b
         *failed = YES;
     }
 	
-	while(*failed == NO && !(theChar == '-' || theChar == '+' || theChar == '.' || (theChar >= '0' && theChar <= '9')))
+	while(*failed == NO && !(theChar == '-' || theChar == '+' || theChar == '.' || (theChar >= '0' && theChar <= '9') || theChar == 'e'))
 	{
         if(srcBufferIndex < bufferLength)
         {
@@ -1608,17 +1608,17 @@ CGFloat	GetNextCoordinate(const char* buffer, NSUInteger* indexPtr, NSUInteger b
         char	stringBuffer[100];
         NSUInteger	stringBufferIndex = 0;
         
-        if(theChar == '-' || theChar == '+' || theChar == '.' || (theChar >= '0' && theChar <= '9'))
+        if(theChar == '-' || theChar == '+' || theChar == '.' || (theChar >= '0' && theChar <= '9') || theChar == 'e')
         {
             stringBuffer[stringBufferIndex++] = theChar;
             numberSeen = (theChar >= '0' && theChar <= '9');
         }
-        BOOL periodSeen = NO;
+        BOOL periodSeen = NO, expSeen = NO;
         while(srcBufferIndex < bufferLength)
         {
             theChar = buffer[srcBufferIndex];
             if((theChar == '.' && !periodSeen)
-               || (theChar >= '0' && theChar <= '9'))
+               || (theChar >= '0' && theChar <= '9') || theChar == 'e' || (expSeen && (theChar == '-' || theChar == '+')))
             {
                 if(theChar == '.')
                 {
@@ -1627,6 +1627,10 @@ CGFloat	GetNextCoordinate(const char* buffer, NSUInteger* indexPtr, NSUInteger b
                 else if(theChar >= '0' && theChar <= '9')
                 {
                     numberSeen = YES;
+                }
+                else if(theChar == 'e')
+                {
+                    expSeen = YES;
                 }
                 srcBufferIndex++;
                 stringBuffer[stringBufferIndex++] = theChar;
@@ -1645,7 +1649,7 @@ CGFloat	GetNextCoordinate(const char* buffer, NSUInteger* indexPtr, NSUInteger b
         {
             stringBuffer[stringBufferIndex++] = 0;
             char* endPtr = &stringBuffer[stringBufferIndex];
-            if(periodSeen)
+            if(periodSeen || expSeen)
             {
                 result = strtof(stringBuffer, &endPtr);
             }
@@ -1661,7 +1665,7 @@ CGFloat	GetNextCoordinate(const char* buffer, NSUInteger* indexPtr, NSUInteger b
         
         while(srcBufferIndex < bufferLength && 
               !((theChar >= 'a' && theChar <= 'z') || (theChar >= 'A' && theChar <= 'Z')
-                || theChar == '-' || theChar == '+' || theChar == '.' || (theChar >= '0' && theChar <= '9')))
+                || theChar == '-' || theChar == '+' || theChar == '.' || (theChar >= '0' && theChar <= '9') || theChar == 'e'))
         { // jump to the next operand or number
             theChar = buffer[++srcBufferIndex];
         }
