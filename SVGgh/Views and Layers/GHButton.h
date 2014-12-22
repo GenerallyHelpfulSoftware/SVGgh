@@ -41,6 +41,11 @@
 
 #import <UIKit/UIKit.h>
 #import "GHControlFactory.h"
+
+#ifndef IBInspectable
+#define IBInspectable
+#endif
+
 /*! @brief a button widget that can take on various themed appearances and host vectored svg content
 * @attention not a UIButton (too hard to subclass)
 * @attention wire any UIAction up to the up inside event not the value changed event
@@ -50,7 +55,7 @@
 /*! @property schemeNumber 
 * @brief this is equivalent to the scheme property, just the one expected to be set via Storyboard or Nib
 */
-@property(nonatomic, assign) NSInteger           schemeNumber;
+@property(nonatomic, assign) IBInspectable NSInteger           schemeNumber;
 
 // these are all related to how the button draws itself as part of a scheme
 @property(nonatomic, assign) CGGradientRef       faceGradient;
@@ -68,22 +73,22 @@
 /*! @property title
 * @brief this text (if any) will be displayed embedded in the button
 */
-@property(nonatomic, strong) NSString*           title;
+@property(nonatomic, strong) IBInspectable NSString*           title;
 /*! @property artworkPath
  * @brief optional subpath to an svg file inside the resources folder, svg is displayed inside the button at appropriate size
  * @attention do not append '.svg'
  */
-@property(nonatomic, strong) NSString*           artworkPath;
+@property(nonatomic, strong) IBInspectable NSString*           artworkPath;
 /*! @property selectedArtworkPath
  * @brief optional subpath to an svg file inside the resources folder, svg is displayed inside the button at appropriate size. When button is in selected state.
  * @attention do not append '.svg'
  */
-@property(nonatomic, strong) NSString*           selectedArtworkPath;
+@property(nonatomic, strong) IBInspectable NSString*           selectedArtworkPath;
 /*! @property pressedArtworkPath
  * @brief optional subpath to an svg file inside the resources folder, svg is displayed inside the button at appropriate size. When button is in pressed state.
  * @attention do not append '.svg'
  */
-@property(nonatomic, strong) NSString*           pressedArtworkPath;
+@property(nonatomic, strong) IBInspectable NSString*           pressedArtworkPath;
 /*! @property artworkView
  * @brief optional view to embed inside this button to display artwork. Usually used from storyboard or nib
  */

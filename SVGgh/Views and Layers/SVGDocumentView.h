@@ -29,6 +29,9 @@
 #import <UIKit/UIKit.h>
 #import "GHRenderable.h"
 
+#ifndef IBInspectable
+#define IBInspectable
+#endif
 /*
  * Note you can instantiate a SVGDocumentView in a storyboard or a XIB by dragging a UIView into your view and giving it a class of SVGDocumentView.
  * You can configure the contents of the view by adding "User Defined Runtime Attributes" in XCode's "Identity Inspector"
@@ -45,12 +48,13 @@
 @class SVGRenderer;
 /*! @brief a view capable of hosting an SVGRenderer or rendering a chunk of SVG
 */
+
 @interface SVGDocumentView : UIView
 
 /*! @property artworkPath
 * @brief the text contents of an SVG document can be accessed via 'User Defined RuntimeAttributes'
 */
-@property(nonatomic, strong)    NSString*       artworkPath;
+@property(nonatomic, strong) IBInspectable NSString*       artworkPath;
 
 /*! @property renderer
 * @brief a pre-configured SVGRenderer object which will be called to draw the content
@@ -60,7 +64,7 @@
 /*! @property beTransparent
  * @brief ignore the document's 'viewport-fill' property
  */
-@property(nonatomic, assign)    BOOL beTransparent;
+@property(nonatomic, assign) IBInspectable   BOOL beTransparent;
 
 /*! @brief method that tries to locate an object located at the given point inside the coordinate system of the view
 * @param testPoint a point in the coordinate system of the view
