@@ -126,7 +126,7 @@
 		21BDEBCB1893CD66003A0644 /* SVGAttributedObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 21BDEBC91893CD66003A0644 /* SVGAttributedObject.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		21BDEBCC1893CD66003A0644 /* SVGAttributedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BDEBCA1893CD66003A0644 /* SVGAttributedObject.m */; };
 		21BDEBCD1893CD66003A0644 /* SVGAttributedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BDEBCA1893CD66003A0644 /* SVGAttributedObject.m */; };
-		21BDEBD618952CDE003A0644 /* SVGPathGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 21BDEB8F1893C7C3003A0644 /* SVGPathGenerator.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		21BDEBD618952CDE003A0644 /* SVGPathGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 21BDEB8F1893C7C3003A0644 /* SVGPathGenerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		21BDEBDC189541F3003A0644 /* GHButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 21BDEBDA189541F3003A0644 /* GHButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		21BDEBDD189541F3003A0644 /* GHButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BDEBDB189541F3003A0644 /* GHButton.m */; };
 		21BDEBDE189541F3003A0644 /* GHButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BDEBDB189541F3003A0644 /* GHButton.m */; };
