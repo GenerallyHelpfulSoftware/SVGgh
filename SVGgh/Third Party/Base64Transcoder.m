@@ -172,7 +172,7 @@ if (*ioOutputDataSize < theDecodedDataSize)
 const UInt8 *theInPtr = (const UInt8 *)inInputData;
 UInt8 *theOutPtr = (UInt8 *)ioOutputData;
 size_t theInIndex = 0, theOutIndex = 0;
-UInt8 theOutputOctet;
+UInt8 theOutputOctet = '\0';
 size_t theSequence = 0;
 for (; theInIndex < inInputDataSize; )
 	{
