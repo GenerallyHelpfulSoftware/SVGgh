@@ -61,12 +61,12 @@ To use, you'll want to follow the following steps:
 To add a button to a .xib file or storyboard:
 * Drag a UIView into your view
 * In the **Identity Inspector** give it a **Custom Class** name of **GHButton**
-* Also in the **Identity Inspector** give it **User Defined Attributes**
+* Using Xcode 6 and above you should see the following custom attributes in the Attribute Inspector pane
 
 | Key Path | Type | Value |
 | -------- | ---- | ----- |
-| artworkPath | String | Artwork/MenuButton (assumes you have such an asset) |
-| schemeNumber | Number | 3 |
+| Artwork Path | String | Artwork/MenuButton (assumes you have such an asset) |
+| Scheme Number | Number | 3 |
 
 
 * Note that the **.svg** extension is assumed
@@ -74,17 +74,17 @@ To add a button to a .xib file or storyboard:
 
 | Key Path | Type | Value |
 | -------- | ---- | ----- |
-| title | Localized String | My Label |
-| schemeNumber | Number | 3 |
+| Title | Localized String | My Label |
+| Scheme Number | Number | 3 |
 
 To add a static view to a .xib file or storyboard:
 * Drag a UIView into your view
 * In the **Identity Inspector** give it a **Custom Class** name of **SVGDocumentView**
-* Also in the **Identity Inspector** give it **User Defined Attributes**
+* Using Xcode 6 and above you should see the following custom attribute in the Attribute Inspector pane
 
 | Key Path | Type | Value |
 | -------- | ---- | ----- |
-| artworkPath | String | Artwork/MyBackground |
+| Artwork Path | String | Artwork/MyBackground |
 
 * Note that the **.svg** extension is assumed
 * You should likely open the **Attributes Inspector** tab and set the **Mode** to **Aspect Fit** or possibly **Aspect Fill**.
@@ -115,7 +115,7 @@ The starting point is the **SVGRenderer**, which as a subclass of **SVGParser** 
 I've gone through and added Doxygen style comments to all the header files, so there is some hope of finding your way. 
 
 ### Attribution
-While the vast majority of the code in this first release was written by me. There are a couple of classes or categories that were found online but have a flexible enough license for me to include here.
+While the vast majority of the code in this release was written by me. There are a couple of classes or categories that were found online but have a flexible enough license for me to include here.
 * Jonathan Wight wrote a Base64 Transcoder which I found quite useful for handling embedded images.
 * Ian Baird wrote a category for NSData for Base64 which I also found very easy to use. 
 * [Jeff Verkoeyen] (https://github.com/jverkoey/iOS-Framework) provided the instructions for building a static library. Be sure to set **Build Active Architecture Only** to **NO**
