@@ -237,6 +237,7 @@
 		21BDEBCA1893CD66003A0644 /* SVGAttributedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVGAttributedObject.m; sourceTree = "<group>"; };
 		21BDEBDA189541F3003A0644 /* GHButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHButton.h; sourceTree = "<group>"; };
 		21BDEBDB189541F3003A0644 /* GHButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHButton.m; sourceTree = "<group>"; };
+		D8F8578B1AA637C2000C2E8D /* SVGgh.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SVGgh.podspec; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -307,6 +308,7 @@
 		21BDEB351893BF08003A0644 = {
 			isa = PBXGroup;
 			children = (
+				D8F8578B1AA637C2000C2E8D /* SVGgh.podspec */,
 				21BDEB431893BF08003A0644 /* SVGgh */,
 				21BDEB571893BF08003A0644 /* SVGghTests */,
 				21155AD8189A6DCC00C830A7 /* SVGgh Debugging App */,
