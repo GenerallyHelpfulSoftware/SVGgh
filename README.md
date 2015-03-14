@@ -28,6 +28,11 @@ If you just want to use the code in your app and are uninterested in the underly
 * SVGToPDFConverter.h A class to convert the renderer's contents to a PDF.
 * SVGPrinter.h A class to send a renderer's contents to a printer.
 
+####If you are familiar with using Cocoapods and using it in your project
+* Insert ````pod 'SVGgh'```` into your PodFile
+* Go through the standard procedures for updating your Xcode workspace via Cocoapods. ````pod update````, ````pod install````, etc.
+
+####If you are not using Cocoapods
 To compile the static library. 
 * Load the included **SVGgh.xcodeproj** project in Xcode 5 or above 
 * **Build** the **Framework** target.
@@ -39,6 +44,8 @@ To compile the static library.
 To use, you'll want to follow the following steps:
 * Add the **SVGgh** library to your Xcode project.
 * \#include &lt;SVGgh/SVGgh.h&gt;
+
+####Once you have installed the library
 * early in the launch of your app call 
     **[ControlFactory kColorSchemeClear];**
 * early in the launch of your app call
@@ -57,6 +64,8 @@ To use, you'll want to follow the following steps:
 }
 ...
 ````
+
+* If you are coding in Swift. You will want to add ````#import <SVGgh/SVGgh.h>```` to your bridging header.
 
 To add a button to a .xib file or storyboard:
 * Drag a UIView into your view
@@ -119,3 +128,4 @@ While the vast majority of the code in this release was written by me. There are
 * Jonathan Wight wrote a Base64 Transcoder which I found quite useful for handling embedded images.
 * Ian Baird wrote a category for NSData for Base64 which I also found very easy to use. 
 * [Jeff Verkoeyen] (https://github.com/jverkoey/iOS-Framework) provided the instructions for building a static library. Be sure to set **Build Active Architecture Only** to **NO**
+* [Ryan Hornberger] (http://www.ryanhornberger.com) was thoughtful enough to do something I had been too slammed to do: create a CocoaPod Spec for this library making it much more useful.
