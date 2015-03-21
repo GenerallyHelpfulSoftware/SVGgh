@@ -553,7 +553,7 @@
 		21BDEB361893BF08003A0644 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0620;
 				ORGANIZATIONNAME = "Generally Helpful Software";
 				TargetAttributes = {
 					21BDEB4D1893BF08003A0644 = {
