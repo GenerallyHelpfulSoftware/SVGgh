@@ -120,10 +120,10 @@
 		21BDEBC11893CA89003A0644 /* GHImageCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 21BDEBBF1893CA89003A0644 /* GHImageCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		21BDEBC21893CA89003A0644 /* GHImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BDEBC01893CA89003A0644 /* GHImageCache.m */; };
 		21BDEBC31893CA89003A0644 /* GHImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BDEBC01893CA89003A0644 /* GHImageCache.m */; };
-		21BDEBC51893CB23003A0644 /* GHPathDescription.h in Headers */ = {isa = PBXBuildFile; fileRef = 21BDEBC41893CB23003A0644 /* GHPathDescription.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		21BDEBC61893CB60003A0644 /* GHAttributedObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 21BDEB721893C7B7003A0644 /* GHAttributedObject.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		21BDEBC51893CB23003A0644 /* GHPathDescription.h in Headers */ = {isa = PBXBuildFile; fileRef = 21BDEBC41893CB23003A0644 /* GHPathDescription.h */; };
+		21BDEBC61893CB60003A0644 /* GHAttributedObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 21BDEB721893C7B7003A0644 /* GHAttributedObject.h */; };
 		21BDEBC81893CBF7003A0644 /* GHRenderable.h in Headers */ = {isa = PBXBuildFile; fileRef = 21BDEBC71893CBF7003A0644 /* GHRenderable.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		21BDEBCB1893CD66003A0644 /* SVGAttributedObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 21BDEBC91893CD66003A0644 /* SVGAttributedObject.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		21BDEBCB1893CD66003A0644 /* SVGAttributedObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 21BDEBC91893CD66003A0644 /* SVGAttributedObject.h */; };
 		21BDEBCC1893CD66003A0644 /* SVGAttributedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BDEBCA1893CD66003A0644 /* SVGAttributedObject.m */; };
 		21BDEBCD1893CD66003A0644 /* SVGAttributedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BDEBCA1893CD66003A0644 /* SVGAttributedObject.m */; };
 		21BDEBD618952CDE003A0644 /* SVGPathGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 21BDEB8F1893C7C3003A0644 /* SVGPathGenerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -478,15 +478,15 @@
 				21BDEBC11893CA89003A0644 /* GHImageCache.h in Headers */,
 				21BDEBBC1893C938003A0644 /* SVGDocumentView.h in Headers */,
 				21BDEBC81893CBF7003A0644 /* GHRenderable.h in Headers */,
-				21BDEBC51893CB23003A0644 /* GHPathDescription.h in Headers */,
 				2153722B189969EA006EBCD5 /* SVGContext.h in Headers */,
 				21AEB0E918A1A46C0097200B /* SVGPrinter.h in Headers */,
 				2161B49218A1812A00081167 /* SVGtoPDFConverter.h in Headers */,
 				21BDEBD618952CDE003A0644 /* SVGPathGenerator.h in Headers */,
 				2172C24F198D8DF500354353 /* SVGRendererLayer.h in Headers */,
+				21BDEBBD1893C9BC003A0644 /* SVGParser.h in Headers */,
+				21BDEBC51893CB23003A0644 /* GHPathDescription.h in Headers */,
 				21BDEBCB1893CD66003A0644 /* SVGAttributedObject.h in Headers */,
 				21BDEBC61893CB60003A0644 /* GHAttributedObject.h in Headers */,
-				21BDEBBD1893C9BC003A0644 /* SVGParser.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
