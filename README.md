@@ -47,7 +47,7 @@ To use, you'll want to follow the following steps:
 
 ####Once you have installed the library
 * early in the launch of your app call 
-    **[ControlFactory kColorSchemeClear];**
+    **[GHControlFactory kColorSchemeClear];**
 * early in the launch of your app call
 **MakeSureSVGghLinks();** in order to link classes only referenced in storyboards or nibs. As in:
 
