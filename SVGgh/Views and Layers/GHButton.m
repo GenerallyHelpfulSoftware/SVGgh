@@ -497,6 +497,7 @@ useRadialGradient=_useRadialGradient,scheme=_scheme;
 
 - (void)layoutSubviews
 {
+    [super layoutSubviews];
     CGRect myRectInsideRadius = CGRectInset(self.bounds, kRoundButtonRadius, kRoundButtonRadius);
     if(self.textLabel != nil)
     {
