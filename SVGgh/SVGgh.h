@@ -26,6 +26,7 @@
 #import <Foundation/Foundation.h>
 
 #import <SVGgh/GHButton.h>
+#import <SVGgh/GHControl.h> 
 #import <SVGgh/GHControlFactory.h>
 #import <SVGgh/GHImageCache.h>
 #import <SVGgh/GHRenderable.h>

@@ -61,6 +61,7 @@ To use, you'll want to follow the following steps:
     [super initialize];
     MakeSureSVGghLinks(); // classes only used in Storyboards might not link otherwise
     [GHControlFactory setDefaultScheme:kColorSchemeClear];
+    [GHControlFactory setDefaultTextColor:[UIColor greenColor]];
 }
 ...
 ````
@@ -85,6 +86,8 @@ To add a button to a .xib file or storyboard:
 | -------- | ---- | ----- |
 | Title | Localized String | My Label |
 | Scheme Number | Number | 3 |
+
+* There is an attribute of an SVG document called ````currentColor````. You can access it to change the appearance of a button while being pressed via the **textColor**, **textColorPressed** and **textColorSelected** properties of **UIControl**. These are accessible from storyboard or you can set it up globally in your initialize method. Your SVGs will have to be set to use currentColor instead of some explicit color.
 
 To add a static view to a .xib file or storyboard:
 * Drag a UIView into your view

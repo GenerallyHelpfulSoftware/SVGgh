@@ -31,10 +31,8 @@
 #import "GHControlFactory.h"
 #import "SVGRenderer.h"
 
-const CGFloat kButtonTitleFontSize = 16.0;
 const CGFloat kRingThickness = 2.0;
 const CGFloat kRoundButtonRadius = 8.0;
-const CGFloat kButtonShadowDistance = 2.0;
 
 @interface KeyboardPressedPopup : UIView
 @property(nonatomic, assign) GHButton* parent;
@@ -45,127 +43,21 @@ const CGFloat kButtonShadowDistance = 2.0;
 @interface GHButton ()
 {
 @private
-    UIColor*            textColor;
-    UIColor*            textColorPressed;
-    UIColor*            ringColor;
-    NSString*           title;
-    UILabel*            textLabel;
-    CGFloat             textFontSize;
-    BOOL                useBoldText;
-    BOOL                showShadow;
 }
-@property(nonatomic, strong) UILabel*      textLabel;
-@property(nonatomic, strong) KeyboardPressedPopup*        pressedView;
--(void) setupForScheme:(NSUInteger)aScheme;
+@property(nonatomic, weak) UILabel*                     textLabel;
+@property(nonatomic, weak) KeyboardPressedPopup*        pressedView;
 @end
 
 
 @implementation GHButton
-@synthesize faceGradient=_faceGradient;
-@synthesize faceGradientPressed=_faceGradientPressed, faceGradientSelected=_faceGradientSelected,
-textColor, textColorPressed, ringColor, textLabel, textShadowColor,
-useRadialGradient=_useRadialGradient,scheme=_scheme;
 
 +(void)makeSureLoaded
 {
 }
 
--(id) initWithFrame:(CGRect)frame
-{
-    if(nil != (self = [super initWithFrame:frame]))
-    {
-        if([GHControlFactory defaultScheme] != kColorSchemeNone)
-        {
-            [self setupForScheme:[GHControlFactory defaultScheme]];
-        }
-    }
-    return self;
-}
-
--(id) initWithCoder:(NSCoder *)aDecoder
-{
-    if(nil != (self = [super initWithCoder:aDecoder]))
-    {
-        if([GHControlFactory defaultScheme] != kColorSchemeNone)
-        {
-            [self setupForScheme:[GHControlFactory defaultScheme]];
-        }
-    }
-    return self;
-}
-
--(void) setSchemeNumber:(NSInteger)schemeNumber
-{
-    if(kColorSchemeiOSVersionAppropriate == schemeNumber)
-    {
-        NSString* systemVersion = [UIDevice currentDevice].systemVersion;
-        if(systemVersion.doubleValue >= 7)
-        {
-            schemeNumber = kColorSchemeEmpty;
-        }
-        else
-        {
-            schemeNumber = kColorSchemeiOS;
-        }
-    }
-    self.scheme = schemeNumber;
-    [self setupForScheme:self.scheme];
-}
-
--(NSInteger)schemeNumber
-{
-    return  self.scheme;
-}
-
--(void) setTextColor:(UIColor *)newTextColor
-{
-    [self syncTextColor];
-    textColor=newTextColor;
-    if(self.artworkPath.length)
-    {
-        [self setNeedsDisplay];
-    }
-}
-
 -(void)setupForScheme:(NSUInteger)aScheme
 {
-    (void)[GHControlFactory isValidColorScheme:aScheme];
-    self.scheme = aScheme;
-    CGGradientRef faceGradient = [GHControlFactory newButtonBackgroundGradientForScheme:aScheme];
-    self.faceGradient = faceGradient;
-    CGGradientRelease(faceGradient);
-    
-    CGGradientRef pressed = [GHControlFactory newButtonBackgroundGradientPressedForScheme:aScheme];
-    CGGradientRef selected = [GHControlFactory newButtonBackgroundGradientSelectedForScheme:aScheme];
-    self.faceGradientSelected = selected;
-    self.faceGradientPressed = pressed;
-    CGGradientRelease(pressed);
-    CGGradientRelease(selected);
-    
-    self.textColor = [GHControlFactory newTextColorForScheme:aScheme];
-    self.textColorPressed = [GHControlFactory newTextColorPressedForScheme:aScheme];
-    self.ringColor = [GHControlFactory newRingColorForScheme:aScheme];
-    self.textShadowColor = [GHControlFactory newLightBackgroundColorForScheme:aScheme];
-    self.backgroundColor = [UIColor clearColor];
-    self.useRadialGradient = [GHControlFactory preferRadialGradientForScheme:aScheme];
-    textFontSize = kButtonTitleFontSize;
-    useBoldText = NO;
-    self.drawsChrome = YES;
-    switch (aScheme)
-    {
-        case kColorSchemeKeyboard:
-        {
-            useBoldText = YES;
-            showShadow = YES;
-        }
-        break;
-        case kColorSchemeEmpty:
-        {
-            self.drawsChrome = NO;
-        }
-        default:
-        break;
-    }
+    [super setupForScheme:aScheme];
 }
 
 -(NSString*)title
@@ -173,29 +65,17 @@ useRadialGradient=_useRadialGradient,scheme=_scheme;
     return self.textLabel.text;
 }
 
--(void) setFaceGradient:(CGGradientRef)faceGradient
+
+-(void) setTextColor:(UIColor *)newTextColor
 {
-    CGGradientRef oldFaceGradient = _faceGradient;
-    CGGradientRetain(faceGradient);
-    _faceGradient = faceGradient;
-    CGGradientRelease(oldFaceGradient);
+    [super setTextColor:newTextColor];
+    [self syncTextColor];
+    if(self.artworkPath.length)
+    {
+        [self setNeedsDisplay];
+    }
 }
 
--(void) setFaceGradientPressed:(CGGradientRef)faceGradientPressed
-{
-    CGGradientRef oldFaceGradient = _faceGradientPressed;
-    CGGradientRetain(faceGradientPressed);
-    _faceGradientPressed = faceGradientPressed;
-    CGGradientRelease(oldFaceGradient);
-}
-
--(void)setFaceGradientSelected:(CGGradientRef)faceGradientSelected
-{
-    CGGradientRef oldFaceGradient = _faceGradientSelected;
-    CGGradientRetain(faceGradientSelected);
-    _faceGradientSelected = faceGradientSelected;
-    CGGradientRelease(oldFaceGradient);
-}
 
 -(void) syncTextColor
 {
@@ -203,7 +83,7 @@ useRadialGradient=_useRadialGradient,scheme=_scheme;
     UIColor*        textColorToUse = inNormalMode?self.textColor:self.textColorPressed;
     self.textLabel.textColor = textColorToUse;
     self.textLabel.shadowOffset = CGSizeMake(0, 1);
-    self.textLabel.shadowColor = textShadowColor;
+    self.textLabel.shadowColor = self.textShadowColor;
 }
 
 -(void) setNeedsDisplay
@@ -223,16 +103,6 @@ useRadialGradient=_useRadialGradient,scheme=_scheme;
     if([self.artworkView respondsToSelector:@selector(setSelected:)])
     {
         [(UIControl*)self.artworkView setSelected:selected];
-    }
-}
-
--(void) setEnabled:(BOOL)enabled
-{
-    BOOL isChange = (enabled != self.enabled);
-    [super setEnabled:enabled];
-    if(isChange)
-    {
-        [self setNeedsDisplay];
     }
 }
 
@@ -295,7 +165,7 @@ useRadialGradient=_useRadialGradient,scheme=_scheme;
     {// we use a regular UILabel to handle text (much simpler that way)
         UILabel* theTextLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         self.textLabel = theTextLabel;
-        self.textLabel.font = useBoldText?[UIFont boldSystemFontOfSize:textFontSize]:[UIFont systemFontOfSize:textFontSize];
+        self.textLabel.font = self.useBoldText?[UIFont boldSystemFontOfSize:self.textFontSize]:[UIFont systemFontOfSize:self.textFontSize];
         self.textLabel.backgroundColor = [UIColor clearColor];
         [self addSubview:theTextLabel];
         [self syncTextColor];
@@ -328,7 +198,7 @@ useRadialGradient=_useRadialGradient,scheme=_scheme;
     // draw subtly gradiented interior
     CGRect interiorRect = self.useRadialGradient?self.bounds:CGRectInset(self.bounds, kRingThickness, kRingThickness);
     
-    if(showShadow)
+    if(self.showShadow)
     {
         drawRing = NO;
     }
@@ -508,12 +378,6 @@ useRadialGradient=_useRadialGradient,scheme=_scheme;
     }
 }
 
--(void) dealloc
-{
-    CGGradientRelease(_faceGradient);
-    CGGradientRelease(_faceGradientPressed);
-    CGGradientRelease(_faceGradientSelected);
-}
 @end
 
 @implementation KeyboardPressedPopup
@@ -765,10 +629,8 @@ useRadialGradient=_useRadialGradient,scheme=_scheme;
         
         [renderer renderIntoContext:quartzContext];
         CGContextRestoreGState(quartzContext);
-        
     }
 }
-
 
 -(void)drawRect:(CGRect)rect
 {

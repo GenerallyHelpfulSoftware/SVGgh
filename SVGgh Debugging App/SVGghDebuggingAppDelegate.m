@@ -36,6 +36,7 @@
     [super initialize];
     MakeSureSVGghLinks(); // classes only used in Storyboards might not link otherwise
     [GHControlFactory setDefaultScheme:kColorSchemeClear];
+    [GHControlFactory setDefaultTextColor:[UIColor greenColor]];
     
 }
 

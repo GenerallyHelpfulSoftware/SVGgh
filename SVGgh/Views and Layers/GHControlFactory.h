@@ -54,7 +54,7 @@ typedef NSUInteger ColorScheme;
  */
 @interface GHControlFactory : NSObject
 
-/*! @brief set a standard button type for your app. Call it early in the app creation process. Like in your app delegate's initialize method
+/*! @brief set a standard controlScheme for your app. Call it early in the app creation process. Like in your app delegate's initialize method
 @param defaultScheme one of an enumerated list. kColorSchemeEmpty or kColorSchemeClear is nice for iOS 7
 */
 +(void) setDefaultScheme:(ColorScheme)defaultScheme;
@@ -62,16 +62,28 @@ typedef NSUInteger ColorScheme;
 /*! @brief the ColorScheme that was set by an earlier call to setDefaultScheme
  @return one of the enumerated list in the typedef ColorScheme
  @see setDefaultScheme:
-*/
+ */
 +(ColorScheme) defaultScheme;
+
+
 
 /*! @brief utility routine to validate parameters to make sure the enumerated color scheme is known (in the list)
  @param scheme one of the enumerated list in the typedef ColorScheme
  @return YES if the scheme is known
-*/
+ */
 +(BOOL)isValidColorScheme:(ColorScheme)scheme;
 
-/*! @brief part of what you do to make iOS programs unique is to give controls a color specifif to your app
+/*! @brief set the color of text and the 'currentColor' of embedded SVGs for GHControls
+ @param defaultTextColor to use
+ */
++(void) setDefaultTextColor:(UIColor*)defaultTextColor;
++(void) setDefaultPressedTextColor:(UIColor*)defaultPressedTextColor;
+
++(UIColor*)textColor;
++(UIColor*)pressedTextColor;
+
+
+/*! @brief part of what you do to make iOS programs unique is to give controls a color specific to your app
 */
 +(void) setDefaultButtonTint:(UIColor*)buttonTint;
 

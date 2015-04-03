@@ -130,6 +130,9 @@
 		21BDEBDC189541F3003A0644 /* GHButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 21BDEBDA189541F3003A0644 /* GHButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		21BDEBDD189541F3003A0644 /* GHButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BDEBDB189541F3003A0644 /* GHButton.m */; };
 		21BDEBDE189541F3003A0644 /* GHButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BDEBDB189541F3003A0644 /* GHButton.m */; };
+		21E4E9F01AC4C8C20020647D /* GHControl.h in Headers */ = {isa = PBXBuildFile; fileRef = 21E4E9EE1AC4C8C20020647D /* GHControl.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		21E4E9F11AC4C8C20020647D /* GHControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 21E4E9EF1AC4C8C20020647D /* GHControl.m */; };
+		21E4E9F21AC4C8C20020647D /* GHControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 21E4E9EF1AC4C8C20020647D /* GHControl.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -237,6 +240,8 @@
 		21BDEBCA1893CD66003A0644 /* SVGAttributedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVGAttributedObject.m; sourceTree = "<group>"; };
 		21BDEBDA189541F3003A0644 /* GHButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHButton.h; sourceTree = "<group>"; };
 		21BDEBDB189541F3003A0644 /* GHButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHButton.m; sourceTree = "<group>"; };
+		21E4E9EE1AC4C8C20020647D /* GHControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHControl.h; sourceTree = "<group>"; };
+		21E4E9EF1AC4C8C20020647D /* GHControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHControl.m; sourceTree = "<group>"; };
 		D8F8578B1AA637C2000C2E8D /* SVGgh.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SVGgh.podspec; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -436,6 +441,8 @@
 				21BDEBA51893C7CE003A0644 /* GHControlFactory.m */,
 				21BDEBDA189541F3003A0644 /* GHButton.h */,
 				21BDEBDB189541F3003A0644 /* GHButton.m */,
+				21E4E9EE1AC4C8C20020647D /* GHControl.h */,
+				21E4E9EF1AC4C8C20020647D /* GHControl.m */,
 				21BDEBA61893C7CE003A0644 /* SVGDocumentView.h */,
 				21BDEBA71893C7CE003A0644 /* SVGDocumentView.m */,
 				21BDEBA81893C7CE003A0644 /* SVGRendererLayer.h */,
@@ -473,6 +480,7 @@
 			files = (
 				21537227189966FB006EBCD5 /* SVGgh.h in Headers */,
 				21BDEBDC189541F3003A0644 /* GHButton.h in Headers */,
+				21E4E9F01AC4C8C20020647D /* GHControl.h in Headers */,
 				21BDEBBA1893C927003A0644 /* SVGRenderer.h in Headers */,
 				21BDEBBB1893C933003A0644 /* GHControlFactory.h in Headers */,
 				21BDEBC11893CA89003A0644 /* GHImageCache.h in Headers */,
@@ -659,6 +667,7 @@
 				21155AE3189A6DCC00C830A7 /* SVGghDebuggingAppDelegate.m in Sources */,
 				21155B13189A6E0F00C830A7 /* GHTextLine.m in Sources */,
 				21155B11189A6E0F00C830A7 /* GHPathUtilities.m in Sources */,
+				21E4E9F21AC4C8C20020647D /* GHControl.m in Sources */,
 				21155B15189A6E0F00C830A7 /* SVGGradientUtilities.m in Sources */,
 				21155B18189A6E0F00C830A7 /* SVGUtilities.m in Sources */,
 				21155B17189A6E0F00C830A7 /* SVGTextUtilities.m in Sources */,
@@ -693,6 +702,7 @@
 				21BDEB971893C7C3003A0644 /* GHGlyph.m in Sources */,
 				21BCA1BC1898179000A1F170 /* GHTextLine.m in Sources */,
 				21BDEB821893C7B7003A0644 /* SVGGradientUtilities.m in Sources */,
+				21E4E9F11AC4C8C20020647D /* GHControl.m in Sources */,
 				21BCA1BA1898179000A1F170 /* GHText.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

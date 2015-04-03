@@ -40,6 +40,10 @@ const CGFloat kPressedButtonDarkeningOffset = 0.25;
 NSUInteger gDefaultScheme = kColorSchemeNone;
 UIColor* gDefaultButtonColor = nil;
 
+UIColor* gDefaultTextColor = nil;
+UIColor* gDefaultPressedTextColor = nil;
+UIColor* gDefaultSelectedTextColor = nil;
+
 @implementation GHControlFactory
 +(ColorScheme) defaultScheme
 {
@@ -65,6 +69,27 @@ UIColor* gDefaultButtonColor = nil;
     NSAssert(result, @"GHControlFactory: out of range color scheme %lu", (unsigned long)scheme);
     return result;
 }
+
+
++(void) setDefaultTextColor:(UIColor*)defaultTextColor
+{
+    gDefaultTextColor = defaultTextColor;
+}
++(void) setDefaultPressedTextColor:(UIColor*)defaultPressedTextColor
+{
+    gDefaultPressedTextColor = defaultPressedTextColor;
+}
+
++(UIColor*)textColor
+{
+    return gDefaultTextColor;
+}
+
++(UIColor*)pressedTextColor
+{
+    return gDefaultPressedTextColor;
+}
+
 
 +(void) setDefaultButtonTint:(UIColor*)buttonTint
 {
@@ -339,32 +364,35 @@ UIColor* gDefaultButtonColor = nil;
 
 +(UIColor*) newTextColorPressedForScheme:(ColorScheme)scheme
 {
-    UIColor* result = nil;
-    switch(scheme)
+    UIColor* result = [GHControlFactory pressedTextColor];
+    if(result == nil)
     {
-        case kColorSchemeiOS:
-        case kColorSchemeMachine:
+        switch(scheme)
         {
-            result = [self newTextColorForScheme:scheme];
+            case kColorSchemeiOS:
+            case kColorSchemeMachine:
+            {
+                result = [self newTextColorForScheme:scheme];
+            }
+            break;
+            case kColorSchemeEmpty:
+            {
+                result = [GHControlFactory buttonTint];
+                result = [GHControlFactory newColor:result withBrightnessDelta:0.5];
+            }
+            break;
+            case kColorSchemeClear:
+            {
+                result = [[UIColor whiteColor] colorWithAlphaComponent:0.75];
+            }
+            break;
+            default:
+            {
+                result = [UIColor whiteColor];
+                (void)[GHControlFactory isValidColorScheme:scheme];
+            }
+            break;
         }
-        break;
-        case kColorSchemeEmpty:
-        {
-            result = [GHControlFactory buttonTint];
-            result = [GHControlFactory newColor:result withBrightnessDelta:0.5];
-        }
-        break;
-        case kColorSchemeClear:
-        {
-            result = [[UIColor whiteColor] colorWithAlphaComponent:0.75];
-        }
-        break;
-        default:
-        {
-            result = [UIColor whiteColor];
-            (void)[GHControlFactory isValidColorScheme:scheme];
-        }
-        break;
     }
 
     return result;
@@ -372,32 +400,35 @@ UIColor* gDefaultButtonColor = nil;
 
 +(UIColor*) newTextColorForScheme:(ColorScheme)scheme
 {
-    UIColor* result = nil;
-    switch(scheme)
+    UIColor* result = [GHControlFactory textColor];
+    if(result == nil)
     {
-        case kColorSchemeiOS:
-        case kColorSchemeMachine:
+        switch(scheme)
         {
-            result = [[UIColor alloc] initWithWhite:0.35 alpha:1.0];
-            (void)[GHControlFactory isValidColorScheme:scheme];
+            case kColorSchemeiOS:
+            case kColorSchemeMachine:
+            {
+                result = [[UIColor alloc] initWithWhite:0.35 alpha:1.0];
+                (void)[GHControlFactory isValidColorScheme:scheme];
+            }
+            break;
+            case kColorSchemeEmpty:
+            {
+                result = [GHControlFactory buttonTint];
+            }
+            break;
+            case kColorSchemeClear:
+            {
+                result = [[UIColor blackColor] colorWithAlphaComponent:0.50];
+            }
+            break;
+            default:
+            {
+                result = [UIColor blackColor];
+                (void)[GHControlFactory isValidColorScheme:scheme];
+            }
+            break;
         }
-        break;
-        case kColorSchemeEmpty:
-        {
-            result = [GHControlFactory buttonTint];
-        }
-        break;
-        case kColorSchemeClear:
-        {
-            result = [[UIColor blackColor] colorWithAlphaComponent:0.50];
-        }
-        break;
-        default:
-        {
-            result = [UIColor blackColor];
-            (void)[GHControlFactory isValidColorScheme:scheme];
-        }
-        break;
     }
     return result;
 }
