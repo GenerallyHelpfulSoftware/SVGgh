@@ -88,6 +88,15 @@ NSString* const kFacesURLsAddedKey = @"urls";
         [[GHImageCache imageCache] setObject:anImage forKey:aName cost:2];
     }
 }
+
++(void) invalidateImageWithName:(NSString*)aName
+{
+    if(aName.length)
+    {
+        [[GHImageCache imageCache] removeObjectForKey:aName];
+    }
+}
+
 +(UIImage*) uncacheImageForName:(NSString*)aName
 {
     NSCache* myCache = [GHImageCache imageCache];

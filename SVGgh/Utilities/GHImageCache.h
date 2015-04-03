@@ -57,6 +57,12 @@ typedef void (^handleExtractedFaces_t)(NSError* error, NSArray* images, NSArray*
 */
 +(void) cacheImage:(UIImage*)anImage forName:(NSString*)aName;
 
+/*! @brief method to remove an image from the cache
+ * @param aName unique name of the image to be removed
+*/
+
++(void) invalidateImageWithName:(NSString*)aName;
+
 /*! @brief  retrieve the image of the given name
 * @warning May return nil if there was a low memory situation
 * @param uniqueName the unique name of the image to retrieve
