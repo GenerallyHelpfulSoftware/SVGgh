@@ -36,7 +36,7 @@
     [super initialize];
     MakeSureSVGghLinks(); // classes only used in Storyboards might not link otherwise
     [GHControlFactory setDefaultScheme:kColorSchemeClear];
-    [GHControlFactory setDefaultTextColor:[UIColor greenColor]];
+    [GHControlFactory setDefaultTextColor:UIColorFromSVGColorString(@"#FFCC66")]; // this will make the recyle button have a mustartd fill
     
 }
 
