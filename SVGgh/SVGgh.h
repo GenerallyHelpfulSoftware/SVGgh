@@ -29,6 +29,7 @@
 #import <SVGgh/GHControl.h> 
 #import <SVGgh/GHControlFactory.h>
 #import <SVGgh/GHImageCache.h>
+#import <SVGGh/GHSegmentedControl.h>
 #import <SVGgh/GHRenderable.h>
 #import <SVGgh/SVGDocumentView.h>
 #import <SVGgh/SVGRendererLayer.h>

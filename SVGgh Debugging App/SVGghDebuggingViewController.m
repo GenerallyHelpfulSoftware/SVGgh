@@ -29,20 +29,41 @@
 #import "SVGghDebuggingViewController.h"
 #import <SVGgh/SVGgh.h>
 
+
 @interface SVGghDebuggingViewController ()
+@property (weak, nonatomic) IBOutlet GHSegmentedControl *segmentedControl;
+@property (weak, nonatomic) IBOutlet UIView *containerView;
+
 
 @end
 
 @implementation SVGghDebuggingViewController
 
+
 -(IBAction)redrawSVG:(id)sender
 {
     [self.svgView setNeedsDisplay];
+    
+    
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    NSURL*  myArtwork = [GHControlFactory locateArtworkForObject:self atSubpath:@"Artwork/Helmet"];
+    
+    SVGRenderer* aRenderer = [[SVGRenderer alloc] initWithContentsOfURL:myArtwork];
+    [self.segmentedControl insertSegmentWithRenderer:aRenderer atIndex:0 animated:NO];
+    [self.segmentedControl insertSegmentWithTitle:NSLocalizedString(@"Eyes", @"") atIndex:1 animated:NO];
+    
+    
+    
+    myArtwork = [GHControlFactory locateArtworkForObject:self atSubpath:@"Artwork/Butterfly"];
+    aRenderer = [[SVGRenderer alloc] initWithContentsOfURL:myArtwork];
+    
+    [self.segmentedControl insertSegmentWithRenderer:aRenderer atIndex:2 animated:NO];
+    self.segmentedControl.selectedSegmentIndex = 0;
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -80,4 +101,68 @@
     }];
 }
 
+-(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    UIViewController* controller = segue.destinationViewController;
+    if([segue.identifier isEqualToString:@"initialEmbed"])
+    {
+        self.svgView = (SVGDocumentView*)controller.view;
+    }
+}
+
+- (IBAction)toggleView:(GHSegmentedControl *)sender
+{
+    NSInteger index = sender.selectedSegmentIndex;
+    NSString* controlIdentifier = nil;
+    switch(index)
+    {
+        case 0:
+            controlIdentifier = @"helmet";
+        break;
+        case 1:
+            controlIdentifier = @"eyes";
+        break;
+        case 2:
+            controlIdentifier = @"creatures";
+        break;
+    }
+    
+    UIViewController* artworkController = [self.storyboard instantiateViewControllerWithIdentifier:controlIdentifier];
+    UIViewController* oldController = nil;
+    CGRect endBounds = self.containerView.bounds;
+    
+    artworkController.view.frame = CGRectMake(-endBounds.size.width, endBounds.origin.y, endBounds.size.width, endBounds.size.height);
+    
+    for(UIViewController* anOldController in self.childViewControllers)
+    {
+        if(anOldController.view.superview == self.containerView)
+        {
+            oldController = anOldController;
+            break;
+        }
+    }
+    
+    self.svgView = (SVGDocumentView*)artworkController.view;
+    
+    if(oldController == nil)
+    {
+        [self addChildViewController:artworkController];
+        artworkController.view.frame = endBounds;
+        [self.containerView addSubview:artworkController.view];
+        [artworkController didMoveToParentViewController:self];
+    }
+    else
+    {
+        [oldController willMoveToParentViewController:nil];
+        [self addChildViewController:artworkController];
+        [self transitionFromViewController:oldController toViewController:artworkController duration:0.35 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            artworkController.view.frame = endBounds;
+            
+        } completion:^(BOOL finished) {
+            [oldController removeFromParentViewController];
+            [artworkController didMoveToParentViewController:self];
+        }];
+    }
+    
+}
 @end

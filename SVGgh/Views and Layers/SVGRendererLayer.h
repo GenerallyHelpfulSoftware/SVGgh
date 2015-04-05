@@ -44,6 +44,10 @@
 */
 @property(nonatomic, strong) SVGRenderer*	renderer;
 
+/*! @property defaultColor
+ * @brief the value for 'currentColor' when the SVG is rendered from the root element
+ */
+@property(nonatomic, strong) UIColor* defaultColor;
 
 /*! @property beTransparent
  * @brief ignore the document's 'viewport-fill' property

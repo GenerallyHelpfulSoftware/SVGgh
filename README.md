@@ -21,6 +21,7 @@ Because I'm intending on allowing this to be used as a static library, I'm avoid
 If you just want to use the code in your app and are uninterested in the underlying engine, the included Xcode project generates a static library (**SVGgh**) with the following public headers. By the way, the reason that classes tend to have a GH (Generally Helpful, or Glenn Howes) prefix is not narcissism, but an attempt of getting around the lack of a namespace in plain Objective-C.
 * SVGDocumentView.h *A simple UIView capable of displaying a SVG document*
 * GHButton.h *A flexible UIControl capable of having an embedded SVG document as an icon*
+* GHSegmentedControl.h *A preliminary control which mimics a UISegmentedControl (incomplete)
 * SVGParser.h *A class to load .svg files*
 * SVGRenderer.h *A class to render SVG documents into a CGContextRef*
 * GHControlFactory.h *A singleton class devoted to be a central location for widget theme look*

@@ -31,8 +31,6 @@
 #import "GHControlFactory.h"
 #import "SVGRenderer.h"
 
-const CGFloat kRingThickness = 2.0;
-const CGFloat kRoundButtonRadius = 8.0;
 
 @interface KeyboardPressedPopup : UIView
 @property(nonatomic, assign) GHButton* parent;
@@ -174,6 +172,28 @@ const CGFloat kRoundButtonRadius = 8.0;
     [self setNeedsLayout];
 }
 
+-(CGPathRef) newOutlinePath
+{
+    CGRect interiorRect = self.useRadialGradient?self.bounds:CGRectInset(self.bounds, kRingThickness, kRingThickness);
+    CGPathRef result = [GHControlFactory newRoundRectPathForRect:interiorRect withRadius:kRoundButtonRadius];
+    return result;
+}
+
+-(CGPathRef) newInteriorRingPath
+{
+    CGRect interiorRect = self.useRadialGradient?self.bounds:CGRectInset(self.bounds, kRingThickness, kRingThickness);
+    CGRect ringRect = CGRectInset(interiorRect, 3.0, 3.0);
+    CGPathRef result = [GHControlFactory newRoundRectPathForRect:ringRect withRadius:kRoundButtonRadius-2];
+    return result;
+}
+
+-(CGPathRef) newExteriorRingPath
+{
+    CGRect ringRect = CGRectInset(self.bounds, kRingThickness, kRingThickness);
+    CGPathRef result = [GHControlFactory newRoundRectPathForRect:ringRect withRadius:kRoundButtonRadius];
+    return result;
+}
+
 -(void)drawBackgroundIntoContext:(CGContextRef)quartzContext
 {
     CGContextSaveGState(quartzContext);
@@ -193,7 +213,7 @@ const CGFloat kRoundButtonRadius = 8.0;
         gradientToUse = self.faceGradient;
     }
     
-    NSAssert((gradientToUse != 0), @"RoundButton: Not setup properly");
+    NSAssert((gradientToUse != 0), @"GHControl: Not setup properly");
     
     // draw subtly gradiented interior
     CGRect interiorRect = self.useRadialGradient?self.bounds:CGRectInset(self.bounds, kRingThickness, kRingThickness);
@@ -204,7 +224,7 @@ const CGFloat kRoundButtonRadius = 8.0;
     }
     
     
-    CGPathRef   boundingPath = [GHControlFactory newRoundRectPathForRect:interiorRect withRadius:kRoundButtonRadius];
+    CGPathRef   boundingPath = [self newOutlinePath];
     
     CGContextSaveGState(quartzContext);
     CGContextAddPath(quartzContext, boundingPath);
@@ -226,9 +246,7 @@ const CGFloat kRoundButtonRadius = 8.0;
                                     startPoint, startRadius,
                                     startPoint, endRadius, kCGGradientDrawsBeforeStartLocation | kCGGradientDrawsAfterEndLocation);
         CGContextRestoreGState(quartzContext);
-        
-        CGRect ringRect = CGRectInset(interiorRect, 3.0, 3.0);
-        CGPathRef ringPath = [GHControlFactory newRoundRectPathForRect:ringRect withRadius:kRoundButtonRadius-2];
+        CGPathRef interiorRingPath = [self newInteriorRingPath];
         CGContextSetLineWidth(quartzContext, 0.5);
         if(inNormalMode)
         {
@@ -238,30 +256,28 @@ const CGFloat kRoundButtonRadius = 8.0;
         {
             CGContextSetStrokeColorWithColor(quartzContext, self.ringColor.CGColor);
         }
-        CGContextAddPath(quartzContext, ringPath);
+        CGContextAddPath(quartzContext, interiorRingPath);
         CGContextStrokePath(quartzContext);
-        CGPathRelease(ringPath);
+        CGPathRelease(interiorRingPath);
         drawRing = NO;
     }
     else
     {
         CGContextDrawLinearGradient(quartzContext,gradientToUse, topPoint, bottomPoint, 0);
     }
+    
     CGContextRestoreGState(quartzContext);
     CGPathRelease(boundingPath);
     
-    // draw ring
     if(drawRing)
     {
-        CGRect ringRect = CGRectInset(self.bounds, kRingThickness, kRingThickness);
-        
-        boundingPath = [GHControlFactory newRoundRectPathForRect:ringRect  withRadius:kRoundButtonRadius];
+        CGPathRef exteriorRingPath = [self newExteriorRingPath];
         CGContextSetLineWidth(quartzContext, 0.5);
         CGContextSetStrokeColorWithColor(quartzContext, self.ringColor.CGColor);
         
-        CGContextAddPath(quartzContext, boundingPath);
+        CGContextAddPath(quartzContext, exteriorRingPath);
         CGContextStrokePath(quartzContext);
-        CGPathRelease(boundingPath);
+        CGPathRelease(exteriorRingPath);
     }
     
     CGContextRestoreGState(quartzContext);
@@ -419,9 +435,84 @@ const CGFloat kRoundButtonRadius = 8.0;
     [super layoutSubviews];
 }
 
+-(CGPathRef) newOutlinePath
+{
+    CGRect parentRect = [self convertRect:self.parent.bounds fromView:self.parent];
+    CGFloat radius = kRoundButtonRadius;
+    CGRect myBounds = self.bounds;
+    CGRect boundsToFill = CGRectInset(myBounds, kShadowInset, kShadowInset);
+    boundsToFill.size.height+= kShadowInset;
+    CGMutablePathRef result = CGPathCreateMutable();
+    CGPathMoveToPoint(result, NULL,
+                      myBounds.size.width/2.0, boundsToFill.origin.y);
+    
+    
+    if((myBounds.size.width - (parentRect.origin.x + parentRect.size.width))< 2*radius)
+    {
+        CGPathAddArc(result, NULL,
+                     parentRect.origin.x+parentRect.size.width-radius, boundsToFill.origin.y+radius, radius, M_PI+M_PI_2, 2*M_PI,
+                     false);
+        CGPathAddArc(result, NULL,
+                     parentRect.origin.x+parentRect.size.width-radius, parentRect.origin.y+parentRect.size.height-radius,
+                     radius, 0, M_PI_2,
+                     false);
+    }
+    else
+    {
+        CGPathAddArc(result, NULL,
+                     boundsToFill.origin.x+boundsToFill.size.width-radius, boundsToFill.origin.y+radius, radius, M_PI+M_PI_2, 2*M_PI,
+                     false);
+        CGPathAddArc(result, NULL,
+                     boundsToFill.origin.x+boundsToFill.size.width-radius, parentRect.origin.y-radius, radius, 0, M_PI_2,
+                     false);
+        
+        CGPathAddArc(result, NULL,
+                     parentRect.origin.x+parentRect.size.width+radius, parentRect.origin.y+radius, radius, M_PI_2+M_PI, M_PI,
+                     true);
+        
+        CGPathAddArc(result, NULL,
+                     parentRect.origin.x+parentRect.size.width-radius, parentRect.origin.y+parentRect.size.height-radius,
+                     radius, 0, M_PI_2,
+                     false);
+    }
+    
+    if(parentRect.origin.x > 2*radius)
+    {
+        CGPathAddArc(result, NULL,
+                     parentRect.origin.x+radius, parentRect.origin.y+parentRect.size.height-radius, radius, M_PI_2, M_PI,
+                     false);
+        
+        CGPathAddArc(result, NULL,
+                     parentRect.origin.x-radius, parentRect.origin.y+radius, radius, 2.0*M_PI, M_PI_2+M_PI,
+                     true);
+        
+        
+        CGPathAddArc(result, NULL,
+                     boundsToFill.origin.x+radius, parentRect.origin.y-radius, radius, M_PI_2, M_PI,
+                     false);
+        
+        
+        CGPathAddArc(result, NULL,
+                     boundsToFill.origin.x+radius, boundsToFill.origin.y+radius, radius, M_PI, M_PI+M_PI_2,
+                     false);
+    }
+    else
+    {
+        CGPathAddArc(result, NULL,
+                     parentRect.origin.x+radius, parentRect.origin.y+parentRect.size.height-radius, radius, M_PI_2, M_PI,
+                     false);
+        
+        CGPathAddArc(result, NULL,
+                     parentRect.origin.x+radius, boundsToFill.origin.y+radius, radius, M_PI, M_PI+M_PI_2,
+                     false);
+    }
+    
+    CGPathCloseSubpath(result);
+    return result;
+}
+
 -(void)drawBackgroundIntoContext:(CGContextRef)quartzContext
 {
-    const CGFloat kShadowInset = 3.0;
     CGContextSaveGState(quartzContext);
     
     CGRect parentRect = [self convertRect:self.parent.bounds fromView:self.parent];
@@ -469,72 +560,7 @@ const CGFloat kRoundButtonRadius = 8.0;
     CGFloat radius = kRoundButtonRadius;
     CGRect boundsToFill = CGRectInset(myBounds, kShadowInset, kShadowInset);
     boundsToFill.size.height+= kShadowInset;
-    CGMutablePathRef outlinePath = CGPathCreateMutable();
-    CGPathMoveToPoint(outlinePath, NULL,
-                      myBounds.size.width/2.0, boundsToFill.origin.y);
-    
-    
-    if((myBounds.size.width - (parentRect.origin.x + parentRect.size.width))< 2*radius)
-    {
-        CGPathAddArc(outlinePath, NULL,
-                     parentRect.origin.x+parentRect.size.width-radius, boundsToFill.origin.y+radius, radius, M_PI+M_PI_2, 2*M_PI,
-                     false);
-        CGPathAddArc(outlinePath, NULL,
-                     parentRect.origin.x+parentRect.size.width-radius, parentRect.origin.y+parentRect.size.height-radius,
-                     radius, 0, M_PI_2,
-                     false);
-    }
-    else
-    {
-        CGPathAddArc(outlinePath, NULL,
-                     boundsToFill.origin.x+boundsToFill.size.width-radius, boundsToFill.origin.y+radius, radius, M_PI+M_PI_2, 2*M_PI,
-                     false);
-        CGPathAddArc(outlinePath, NULL,
-                     boundsToFill.origin.x+boundsToFill.size.width-radius, parentRect.origin.y-radius, radius, 0, M_PI_2,
-                     false);
-        
-        CGPathAddArc(outlinePath, NULL,
-                     parentRect.origin.x+parentRect.size.width+radius, parentRect.origin.y+radius, radius, M_PI_2+M_PI, M_PI,
-                     true);
-        
-        CGPathAddArc(outlinePath, NULL,
-                     parentRect.origin.x+parentRect.size.width-radius, parentRect.origin.y+parentRect.size.height-radius,
-                     radius, 0, M_PI_2,
-                     false);
-    }
-    
-    if(parentRect.origin.x > 2*radius)
-    {
-        CGPathAddArc(outlinePath, NULL,
-                     parentRect.origin.x+radius, parentRect.origin.y+parentRect.size.height-radius, radius, M_PI_2, M_PI,
-                     false);
-        
-        CGPathAddArc(outlinePath, NULL,
-                     parentRect.origin.x-radius, parentRect.origin.y+radius, radius, 2.0*M_PI, M_PI_2+M_PI,
-                     true);
-        
-        
-        CGPathAddArc(outlinePath, NULL,
-                     boundsToFill.origin.x+radius, parentRect.origin.y-radius, radius, M_PI_2, M_PI,
-                     false);
-        
-        
-        CGPathAddArc(outlinePath, NULL,
-                     boundsToFill.origin.x+radius, boundsToFill.origin.y+radius, radius, M_PI, M_PI+M_PI_2,
-                     false);
-    }
-    else
-    {
-        CGPathAddArc(outlinePath, NULL,
-                     parentRect.origin.x+radius, parentRect.origin.y+parentRect.size.height-radius, radius, M_PI_2, M_PI,
-                     false);
-        
-        CGPathAddArc(outlinePath, NULL,
-                     parentRect.origin.x+radius, boundsToFill.origin.y+radius, radius, M_PI, M_PI+M_PI_2,
-                     false);
-    }
-    
-    CGPathCloseSubpath(outlinePath);
+    CGPathRef outlinePath = [self newOutlinePath];
     
     CGContextSaveGState(quartzContext);
     CGRect clipRect = myBounds;

@@ -168,6 +168,19 @@
 	}
 }
 
+-(void) setDefaultColor:(UIColor *)defaultColor
+{
+    if(defaultColor != _defaultColor && (_defaultColor == nil || defaultColor == nil || ![_defaultColor isEqual:defaultColor]))
+    {
+        _defaultColor = defaultColor;
+        [self setNeedsDisplay];
+    }
+    else
+    {
+        _defaultColor = defaultColor;
+    }
+}
+
 - (void)drawInContext:(CGContextRef)quartzContext
 {
 	CGRect	myBounds = self.bounds;
@@ -268,8 +281,14 @@
 				CGContextRestoreGState(quartzContext);
 			}
 		}
+        UIColor* startColor = self.renderer.currentColor;
+        if(self.defaultColor != nil)
+        {
+            self.renderer.currentColor = self.defaultColor;
+        }
         
 		[self.renderer renderIntoContext:quartzContext];
+        self.renderer.currentColor = startColor;
 		CGContextRestoreGState(quartzContext);
 	}
 }

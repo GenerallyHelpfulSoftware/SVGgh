@@ -22,6 +22,9 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		2114CD731AD17F7900A9A362 /* GHSegmentedControl.h in Headers */ = {isa = PBXBuildFile; fileRef = 2114CD711AD17F7900A9A362 /* GHSegmentedControl.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2114CD741AD17F7900A9A362 /* GHSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2114CD721AD17F7900A9A362 /* GHSegmentedControl.m */; };
+		2114CD751AD17F7900A9A362 /* GHSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2114CD721AD17F7900A9A362 /* GHSegmentedControl.m */; };
 		21155AD5189A6DCC00C830A7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21BDEB411893BF08003A0644 /* Foundation.framework */; };
 		21155AD6189A6DCC00C830A7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21BDEB671893BFA3003A0644 /* CoreGraphics.framework */; };
 		21155AD7189A6DCC00C830A7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21BDEB6A1893BFA3003A0644 /* UIKit.framework */; };
@@ -166,6 +169,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2114CD711AD17F7900A9A362 /* GHSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHSegmentedControl.h; sourceTree = "<group>"; };
+		2114CD721AD17F7900A9A362 /* GHSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHSegmentedControl.m; sourceTree = "<group>"; };
 		21155AD4189A6DCC00C830A7 /* SVGgh Debugging App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SVGgh Debugging App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		21155ADA189A6DCC00C830A7 /* SVGgh Debugging App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SVGgh Debugging App-Info.plist"; sourceTree = "<group>"; };
 		21155ADC189A6DCC00C830A7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -437,6 +442,8 @@
 		21BDEBA31893C7CE003A0644 /* Views and Layers */ = {
 			isa = PBXGroup;
 			children = (
+				2114CD711AD17F7900A9A362 /* GHSegmentedControl.h */,
+				2114CD721AD17F7900A9A362 /* GHSegmentedControl.m */,
 				21BDEBA41893C7CE003A0644 /* GHControlFactory.h */,
 				21BDEBA51893C7CE003A0644 /* GHControlFactory.m */,
 				21BDEBDA189541F3003A0644 /* GHButton.h */,
@@ -481,6 +488,7 @@
 				21537227189966FB006EBCD5 /* SVGgh.h in Headers */,
 				21BDEBDC189541F3003A0644 /* GHButton.h in Headers */,
 				21E4E9F01AC4C8C20020647D /* GHControl.h in Headers */,
+				2114CD731AD17F7900A9A362 /* GHSegmentedControl.h in Headers */,
 				21BDEBBA1893C927003A0644 /* SVGRenderer.h in Headers */,
 				21BDEBBB1893C933003A0644 /* GHControlFactory.h in Headers */,
 				21BDEBC11893CA89003A0644 /* GHImageCache.h in Headers */,
@@ -657,6 +665,7 @@
 				21155B08189A6E0F00C830A7 /* GHControlFactory.m in Sources */,
 				21155B12189A6E0F00C830A7 /* GHText.m in Sources */,
 				21155B09189A6E0F00C830A7 /* GHButton.m in Sources */,
+				2114CD751AD17F7900A9A362 /* GHSegmentedControl.m in Sources */,
 				21155B14189A6E0F00C830A7 /* SVGAttributedObject.m in Sources */,
 				21155B0D189A6E0F00C830A7 /* GHGradient.m in Sources */,
 				21155B16189A6E0F00C830A7 /* SVGParser.m in Sources */,
@@ -681,6 +690,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				21BDEBDD189541F3003A0644 /* GHButton.m in Sources */,
+				2114CD741AD17F7900A9A362 /* GHSegmentedControl.m in Sources */,
 				21BDEBAC1893C7CE003A0644 /* SVGDocumentView.m in Sources */,
 				21BDEBC21893CA89003A0644 /* GHImageCache.m in Sources */,
 				21BDEBB51893C7DC003A0644 /* Base64Transcoder.m in Sources */,
