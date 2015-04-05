@@ -137,7 +137,7 @@ typedef enum GHSementType
         {
             CATextLayer* contentLayer = [[CATextLayer alloc] init];
             contentLayer.string = self.segmentDefinition.title;
-            
+            contentLayer.truncationMode = kCATruncationEnd;
             UIFont* textFont = [GHSegmentedControlLayer titleFontForState:UIControlStateNormal];
             NSString* fontName = textFont.fontName;
             CFStringRef fontNameCF = (__bridge CFStringRef)(fontName);
