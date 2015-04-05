@@ -742,7 +742,10 @@
             {
                 colorToFill = [svgContext colorForSVGColorString:colorToUse];
             }
-			self.fillColor = colorToFill;
+            if(![fillString isEqualToString:@"currentColor"] && ![fillString isEqualToString:@"inherit"])
+            {
+                self.fillColor = colorToFill;
+            }
             
 		}
 		if(fillOpacity != 1.0)
