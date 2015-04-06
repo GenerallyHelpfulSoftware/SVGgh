@@ -11,7 +11,7 @@
 <path d="M10 95C5 42 26 11 48 11 62 11 87 2 90 95Q80 72 64 90C65 72 45 72 36 90Q20 72 10 95Z"/>
 <path fill="black" d="M37 44a9 11 0 1 1 1 0Zm24 0a9 11 0 1 1 1 0Z"/>
 </g>
-<linearGradient id="leftsidetoblack_#87CEEB" color="#87CEEB">
+<linearGradient id="leftsidetoblack_#87CEEB" color="currentColor">
 <stop stop-color="currentColor" offset="0"/>
 <stop stop-color="currentColor" offset=".25"/>
 <stop stop-color="black" offset="1"/>
@@ -19,13 +19,13 @@
 </defs>
 <g>
 <g>
-<rect y="0" height="512" width="512" fill="#eaeed5" x="0"/>
+<rect y="0" height="512" width="512" fill="currentColor" x="0"/>
 <path d="M 0 256 l 512 0 M 256 0 v 512" stroke="#bad0aa" stroke-width="3" fill="none" vector-effect="non-scaling-stroke"/>
 <path d="M6 6 v500 M56 6 v500 M106 6 v500M156 6 v500 M206 6 v500 M306 6 v500 M356 6 v500M406 6v500M456 6 v500 M 506 6 v500" stroke="#bad0aa" stroke-width="0.5" fill="none" vector-effect="non-scaling-stroke"/>
 <path d="M6 6 h500 M6 56  h500 M 6 106h500M 6 156h500 M 6 206h500 M 6 306 h500 M 6 356h500M6 406h500M 6 456h500 M  6 506 h 500" stroke="#bad0aa" stroke-width="0.5" fill="none" vector-effect="non-scaling-stroke"/>
 </g>
-<g fill="url(#leftsidetoblack_#87CEEB)" color="#87CEEB" stroke="none">
-<use fill="#ffd700" xlink:href="#Butterfly Shape" transform="matrix(3.0321 0 0 3.0321 103.946 108.609)" fill-opacity="0.5" opacity="0.80" color="#ffd700"/>
+<g fill="url(#leftsidetoblack_#87CEEB)" color="currentColor" stroke="none">
+<use fill="currentColor" xlink:href="#Butterfly Shape" transform="matrix(3.0321 0 0 3.0321 103.946 108.609)" fill-opacity="0.5" opacity="0.80" color="#ffd700"/>
 <use color="#0000CD" fill-opacity="0.25" xlink:href="#Tick" transform="matrix(0.994491 0 0 0.994491 12.0275 19.6333)" fill="#0000CD" opacity="0.60"/>
 <use xlink:href="#Bat" transform="matrix(1.38807 0 0 1.38807 367.064 19.5557)" fill-opacity="0.25" opacity="0.60"/>
 <use color="#ff00ff" xlink:href="#Moth" transform="matrix(1.06022 0 0 1.06022 12.3226 382.622)" fill="#ff00ff" fill-opacity="0.25" opacity="0.60"/>

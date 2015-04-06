@@ -55,6 +55,12 @@
 	return result;
 }
 
+-(void) setDefaultColor:(UIColor *)defaultColor
+{
+    _defaultColor = defaultColor;
+    [self renderingLayer].defaultColor = defaultColor;
+}
+
 -(void) setRenderer:(SVGRenderer *)newRenderer
 {
 	[self renderingLayer].renderer = newRenderer;

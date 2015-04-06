@@ -56,6 +56,11 @@
 */
 @property(nonatomic, strong) IBInspectable NSString*       artworkPath;
 
+/*! @property defaultColor
+ * @brief the color that 'currentColor' in SVG documents will be set to 
+*/
+@property(nonatomic, strong) IBInspectable UIColor* defaultColor;
+
 /*! @property renderer
 * @brief a pre-configured SVGRenderer object which will be called to draw the content
 */
