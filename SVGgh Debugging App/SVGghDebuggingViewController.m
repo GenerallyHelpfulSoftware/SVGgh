@@ -75,6 +75,7 @@
 
 -(IBAction)print:(id)sender
 {
+    self.svgView.renderer.currentColor = self.svgView.defaultColor;
     [SVGPrinter printRenderer:self.svgView.renderer
                 withJobName:NSLocalizedString(@"SVGgh Test Printing", @"")
                  withCallback:^(NSError *error, PrintingResults printingResult) {
