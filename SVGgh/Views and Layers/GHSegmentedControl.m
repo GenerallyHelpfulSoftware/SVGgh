@@ -52,7 +52,6 @@ const CGFloat kContentMargin = 10;
 @property(nonatomic,readonly) NSUInteger numberOfSegments;
 @property(nonatomic) NSInteger selectedSegmentIndex;
 @property(nonatomic, assign) NSUInteger trackedSegmentIndex;
-@property(nonatomic,retain) UIColor *tintColor;
 @property(nonatomic, weak) GHSegmentedControl* control;
 
 +(UIFont*) titleFontForState:(UIControlState)state;
@@ -526,85 +525,123 @@ typedef enum GHSementType
     CGContextSaveGState(quartzContext);
     BOOL drawRing = YES;
     BOOL    inNormalMode = !layer.selected;
-    CGGradientRef   gradientToUse = 0;
-    if(layer.selected)
-    {
-        gradientToUse = self.control.faceGradientSelected;
-    }
-    else if(layer.isHighlighted)
-    {
-        gradientToUse = self.control.faceGradientPressed;
-    }
-    else
-    {
-        gradientToUse = self.control.faceGradient;
-    }
-    
-    NSAssert((gradientToUse != 0), @"GHControl: Not setup properly");
-    
-    // draw subtly gradiented interior
-    CGRect interiorRect = self.control.useRadialGradient?layerBounds:CGRectInset(layerBounds, kRingThickness, kRingThickness);
-    
-    if(self.control.showShadow)
-    {
-        drawRing = NO;
-    }
     
     
-    CGPathRef   boundingPath = [layer newOutlinePathWhileUsingRadialGradient:self.control.useRadialGradient];
     
     CGContextSaveGState(quartzContext);
-    CGContextAddPath(quartzContext, boundingPath);
-    CGContextClip(quartzContext);
-    
-    CGPoint topPoint = layerBounds.origin;
-    CGPoint bottomPoint = CGPointMake(layerBounds.origin.x, layerBounds.origin.y+layerBounds.size.height);
-    if(self.control.useRadialGradient)
+    if(self.control.scheme == kColorSchemeEmpty) // approximate an iOS 7 segmented control
     {
-        CGContextSaveGState(quartzContext);
-        CGContextTranslateCTM(quartzContext, interiorRect.origin.x, interiorRect.origin.y);
-        CGContextScaleCTM(quartzContext, interiorRect.size.width, interiorRect.size.height);
-        CGContextScaleCTM(quartzContext, 1.0, .5);
-        
-        CGFloat startRadius = .2;
-        CGFloat endRadius = 1.0;
-        CGPoint startPoint = CGPointMake(.1, .2);
-        CGContextDrawRadialGradient(quartzContext,gradientToUse,
-                                    startPoint, startRadius,
-                                    startPoint, endRadius, kCGGradientDrawsBeforeStartLocation | kCGGradientDrawsAfterEndLocation);
-        CGContextRestoreGState(quartzContext);
-        CGPathRef interiorRingPath = [layer newInteriorRingPahtWhileUsingRadialGradient:self.control.useRadialGradient];
-        CGContextSetLineWidth(quartzContext, 0.5);
-        if(inNormalMode)
+        CGPathRef   boundingPath = [layer newOutlinePathWhileUsingRadialGradient:NO];
+        CGContextAddPath(quartzContext, boundingPath);
+        UIColor* baseColor = nil;
+        if([self.control respondsToSelector:@selector(tintColor)])
         {
-            CGContextSetStrokeColorWithColor(quartzContext, [[UIColor darkGrayColor] colorWithAlphaComponent:0.5].CGColor);
+            baseColor = self.control.tintColor;
         }
         else
         {
-            CGContextSetStrokeColorWithColor(quartzContext, self.control.ringColor.CGColor);
+            baseColor = self.control.textColor;
+            if(baseColor == nil)
+            {
+                baseColor = [UIColor blueColor];
+            }
         }
-        CGContextAddPath(quartzContext, interiorRingPath);
-        CGContextStrokePath(quartzContext);
-        CGPathRelease(interiorRingPath);
-        drawRing = NO;
+        
+        CGContextSetStrokeColorWithColor(quartzContext, baseColor.CGColor);
+        if(inNormalMode)
+        {
+            CGContextSetFillColorWithColor(quartzContext, self.control.backgroundColor.CGColor);
+        }
+        else
+        {
+            CGContextSetFillColorWithColor(quartzContext, baseColor.CGColor);
+        }
+        CGContextSetLineWidth(quartzContext, 1/self.contentsScale);
+        CGContextDrawPath(quartzContext, kCGPathFillStroke);
+        
+        CGPathRelease(boundingPath);
     }
     else
     {
-        CGContextDrawLinearGradient(quartzContext,gradientToUse, topPoint, bottomPoint, 0);
-    }
-    
-    CGContextRestoreGState(quartzContext);
-    CGPathRelease(boundingPath);
-    
-    if(drawRing)
-    {
-        CGPathRef exteriorRingPath = [layer newExteriorRingPath];
-        CGContextSetLineWidth(quartzContext, 0.5);
-        CGContextSetStrokeColorWithColor(quartzContext, self.control.ringColor.CGColor);
         
-        CGContextAddPath(quartzContext, exteriorRingPath);
-        CGContextStrokePath(quartzContext);
-        CGPathRelease(exteriorRingPath);
+        CGPathRef   boundingPath = [layer newOutlinePathWhileUsingRadialGradient:self.control.useRadialGradient];
+        CGContextAddPath(quartzContext, boundingPath);
+        CGGradientRef   gradientToUse = 0;
+        if(layer.selected)
+        {
+            gradientToUse = self.control.faceGradientSelected;
+        }
+        else if(layer.isHighlighted)
+        {
+            gradientToUse = self.control.faceGradientPressed;
+        }
+        else
+        {
+            gradientToUse = self.control.faceGradient;
+        }
+        
+        NSAssert((gradientToUse != 0), @"GHControl: Not setup properly");
+        
+        // draw subtly gradiented interior
+        CGRect interiorRect = self.control.useRadialGradient?layerBounds:CGRectInset(layerBounds, kRingThickness, kRingThickness);
+        
+        if(self.control.showShadow)
+        {
+            drawRing = NO;
+        }
+        
+        
+        CGContextClip(quartzContext);
+        
+        CGPoint topPoint = layerBounds.origin;
+        CGPoint bottomPoint = CGPointMake(layerBounds.origin.x, layerBounds.origin.y+layerBounds.size.height);
+        if(self.control.useRadialGradient)
+        {
+            CGContextSaveGState(quartzContext);
+            CGContextTranslateCTM(quartzContext, interiorRect.origin.x, interiorRect.origin.y);
+            CGContextScaleCTM(quartzContext, interiorRect.size.width, interiorRect.size.height);
+            CGContextScaleCTM(quartzContext, 1.0, .5);
+            
+            CGFloat startRadius = .2;
+            CGFloat endRadius = 1.0;
+            CGPoint startPoint = CGPointMake(.1, .2);
+            CGContextDrawRadialGradient(quartzContext,gradientToUse,
+                                        startPoint, startRadius,
+                                        startPoint, endRadius, kCGGradientDrawsBeforeStartLocation | kCGGradientDrawsAfterEndLocation);
+            CGContextRestoreGState(quartzContext);
+            CGPathRef interiorRingPath = [layer newInteriorRingPahtWhileUsingRadialGradient:self.control.useRadialGradient];
+            CGContextSetLineWidth(quartzContext, 1/self.contentsScale);
+            if(inNormalMode)
+            {
+                CGContextSetStrokeColorWithColor(quartzContext, [[UIColor darkGrayColor] colorWithAlphaComponent:0.5].CGColor);
+            }
+            else
+            {
+                CGContextSetStrokeColorWithColor(quartzContext, self.control.ringColor.CGColor);
+            }
+            CGContextAddPath(quartzContext, interiorRingPath);
+            CGContextStrokePath(quartzContext);
+            CGPathRelease(interiorRingPath);
+            drawRing = NO;
+        }
+        else
+        {
+            CGContextDrawLinearGradient(quartzContext,gradientToUse, topPoint, bottomPoint, 0);
+        }
+        
+        CGContextRestoreGState(quartzContext);
+        
+        CGPathRelease(boundingPath);
+        if(drawRing)
+        {
+            CGPathRef exteriorRingPath = [layer newExteriorRingPath];
+            CGContextSetLineWidth(quartzContext, 1/self.contentsScale);
+            CGContextSetStrokeColorWithColor(quartzContext, self.control.ringColor.CGColor);
+            
+            CGContextAddPath(quartzContext, exteriorRingPath);
+            CGContextStrokePath(quartzContext);
+            CGPathRelease(exteriorRingPath);
+        }
     }
     
     CGContextRestoreGState(quartzContext);
@@ -867,13 +904,6 @@ typedef enum GHSementType
     _selectedSegmentIndex = selectedSegmentIndex;
     self.layerAsControlLayer.selectedSegmentIndex = selectedSegmentIndex;
 }
-
--(void) setTintColor:(UIColor *)tintColor
-{
-    _tintColor = tintColor;
-    self.layerAsControlLayer.tintColor = tintColor;
-}
-
 
 -(NSInteger) indexOfTouch:(CGPoint)touchLocation
 {

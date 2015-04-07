@@ -39,7 +39,7 @@ enum  {
     kColorSchemeMachine,
     kColorSchemeKeyboard,
     kColorSchemeClear,
-    kColorSchemeEmpty,
+    kColorSchemeEmpty, // most like iOS 7 or 8 with minimal chrome
     kColorSchemeHomeTheatre,
     kColorSchemeiOSVersionAppropriate,
     kLastColorScheme = kColorSchemeiOSVersionAppropriate,

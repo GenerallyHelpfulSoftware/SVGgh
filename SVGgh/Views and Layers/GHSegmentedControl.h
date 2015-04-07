@@ -62,12 +62,6 @@
  */
 @property(nonatomic) NSInteger selectedSegmentIndex;
 
-/*! @property momentary
- * @brief Default tintColor is nil. The tintColor is inherited through the superview hierarchy. See UIView for more information
- */
-@property(nonatomic,retain) UIColor *tintColor;
-
-
 - (instancetype)initWithItems:(NSArray *)items;
 
 - (void)insertSegmentWithTitle:(NSString *)title atIndex:(NSUInteger)segment animated:(BOOL)animated;
