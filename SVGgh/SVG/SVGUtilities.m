@@ -1754,8 +1754,8 @@ void AddSVGArcToPath(CGMutablePathRef thePath,
 	}
 	else // actually try to draw an arc
 	{
-		xRadius = fabsf(xRadius); // make sure radius are positive
-		yRadius = fabsf(yRadius);
+		xRadius = fabs(xRadius); // make sure radius are positive
+		yRadius = fabs(yRadius);
 		xAxisRotationDegrees = fmod(xAxisRotationDegrees, 360.0);
 		CGFloat	xAxisRotationRadians = xAxisRotationDegrees*kDegreesToRadiansConstant;
 		CGFloat cosineAxisRotation = cosf(xAxisRotationRadians);

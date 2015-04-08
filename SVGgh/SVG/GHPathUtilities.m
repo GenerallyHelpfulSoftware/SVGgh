@@ -125,7 +125,7 @@ void CGPathApplyCallbackFunction(void* aVisitor, const CGPathElement *element)
     while(result > smallestStep)
     {
         CGFloat thisLength = [GHPathUtilities cubicSplineLengthFromStartPoint:startPoint toEndPoint:endPoint withControlPoint1:controlPoint1 withControlPoint2:controlPoint2 andStep:result];
-        CGFloat delta = fabsf(thisLength-lastLength);
+        CGFloat delta = fabs(thisLength-lastLength);
         if(delta < thisLength/256.0 && delta < lastLength/256.0)
         {
             break;
@@ -148,7 +148,7 @@ void CGPathApplyCallbackFunction(void* aVisitor, const CGPathElement *element)
     while(result > smallestStep)
     {
         CGFloat thisLength = [GHPathUtilities quadraticBezierLengthFromStartPoint:start toEndPoint:end withControlPoint:control andStep:result];
-        CGFloat delta = fabsf(thisLength-lastLength);
+        CGFloat delta = fabs(thisLength-lastLength);
         if(delta < thisLength/256.0 && delta < lastLength/256.0)
         {
             break;
