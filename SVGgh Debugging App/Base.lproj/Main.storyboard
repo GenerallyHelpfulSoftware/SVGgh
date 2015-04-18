@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
@@ -38,6 +38,9 @@
                                     <userDefinedRuntimeAttribute type="color" keyPath="textColorPressed">
                                         <color key="value" red="1" green="0.80000001192092896" blue="0.40000000596046448" alpha="1" colorSpace="calibratedRGB"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="artInsetFraction">
+                                        <real key="value" value="0.14999999999999999"/>
+                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="print:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="rV5-s6-CHK"/>
@@ -46,6 +49,7 @@
                             <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="M1t-pk-vRl" customClass="GHButton">
                                 <rect key="frame" x="74" y="469" width="66" height="66"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <color key="tintColor" red="0.97254901959999995" green="0.5568627451" blue="0.1215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="66" id="6mz-oo-wgW"/>
                                     <constraint firstAttribute="width" constant="66" id="h9d-YE-nQk"/>
@@ -55,28 +59,12 @@
                                         <integer key="value" value="3"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="string" keyPath="artworkPath" value="Artwork/ReloadButton"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="artInsetFraction">
+                                        <real key="value" value="0.14999999999999999"/>
+                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="redrawSVG:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="cE8-v2-XOf"/>
-                                </connections>
-                            </view>
-                            <view tag="1" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" placeholderIntrinsicWidth="280" placeholderIntrinsicHeight="30" translatesAutoresizingMaskIntoConstraints="NO" id="uoD-rr-R4J" customClass="GHSegmentedControl">
-                                <rect key="frame" x="20" y="28" width="280" height="30"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="tintColor" red="0.2286751595" green="0.5171184607" blue="0.80138062170000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="schemeNumber">
-                                        <integer key="value" value="4"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="textColor">
-                                        <color key="value" red="0.22867515948702541" green="0.51711846074298184" blue="0.80138062169312163" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="textColorPressed">
-                                        <color key="value" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="toggleView:" destination="vXZ-lx-hvc" eventType="valueChanged" id="fGz-qk-rXY"/>
                                 </connections>
                             </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LDH-8f-BQz">
@@ -88,6 +76,28 @@
                                     <segue destination="Ux3-B9-VgV" kind="embed" identifier="initialEmbed" id="hSz-yb-jWy"/>
                                 </connections>
                             </containerView>
+                            <view tag="1" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" placeholderIntrinsicWidth="280" placeholderIntrinsicHeight="30" translatesAutoresizingMaskIntoConstraints="NO" id="uoD-rr-R4J" customClass="GHSegmentedControl">
+                                <rect key="frame" x="20" y="28" width="280" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" red="0.2286751595" green="0.5171184607" blue="0.80138062170000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="schemeNumber">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="textColor">
+                                        <color key="value" red="0.22867515948702541" green="0.51711846074298184" blue="0.80138062169312163" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="textColorPressed">
+                                        <color key="value" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="artInsetFraction">
+                                        <real key="value" value="0.14999999999999999"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="toggleView:" destination="vXZ-lx-hvc" eventType="valueChanged" id="fGz-qk-rXY"/>
+                                </connections>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>

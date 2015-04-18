@@ -38,6 +38,12 @@
  */
 @property(nonatomic, assign) IBInspectable NSInteger           schemeNumber;
 
+
+/*! @property artInsetFraction
+ * @brief this is a value to inset the artwork from the edges, as a fraction of the widget's height. So if a button is 50 points high and its artInsetFraction is .1 it will be inset 5 points. Should be much less than 0.5
+ */
+@property(nonatomic, assign) IBInspectable CGFloat              artInsetFraction;
+
 // these are all related to how the button draws itself as part of a scheme
 @property(nonatomic, assign) CGGradientRef       faceGradient;
 @property(nonatomic, assign) CGGradientRef       faceGradientPressed;
@@ -45,7 +51,8 @@
 @property(nonatomic, strong) IBInspectable UIColor*            textColor;
 @property(nonatomic, strong) IBInspectable UIColor*            textColorPressed;
 @property(nonatomic, strong) IBInspectable UIColor*            textColorSelected;
-@property(nonatomic, assign) BOOL                drawsChrome;
+@property(nonatomic, assign) BOOL                   drawsChrome;
+@property(nonatomic, assign) BOOL                   drawsBackground;
 @property(nonatomic, strong) UIColor*            ringColor;
 @property(nonatomic, strong) UIColor*            textShadowColor;
 @property(nonatomic, assign) BOOL                useRadialGradient;

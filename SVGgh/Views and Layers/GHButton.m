@@ -194,6 +194,26 @@
     return result;
 }
 
+
+-(void) drawFlatBackgroundIntoContext:(CGContextRef)quartzContext
+{
+    CGContextSaveGState(quartzContext);
+    BOOL    inNormalMode = !(self.isSelected || self.isHighlighted);
+    UIColor* baseColor = self.tintColor;
+    if(baseColor == nil)
+    {
+        baseColor = [GHControlFactory newLightBackgroundColorForScheme:self.scheme];
+    }
+    if(!inNormalMode)
+    {
+        baseColor = [GHControlFactory newPressedColorForColor:baseColor forScheme:self.scheme];
+    }
+    [baseColor setFill];
+    UIRectFill(self.bounds);
+    
+    CGContextRestoreGState(quartzContext);
+}
+
 -(void)drawBackgroundIntoContext:(CGContextRef)quartzContext
 {
     CGContextSaveGState(quartzContext);
@@ -309,11 +329,24 @@
         
         renderer.currentColor = currentColor;
         
-        CGRect interiorRect = (self.useRadialGradient || !self.drawsChrome)?self.bounds:CGRectInset(self.bounds, kRingThickness, kRingThickness);
-        if(self.drawsChrome)
-        {// make space for the chrome
-            interiorRect = CGRectInset(interiorRect, 5, 5);
+        CGFloat inset = self.artInsetFraction*self.bounds.size.height;
+        CGRect interiorRect = CGRectZero;
+        if(inset == 0)
+        {
+            inset = kRingThickness;
+            if(self.drawsChrome)
+            {
+                inset += 5;
+            }
+            interiorRect = (self.useRadialGradient || !self.drawsChrome)?self.bounds:CGRectInset(self.bounds, inset, inset);
         }
+        else
+        {
+            inset = floor(inset);
+            interiorRect = CGRectInset(self.bounds, inset, inset);
+        }
+        
+        
         CGContextClipToRect(quartzContext, interiorRect);
         
         // now figure out where to put my artwork and at what scale factor
@@ -358,9 +391,16 @@
 - (void)drawRect:(CGRect)rect
 {
     CGContextRef quartzContext = UIGraphicsGetCurrentContext();
-    if(self.drawsChrome)
+    if(self.drawsBackground)
     {
-        [self drawBackgroundIntoContext:quartzContext];
+        if(self.drawsChrome)
+        {
+            [self drawBackgroundIntoContext:quartzContext];
+        }
+        else
+        {
+            [self drawFlatBackgroundIntoContext:quartzContext];
+        }
     }
     if(self.selected && self.selectedArtworkPath.length)
     {
@@ -510,6 +550,7 @@
     CGPathCloseSubpath(result);
     return result;
 }
+
 
 -(void)drawBackgroundIntoContext:(CGContextRef)quartzContext
 {

@@ -40,7 +40,7 @@ const CGFloat kContentMargin = 10;
 @property(nonatomic, strong) SVGRenderer* renderer;
 @property(nonatomic, assign) BOOL enabled;
 @property(nonatomic, assign) CGFloat width; // 0.0 means automatic
-
+@property(nonatomic, assign) CGFloat artInsetFraction;
 
 -(CGFloat) preferredWidthGivenHeight:(CGFloat)height;
 
@@ -156,7 +156,15 @@ typedef enum GHSementType
         self.contentLayer.opaque = NO;
         
     }
-    CGRect contentFrame = CGRectInset(self.bounds, 2.0, 2.0);
+    
+    CGFloat inset = 2.0;
+    
+    if(self.segmentDefinition.artInsetFraction > 0)
+    {
+        inset = self.bounds.size.height*self.segmentDefinition.artInsetFraction;
+    }
+    
+    CGRect contentFrame = CGRectInset(self.bounds, inset, inset);
     
     if([self.contentLayer isKindOfClass:[CATextLayer class]])
     {
@@ -519,33 +527,39 @@ typedef enum GHSementType
     
 }
 
+-(UIColor*) selectedColor
+{
+    UIColor* result = nil;
+    if([self.control respondsToSelector:@selector(tintColor)])
+    {
+        result = self.control.tintColor;
+    }
+    if(result == nil)
+    {
+        result = self.control.textColor;
+        if(result == nil)
+        {
+            result = [GHControlFactory newTextColorForScheme:self.control.scheme];
+        }
+    }
+    return result;
+
+}
+
 - (void)drawLayer:(GHSegmentedControlSegmentLayer *)layer inContext:(CGContextRef)quartzContext
 {
     CGRect layerBounds = layer.bounds;
     CGContextSaveGState(quartzContext);
     BOOL drawRing = YES;
     BOOL    inNormalMode = !layer.selected;
-    
+    ColorScheme scheme = self.control.scheme;
     
     
     CGContextSaveGState(quartzContext);
-    if(self.control.scheme == kColorSchemeEmpty) // approximate an iOS 7 segmented control
+    
+    if(scheme == kColorSchemeEmpty || scheme == kColorSchemeFlatAndBoxy) // approximate an iOS 7 segmented control
     {
-        CGPathRef   boundingPath = [layer newOutlinePathWhileUsingRadialGradient:NO];
-        CGContextAddPath(quartzContext, boundingPath);
-        UIColor* baseColor = nil;
-        if([self.control respondsToSelector:@selector(tintColor)])
-        {
-            baseColor = self.control.tintColor;
-        }
-        else
-        {
-            baseColor = self.control.textColor;
-            if(baseColor == nil)
-            {
-                baseColor = [UIColor blueColor];
-            }
-        }
+        UIColor* baseColor = [self selectedColor];
         
         CGContextSetStrokeColorWithColor(quartzContext, baseColor.CGColor);
         if(inNormalMode)
@@ -556,10 +570,22 @@ typedef enum GHSementType
         {
             CGContextSetFillColorWithColor(quartzContext, baseColor.CGColor);
         }
-        CGContextSetLineWidth(quartzContext, 1/self.contentsScale);
-        CGContextDrawPath(quartzContext, kCGPathFillStroke);
+        CGFloat lineWidth = 1/self.contentsScale;
         
-        CGPathRelease(boundingPath);
+        CGContextSetLineWidth(quartzContext, lineWidth);
+        if(scheme == kColorSchemeEmpty)
+        {
+            CGPathRef   boundingPath = [layer newOutlinePathWhileUsingRadialGradient:NO];
+            CGContextAddPath(quartzContext, boundingPath);
+            CGContextDrawPath(quartzContext, kCGPathFillStroke);
+            CGPathRelease(boundingPath);
+        }
+        else
+        {
+            CGRect drawBounds = CGRectInset(layerBounds, 0, 0);
+            CGContextAddRect(quartzContext, drawBounds);
+            CGContextDrawPath(quartzContext, kCGPathFillStroke);
+        }
     }
     else
     {
@@ -684,6 +710,7 @@ typedef enum GHSementType
             else if([anItem isKindOfClass:[SVGRenderer class]])
             {
                 aDefinition.renderer = (SVGRenderer*)anItem;
+                aDefinition.artInsetFraction = self.artInsetFraction;
             }
             else
             {
@@ -730,6 +757,7 @@ typedef enum GHSementType
         GHSegmentDefinition* newDefinition = [GHSegmentDefinition new];
         newDefinition.enabled = YES;
         newDefinition.renderer = renderer;
+        newDefinition.artInsetFraction = self.artInsetFraction;
         
         [mutableDefinitions insertObject:newDefinition atIndex:segment];
         if(animated)

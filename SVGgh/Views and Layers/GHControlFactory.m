@@ -178,6 +178,11 @@ UIColor* gDefaultSelectedTextColor = nil;
             result = [GHControlFactory buttonTint];
         }
         break;
+        case kColorSchemeFlatAndBoxy:
+        {
+            result = [GHControlFactory buttonTint];
+        }
+        break;
         default:
         {
             (void)[GHControlFactory isValidColorScheme:scheme];
@@ -185,6 +190,12 @@ UIColor* gDefaultSelectedTextColor = nil;
         break;
     }
 
+    return result;
+}
+
++(UIColor*) newPressedColorForColor:(UIColor*)originalColor forScheme:(ColorScheme)scheme
+{
+    UIColor* result = [GHControlFactory newColor:originalColor withBrightnessDelta:kPressedButtonDarkeningOffset];
     return result;
 }
 
@@ -254,6 +265,10 @@ UIColor* gDefaultSelectedTextColor = nil;
             CGColorSpaceRelease(colorSpace);
         }
         break;
+        case kColorSchemeFlatAndBoxy:
+        {
+        }
+        break;
         default:
         {
             UIColor* lightColor = [GHControlFactory newLightBackgroundColorForScheme:scheme];
@@ -286,6 +301,7 @@ UIColor* gDefaultSelectedTextColor = nil;
             CGColorSpaceRelease(colorSpace);
         }
         break;
+        
     }
 
     return result;
@@ -351,6 +367,10 @@ UIColor* gDefaultSelectedTextColor = nil;
             result = CGGradientCreateWithColors(colorSpace, colors, locations);
             CFRelease(colors);
             CGColorSpaceRelease(colorSpace);
+        }
+        break;
+        case kColorSchemeFlatAndBoxy:
+        {
         }
         break;
         default:

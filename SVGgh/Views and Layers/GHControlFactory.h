@@ -42,7 +42,8 @@ enum  {
     kColorSchemeEmpty, // most like iOS 7 or 8 with minimal chrome
     kColorSchemeHomeTheatre,
     kColorSchemeiOSVersionAppropriate,
-    kLastColorScheme = kColorSchemeiOSVersionAppropriate,
+    kColorSchemeFlatAndBoxy,
+    kLastColorScheme = kColorSchemeFlatAndBoxy,
     
     kColorSchemeNone,
 };
@@ -148,6 +149,12 @@ typedef NSUInteger ColorScheme;
  * @return a color (if any) for use in a ring's outline
  */
 +(UIColor*) newRingColorForScheme:(ColorScheme)scheme;
+
+/*! @brief makes a color appropriate for background of a button when pressed
+ * @param scheme one of the enumerated list in the typedef ColorScheme
+ * @return a color (if any) for use in a ring's outline
+ */
++(UIColor*) newPressedColorForColor:(UIColor*)originalColor forScheme:(ColorScheme)scheme;
 
 /*! @brief generates a button appropriate for the given scheme
  * @param scheme one of the enumerated list in the typedef ColorScheme

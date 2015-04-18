@@ -87,6 +87,13 @@ const CGFloat kShadowInset = 3.0;
     [self setupForScheme:self.scheme];
 }
 
+-(void) setArtInsetFraction:(CGFloat)artInsetFraction
+{
+    NSAssert(artInsetFraction < 0.5, @"artInsetFraction should be between 0 and 0.5, preferabley under 0.25");
+    
+    _artInsetFraction = artInsetFraction;
+}
+
 -(void)setupForScheme:(NSUInteger)aScheme
 {
     (void)[GHControlFactory isValidColorScheme:aScheme];
@@ -111,6 +118,7 @@ const CGFloat kShadowInset = 3.0;
     self.textFontSize = kButtonTitleFontSize;
     self.useBoldText = NO;
     self.drawsChrome = YES;
+    self.drawsBackground = YES;
     switch (aScheme)
     {
         case kColorSchemeKeyboard:
@@ -118,9 +126,16 @@ const CGFloat kShadowInset = 3.0;
             self.useBoldText = YES;
             self.showShadow = YES;
         }
-            break;
+        break;
         case kColorSchemeEmpty:
         {
+            self.drawsChrome = NO;
+            self.drawsBackground = NO;
+        }
+        break;
+        case kColorSchemeFlatAndBoxy:
+        {
+            self.drawsBackground = YES;
             self.drawsChrome = NO;
         }
         default:
