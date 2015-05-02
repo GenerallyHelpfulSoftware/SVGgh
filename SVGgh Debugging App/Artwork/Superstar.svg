@@ -919,10 +919,13 @@ iehp1OXpQ1AH/9k=" width="384.000000" clip-path="url(#clip_F4C745ED-E424-4951-95F
 <text x="0" font-family="Georgia" y="50" font-size="28" color="#ff69b4" fill="url(#uptoblack_#ff69b4)" transform="matrix(1.31961 0 0 1.31961 100.936 367.628)" stroke="none">✧SVGgh Test File✧</text>
 <use xlink:href="#Star 5" transform="matrix(0.5984 0 0 0.5984 230.432 132.832)" fill="url(#uptoblack_#B0E0E6)" color="#B0E0E6"/>
 
-<text stroke="none" font-size="40" font-family="Verdana" transform="matrix(0.559392 -0.583437 0.583437 0.559392 316.081 115.379)" fill="#228B22" color="#228B22"><textPath xlink:href="#CIRCLE_TEXT_PATH"> <tspan font-weight="Bolder" fill="#FFA500">Generally</tspan>Helpful</textPath>
+
+<path stroke="blue" d="M 395 145 L 380 160 M 445 159 L 453 180"/>
+<path d="M 40 100 A 60 60 0 1 1 40 100.1 Z" stroke="black" fill="none" transform="matrix(0.559392 -0.583437 0.583437 0.559392 316.081 115.379)" stroke-width="1"/>
+<text stroke="none" font-size="40" font-family="Georgia" transform="matrix(0.559392 -0.583437 0.583437 0.559392 316.081 115.379)" fill="#228B22" color="#228B22"><textPath xlink:href="#CIRCLE_TEXT_PATH">Generally Helpful</textPath>
 </text>
 </g>
 </g>
-<polygon fill="green" points="143.24,30.955 , 124.594,30.955 124.594,66.027 118.378,66.027 118.378,30.955 
+<polygon fill="green" points="143.24,30.955 , 124.594,30.955 124.594,66.027 118.378,66.027 118.378,30.955
 		99.325,30.955 99.325,24.742 143.24,24.742"/>
 </svg>

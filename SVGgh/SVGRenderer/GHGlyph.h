@@ -72,6 +72,8 @@
 @property(nonatomic, readonly)      CGPoint             renderPoint;
 @property(nonatomic, readonly)      CGFloat             rotationAngleInRadians;
 @property(nonatomic, readonly)      CGFloat             width;
+@property(nonatomic, readonly)      CGRect              runRect; // rect within a run
+@property(nonatomic, readonly)      BOOL                notRendering; // wasn't able to lay this out
 @property (nonatomic, readonly)     CGAffineTransform	transform;
 
 /*! @property boundingBox
@@ -101,7 +103,7 @@
 * @param theWidth pre-calculated width of the glyph
 * @see coreTextAttributesFromSVGStyleAttributes:
 */
--(id) initWithDictionary:(NSDictionary *)theAttributes textAttributes:(NSDictionary*) textAttributes font:(CTFontRef)aFont glyph:(CGGlyph)aGlyph transform:(CGAffineTransform)aTransform offset:(CGPoint)offset andWidth:(CGFloat)theWidth;
+-(id) initWithDictionary:(NSDictionary *)theAttributes textAttributes:(NSDictionary*) textAttributes font:(CTFontRef)aFont glyph:(CGGlyph)aGlyph transform:(CGAffineTransform)aTransform offset:(CGPoint)offset runBox:(CGRect)runRect andWidth:(CGFloat)theWidth;
 
 /*! @brief not allowing a standard init method
 */

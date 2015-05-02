@@ -242,12 +242,18 @@
             CFDictionaryRef textAttributes = CTRunGetAttributes(run);
             CFIndex glyphCount = CTRunGetGlyphCount(run);
             
+            
+            CFRange wholeGlyphRnge = CFRangeMake(0, glyphCount);
+            
+            NSMutableData* glyphs = [NSMutableData dataWithCapacity:sizeof(CGGlyph)*glyphCount];
+            CGGlyph* rawGlyphPtr = (CGGlyph*)glyphs.mutableBytes;
+            CTRunGetGlyphs(run, wholeGlyphRnge, rawGlyphPtr);
+            
             for (CFIndex glyphIndex = 0; glyphIndex < glyphCount; glyphIndex++)
             {
                 CFRange thisGlyphRange = CFRangeMake(glyphIndex, 1);
-                CGGlyph glyph;
+                CGGlyph glyph = rawGlyphPtr[glyphIndex];
                 CGPoint position;
-                CTRunGetGlyphs(run, thisGlyphRange, &glyph);
                 CTRunGetPositions(run, thisGlyphRange, &position);
                 
                 glyphTransform = CGAffineTransformTranslate(glyphTransform, position.x-lastPoint.x, position.y-lastPoint.y);
@@ -265,13 +271,15 @@
                                                          NULL,
                                                          NULL,
                                                          NULL);
-                
+                CGRect runBox = CTRunGetImageBounds(run, nil, thisGlyphRange);
                 
                 GHGlyph* aGlyph = [[GHGlyph alloc] initWithDictionary:self.attributes
                                                    textAttributes:[(__bridge NSDictionary*)textAttributes copy]
-                                                             font:runFont glyph:glyph
-                                                        transform:glyphTransform offset:position
-                                                         andWidth:(CGFloat)width];
+                                                    font:runFont glyph:glyph
+                                                    transform:glyphTransform
+                                                    offset:position
+                                                    runBox:runBox
+                                                    andWidth:(CGFloat)width];
                 [glyphList addObject:aGlyph];
                 
             }

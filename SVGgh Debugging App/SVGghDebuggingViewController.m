@@ -63,7 +63,11 @@
     aRenderer = [[SVGRenderer alloc] initWithContentsOfURL:myArtwork];
     
     [self.segmentedControl insertSegmentWithRenderer:aRenderer atIndex:2 animated:NO];
-    self.segmentedControl.selectedSegmentIndex = 0;
+    [self.segmentedControl insertSegmentWithTitle:NSLocalizedString(@"Rotated", @"") atIndex:3 animated:NO];
+    self.segmentedControl.selectedSegmentIndex = 3;
+    
+    
+    
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -125,6 +129,9 @@
         break;
         case 2:
             controlIdentifier = @"creatures";
+        break;
+        case 3:
+            controlIdentifier = @"textOnCurve";
         break;
     }
     

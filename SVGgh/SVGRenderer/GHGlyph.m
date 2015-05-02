@@ -36,6 +36,7 @@
 @property(nonatomic, readwrite) NSString* strokeDescription;
 @property(nonatomic, readwrite) CGFloat rotationAngleInRadians;
 @property(nonatomic, assign) CGFloat strokeWidth;
+@property(nonatomic, readwrite) BOOL notRendering;
 -(void) setRenderPoint:(CGPoint)thePoint withPerpendicular:(CGPoint) perpendicularVector;
 @end
 
@@ -46,7 +47,9 @@
 {
     __block NSUInteger      glyphIndex = 0;
     __block GHGlyph*          currentGlyph = [listOfGlyphs objectAtIndex:glyphIndex++];
-    __block CGFloat nextOffset = currentGlyph.offset.x;
+    CGRect runBox = currentGlyph.runRect;
+    __block CGFloat startOffset = -1.0*runBox.origin.x;
+    __block CGFloat nextOffset = runBox.size.width/2.0+startOffset;
     __block  CGPoint currentPoint = CGPointZero;
     __block  CGFloat runningLength = 0;
     
@@ -74,13 +77,14 @@
                         {
                             CGFloat distanceIntoSegment = nextOffset-runningLength;
                             CGPoint thePoint = CGPointMake((distanceIntoSegment/segmentLength)*deltaX+currentPoint.x, (distanceIntoSegment/segmentLength)*deltaY+currentPoint.y);
-                            [currentGlyph setRenderPoint:thePoint withPerpendicular:perpendicularVector];
+                            [currentGlyph setMidRenderPoint:thePoint withPerpendicular:perpendicularVector];
                             lengthLeft -= distanceIntoSegment;
                             runningLength = nextOffset;
                             if(glyphIndex < [listOfGlyphs count])
                             {
                                 currentGlyph = [listOfGlyphs objectAtIndex:glyphIndex++];
-                                nextOffset = currentGlyph.offset.x;
+                                CGRect runBox = currentGlyph.runRect;
+                                nextOffset = currentGlyph.offset.x+runBox.size.width/2.0;
                             }
                             else
                             {
@@ -139,7 +143,7 @@
                     currentPoint = nextPoint;
                     
                 }
-                    break;
+                break;
                 case kCGPathElementAddCurveToPoint:
                 {
                     CGPoint controlPoint1 = aPathElement->points[0];
@@ -182,13 +186,13 @@
                     }
                     currentPoint = nextPoint;
                 }
-                    break;
+                break;
                 case kCGPathElementCloseSubpath:
-                    break;
+                break;
                 default:
                 {
                 }
-                    break;
+                break;
             }
         }
     };
@@ -197,37 +201,31 @@
     
     while(currentGlyph != nil)
     {
-        CGFloat distanceIntoSegment = nextOffset-runningLength;
-        CGPoint nextPoint = CGPointMake(currentPoint.x+distanceIntoSegment, currentPoint.y);
-        CGPoint perpendicularVector = CalculateForward(currentPoint, nextPoint);
-        [currentGlyph setRenderPoint:nextPoint withPerpendicular:perpendicularVector];
-        currentPoint = nextPoint;
+        currentGlyph.notRendering = YES;
         if(glyphIndex < [listOfGlyphs count])
         {
             currentGlyph = [listOfGlyphs objectAtIndex:glyphIndex++];
-            nextOffset = currentGlyph.offset.x;
         }
         else
         {
             currentGlyph = nil;
         }
-        runningLength += distanceIntoSegment;
     }
 
 }
 
 
--(id) initWithDictionary:(NSDictionary *)theAttributes textAttributes:(NSDictionary*) tAttributes font:(CTFontRef)aFont glyph:(CGGlyph)aGlyph transform:(CGAffineTransform)aTransform offset:(CGPoint)theOffset andWidth:(CGFloat)theWidth
+-(id) initWithDictionary:(NSDictionary *)theAttributes textAttributes:(NSDictionary*) tAttributes font:(CTFontRef)aFont glyph:(CGGlyph)aGlyph transform:(CGAffineTransform)aTransform offset:(CGPoint)theOffset runBox:(CGRect)runBox andWidth:(CGFloat)theWidth
 {
     if(nil != (self = [super initWithDictionary:theAttributes]))
     {
         _font = aFont;
         CFRetain(_font);
         _glyph = aGlyph;
-        _transform = aTransform;
-        _offset = theOffset;
+        _runRect = CGRectApplyAffineTransform(runBox, aTransform);
         _width = theWidth;
-        _textAttributes = tAttributes;
+        _transform = aTransform;
+        _offset = theOffset;        _textAttributes = tAttributes;
         _fillDescription = [SVGToQuartz valueForStyleAttribute:@"fill" fromDefinition:theAttributes];
         _strokeDescription = [SVGToQuartz valueForStyleAttribute:@"stroke" fromDefinition:theAttributes];
         
@@ -240,7 +238,6 @@
         {
             _strokeWidth = -1;
         }
-
     }
     return self;
 }
@@ -309,6 +306,17 @@
     }
 }
 
+-(void) setMidRenderPoint:(CGPoint)midBaselinePoint withPerpendicular:(CGPoint) perpendicularVector
+{
+    CGFloat radius = self.runRect.size.width/2.0;
+    CGFloat rotationAngle = atan2(perpendicularVector.x, perpendicularVector.y)-M_PI_2;
+    CGFloat deltaX = radius*sin (rotationAngle);
+    CGFloat deltaY = (radius)*cos(rotationAngle);
+    
+    CGPoint zeroPoint = CGPointMake(midBaselinePoint.x+deltaX, midBaselinePoint.y+deltaY);
+    [self setRenderPoint:zeroPoint withPerpendicular:perpendicularVector];
+}
+
 -(void) setRenderPoint:(CGPoint)thePoint withPerpendicular:(CGPoint) perpendicularVector
 {
     self.rotationAngleInRadians = atan2(perpendicularVector.x, perpendicularVector.y);
@@ -320,22 +328,25 @@
     CGRect result = CGRectZero;
     for(GHGlyph* aGlyph in listOfGlyphs)
     {
-        CGPathRef letter = CTFontCreatePathForGlyph(aGlyph.font, aGlyph.glyph, NULL);
-        CGPoint renderPoint = aGlyph.renderPoint;
-        CGAffineTransform glyphTransform = CGAffineTransformTranslate(CGAffineTransformIdentity, renderPoint.x, renderPoint.y);
-        glyphTransform = CGAffineTransformScale(glyphTransform, 1.0, -1.0);
-        glyphTransform = CGAffineTransformRotate(glyphTransform, aGlyph.rotationAngleInRadians);
-        glyphTransform = CGAffineTransformTranslate(glyphTransform, 0.0, -aGlyph.offset.y);
-        CGRect pathBounds = CGPathGetBoundingBox(letter);
-        pathBounds = CGRectApplyAffineTransform(pathBounds, glyphTransform);
-        CGPathRelease(letter);
-        if(CGRectIsEmpty(result))
+        if(!aGlyph.notRendering)
         {
-            result = pathBounds;
-        }
-        else
-        {
-            result = CGRectUnion(result, pathBounds);
+            CGPathRef letter = CTFontCreatePathForGlyph(aGlyph.font, aGlyph.glyph, NULL);
+            CGPoint renderPoint = aGlyph.renderPoint;
+            CGAffineTransform glyphTransform = CGAffineTransformTranslate(CGAffineTransformIdentity, renderPoint.x, renderPoint.y);
+            glyphTransform = CGAffineTransformScale(glyphTransform, 1.0, -1.0);
+            glyphTransform = CGAffineTransformRotate(glyphTransform, aGlyph.rotationAngleInRadians);
+            glyphTransform = CGAffineTransformTranslate(glyphTransform, 0.0, -aGlyph.offset.y);
+            CGRect pathBounds = CGPathGetBoundingBox(letter);
+            pathBounds = CGRectApplyAffineTransform(pathBounds, glyphTransform);
+            CGPathRelease(letter);
+            if(CGRectIsEmpty(result))
+            {
+                result = pathBounds;
+            }
+            else
+            {
+                result = CGRectUnion(result, pathBounds);
+            }
         }
     }
     return result;
@@ -343,31 +354,41 @@
 
 -(BOOL) isPointInBoundingBox:(CGPoint)aPoint
 {
-    CGPathRef letter = CTFontCreatePathForGlyph(self.font, self.glyph, NULL);
-    CGAffineTransform glyphTransform = CGAffineTransformTranslate(CGAffineTransformIdentity, self.renderPoint.x, self.renderPoint.y);
-    glyphTransform = CGAffineTransformScale(glyphTransform, 1.0, -1.0);
-    glyphTransform = CGAffineTransformRotate(glyphTransform, self.rotationAngleInRadians);
-    glyphTransform = CGAffineTransformTranslate(glyphTransform, 0.0, -self.offset.y);
-    CGRect pathBounds = CGPathGetBoundingBox(letter);
-    pathBounds = CGRectApplyAffineTransform(pathBounds, glyphTransform);
-    CGPathRelease(letter);
-    
-    BOOL result = CGRectContainsPoint(pathBounds, aPoint);
-    
+    BOOL result = NO;
+    if(!self.notRendering)
+    {
+        CGPathRef letter = CTFontCreatePathForGlyph(self.font, self.glyph, NULL);
+        CGAffineTransform glyphTransform = CGAffineTransformTranslate(CGAffineTransformIdentity, self.renderPoint.x, self.renderPoint.y);
+        glyphTransform = CGAffineTransformScale(glyphTransform, 1.0, -1.0);
+        glyphTransform = CGAffineTransformRotate(glyphTransform, self.rotationAngleInRadians);
+        glyphTransform = CGAffineTransformTranslate(glyphTransform, 0.0, -self.offset.y);
+        CGRect pathBounds = CGPathGetBoundingBox(letter);
+        pathBounds = CGRectApplyAffineTransform(pathBounds, glyphTransform);
+        CGPathRelease(letter);
+        
+        result = CGRectContainsPoint(pathBounds, aPoint);
+    }
     return result;
 }
 
 -(void) addPathToContext:(CGContextRef)quartzContext  withSVGContext:(id<SVGContext>) svgContext
 {
-    CGAffineTransform glyphTransform = CGAffineTransformTranslate(CGAffineTransformIdentity, self.renderPoint.x, self.renderPoint.y);
-    glyphTransform = CGAffineTransformScale(glyphTransform, 1.0, -1.0);
-    glyphTransform = CGAffineTransformRotate(glyphTransform, self.rotationAngleInRadians);
-    glyphTransform = CGAffineTransformTranslate(glyphTransform, 0.0, -self.offset.y);
-    CGPathRef letter = CTFontCreatePathForGlyph(self.font, self.glyph, &glyphTransform);
-    CGContextSaveGState(quartzContext);
-    CGContextAddPath(quartzContext, letter);
-    CGContextRestoreGState(quartzContext);
-    CGPathRelease(letter);
+    if(!self.notRendering)
+    {
+        CGAffineTransform glyphTransform = CGAffineTransformTranslate(CGAffineTransformIdentity, self.renderPoint.x, self.renderPoint.y);
+        glyphTransform = CGAffineTransformScale(glyphTransform, 1.0, -1.0);
+        glyphTransform = CGAffineTransformRotate(glyphTransform, self.rotationAngleInRadians);
+        glyphTransform = CGAffineTransformTranslate(glyphTransform, 0.0, -self.offset.y);
+        CGPathRef letter = CTFontCreatePathForGlyph(self.font, self.glyph, &glyphTransform);
+        CGContextSaveGState(quartzContext);
+        
+        CGContextAddPath(quartzContext, letter);
+        
+        
+        
+        CGContextRestoreGState(quartzContext);
+        CGPathRelease(letter);
+    }
 }
 
 -(void)addGlyphsToArray:(NSMutableArray*)glyphList  withSVGContext:(id<SVGContext>)svgContext
