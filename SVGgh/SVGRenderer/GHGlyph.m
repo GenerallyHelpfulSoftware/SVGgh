@@ -76,7 +76,8 @@
                         else
                         {
                             CGFloat distanceIntoSegment = nextOffset-runningLength;
-                            CGPoint thePoint = CGPointMake((distanceIntoSegment/segmentLength)*deltaX+currentPoint.x, (distanceIntoSegment/segmentLength)*deltaY+currentPoint.y);
+                            CGPoint thePoint = CGPointMake((distanceIntoSegment/segmentLength)*deltaX+currentPoint.x,
+                                                           (distanceIntoSegment/segmentLength)*deltaY+currentPoint.y+currentGlyph.offset.y);
                             [currentGlyph setMidRenderPoint:thePoint withPerpendicular:perpendicularVector];
                             lengthLeft -= distanceIntoSegment;
                             runningLength = nextOffset;
