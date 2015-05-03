@@ -55,7 +55,11 @@
     
     SVGRenderer* aRenderer = [[SVGRenderer alloc] initWithContentsOfURL:myArtwork];
     [self.segmentedControl insertSegmentWithRenderer:aRenderer atIndex:0 animated:NO];
-    [self.segmentedControl insertSegmentWithTitle:NSLocalizedString(@"Eyes", @"") atIndex:1 animated:NO];
+    
+    myArtwork = [GHControlFactory locateArtworkForObject:self atSubpath:@"Artwork/Eye"];
+    aRenderer = [[SVGRenderer alloc] initWithContentsOfURL:myArtwork];
+    
+    [self.segmentedControl insertSegmentWithRenderer:aRenderer atIndex:1 animated:NO];
     
     
     
@@ -63,8 +67,8 @@
     aRenderer = [[SVGRenderer alloc] initWithContentsOfURL:myArtwork];
     
     [self.segmentedControl insertSegmentWithRenderer:aRenderer atIndex:2 animated:NO];
-    [self.segmentedControl insertSegmentWithTitle:NSLocalizedString(@"Rotated", @"") atIndex:3 animated:NO];
-    self.segmentedControl.selectedSegmentIndex = 3;
+    [self.segmentedControl insertSegmentWithTitle:NSLocalizedString(@"Curvy", @"") atIndex:3 animated:NO];
+    self.segmentedControl.selectedSegmentIndex = 0;
     
     
     

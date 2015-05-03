@@ -73,7 +73,7 @@
                                     <constraint firstAttribute="width" secondItem="LDH-8f-BQz" secondAttribute="height" multiplier="1:1" id="mOv-Kx-r6x"/>
                                 </constraints>
                                 <connections>
-                                    <segue destination="Kby-wU-kVd" kind="embed" identifier="initialEmbed" id="C52-d2-vPD"/>
+                                    <segue destination="Ux3-B9-VgV" kind="embed" identifier="initialEmbed" id="JTJ-Ke-eWm"/>
                                 </connections>
                             </containerView>
                             <view tag="1" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" placeholderIntrinsicWidth="280" placeholderIntrinsicHeight="30" translatesAutoresizingMaskIntoConstraints="NO" id="uoD-rr-R4J" customClass="GHSegmentedControl">
