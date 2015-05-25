@@ -48,7 +48,7 @@ To use, you'll want to follow the following steps:
 
 ####Once you have installed the library
 * early in the launch of your app call 
-    **[GHControlFactory kColorSchemeClear];**
+    **[GHControlFactory setDefaultScheme:kColorSchemeClear];**
 * early in the launch of your app call
 **MakeSureSVGghLinks();** in order to link classes only referenced in storyboards or nibs. As in:
 
@@ -61,7 +61,7 @@ To use, you'll want to follow the following steps:
 {
     [super initialize];
     MakeSureSVGghLinks(); // classes only used in Storyboards might not link otherwise
-    [GHControlFactory setDefaultScheme:kColorSchemeClear];
+    [GHControlFactory setDefaultScheme:kColorSchemeClear]; // there are a variety of schemes
     [GHControlFactory setDefaultTextColor:[UIColor greenColor]];
 }
 ...
