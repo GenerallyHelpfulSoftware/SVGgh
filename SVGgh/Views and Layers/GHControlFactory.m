@@ -55,11 +55,11 @@ UIColor* gDefaultSelectedTextColor = nil;
 {
     NSURL* result = nil;
     NSFileManager* fileManager = [NSFileManager new];
-    NSArray *keys = @[NSURLIsDirectoryKey, NSURLNameKey];
+    NSArray *keys = @[NSURLIsDirectoryKey, NSURLNameKey, NSURLIsSymbolicLinkKey];
     NSDirectoryEnumerator *enumerator = [fileManager
                                          enumeratorAtURL:parentDirectory
                                          includingPropertiesForKeys:keys
-                                         options:0
+                                         options:NSDirectoryEnumerationSkipsPackageDescendants |  NSDirectoryEnumerationSkipsHiddenFiles
                                          errorHandler:^(NSURL *url, NSError *error) {
                                              // Handle the error.
                                              // Return YES if the enumeration should continue after the error.
@@ -67,7 +67,7 @@ UIColor* gDefaultSelectedTextColor = nil;
                                          }];
     
     for (NSURL *url in enumerator) {
-        NSError *error;
+        NSError *error = nil;
         NSNumber *isDirectory = nil;
         if (! [url getResourceValue:&isDirectory forKey:NSURLIsDirectoryKey error:&error]) {
             // handle error
@@ -76,7 +76,12 @@ UIColor* gDefaultSelectedTextColor = nil;
         {
             if ([isDirectory boolValue])
             {
-                
+                NSNumber* isSymbolicLink = nil;
+                [url getResourceValue:&isSymbolicLink forKey:NSURLIsSymbolicLinkKey error:&error];
+                if(error != nil || isSymbolicLink.boolValue)
+                {
+                    [enumerator skipDescendents];
+                }
             }
             else
             {
