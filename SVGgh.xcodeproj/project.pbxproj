@@ -91,6 +91,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		211E709E1B2AEC1D00667BE9 /* SVGgh.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = SVGgh.podspec; sourceTree = "<group>"; };
 		21F6BBE21B29A21E00DCEEC2 /* SVGgh.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SVGgh.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		21F6BBE61B29A21E00DCEEC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		21F6BBE71B29A21E00DCEEC2 /* SVGgh.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SVGgh.h; sourceTree = "<group>"; };
@@ -194,6 +195,7 @@
 		21F6BBD81B29A21E00DCEEC2 = {
 			isa = PBXGroup;
 			children = (
+				211E709E1B2AEC1D00667BE9 /* SVGgh.podspec */,
 				21F6BBE41B29A21E00DCEEC2 /* SVGgh */,
 				21F6BBF11B29A21E00DCEEC2 /* SVGghTests */,
 				21F6BC891B29A48600DCEEC2 /* SVGgh Debugging App */,
