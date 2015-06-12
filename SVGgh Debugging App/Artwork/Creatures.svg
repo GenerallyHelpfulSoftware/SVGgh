@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
 "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg x="0px" height="512" viewport-fill="none" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink" width="512" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0, 0, 512, 512">
+<svg x="0px" height="512" viewport-fill="white" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink" width="512" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0, 0, 512, 512">
 <defs id="Defs">
 <path id="Butterfly Shape" d="M44 42C38 29 42 8 5 5 13 53 14 42 21 47-18 113 43 92 45 66 45 59 45 47 44 42ZM55 66C57 92 106 109 79 47 86 42 87 53 95 5 58 8 62 29 56 42 55 47 55 47 55 66ZM56 42A7 7 0 1 0 44 42C45 47 46 59 47 66Q50 95 53 66C54 59 55 47 56 42ZM45 33.5Q46 24 37 15 A1 1 0 1 1 37.5 14.5Q45 19 46 32.5ZM55 33.5Q54 24 63 15A1 1 0 1 0 62.5 14.5Q55 20 54 32.5Z"/>
 <path id="Tick" d="M46 29C27 24 41 25 45 12L42 23 50 29 58 23 55 12C59 25 73 24 54 29A17 22 0 0 1 63 38L76 30 90 43 86 46 74 36 64 42A17 22 0 0 1 69 53L88 53 95 65 89 66 85 59 69 59A17 22 0 0 1 65 70L81 76 87 91 80 91 76 80 60 75A17 22 0 0 1 50 85 17 22 0 0 1 40 75L24 80  20 91 13 91 19 76 35 70A17 22 0 0 1 31 59L15 59 11 66 5 65 12 53 31 53A17 22 0 0 1 36 42L26 36 14 46 10 43 24 30 37 38A17 22 0 0 1 46 29Z "/>
