@@ -736,11 +736,30 @@ typedef enum GHSegmentType
 
 - (void)prepareForInterfaceBuilder
 {
-    [self insertSegmentWithTitle:NSLocalizedString(@"Add Segments", @"") atIndex:0 animated:NO];
-    [self insertSegmentWithTitle:NSLocalizedString(@"In Code", @"") atIndex:1 animated:NO];
+    
+    GHSegmentDefinition* definition0 = [GHSegmentDefinition new];
+    definition0.enabled = YES;
+    definition0.title = NSLocalizedString(@"Add Segments", @"");
+    
+    GHSegmentDefinition* definition1 = [GHSegmentDefinition new];
+    definition1.enabled = YES;
+    definition1.title = NSLocalizedString(@"In Code", @"");
+    
+    GHSegmentDefinition* definition2 = [GHSegmentDefinition new];
+    definition2.enabled = YES;
+    
     SVGRenderer* butterflyRenderer = [[SVGRenderer alloc] initWithString:[GHSegmentedControl placeholderButterflySVG]];
-    [self insertSegmentWithRenderer:butterflyRenderer atIndex:2 animated:NO];
-    self.apportionsSegmentWidthsByContent = NO;
+    definition2.renderer = butterflyRenderer;
+    
+    
+    if(self.bounds.size.width > 0)
+    {
+        CGFloat perWidth = self.bounds.size.width/3.0;
+        definition0.width = perWidth;
+        definition1.width = perWidth;
+        definition2.width = perWidth;
+    }
+    self.definitions = @[definition0, definition1, definition2];
 }
 
 - (void)insertSegmentWithTitle:(NSString *)title atIndex:(NSUInteger)segment animated:(BOOL)animated
