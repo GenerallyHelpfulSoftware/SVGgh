@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		211E709C1B2AEB5D00667BE9 /* SVGgh.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 211E709B1B2AEB5D00667BE9 /* SVGgh.framework */; };
+		211E709D1B2AEB5D00667BE9 /* SVGgh.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 211E709B1B2AEB5D00667BE9 /* SVGgh.framework */; };
 		215371E6189965D8006EBCD5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 215371E5189965D8006EBCD5 /* Foundation.framework */; };
 		215371E8189965D8006EBCD5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 215371E7189965D8006EBCD5 /* CoreGraphics.framework */; };
 		215371EA189965D8006EBCD5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 215371E9189965D8006EBCD5 /* UIKit.framework */; };
@@ -23,8 +25,6 @@
 		21537211189965D8006EBCD5 /* Example_SVGghTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 21537210189965D8006EBCD5 /* Example_SVGghTests.m */; };
 		2153722918996788006EBCD5 /* Artwork in Resources */ = {isa = PBXBuildFile; fileRef = 2153722818996788006EBCD5 /* Artwork */; };
 		2153722A18996788006EBCD5 /* Artwork in Resources */ = {isa = PBXBuildFile; fileRef = 2153722818996788006EBCD5 /* Artwork */; };
-		217A39AF189983A5002B3399 /* SVGgh.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217A39AE189983A5002B3399 /* SVGgh.framework */; };
-		217A39B0189983A5002B3399 /* SVGgh.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217A39AE189983A5002B3399 /* SVGgh.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		211E709B1B2AEB5D00667BE9 /* SVGgh.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVGgh.framework; path = "../../../Library/Developer/Xcode/DerivedData/SVGgh-abxhfwgpgjoknnefwrxunqyijhnl/Build/Products/Debug-iphonesimulator/SVGgh.framework"; sourceTree = "<group>"; };
 		215371E2189965D8006EBCD5 /* Example SVGgh.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Example SVGgh.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		215371E5189965D8006EBCD5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		215371E7189965D8006EBCD5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -58,7 +59,6 @@
 		2153720E189965D8006EBCD5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		21537210189965D8006EBCD5 /* Example_SVGghTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Example_SVGghTests.m; sourceTree = "<group>"; };
 		2153722818996788006EBCD5 /* Artwork */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Artwork; sourceTree = "<group>"; };
-		217A39AE189983A5002B3399 /* SVGgh.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVGgh.framework; path = "../../../../../../../Users/glenn/Library/Developer/Xcode/DerivedData/SVGgh-fipskftzzrzncygptromwunomupn/Build/Products/Debug-iphonesimulator/SVGgh.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,7 +68,7 @@
 			files = (
 				215371E8189965D8006EBCD5 /* CoreGraphics.framework in Frameworks */,
 				215371EA189965D8006EBCD5 /* UIKit.framework in Frameworks */,
-				217A39AF189983A5002B3399 /* SVGgh.framework in Frameworks */,
+				211E709C1B2AEB5D00667BE9 /* SVGgh.framework in Frameworks */,
 				215371E6189965D8006EBCD5 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -79,7 +79,7 @@
 			files = (
 				21537205189965D8006EBCD5 /* XCTest.framework in Frameworks */,
 				21537207189965D8006EBCD5 /* UIKit.framework in Frameworks */,
-				217A39B0189983A5002B3399 /* SVGgh.framework in Frameworks */,
+				211E709D1B2AEB5D00667BE9 /* SVGgh.framework in Frameworks */,
 				21537206189965D8006EBCD5 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -94,6 +94,7 @@
 				2153720A189965D8006EBCD5 /* Example SVGghTests */,
 				215371E4189965D8006EBCD5 /* Frameworks */,
 				215371E3189965D8006EBCD5 /* Products */,
+				211E709B1B2AEB5D00667BE9 /* SVGgh.framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -109,7 +110,6 @@
 		215371E4189965D8006EBCD5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				217A39AE189983A5002B3399 /* SVGgh.framework */,
 				215371E5189965D8006EBCD5 /* Foundation.framework */,
 				215371E7189965D8006EBCD5 /* CoreGraphics.framework */,
 				215371E9189965D8006EBCD5 /* UIKit.framework */,
@@ -395,9 +395,14 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/SVGgh-fipskftzzrzncygptromwunomupn/Build/Products/Debug-iphoneos",
-					"/Volumes/Faith/Users/glenn/Projects/SVGgh/Example\\ SVGgh/Example\\ SVGghTests",
-					"/Volumes/Faith/Users/glenn/Projects/SVGgh/Example\\ SVGgh",
+					/Volumes/Faith/Users/glenn/Projects/SVGgh/Example,
+					SVGgh/Example,
+					SVGghTests,
+					/Volumes/Faith/Users/glenn/Projects/SVGgh/Example,
+					SVGgh,
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/SVGgh-fipskftzzrzncygptromwunomupn/Build/Products/Debug-iphonesimulator",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/SVGgh-abxhfwgpgjoknnefwrxunqyijhnl/Build/Products/Debug-iphoneos",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/SVGgh-abxhfwgpgjoknnefwrxunqyijhnl/Build/Products/Debug-iphonesimulator",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Example SVGgh/Example SVGgh-Prefix.pch";
@@ -415,9 +420,14 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/SVGgh-fipskftzzrzncygptromwunomupn/Build/Products/Debug-iphoneos",
-					"/Volumes/Faith/Users/glenn/Projects/SVGgh/Example\\ SVGgh/Example\\ SVGghTests",
-					"/Volumes/Faith/Users/glenn/Projects/SVGgh/Example\\ SVGgh",
+					/Volumes/Faith/Users/glenn/Projects/SVGgh/Example,
+					SVGgh/Example,
+					SVGghTests,
+					/Volumes/Faith/Users/glenn/Projects/SVGgh/Example,
+					SVGgh,
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/SVGgh-fipskftzzrzncygptromwunomupn/Build/Products/Debug-iphonesimulator",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/SVGgh-abxhfwgpgjoknnefwrxunqyijhnl/Build/Products/Debug-iphoneos",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/SVGgh-abxhfwgpgjoknnefwrxunqyijhnl/Build/Products/Debug-iphonesimulator",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Example SVGgh/Example SVGgh-Prefix.pch";
@@ -437,9 +447,14 @@
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/SVGgh-fipskftzzrzncygptromwunomupn/Build/Products/Debug-iphoneos",
-					"/Volumes/Faith/Users/glenn/Projects/SVGgh/Example\\ SVGgh/Example\\ SVGghTests",
-					"/Volumes/Faith/Users/glenn/Projects/SVGgh/Example\\ SVGgh",
+					/Volumes/Faith/Users/glenn/Projects/SVGgh/Example,
+					SVGgh/Example,
+					SVGghTests,
+					/Volumes/Faith/Users/glenn/Projects/SVGgh/Example,
+					SVGgh,
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/SVGgh-fipskftzzrzncygptromwunomupn/Build/Products/Debug-iphonesimulator",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/SVGgh-abxhfwgpgjoknnefwrxunqyijhnl/Build/Products/Debug-iphoneos",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/SVGgh-abxhfwgpgjoknnefwrxunqyijhnl/Build/Products/Debug-iphonesimulator",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Example SVGgh/Example SVGgh-Prefix.pch";
@@ -464,9 +479,14 @@
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/SVGgh-fipskftzzrzncygptromwunomupn/Build/Products/Debug-iphoneos",
-					"/Volumes/Faith/Users/glenn/Projects/SVGgh/Example\\ SVGgh/Example\\ SVGghTests",
-					"/Volumes/Faith/Users/glenn/Projects/SVGgh/Example\\ SVGgh",
+					/Volumes/Faith/Users/glenn/Projects/SVGgh/Example,
+					SVGgh/Example,
+					SVGghTests,
+					/Volumes/Faith/Users/glenn/Projects/SVGgh/Example,
+					SVGgh,
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/SVGgh-fipskftzzrzncygptromwunomupn/Build/Products/Debug-iphonesimulator",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/SVGgh-abxhfwgpgjoknnefwrxunqyijhnl/Build/Products/Debug-iphoneos",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/SVGgh-abxhfwgpgjoknnefwrxunqyijhnl/Build/Products/Debug-iphonesimulator",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Example SVGgh/Example SVGgh-Prefix.pch";
