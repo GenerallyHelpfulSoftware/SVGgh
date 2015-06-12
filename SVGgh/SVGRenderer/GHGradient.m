@@ -192,7 +192,7 @@
     CGFloat     x1Float = [SVGGradientUtilities extractFractionFromCoordinateString:x1  givenDefault:0.0];
     CGFloat     x2Float = [SVGGradientUtilities extractFractionFromCoordinateString:x2  givenDefault:1.0];
     CGFloat     y1Float = [SVGGradientUtilities extractFractionFromCoordinateString:y1  givenDefault:0.0];
-    CGFloat     y2Float = [SVGGradientUtilities extractFractionFromCoordinateString:y2  givenDefault:1.0];
+    CGFloat     y2Float = [SVGGradientUtilities extractFractionFromCoordinateString:y2  givenDefault:0.0];
     
     CGContextSaveGState(quartzContext);
     if(!CGContextIsPathEmpty(quartzContext))
@@ -221,7 +221,7 @@
     CGPoint endPoint = CGPointMake(x2Float, y2Float);
     
     
-    
+    CGGradientDrawingOptions options = 0;
     
     NSString* gradientTransformString = [self.attributes objectForKey:@"gradientTransform"];
     if(gradientTransformString.length == 0 || [gradientTransformString isEqualToString:@"rotate(0)"])
@@ -233,18 +233,13 @@
     }
     else
     {
-        // this code is not working for anything but a 90 degree rotation. FIX ME
         CGAffineTransform gradientTransform = (gradientTransformString.length == 0)?CGAffineTransformIdentity:SVGTransformToCGAffineTransform(gradientTransformString);
         
-        CGRect transformedRect = CGRectMake(startPoint.x, startPoint.y, endPoint.x-startPoint.x, endPoint.y-startPoint.y);
-        transformedRect  = CGRectStandardize(transformedRect);
-        transformedRect = CGRectApplyAffineTransform(transformedRect, gradientTransform);
-        
-        startPoint = CGPointMake(transformedRect.origin.x, transformedRect.origin.y);
-        endPoint = CGPointMake(transformedRect.origin.x, transformedRect.origin.y+transformedRect.size.height);
+        startPoint = CGPointApplyAffineTransform(startPoint, gradientTransform);
+        endPoint = CGPointApplyAffineTransform(endPoint, gradientTransform);
+        options = kCGGradientDrawsBeforeStartLocation | kCGGradientDrawsAfterEndLocation;
     }
     
-    CGGradientDrawingOptions options = 0;//kCGGradientDrawsBeforeStartLocation | kCGGradientDrawsAfterEndLocation;
     CGGradientRef   gradient = [self newGradientRefWithSVGContext:svgContext];
     CGContextDrawLinearGradient(quartzContext,
                                 gradient, startPoint, endPoint,
