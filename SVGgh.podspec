@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
 s.name        = 'SVGgh'
 s.version     = '1.2'
 s.license     = 'MIT'
-s.platform    = :ios, '6.0'
+s.platform    = :ios, '7.0'
 s.summary     = "SVG Rendering Library for iOS"
 s.homepage = 'https://github.com/GenerallyHelpfulSoftware/SVGgh'
 s.author   = { 'Glenn R. Howes' => 'glenn@genhelp.com' }
