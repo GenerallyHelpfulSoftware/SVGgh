@@ -25,6 +25,7 @@
 //
 
 #import "GHControl.h"
+#import "GHControlFactory.h"
 
 
 const CGFloat kButtonTitleFontSize = 16.0;

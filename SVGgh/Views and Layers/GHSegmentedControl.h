@@ -34,6 +34,10 @@
 #define IBInspectable
 #endif
 
+#ifndef IB_DESIGNABLE
+#define IB_DESIGNABLE
+#endif
+
 @class SVGRenderer;
 IB_DESIGNABLE
 @interface GHSegmentedControl : GHControl

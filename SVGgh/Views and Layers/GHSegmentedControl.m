@@ -27,6 +27,7 @@
 //
 
 #import "GHSegmentedControl.h"
+#import "GHControlFactory.h"
 #import "SVGRendererLayer.h"
 
 const CGFloat kContentMargin = 10;

@@ -25,11 +25,16 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GHControlFactory.h"
 
 #ifndef IBInspectable
 #define IBInspectable
 #endif
+
+#ifndef IB_DESIGNABLE
+#define IB_DESIGNABLE
+#endif
+
+typedef NSUInteger ColorScheme;
 
 @interface GHControl : UIControl
 @property(nonatomic, assign) ColorScheme         scheme;

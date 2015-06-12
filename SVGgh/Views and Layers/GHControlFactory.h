@@ -29,11 +29,12 @@
   The basis of a theme engine. This one only creates a GHButton control which is a color appropriate replacement (not a subclass)
  of the UIButton that Apple provides.
 ******/
-
 @import UIKit;
+
+#import "SVGgh.h"
 @class GHButton;
 
-typedef NS_ENUM(NSUInteger, ColorScheme) {
+enum {
     // do not change the order of these as they are hard coded into storyboards
     kColorSchemeiOS,
     kColorSchemeMachine,
@@ -47,7 +48,7 @@ typedef NS_ENUM(NSUInteger, ColorScheme) {
     
     kColorSchemeNone,
 };
-
+typedef NSUInteger ColorScheme;
 
 
 /*! @brief a singleton class devoted to storing configurations for themes and returning useful theme objects like gradients and buttons

@@ -32,6 +32,11 @@
 #ifndef IBInspectable
 #define IBInspectable
 #endif
+
+#ifndef IB_DESIGNABLE
+#define IB_DESIGNABLE
+#endif
+
 /*
  * Note you can instantiate a SVGDocumentView in a storyboard or a XIB by dragging a UIView into your view and giving it a class of SVGDocumentView.
  * You can configure the contents of the view by adding "User Defined Runtime Attributes" in XCode's "Identity Inspector"
