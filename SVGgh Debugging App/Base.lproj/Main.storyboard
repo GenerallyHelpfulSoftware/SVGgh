@@ -66,12 +66,12 @@
                                     <action selector="redrawSVG:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="cE8-v2-XOf"/>
                                 </connections>
                             </view>
-                            <view tag="1" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" placeholderIntrinsicWidth="280" placeholderIntrinsicHeight="30" translatesAutoresizingMaskIntoConstraints="NO" id="uoD-rr-R4J" customClass="GHSegmentedControl">
-                                <rect key="frame" x="140" y="28" width="320" height="30"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <view opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" placeholderIntrinsicWidth="280" placeholderIntrinsicHeight="30" translatesAutoresizingMaskIntoConstraints="NO" id="uoD-rr-R4J" customClass="GHSegmentedControl">
+                                <rect key="frame" x="150" y="28" width="300" height="30"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" red="0.2286751595" green="0.5171184607" blue="0.80138062170000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="320" id="TfQ-iy-nK7"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="TfQ-iy-nK7"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="schemeNumber">
@@ -81,18 +81,19 @@
                                         <color key="value" red="0.34059629940000002" green="0.51133174699999995" blue="0.80153858420000001" alpha="1" colorSpace="calibratedRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="textColorPressed">
-                                        <color key="value" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="value" red="0.96862745098039216" green="0.5725490196078431" blue="0.035294117647058823" alpha="1" colorSpace="calibratedRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="artInsetFraction">
-                                        <real key="value" value="0.14999999999999999"/>
+                                        <real key="value" value="0.14999999999999991"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="toggleView:" destination="vXZ-lx-hvc" eventType="valueChanged" id="fGz-qk-rXY"/>
                                 </connections>
                             </view>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LDH-8f-BQz">
+                            <containerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LDH-8f-BQz">
                                 <rect key="frame" x="16" y="66" width="568" height="427"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <segue destination="Ux3-B9-VgV" kind="embed" identifier="initialEmbed" id="JTJ-Ke-eWm"/>
                                 </connections>
@@ -143,12 +144,16 @@
                         <viewControllerLayoutGuide type="top" id="B0X-tX-FYE"/>
                         <viewControllerLayoutGuide type="bottom" id="JdF-r6-cVV"/>
                     </layoutGuides>
-                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" id="ReT-X9-Ls1" customClass="SVGDocumentView">
+                    <view key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" id="ReT-X9-Ls1" customClass="SVGDocumentView">
                         <rect key="frame" x="0.0" y="0.0" width="280" height="280"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="string" keyPath="artworkPath" value="Artwork/Superstar"/>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="beTransparent" value="NO"/>
+                            <userDefinedRuntimeAttribute type="color" keyPath="defaultColor">
+                                <color key="value" red="0.72156862749999995" green="0.85098039219999999" blue="0.78823529410000004" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
                     <toolbarItems/>
@@ -167,7 +172,7 @@
                         <viewControllerLayoutGuide type="top" id="JHy-RV-nDp"/>
                         <viewControllerLayoutGuide type="bottom" id="TGa-fa-5Vg"/>
                     </layoutGuides>
-                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" id="sgT-Qe-1RX" customClass="SVGDocumentView">
+                    <view key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" id="sgT-Qe-1RX" customClass="SVGDocumentView">
                         <rect key="frame" x="0.0" y="0.0" width="280" height="280"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -194,14 +199,11 @@
                         <viewControllerLayoutGuide type="top" id="eNr-aw-MBM"/>
                         <viewControllerLayoutGuide type="bottom" id="CDN-u5-mtn"/>
                     </layoutGuides>
-                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" id="KjG-Ga-EeG" customClass="SVGDocumentView">
+                    <view key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" id="KjG-Ga-EeG" customClass="SVGDocumentView">
                         <rect key="frame" x="0.0" y="0.0" width="280" height="280"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="color" keyPath="defaultColor">
-                                <color key="value" red="0.023529411760000001" green="0.72156862749999995" blue="0.62352941179999999" alpha="1" colorSpace="deviceRGB"/>
-                            </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="string" keyPath="artworkPath" value="Artwork/Eyes"/>
                         </userDefinedRuntimeAttributes>
                     </view>
@@ -221,14 +223,14 @@
                         <viewControllerLayoutGuide type="top" id="QmE-fV-KRQ"/>
                         <viewControllerLayoutGuide type="bottom" id="dSQ-Ky-v1d"/>
                     </layoutGuides>
-                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" id="R7X-dN-x6z" customClass="SVGDocumentView">
+                    <view key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" id="R7X-dN-x6z" customClass="SVGDocumentView">
                         <rect key="frame" x="0.0" y="0.0" width="280" height="280"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="string" keyPath="artworkPath" value="Artwork/Creatures"/>
                             <userDefinedRuntimeAttribute type="color" keyPath="defaultColor">
-                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="value" red="0.96470588239999999" green="0.90588235289999997" blue="0.76862745099999996" alpha="1" colorSpace="calibratedRGB"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
