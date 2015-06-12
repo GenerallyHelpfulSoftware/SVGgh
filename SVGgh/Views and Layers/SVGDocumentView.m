@@ -28,6 +28,7 @@
 
 #import "SVGDocumentView.h"
 #import "SVGRendererLayer.h"
+#import "GHControlFactory.h" // for findInterfaceBuilderArtwork
 @interface SVGDocumentView (Private)
 -(SVGRendererLayer*)renderingLayer;
 @end
@@ -83,18 +84,53 @@
 
 -(void) setArtworkPath:(NSString *)artworkPath
 {
+    [self setArtworkPath:artworkPath fromBundle:nil];
+}
+
++(NSString*) placeHolderSVG
+{
+    NSString* result = @"<?xml version=\"1.0\" encoding=\"UTF-8\"?><svg x=\"0px\" height=\"100\" viewport-fill=\"white\" y=\"0px\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" width=\"100\" xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\" viewBox=\"0	, 0, 100, 100\"> <defs> <path d=\"M20 50 A30 30 0 1 1 80 50 A 30 30 0 1 1 20 50\" id=\"CIRCLE_TEXT_PATH\" fill=\"none\" stroke=\"none\"/></defs> <g id=\"IMAGE_LAYER\"/> <g stroke=\"green\" stroke-width=\"1\" vector-effect=\"non-scaling-stroke\" fill=\"#cfdcdd\" stroke-linecap=\"round\"> <path id=\"PATH\" d=\"M0 0H100V100H0ZM50 0A50 50 0 1 0 50 100 50 50 0 1 0 50 0ZM50 25A25 25 0 1 1 50 75 25 25 0 1 1 50 25Z\"/> </g><text stroke=\"none\" font-size=\"18\" font-family=\"Georgia\"  fill=\"#5BB\" color=\"#228B22\"><textPath xlink:href=\"#CIRCLE_TEXT_PATH\">Enter artworkPath</textPath></text> <text x=\"50\" y=\"65\" text-anchor=\"middle\" font-family=\"Helvetica\" font-size=\"44\" fill=\"#5BB\" >?</text> </svg>";
+    
+    return result;
+}
+
+- (void)prepareForInterfaceBuilder // show a placeholder in Interface Builder
+{
+    if(self.renderer == nil)
+    {
+        SVGRenderer* renderer = [[SVGRenderer alloc] initWithString:[SVGDocumentView placeHolderSVG]];
+        self.renderer = renderer;
+    }
+}
+
+-(void) setArtworkPath:(NSString *)artworkPath fromBundle:(NSBundle *)originalBundle {
     _artworkPath = artworkPath;
+    
     if(artworkPath.length)
     {
-        NSBundle* myBundle = [NSBundle bundleForClass:[self class]];
+        NSBundle* myBundle = originalBundle ?: [NSBundle mainBundle];
         NSURL*  myArtwork = [myBundle URLForResource:self.artworkPath withExtension:@"svg"];
+        
+#if TARGET_INTERFACE_BUILDER
+        if(myArtwork == nil)
+        {
+            myArtwork = [GHControlFactory findInterfaceBuilderArtwork:artworkPath];
+        }
+#endif
         if(myArtwork != nil)
         {
             SVGRenderer* renderer = [[SVGRenderer alloc] initWithContentsOfURL:myArtwork];
             self.renderer = renderer;
         }
+#if TARGET_IPHONE_SIMULATOR
+        else
+        {
+            [self prepareForInterfaceBuilder];
+        }
+#endif
     }
 }
+
 
 -(UIColor*)copyFillColor
 {

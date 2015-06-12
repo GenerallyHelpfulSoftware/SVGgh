@@ -27,7 +27,7 @@
 
 
 #import "SVGghDebuggingAppDelegate.h"
-#import <SVGgh/SVGgh.h>
+@import SVGgh;
 
 @implementation SVGghDebuggingAppDelegate
 

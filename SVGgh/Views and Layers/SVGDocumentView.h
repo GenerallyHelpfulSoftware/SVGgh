@@ -48,7 +48,7 @@
 @class SVGRenderer;
 /*! @brief a view capable of hosting an SVGRenderer or rendering a chunk of SVG
 */
-
+IB_DESIGNABLE
 @interface SVGDocumentView : UIView
 
 /*! @property artworkPath

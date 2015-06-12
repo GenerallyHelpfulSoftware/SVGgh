@@ -1,0 +1,1044 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		21BDEBCF1893D18F003A0644 /* Framework */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 21BDEBD01893D18F003A0644 /* Build configuration list for PBXAggregateTarget "Framework" */;
+			buildPhases = (
+				21BDEBD51893D1BB003A0644 /* ShellScript */,
+			);
+			dependencies = (
+				21BDEBD41893D19D003A0644 /* PBXTargetDependency */,
+			);
+			name = Framework;
+			productName = Framework;
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		2114CD731AD17F7900A9A362 /* GHSegmentedControl.h in Headers */ = {isa = PBXBuildFile; fileRef = 2114CD711AD17F7900A9A362 /* GHSegmentedControl.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2114CD741AD17F7900A9A362 /* GHSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2114CD721AD17F7900A9A362 /* GHSegmentedControl.m */; };
+		2114CD751AD17F7900A9A362 /* GHSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2114CD721AD17F7900A9A362 /* GHSegmentedControl.m */; };
+		21155AD5189A6DCC00C830A7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21BDEB411893BF08003A0644 /* Foundation.framework */; };
+		21155AD6189A6DCC00C830A7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21BDEB671893BFA3003A0644 /* CoreGraphics.framework */; };
+		21155AD7189A6DCC00C830A7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21BDEB6A1893BFA3003A0644 /* UIKit.framework */; };
+		21155ADD189A6DCC00C830A7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 21155ADB189A6DCC00C830A7 /* InfoPlist.strings */; };
+		21155ADF189A6DCC00C830A7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 21155ADE189A6DCC00C830A7 /* main.m */; };
+		21155AE3189A6DCC00C830A7 /* SVGghDebuggingAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 21155AE2189A6DCC00C830A7 /* SVGghDebuggingAppDelegate.m */; };
+		21155AE6189A6DCC00C830A7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21155AE4189A6DCC00C830A7 /* Main.storyboard */; };
+		21155AE9189A6DCC00C830A7 /* SVGghDebuggingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21155AE8189A6DCC00C830A7 /* SVGghDebuggingViewController.m */; };
+		21155AEB189A6DCD00C830A7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21155AEA189A6DCC00C830A7 /* Images.xcassets */; };
+		21155B04189A6E0F00C830A7 /* SVGgh.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BDEB481893BF08003A0644 /* SVGgh.m */; };
+		21155B05189A6E0F00C830A7 /* GHImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BDEBC01893CA89003A0644 /* GHImageCache.m */; };
+		21155B06189A6E0F00C830A7 /* Base64Transcoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BDEBB21893C7DC003A0644 /* Base64Transcoder.m */; };
+		21155B07189A6E0F00C830A7 /* NSData+Base64Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BDEBB41893C7DC003A0644 /* NSData+Base64Additions.m */; };
+		21155B08189A6E0F00C830A7 /* GHControlFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BDEBA51893C7CE003A0644 /* GHControlFactory.m */; };
+		21155B09189A6E0F00C830A7 /* GHButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BDEBDB189541F3003A0644 /* GHButton.m */; };
+		21155B0A189A6E0F00C830A7 /* SVGDocumentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BDEBA71893C7CE003A0644 /* SVGDocumentView.m */; };
+		21155B0B189A6E0F00C830A7 /* SVGRendererLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BDEBA91893C7CE003A0644 /* SVGRendererLayer.m */; };
+		21155B0C189A6E0F00C830A7 /* GHGlyph.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BDEB8C1893C7C3003A0644 /* GHGlyph.m */; };
+		21155B0D189A6E0F00C830A7 /* GHGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BDEB8E1893C7C3003A0644 /* GHGradient.m */; };
+		21155B0E189A6E0F00C830A7 /* SVGPathGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BDEB901893C7C3003A0644 /* SVGPathGenerator.m */; };
+		21155B0F189A6E0F00C830A7 /* SVGRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BDEB921893C7C3003A0644 /* SVGRenderer.m */; };
+		21155B10189A6E0F00C830A7 /* GHAttributedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BDEB731893C7B7003A0644 /* GHAttributedObject.m */; };
+		21155B11189A6E0F00C830A7 /* GHPathUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BDEB751893C7B7003A0644 /* GHPathUtilities.m */; };
+		21155B12189A6E0F00C830A7 /* GHText.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BCA1B81898179000A1F170 /* GHText.m */; };
+		21155B13189A6E0F00C830A7 /* GHTextLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BCA1B91898179000A1F170 /* GHTextLine.m */; };
+		21155B14189A6E0F00C830A7 /* SVGAttributedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BDEBCA1893CD66003A0644 /* SVGAttributedObject.m */; };
+		21155B15189A6E0F00C830A7 /* SVGGradientUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BDEB771893C7B7003A0644 /* SVGGradientUtilities.m */; };
+		21155B16189A6E0F00C830A7 /* SVGParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BDEB791893C7B7003A0644 /* SVGParser.m */; };
+		21155B17189A6E0F00C830A7 /* SVGTextUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BDEB7B1893C7B7003A0644 /* SVGTextUtilities.m */; };
+		21155B18189A6E0F00C830A7 /* SVGUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BDEB7D1893C7B7003A0644 /* SVGUtilities.m */; };
+		21155B19189A6E9F00C830A7 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21BDEB681893BFA3003A0644 /* CoreImage.framework */; };
+		21155B1A189A6EA700C830A7 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21BDEB691893BFA3003A0644 /* CoreText.framework */; };
+		21155B1C189A6F0800C830A7 /* Artwork in Resources */ = {isa = PBXBuildFile; fileRef = 21155B1B189A6F0800C830A7 /* Artwork */; };
+		21537227189966FB006EBCD5 /* SVGgh.h in Headers */ = {isa = PBXBuildFile; fileRef = 21BDEB461893BF08003A0644 /* SVGgh.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2153722B189969EA006EBCD5 /* SVGContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 21BCA1B71897FD5100A1F170 /* SVGContext.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2161B49218A1812A00081167 /* SVGtoPDFConverter.h in Headers */ = {isa = PBXBuildFile; fileRef = 2161B49018A1812A00081167 /* SVGtoPDFConverter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2161B49318A1812A00081167 /* SVGtoPDFConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2161B49118A1812A00081167 /* SVGtoPDFConverter.m */; };
+		2161B49418A1812A00081167 /* SVGtoPDFConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2161B49118A1812A00081167 /* SVGtoPDFConverter.m */; };
+		2161B49518A1812A00081167 /* SVGtoPDFConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2161B49118A1812A00081167 /* SVGtoPDFConverter.m */; };
+		2172C24F198D8DF500354353 /* SVGRendererLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 21BDEBA81893C7CE003A0644 /* SVGRendererLayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		21AEB0E918A1A46C0097200B /* SVGPrinter.h in Headers */ = {isa = PBXBuildFile; fileRef = 21AEB0E718A1A46C0097200B /* SVGPrinter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		21AEB0EA18A1A46C0097200B /* SVGPrinter.m in Sources */ = {isa = PBXBuildFile; fileRef = 21AEB0E818A1A46C0097200B /* SVGPrinter.m */; };
+		21AEB0EB18A1A46C0097200B /* SVGPrinter.m in Sources */ = {isa = PBXBuildFile; fileRef = 21AEB0E818A1A46C0097200B /* SVGPrinter.m */; };
+		21AEB0EC18A1A46C0097200B /* SVGPrinter.m in Sources */ = {isa = PBXBuildFile; fileRef = 21AEB0E818A1A46C0097200B /* SVGPrinter.m */; };
+		21BCA1BA1898179000A1F170 /* GHText.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BCA1B81898179000A1F170 /* GHText.m */; };
+		21BCA1BB1898179000A1F170 /* GHText.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BCA1B81898179000A1F170 /* GHText.m */; };
+		21BCA1BC1898179000A1F170 /* GHTextLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BCA1B91898179000A1F170 /* GHTextLine.m */; };
+		21BCA1BD1898179000A1F170 /* GHTextLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BCA1B91898179000A1F170 /* GHTextLine.m */; };
+		21BDEB421893BF08003A0644 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21BDEB411893BF08003A0644 /* Foundation.framework */; };
+		21BDEB471893BF08003A0644 /* SVGgh.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 21BDEB461893BF08003A0644 /* SVGgh.h */; };
+		21BDEB491893BF08003A0644 /* SVGgh.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BDEB481893BF08003A0644 /* SVGgh.m */; };
+		21BDEB501893BF08003A0644 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21BDEB4F1893BF08003A0644 /* XCTest.framework */; };
+		21BDEB511893BF08003A0644 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21BDEB411893BF08003A0644 /* Foundation.framework */; };
+		21BDEB531893BF08003A0644 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21BDEB521893BF08003A0644 /* UIKit.framework */; };
+		21BDEB561893BF08003A0644 /* libSVGgh.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 21BDEB3E1893BF08003A0644 /* libSVGgh.a */; };
+		21BDEB5C1893BF08003A0644 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 21BDEB5A1893BF08003A0644 /* InfoPlist.strings */; };
+		21BDEB5E1893BF08003A0644 /* SVGghTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BDEB5D1893BF08003A0644 /* SVGghTests.m */; };
+		21BDEB6B1893BFA3003A0644 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21BDEB671893BFA3003A0644 /* CoreGraphics.framework */; };
+		21BDEB6C1893BFA3003A0644 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21BDEB681893BFA3003A0644 /* CoreImage.framework */; };
+		21BDEB6D1893BFA3003A0644 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21BDEB691893BFA3003A0644 /* CoreText.framework */; };
+		21BDEB6E1893BFA3003A0644 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21BDEB6A1893BFA3003A0644 /* UIKit.framework */; };
+		21BDEB7E1893C7B7003A0644 /* GHAttributedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BDEB731893C7B7003A0644 /* GHAttributedObject.m */; };
+		21BDEB7F1893C7B7003A0644 /* GHAttributedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BDEB731893C7B7003A0644 /* GHAttributedObject.m */; };
+		21BDEB801893C7B7003A0644 /* GHPathUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BDEB751893C7B7003A0644 /* GHPathUtilities.m */; };
+		21BDEB811893C7B7003A0644 /* GHPathUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BDEB751893C7B7003A0644 /* GHPathUtilities.m */; };
+		21BDEB821893C7B7003A0644 /* SVGGradientUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BDEB771893C7B7003A0644 /* SVGGradientUtilities.m */; };
+		21BDEB831893C7B7003A0644 /* SVGGradientUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BDEB771893C7B7003A0644 /* SVGGradientUtilities.m */; };
+		21BDEB841893C7B7003A0644 /* SVGParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BDEB791893C7B7003A0644 /* SVGParser.m */; };
+		21BDEB851893C7B7003A0644 /* SVGParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BDEB791893C7B7003A0644 /* SVGParser.m */; };
+		21BDEB861893C7B7003A0644 /* SVGTextUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BDEB7B1893C7B7003A0644 /* SVGTextUtilities.m */; };
+		21BDEB871893C7B7003A0644 /* SVGTextUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BDEB7B1893C7B7003A0644 /* SVGTextUtilities.m */; };
+		21BDEB881893C7B7003A0644 /* SVGUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BDEB7D1893C7B7003A0644 /* SVGUtilities.m */; };
+		21BDEB891893C7B7003A0644 /* SVGUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BDEB7D1893C7B7003A0644 /* SVGUtilities.m */; };
+		21BDEB971893C7C3003A0644 /* GHGlyph.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BDEB8C1893C7C3003A0644 /* GHGlyph.m */; };
+		21BDEB981893C7C3003A0644 /* GHGlyph.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BDEB8C1893C7C3003A0644 /* GHGlyph.m */; };
+		21BDEB991893C7C3003A0644 /* GHGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BDEB8E1893C7C3003A0644 /* GHGradient.m */; };
+		21BDEB9A1893C7C3003A0644 /* GHGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BDEB8E1893C7C3003A0644 /* GHGradient.m */; };
+		21BDEB9B1893C7C3003A0644 /* SVGPathGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BDEB901893C7C3003A0644 /* SVGPathGenerator.m */; };
+		21BDEB9C1893C7C3003A0644 /* SVGPathGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BDEB901893C7C3003A0644 /* SVGPathGenerator.m */; };
+		21BDEB9D1893C7C3003A0644 /* SVGRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BDEB921893C7C3003A0644 /* SVGRenderer.m */; };
+		21BDEB9E1893C7C3003A0644 /* SVGRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BDEB921893C7C3003A0644 /* SVGRenderer.m */; };
+		21BDEBAA1893C7CE003A0644 /* GHControlFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BDEBA51893C7CE003A0644 /* GHControlFactory.m */; };
+		21BDEBAB1893C7CE003A0644 /* GHControlFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BDEBA51893C7CE003A0644 /* GHControlFactory.m */; };
+		21BDEBAC1893C7CE003A0644 /* SVGDocumentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BDEBA71893C7CE003A0644 /* SVGDocumentView.m */; };
+		21BDEBAD1893C7CE003A0644 /* SVGDocumentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BDEBA71893C7CE003A0644 /* SVGDocumentView.m */; };
+		21BDEBAE1893C7CE003A0644 /* SVGRendererLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BDEBA91893C7CE003A0644 /* SVGRendererLayer.m */; };
+		21BDEBAF1893C7CE003A0644 /* SVGRendererLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BDEBA91893C7CE003A0644 /* SVGRendererLayer.m */; };
+		21BDEBB51893C7DC003A0644 /* Base64Transcoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BDEBB21893C7DC003A0644 /* Base64Transcoder.m */; };
+		21BDEBB61893C7DC003A0644 /* Base64Transcoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BDEBB21893C7DC003A0644 /* Base64Transcoder.m */; };
+		21BDEBB71893C7DC003A0644 /* NSData+Base64Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BDEBB41893C7DC003A0644 /* NSData+Base64Additions.m */; };
+		21BDEBB81893C7DC003A0644 /* NSData+Base64Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BDEBB41893C7DC003A0644 /* NSData+Base64Additions.m */; };
+		21BDEBBA1893C927003A0644 /* SVGRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = 21BDEB911893C7C3003A0644 /* SVGRenderer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		21BDEBBB1893C933003A0644 /* GHControlFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 21BDEBA41893C7CE003A0644 /* GHControlFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		21BDEBBC1893C938003A0644 /* SVGDocumentView.h in Headers */ = {isa = PBXBuildFile; fileRef = 21BDEBA61893C7CE003A0644 /* SVGDocumentView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		21BDEBBD1893C9BC003A0644 /* SVGParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 21BDEB781893C7B7003A0644 /* SVGParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		21BDEBC11893CA89003A0644 /* GHImageCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 21BDEBBF1893CA89003A0644 /* GHImageCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		21BDEBC21893CA89003A0644 /* GHImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BDEBC01893CA89003A0644 /* GHImageCache.m */; };
+		21BDEBC31893CA89003A0644 /* GHImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BDEBC01893CA89003A0644 /* GHImageCache.m */; };
+		21BDEBC51893CB23003A0644 /* GHPathDescription.h in Headers */ = {isa = PBXBuildFile; fileRef = 21BDEBC41893CB23003A0644 /* GHPathDescription.h */; };
+		21BDEBC61893CB60003A0644 /* GHAttributedObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 21BDEB721893C7B7003A0644 /* GHAttributedObject.h */; };
+		21BDEBC81893CBF7003A0644 /* GHRenderable.h in Headers */ = {isa = PBXBuildFile; fileRef = 21BDEBC71893CBF7003A0644 /* GHRenderable.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		21BDEBCB1893CD66003A0644 /* SVGAttributedObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 21BDEBC91893CD66003A0644 /* SVGAttributedObject.h */; };
+		21BDEBCC1893CD66003A0644 /* SVGAttributedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BDEBCA1893CD66003A0644 /* SVGAttributedObject.m */; };
+		21BDEBCD1893CD66003A0644 /* SVGAttributedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BDEBCA1893CD66003A0644 /* SVGAttributedObject.m */; };
+		21BDEBD618952CDE003A0644 /* SVGPathGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 21BDEB8F1893C7C3003A0644 /* SVGPathGenerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		21BDEBDC189541F3003A0644 /* GHButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 21BDEBDA189541F3003A0644 /* GHButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		21BDEBDD189541F3003A0644 /* GHButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BDEBDB189541F3003A0644 /* GHButton.m */; };
+		21BDEBDE189541F3003A0644 /* GHButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BDEBDB189541F3003A0644 /* GHButton.m */; };
+		21E4E9F01AC4C8C20020647D /* GHControl.h in Headers */ = {isa = PBXBuildFile; fileRef = 21E4E9EE1AC4C8C20020647D /* GHControl.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		21E4E9F11AC4C8C20020647D /* GHControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 21E4E9EF1AC4C8C20020647D /* GHControl.m */; };
+		21E4E9F21AC4C8C20020647D /* GHControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 21E4E9EF1AC4C8C20020647D /* GHControl.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		21BDEB541893BF08003A0644 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 21BDEB361893BF08003A0644 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 21BDEB3D1893BF08003A0644;
+			remoteInfo = SVGgh;
+		};
+		21BDEBD31893D19D003A0644 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 21BDEB361893BF08003A0644 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 21BDEB3D1893BF08003A0644;
+			remoteInfo = SVGgh;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		21BDEB3C1893BF08003A0644 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				21BDEB471893BF08003A0644 /* SVGgh.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		2114CD711AD17F7900A9A362 /* GHSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHSegmentedControl.h; sourceTree = "<group>"; };
+		2114CD721AD17F7900A9A362 /* GHSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHSegmentedControl.m; sourceTree = "<group>"; };
+		21155AD4189A6DCC00C830A7 /* SVGgh Debugging App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SVGgh Debugging App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		21155ADA189A6DCC00C830A7 /* SVGgh Debugging App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SVGgh Debugging App-Info.plist"; sourceTree = "<group>"; };
+		21155ADC189A6DCC00C830A7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		21155ADE189A6DCC00C830A7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		21155AE0189A6DCC00C830A7 /* SVGgh Debugging App-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SVGgh Debugging App-Prefix.pch"; sourceTree = "<group>"; };
+		21155AE1189A6DCC00C830A7 /* SVGghDebuggingAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SVGghDebuggingAppDelegate.h; sourceTree = "<group>"; };
+		21155AE2189A6DCC00C830A7 /* SVGghDebuggingAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SVGghDebuggingAppDelegate.m; sourceTree = "<group>"; };
+		21155AE5189A6DCC00C830A7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		21155AE7189A6DCC00C830A7 /* SVGghDebuggingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SVGghDebuggingViewController.h; sourceTree = "<group>"; };
+		21155AE8189A6DCC00C830A7 /* SVGghDebuggingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SVGghDebuggingViewController.m; sourceTree = "<group>"; };
+		21155AEA189A6DCC00C830A7 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		21155B1B189A6F0800C830A7 /* Artwork */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Artwork; sourceTree = "<group>"; };
+		2161B49018A1812A00081167 /* SVGtoPDFConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVGtoPDFConverter.h; sourceTree = "<group>"; };
+		2161B49118A1812A00081167 /* SVGtoPDFConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVGtoPDFConverter.m; sourceTree = "<group>"; };
+		21AEB0E718A1A46C0097200B /* SVGPrinter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVGPrinter.h; sourceTree = "<group>"; };
+		21AEB0E818A1A46C0097200B /* SVGPrinter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVGPrinter.m; sourceTree = "<group>"; };
+		21BCA1B71897FD5100A1F170 /* SVGContext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SVGContext.h; sourceTree = "<group>"; };
+		21BCA1B81898179000A1F170 /* GHText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHText.m; sourceTree = "<group>"; };
+		21BCA1B91898179000A1F170 /* GHTextLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHTextLine.m; sourceTree = "<group>"; };
+		21BCA1BE189817A200A1F170 /* GHText.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GHText.h; sourceTree = "<group>"; };
+		21BCA1BF189817A200A1F170 /* GHTextLine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GHTextLine.h; sourceTree = "<group>"; };
+		21BDEB3E1893BF08003A0644 /* libSVGgh.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSVGgh.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		21BDEB411893BF08003A0644 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		21BDEB451893BF08003A0644 /* SVGgh-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SVGgh-Prefix.pch"; sourceTree = "<group>"; };
+		21BDEB461893BF08003A0644 /* SVGgh.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SVGgh.h; sourceTree = "<group>"; };
+		21BDEB481893BF08003A0644 /* SVGgh.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SVGgh.m; sourceTree = "<group>"; };
+		21BDEB4E1893BF08003A0644 /* SVGghTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SVGghTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		21BDEB4F1893BF08003A0644 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		21BDEB521893BF08003A0644 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		21BDEB591893BF08003A0644 /* SVGghTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SVGghTests-Info.plist"; sourceTree = "<group>"; };
+		21BDEB5B1893BF08003A0644 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		21BDEB5D1893BF08003A0644 /* SVGghTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SVGghTests.m; sourceTree = "<group>"; };
+		21BDEB671893BFA3003A0644 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		21BDEB681893BFA3003A0644 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		21BDEB691893BFA3003A0644 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		21BDEB6A1893BFA3003A0644 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		21BDEB721893C7B7003A0644 /* GHAttributedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHAttributedObject.h; sourceTree = "<group>"; };
+		21BDEB731893C7B7003A0644 /* GHAttributedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHAttributedObject.m; sourceTree = "<group>"; };
+		21BDEB741893C7B7003A0644 /* GHPathUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHPathUtilities.h; sourceTree = "<group>"; };
+		21BDEB751893C7B7003A0644 /* GHPathUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHPathUtilities.m; sourceTree = "<group>"; };
+		21BDEB761893C7B7003A0644 /* SVGGradientUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVGGradientUtilities.h; sourceTree = "<group>"; };
+		21BDEB771893C7B7003A0644 /* SVGGradientUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVGGradientUtilities.m; sourceTree = "<group>"; };
+		21BDEB781893C7B7003A0644 /* SVGParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVGParser.h; sourceTree = "<group>"; };
+		21BDEB791893C7B7003A0644 /* SVGParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVGParser.m; sourceTree = "<group>"; };
+		21BDEB7A1893C7B7003A0644 /* SVGTextUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVGTextUtilities.h; sourceTree = "<group>"; };
+		21BDEB7B1893C7B7003A0644 /* SVGTextUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVGTextUtilities.m; sourceTree = "<group>"; };
+		21BDEB7C1893C7B7003A0644 /* SVGUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVGUtilities.h; sourceTree = "<group>"; };
+		21BDEB7D1893C7B7003A0644 /* SVGUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVGUtilities.m; sourceTree = "<group>"; };
+		21BDEB8B1893C7C3003A0644 /* GHGlyph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHGlyph.h; sourceTree = "<group>"; };
+		21BDEB8C1893C7C3003A0644 /* GHGlyph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHGlyph.m; sourceTree = "<group>"; };
+		21BDEB8D1893C7C3003A0644 /* GHGradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHGradient.h; sourceTree = "<group>"; };
+		21BDEB8E1893C7C3003A0644 /* GHGradient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHGradient.m; sourceTree = "<group>"; };
+		21BDEB8F1893C7C3003A0644 /* SVGPathGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVGPathGenerator.h; sourceTree = "<group>"; };
+		21BDEB901893C7C3003A0644 /* SVGPathGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVGPathGenerator.m; sourceTree = "<group>"; };
+		21BDEB911893C7C3003A0644 /* SVGRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVGRenderer.h; sourceTree = "<group>"; };
+		21BDEB921893C7C3003A0644 /* SVGRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVGRenderer.m; sourceTree = "<group>"; };
+		21BDEBA41893C7CE003A0644 /* GHControlFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHControlFactory.h; sourceTree = "<group>"; };
+		21BDEBA51893C7CE003A0644 /* GHControlFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHControlFactory.m; sourceTree = "<group>"; };
+		21BDEBA61893C7CE003A0644 /* SVGDocumentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVGDocumentView.h; sourceTree = "<group>"; };
+		21BDEBA71893C7CE003A0644 /* SVGDocumentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVGDocumentView.m; sourceTree = "<group>"; };
+		21BDEBA81893C7CE003A0644 /* SVGRendererLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVGRendererLayer.h; sourceTree = "<group>"; };
+		21BDEBA91893C7CE003A0644 /* SVGRendererLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVGRendererLayer.m; sourceTree = "<group>"; };
+		21BDEBB11893C7DC003A0644 /* Base64Transcoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64Transcoder.h; sourceTree = "<group>"; };
+		21BDEBB21893C7DC003A0644 /* Base64Transcoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64Transcoder.m; sourceTree = "<group>"; };
+		21BDEBB31893C7DC003A0644 /* NSData+Base64Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64Additions.h"; sourceTree = "<group>"; };
+		21BDEBB41893C7DC003A0644 /* NSData+Base64Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64Additions.m"; sourceTree = "<group>"; };
+		21BDEBBF1893CA89003A0644 /* GHImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHImageCache.h; sourceTree = "<group>"; };
+		21BDEBC01893CA89003A0644 /* GHImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHImageCache.m; sourceTree = "<group>"; };
+		21BDEBC41893CB23003A0644 /* GHPathDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHPathDescription.h; sourceTree = "<group>"; };
+		21BDEBC71893CBF7003A0644 /* GHRenderable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHRenderable.h; sourceTree = "<group>"; };
+		21BDEBC91893CD66003A0644 /* SVGAttributedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVGAttributedObject.h; sourceTree = "<group>"; };
+		21BDEBCA1893CD66003A0644 /* SVGAttributedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVGAttributedObject.m; sourceTree = "<group>"; };
+		21BDEBDA189541F3003A0644 /* GHButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHButton.h; sourceTree = "<group>"; };
+		21BDEBDB189541F3003A0644 /* GHButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHButton.m; sourceTree = "<group>"; };
+		21E4E9EE1AC4C8C20020647D /* GHControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHControl.h; sourceTree = "<group>"; };
+		21E4E9EF1AC4C8C20020647D /* GHControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHControl.m; sourceTree = "<group>"; };
+		D8F8578B1AA637C2000C2E8D /* SVGgh.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SVGgh.podspec; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		21155AD1189A6DCC00C830A7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21155B1A189A6EA700C830A7 /* CoreText.framework in Frameworks */,
+				21155B19189A6E9F00C830A7 /* CoreImage.framework in Frameworks */,
+				21155AD6189A6DCC00C830A7 /* CoreGraphics.framework in Frameworks */,
+				21155AD7189A6DCC00C830A7 /* UIKit.framework in Frameworks */,
+				21155AD5189A6DCC00C830A7 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		21BDEB3B1893BF08003A0644 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21BDEB6B1893BFA3003A0644 /* CoreGraphics.framework in Frameworks */,
+				21BDEB6C1893BFA3003A0644 /* CoreImage.framework in Frameworks */,
+				21BDEB6D1893BFA3003A0644 /* CoreText.framework in Frameworks */,
+				21BDEB6E1893BFA3003A0644 /* UIKit.framework in Frameworks */,
+				21BDEB421893BF08003A0644 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		21BDEB4B1893BF08003A0644 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21BDEB501893BF08003A0644 /* XCTest.framework in Frameworks */,
+				21BDEB531893BF08003A0644 /* UIKit.framework in Frameworks */,
+				21BDEB511893BF08003A0644 /* Foundation.framework in Frameworks */,
+				21BDEB561893BF08003A0644 /* libSVGgh.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		21155AD8189A6DCC00C830A7 /* SVGgh Debugging App */ = {
+			isa = PBXGroup;
+			children = (
+				21155B1B189A6F0800C830A7 /* Artwork */,
+				21155AE1189A6DCC00C830A7 /* SVGghDebuggingAppDelegate.h */,
+				21155AE2189A6DCC00C830A7 /* SVGghDebuggingAppDelegate.m */,
+				21155AE4189A6DCC00C830A7 /* Main.storyboard */,
+				21155AE7189A6DCC00C830A7 /* SVGghDebuggingViewController.h */,
+				21155AE8189A6DCC00C830A7 /* SVGghDebuggingViewController.m */,
+				21155AEA189A6DCC00C830A7 /* Images.xcassets */,
+				21155AD9189A6DCC00C830A7 /* Supporting Files */,
+			);
+			path = "SVGgh Debugging App";
+			sourceTree = "<group>";
+		};
+		21155AD9189A6DCC00C830A7 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				21155ADA189A6DCC00C830A7 /* SVGgh Debugging App-Info.plist */,
+				21155ADB189A6DCC00C830A7 /* InfoPlist.strings */,
+				21155ADE189A6DCC00C830A7 /* main.m */,
+				21155AE0189A6DCC00C830A7 /* SVGgh Debugging App-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		21BDEB351893BF08003A0644 = {
+			isa = PBXGroup;
+			children = (
+				D8F8578B1AA637C2000C2E8D /* SVGgh.podspec */,
+				21BDEB431893BF08003A0644 /* SVGgh */,
+				21BDEB571893BF08003A0644 /* SVGghTests */,
+				21155AD8189A6DCC00C830A7 /* SVGgh Debugging App */,
+				21BDEB401893BF08003A0644 /* Frameworks */,
+				21BDEB3F1893BF08003A0644 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		21BDEB3F1893BF08003A0644 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				21BDEB3E1893BF08003A0644 /* libSVGgh.a */,
+				21BDEB4E1893BF08003A0644 /* SVGghTests.xctest */,
+				21155AD4189A6DCC00C830A7 /* SVGgh Debugging App.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		21BDEB401893BF08003A0644 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				21BDEB671893BFA3003A0644 /* CoreGraphics.framework */,
+				21BDEB681893BFA3003A0644 /* CoreImage.framework */,
+				21BDEB691893BFA3003A0644 /* CoreText.framework */,
+				21BDEB6A1893BFA3003A0644 /* UIKit.framework */,
+				21BDEB411893BF08003A0644 /* Foundation.framework */,
+				21BDEB4F1893BF08003A0644 /* XCTest.framework */,
+				21BDEB521893BF08003A0644 /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		21BDEB431893BF08003A0644 /* SVGgh */ = {
+			isa = PBXGroup;
+			children = (
+				21BDEB461893BF08003A0644 /* SVGgh.h */,
+				21BDEB481893BF08003A0644 /* SVGgh.m */,
+				21BDEBBE1893CA89003A0644 /* Utilities */,
+				21BDEBB01893C7DC003A0644 /* Third Party */,
+				21BDEBA31893C7CE003A0644 /* Views and Layers */,
+				21BDEB8A1893C7C3003A0644 /* SVGRenderer */,
+				21BDEB711893C7B7003A0644 /* SVG */,
+				21BDEB441893BF08003A0644 /* Supporting Files */,
+			);
+			path = SVGgh;
+			sourceTree = "<group>";
+		};
+		21BDEB441893BF08003A0644 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				21BDEB451893BF08003A0644 /* SVGgh-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		21BDEB571893BF08003A0644 /* SVGghTests */ = {
+			isa = PBXGroup;
+			children = (
+				21BDEB5D1893BF08003A0644 /* SVGghTests.m */,
+				21BDEB581893BF08003A0644 /* Supporting Files */,
+			);
+			path = SVGghTests;
+			sourceTree = "<group>";
+		};
+		21BDEB581893BF08003A0644 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				21BDEB591893BF08003A0644 /* SVGghTests-Info.plist */,
+				21BDEB5A1893BF08003A0644 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		21BDEB711893C7B7003A0644 /* SVG */ = {
+			isa = PBXGroup;
+			children = (
+				21BDEB721893C7B7003A0644 /* GHAttributedObject.h */,
+				21BDEB731893C7B7003A0644 /* GHAttributedObject.m */,
+				21BDEBC41893CB23003A0644 /* GHPathDescription.h */,
+				21BDEB741893C7B7003A0644 /* GHPathUtilities.h */,
+				21BDEB751893C7B7003A0644 /* GHPathUtilities.m */,
+				21BCA1BE189817A200A1F170 /* GHText.h */,
+				21BCA1B81898179000A1F170 /* GHText.m */,
+				21BCA1BF189817A200A1F170 /* GHTextLine.h */,
+				21BCA1B91898179000A1F170 /* GHTextLine.m */,
+				21BDEBC91893CD66003A0644 /* SVGAttributedObject.h */,
+				21BDEBCA1893CD66003A0644 /* SVGAttributedObject.m */,
+				21BCA1B71897FD5100A1F170 /* SVGContext.h */,
+				21BDEB761893C7B7003A0644 /* SVGGradientUtilities.h */,
+				21BDEB771893C7B7003A0644 /* SVGGradientUtilities.m */,
+				21BDEB781893C7B7003A0644 /* SVGParser.h */,
+				21BDEB791893C7B7003A0644 /* SVGParser.m */,
+				21BDEB7A1893C7B7003A0644 /* SVGTextUtilities.h */,
+				21BDEB7B1893C7B7003A0644 /* SVGTextUtilities.m */,
+				21BDEB7C1893C7B7003A0644 /* SVGUtilities.h */,
+				21BDEB7D1893C7B7003A0644 /* SVGUtilities.m */,
+			);
+			path = SVG;
+			sourceTree = "<group>";
+		};
+		21BDEB8A1893C7C3003A0644 /* SVGRenderer */ = {
+			isa = PBXGroup;
+			children = (
+				21BDEB8B1893C7C3003A0644 /* GHGlyph.h */,
+				21BDEB8C1893C7C3003A0644 /* GHGlyph.m */,
+				21BDEB8D1893C7C3003A0644 /* GHGradient.h */,
+				21BDEB8E1893C7C3003A0644 /* GHGradient.m */,
+				21BDEBC71893CBF7003A0644 /* GHRenderable.h */,
+				21BDEB8F1893C7C3003A0644 /* SVGPathGenerator.h */,
+				21BDEB901893C7C3003A0644 /* SVGPathGenerator.m */,
+				21AEB0E718A1A46C0097200B /* SVGPrinter.h */,
+				21AEB0E818A1A46C0097200B /* SVGPrinter.m */,
+				21BDEB911893C7C3003A0644 /* SVGRenderer.h */,
+				21BDEB921893C7C3003A0644 /* SVGRenderer.m */,
+				2161B49018A1812A00081167 /* SVGtoPDFConverter.h */,
+				2161B49118A1812A00081167 /* SVGtoPDFConverter.m */,
+			);
+			path = SVGRenderer;
+			sourceTree = "<group>";
+		};
+		21BDEBA31893C7CE003A0644 /* Views and Layers */ = {
+			isa = PBXGroup;
+			children = (
+				2114CD711AD17F7900A9A362 /* GHSegmentedControl.h */,
+				2114CD721AD17F7900A9A362 /* GHSegmentedControl.m */,
+				21BDEBA41893C7CE003A0644 /* GHControlFactory.h */,
+				21BDEBA51893C7CE003A0644 /* GHControlFactory.m */,
+				21BDEBDA189541F3003A0644 /* GHButton.h */,
+				21BDEBDB189541F3003A0644 /* GHButton.m */,
+				21E4E9EE1AC4C8C20020647D /* GHControl.h */,
+				21E4E9EF1AC4C8C20020647D /* GHControl.m */,
+				21BDEBA61893C7CE003A0644 /* SVGDocumentView.h */,
+				21BDEBA71893C7CE003A0644 /* SVGDocumentView.m */,
+				21BDEBA81893C7CE003A0644 /* SVGRendererLayer.h */,
+				21BDEBA91893C7CE003A0644 /* SVGRendererLayer.m */,
+			);
+			path = "Views and Layers";
+			sourceTree = "<group>";
+		};
+		21BDEBB01893C7DC003A0644 /* Third Party */ = {
+			isa = PBXGroup;
+			children = (
+				21BDEBB11893C7DC003A0644 /* Base64Transcoder.h */,
+				21BDEBB21893C7DC003A0644 /* Base64Transcoder.m */,
+				21BDEBB31893C7DC003A0644 /* NSData+Base64Additions.h */,
+				21BDEBB41893C7DC003A0644 /* NSData+Base64Additions.m */,
+			);
+			path = "Third Party";
+			sourceTree = "<group>";
+		};
+		21BDEBBE1893CA89003A0644 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				21BDEBBF1893CA89003A0644 /* GHImageCache.h */,
+				21BDEBC01893CA89003A0644 /* GHImageCache.m */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		21BDEBB91893C90F003A0644 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21537227189966FB006EBCD5 /* SVGgh.h in Headers */,
+				21BDEBDC189541F3003A0644 /* GHButton.h in Headers */,
+				21E4E9F01AC4C8C20020647D /* GHControl.h in Headers */,
+				2114CD731AD17F7900A9A362 /* GHSegmentedControl.h in Headers */,
+				21BDEBBA1893C927003A0644 /* SVGRenderer.h in Headers */,
+				21BDEBBB1893C933003A0644 /* GHControlFactory.h in Headers */,
+				21BDEBC11893CA89003A0644 /* GHImageCache.h in Headers */,
+				21BDEBBC1893C938003A0644 /* SVGDocumentView.h in Headers */,
+				21BDEBC81893CBF7003A0644 /* GHRenderable.h in Headers */,
+				2153722B189969EA006EBCD5 /* SVGContext.h in Headers */,
+				21AEB0E918A1A46C0097200B /* SVGPrinter.h in Headers */,
+				2161B49218A1812A00081167 /* SVGtoPDFConverter.h in Headers */,
+				21BDEBD618952CDE003A0644 /* SVGPathGenerator.h in Headers */,
+				2172C24F198D8DF500354353 /* SVGRendererLayer.h in Headers */,
+				21BDEBBD1893C9BC003A0644 /* SVGParser.h in Headers */,
+				21BDEBC51893CB23003A0644 /* GHPathDescription.h in Headers */,
+				21BDEBCB1893CD66003A0644 /* SVGAttributedObject.h in Headers */,
+				21BDEBC61893CB60003A0644 /* GHAttributedObject.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		21155AD3189A6DCC00C830A7 /* SVGgh Debugging App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 21155AFE189A6DCD00C830A7 /* Build configuration list for PBXNativeTarget "SVGgh Debugging App" */;
+			buildPhases = (
+				21155AD0189A6DCC00C830A7 /* Sources */,
+				21155AD1189A6DCC00C830A7 /* Frameworks */,
+				21155AD2189A6DCC00C830A7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "SVGgh Debugging App";
+			productName = "SVGgh Debugging App";
+			productReference = 21155AD4189A6DCC00C830A7 /* SVGgh Debugging App.app */;
+			productType = "com.apple.product-type.application";
+		};
+		21BDEB3D1893BF08003A0644 /* SVGgh */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 21BDEB611893BF08003A0644 /* Build configuration list for PBXNativeTarget "SVGgh" */;
+			buildPhases = (
+				21BDEB3A1893BF08003A0644 /* Sources */,
+				21BDEB3B1893BF08003A0644 /* Frameworks */,
+				21BDEB3C1893BF08003A0644 /* CopyFiles */,
+				21BDEBB91893C90F003A0644 /* Headers */,
+				21BDEBCE1893D133003A0644 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SVGgh;
+			productName = SVGgh;
+			productReference = 21BDEB3E1893BF08003A0644 /* libSVGgh.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		21BDEB4D1893BF08003A0644 /* SVGghTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 21BDEB641893BF08003A0644 /* Build configuration list for PBXNativeTarget "SVGghTests" */;
+			buildPhases = (
+				21BDEB4A1893BF08003A0644 /* Sources */,
+				21BDEB4B1893BF08003A0644 /* Frameworks */,
+				21BDEB4C1893BF08003A0644 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				21BDEB551893BF08003A0644 /* PBXTargetDependency */,
+			);
+			name = SVGghTests;
+			productName = SVGghTests;
+			productReference = 21BDEB4E1893BF08003A0644 /* SVGghTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		21BDEB361893BF08003A0644 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0620;
+				ORGANIZATIONNAME = "Generally Helpful Software";
+				TargetAttributes = {
+					21BDEB4D1893BF08003A0644 = {
+						TestTargetID = 21155AD3189A6DCC00C830A7;
+					};
+				};
+			};
+			buildConfigurationList = 21BDEB391893BF08003A0644 /* Build configuration list for PBXProject "SVGgh" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 21BDEB351893BF08003A0644;
+			productRefGroup = 21BDEB3F1893BF08003A0644 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				21BDEB3D1893BF08003A0644 /* SVGgh */,
+				21BDEB4D1893BF08003A0644 /* SVGghTests */,
+				21BDEBCF1893D18F003A0644 /* Framework */,
+				21155AD3189A6DCC00C830A7 /* SVGgh Debugging App */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		21155AD2189A6DCC00C830A7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21155AEB189A6DCD00C830A7 /* Images.xcassets in Resources */,
+				21155B1C189A6F0800C830A7 /* Artwork in Resources */,
+				21155ADD189A6DCC00C830A7 /* InfoPlist.strings in Resources */,
+				21155AE6189A6DCC00C830A7 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		21BDEB4C1893BF08003A0644 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21BDEB5C1893BF08003A0644 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		21BDEBCE1893D133003A0644 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\n\nmkdir -p \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Versions/A/Headers\"\n\n# Link the \"Current\" version to \"A\"\n/bin/ln -sfh A \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Versions/Current\"\n/bin/ln -sfh Versions/Current/Headers \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Headers\"\n/bin/ln -sfh \"Versions/Current/${PRODUCT_NAME}\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/${PRODUCT_NAME}\"\n\n# The -a ensures that the headers maintain the source modification date so that we don't constantly\n# cause propagating rebuilds of files that import these headers.\n/bin/cp -a \"${TARGET_BUILD_DIR}/${PUBLIC_HEADERS_FOLDER_PATH}/\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Versions/A/Headers\"\n";
+		};
+		21BDEBD51893D1BB003A0644 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "set -e\nset +u\n# Avoid recursively calling this script.\nif [[ $SF_MASTER_SCRIPT_RUNNING ]]\nthen\nexit 0\nfi\nset -u\nexport SF_MASTER_SCRIPT_RUNNING=1\n\nSF_TARGET_NAME=${PROJECT_NAME}\nSF_EXECUTABLE_PATH=\"lib${SF_TARGET_NAME}.a\"\nSF_WRAPPER_NAME=\"${SF_TARGET_NAME}.framework\"\n\n# The following conditionals come from\n# https://github.com/kstenerud/iOS-Universal-Framework\n\nif [[ \"$SDK_NAME\" =~ ([A-Za-z]+) ]]\nthen\nSF_SDK_PLATFORM=${BASH_REMATCH[1]}\nelse\necho \"Could not find platform name from SDK_NAME: $SDK_NAME\"\nexit 1\nfi\n\nif [[ \"$SDK_NAME\" =~ ([0-9]+.*$) ]]\nthen\nSF_SDK_VERSION=${BASH_REMATCH[1]}\nelse\necho \"Could not find sdk version from SDK_NAME: $SDK_NAME\"\nexit 1\nfi\n\nif [[ \"$SF_SDK_PLATFORM\" = \"iphoneos\" ]]\nthen\nSF_OTHER_PLATFORM=iphonesimulator\nelse\nSF_OTHER_PLATFORM=iphoneos\nfi\n\nif [[ \"$BUILT_PRODUCTS_DIR\" =~ (.*)$SF_SDK_PLATFORM$ ]]\nthen\nSF_OTHER_BUILT_PRODUCTS_DIR=\"${BASH_REMATCH[1]}${SF_OTHER_PLATFORM}\"\nelse\necho \"Could not find platform name from build products directory: $BUILT_PRODUCTS_DIR\"\nexit 1\nfi\n\n# Build the other platform.\nxcrun xcodebuild -project \"${PROJECT_FILE_PATH}\" -target \"${TARGET_NAME}\" -configuration \"${CONFIGURATION}\" -sdk ${SF_OTHER_PLATFORM}${SF_SDK_VERSION} BUILD_DIR=\"${BUILD_DIR}\" OBJROOT=\"${OBJROOT}\" BUILD_ROOT=\"${BUILD_ROOT}\" SYMROOT=\"${SYMROOT}\" $ACTION\n\n# Smash the two static libraries into one fat binary and store it in the .framework\nxcrun lipo -create \"${BUILT_PRODUCTS_DIR}/${SF_EXECUTABLE_PATH}\" \"${SF_OTHER_BUILT_PRODUCTS_DIR}/${SF_EXECUTABLE_PATH}\" -output \"${BUILT_PRODUCTS_DIR}/${SF_WRAPPER_NAME}/Versions/A/${SF_TARGET_NAME}\"\n\n# Copy the binary to the other architecture folder to have a complete framework in both.\ncp -a \"${BUILT_PRODUCTS_DIR}/${SF_WRAPPER_NAME}/Versions/A/${SF_TARGET_NAME}\" \"${SF_OTHER_BUILT_PRODUCTS_DIR}/${SF_WRAPPER_NAME}/Versions/A/${SF_TARGET_NAME}\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		21155AD0189A6DCC00C830A7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21155B0A189A6E0F00C830A7 /* SVGDocumentView.m in Sources */,
+				21155B0F189A6E0F00C830A7 /* SVGRenderer.m in Sources */,
+				21155ADF189A6DCC00C830A7 /* main.m in Sources */,
+				21155B04189A6E0F00C830A7 /* SVGgh.m in Sources */,
+				21155B0C189A6E0F00C830A7 /* GHGlyph.m in Sources */,
+				21155B05189A6E0F00C830A7 /* GHImageCache.m in Sources */,
+				21155B07189A6E0F00C830A7 /* NSData+Base64Additions.m in Sources */,
+				21155B06189A6E0F00C830A7 /* Base64Transcoder.m in Sources */,
+				21155B08189A6E0F00C830A7 /* GHControlFactory.m in Sources */,
+				21155B12189A6E0F00C830A7 /* GHText.m in Sources */,
+				21155B09189A6E0F00C830A7 /* GHButton.m in Sources */,
+				2114CD751AD17F7900A9A362 /* GHSegmentedControl.m in Sources */,
+				21155B14189A6E0F00C830A7 /* SVGAttributedObject.m in Sources */,
+				21155B0D189A6E0F00C830A7 /* GHGradient.m in Sources */,
+				21155B16189A6E0F00C830A7 /* SVGParser.m in Sources */,
+				2161B49518A1812A00081167 /* SVGtoPDFConverter.m in Sources */,
+				21155AE9189A6DCC00C830A7 /* SVGghDebuggingViewController.m in Sources */,
+				21155B0E189A6E0F00C830A7 /* SVGPathGenerator.m in Sources */,
+				21155B10189A6E0F00C830A7 /* GHAttributedObject.m in Sources */,
+				21155AE3189A6DCC00C830A7 /* SVGghDebuggingAppDelegate.m in Sources */,
+				21155B13189A6E0F00C830A7 /* GHTextLine.m in Sources */,
+				21155B11189A6E0F00C830A7 /* GHPathUtilities.m in Sources */,
+				21E4E9F21AC4C8C20020647D /* GHControl.m in Sources */,
+				21155B15189A6E0F00C830A7 /* SVGGradientUtilities.m in Sources */,
+				21155B18189A6E0F00C830A7 /* SVGUtilities.m in Sources */,
+				21155B17189A6E0F00C830A7 /* SVGTextUtilities.m in Sources */,
+				21AEB0EC18A1A46C0097200B /* SVGPrinter.m in Sources */,
+				21155B0B189A6E0F00C830A7 /* SVGRendererLayer.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		21BDEB3A1893BF08003A0644 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21BDEBDD189541F3003A0644 /* GHButton.m in Sources */,
+				2114CD741AD17F7900A9A362 /* GHSegmentedControl.m in Sources */,
+				21BDEBAC1893C7CE003A0644 /* SVGDocumentView.m in Sources */,
+				21BDEBC21893CA89003A0644 /* GHImageCache.m in Sources */,
+				21BDEBB51893C7DC003A0644 /* Base64Transcoder.m in Sources */,
+				21BDEBAE1893C7CE003A0644 /* SVGRendererLayer.m in Sources */,
+				21BDEB7E1893C7B7003A0644 /* GHAttributedObject.m in Sources */,
+				21BDEB991893C7C3003A0644 /* GHGradient.m in Sources */,
+				21BDEBAA1893C7CE003A0644 /* GHControlFactory.m in Sources */,
+				21BDEB491893BF08003A0644 /* SVGgh.m in Sources */,
+				21BDEB801893C7B7003A0644 /* GHPathUtilities.m in Sources */,
+				21AEB0EA18A1A46C0097200B /* SVGPrinter.m in Sources */,
+				21BDEBCC1893CD66003A0644 /* SVGAttributedObject.m in Sources */,
+				21BDEB9B1893C7C3003A0644 /* SVGPathGenerator.m in Sources */,
+				2161B49318A1812A00081167 /* SVGtoPDFConverter.m in Sources */,
+				21BDEB841893C7B7003A0644 /* SVGParser.m in Sources */,
+				21BDEB861893C7B7003A0644 /* SVGTextUtilities.m in Sources */,
+				21BDEB881893C7B7003A0644 /* SVGUtilities.m in Sources */,
+				21BDEB9D1893C7C3003A0644 /* SVGRenderer.m in Sources */,
+				21BDEBB71893C7DC003A0644 /* NSData+Base64Additions.m in Sources */,
+				21BDEB971893C7C3003A0644 /* GHGlyph.m in Sources */,
+				21BCA1BC1898179000A1F170 /* GHTextLine.m in Sources */,
+				21BDEB821893C7B7003A0644 /* SVGGradientUtilities.m in Sources */,
+				21E4E9F11AC4C8C20020647D /* GHControl.m in Sources */,
+				21BCA1BA1898179000A1F170 /* GHText.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		21BDEB4A1893BF08003A0644 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21BDEBDE189541F3003A0644 /* GHButton.m in Sources */,
+				21BDEBAD1893C7CE003A0644 /* SVGDocumentView.m in Sources */,
+				21BDEBC31893CA89003A0644 /* GHImageCache.m in Sources */,
+				21BDEBB61893C7DC003A0644 /* Base64Transcoder.m in Sources */,
+				21BDEBAF1893C7CE003A0644 /* SVGRendererLayer.m in Sources */,
+				21BDEB7F1893C7B7003A0644 /* GHAttributedObject.m in Sources */,
+				21BDEB9A1893C7C3003A0644 /* GHGradient.m in Sources */,
+				21BDEBAB1893C7CE003A0644 /* GHControlFactory.m in Sources */,
+				21BDEB5E1893BF08003A0644 /* SVGghTests.m in Sources */,
+				21BDEB811893C7B7003A0644 /* GHPathUtilities.m in Sources */,
+				21AEB0EB18A1A46C0097200B /* SVGPrinter.m in Sources */,
+				21BDEBCD1893CD66003A0644 /* SVGAttributedObject.m in Sources */,
+				21BDEB9C1893C7C3003A0644 /* SVGPathGenerator.m in Sources */,
+				2161B49418A1812A00081167 /* SVGtoPDFConverter.m in Sources */,
+				21BDEB851893C7B7003A0644 /* SVGParser.m in Sources */,
+				21BDEB871893C7B7003A0644 /* SVGTextUtilities.m in Sources */,
+				21BDEB891893C7B7003A0644 /* SVGUtilities.m in Sources */,
+				21BDEB9E1893C7C3003A0644 /* SVGRenderer.m in Sources */,
+				21BDEBB81893C7DC003A0644 /* NSData+Base64Additions.m in Sources */,
+				21BDEB981893C7C3003A0644 /* GHGlyph.m in Sources */,
+				21BCA1BD1898179000A1F170 /* GHTextLine.m in Sources */,
+				21BDEB831893C7B7003A0644 /* SVGGradientUtilities.m in Sources */,
+				21BCA1BB1898179000A1F170 /* GHText.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		21BDEB551893BF08003A0644 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 21BDEB3D1893BF08003A0644 /* SVGgh */;
+			targetProxy = 21BDEB541893BF08003A0644 /* PBXContainerItemProxy */;
+		};
+		21BDEBD41893D19D003A0644 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 21BDEB3D1893BF08003A0644 /* SVGgh */;
+			targetProxy = 21BDEBD31893D19D003A0644 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		21155ADB189A6DCC00C830A7 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				21155ADC189A6DCC00C830A7 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		21155AE4189A6DCC00C830A7 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				21155AE5189A6DCC00C830A7 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		21BDEB5A1893BF08003A0644 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				21BDEB5B1893BF08003A0644 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		21155AFF189A6DCD00C830A7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SVGgh Debugging App/SVGgh Debugging App-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "SVGgh Debugging App/SVGgh Debugging App-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		21155B00189A6DCD00C830A7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SVGgh Debugging App/SVGgh Debugging App-Prefix.pch";
+				INFOPLIST_FILE = "SVGgh Debugging App/SVGgh Debugging App-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		21BDEB5F1893BF08003A0644 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = NO;
+				PUBLIC_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)Headers";
+				SDKROOT = iphoneos;
+				STRIP_INSTALLED_PRODUCT = NO;
+				STRIP_STYLE = debugging;
+			};
+			name = Debug;
+		};
+		21BDEB601893BF08003A0644 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = NO;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				PUBLIC_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)Headers";
+				SDKROOT = iphoneos;
+				STRIP_INSTALLED_PRODUCT = NO;
+				STRIP_STYLE = debugging;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		21BDEB621893BF08003A0644 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				DSTROOT = /tmp/SVGgh.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SVGgh/SVGgh-Prefix.pch";
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		21BDEB631893BF08003A0644 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				DSTROOT = /tmp/SVGgh.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SVGgh/SVGgh-Prefix.pch";
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		21BDEB651893BF08003A0644 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SVGgh Debugging App.app/SVGgh Debugging App";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SVGgh/SVGgh-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "SVGghTests/SVGghTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		21BDEB661893BF08003A0644 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SVGgh Debugging App.app/SVGgh Debugging App";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SVGgh/SVGgh-Prefix.pch";
+				INFOPLIST_FILE = "SVGghTests/SVGghTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+		21BDEBD11893D18F003A0644 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		21BDEBD21893D18F003A0644 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		21155AFE189A6DCD00C830A7 /* Build configuration list for PBXNativeTarget "SVGgh Debugging App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				21155AFF189A6DCD00C830A7 /* Debug */,
+				21155B00189A6DCD00C830A7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		21BDEB391893BF08003A0644 /* Build configuration list for PBXProject "SVGgh" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				21BDEB5F1893BF08003A0644 /* Debug */,
+				21BDEB601893BF08003A0644 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		21BDEB611893BF08003A0644 /* Build configuration list for PBXNativeTarget "SVGgh" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				21BDEB621893BF08003A0644 /* Debug */,
+				21BDEB631893BF08003A0644 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		21BDEB641893BF08003A0644 /* Build configuration list for PBXNativeTarget "SVGghTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				21BDEB651893BF08003A0644 /* Debug */,
+				21BDEB661893BF08003A0644 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		21BDEBD01893D18F003A0644 /* Build configuration list for PBXAggregateTarget "Framework" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				21BDEBD11893D18F003A0644 /* Debug */,
+				21BDEBD21893D18F003A0644 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 21BDEB361893BF08003A0644 /* Project object */;
+}

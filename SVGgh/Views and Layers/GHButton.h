@@ -45,6 +45,7 @@
 * @attention not a UIButton (too hard to subclass)
 * @attention wire any UIAction up to the up inside event not the value changed event
 */
+IB_DESIGNABLE
 @interface GHButton : GHControl
 /*! @property title
 * @brief this text (if any) will be displayed embedded in the button

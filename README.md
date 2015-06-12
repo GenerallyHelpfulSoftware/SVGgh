@@ -1,4 +1,4 @@
-**SVGgh** *an SVG Rendering Library for iOS*
+**SVGgh** *an SVG Rendering Framework for iOS*
 -
 Author [Glenn R. Howes](mailto:grhowes@mac.com), *owner [Generally Helpful Software](http://genhelp.com)*
 
@@ -6,19 +6,19 @@ Author [Glenn R. Howes](mailto:grhowes@mac.com), *owner [Generally Helpful Softw
 In my own apps, I've often wished to avoid using bitmapped images for my interface elements. Often, I'll need to add PNG files for Retina, and non-retina, iPhone and iPad, and find myself confined to what I can do with an interface in terms of stretching elements. And all this artwork made my app bulky. So, I decided to implement an SVG renderer which could use standard **Scalable Vector Graphics** documents to draw button icons, background art or whatever my art needs were. I have Apps in the App Store like [SVG Paths](http://AppStore.com/SVGPaths) whose only PNG files are the required icons. 
 
 ### Features
-Handles shapes quite well such as paths, ellipses, circles, rectangles, polygons, polylines, and arcs with all the standard style attributes. Implements basic text and font handling, including rough text along a path. Implements both linear and radial gradients, including applying gradients to strokes and text. Implements scale invariant line widths. Provides both a static UIView subclass and a UIControl subclass button. Both are configurable from either nib or storyboards. Supports embedded bitmap images in standard formats. 
+Handles shapes quite well such as paths, ellipses, circles, rectangles, polygons, polylines, and arcs with all the standard style attributes. Implements basic text and font handling, including rough text along a path. Implements both linear and radial gradients, including applying gradients to strokes and text. Implements scale invariant line widths. Provides a static UIView subclass, a UIControl button, and a segmented control. All are configurable from either nib or storyboards. Supports embedded bitmap images in standard formats. 
 
 ### Limitations
-The entire [SVG specification](http://www.w3.org/TR/SVG11/) is not implemented. Right now, it only implements the portions of the specification I needed or thought I might need. In particular, it doesn't support SVG fonts, animation, Javascript, or effects. Also, some attributes remain unimplemented or partially implemented, for example the *width* attribute of an *svg* entity cannot be expressed as a percentage. I hope users of this library will contribute back implementations of at least some of these. 
+The entire [SVG specification](http://www.w3.org/TR/SVG11/) is not implemented. At present, it only implements the portions of the specification I needed or thought I might need. In particular, it doesn't support SVG fonts, animation, Javascript, or effects. Also, some attributes remain unimplemented or partially implemented, for example the *width* attribute of an *svg* entity cannot be expressed as a percentage. I hope users of this library will contribute back implementations of at least some of these. 
 
 There are undoubtably bugs but I've used this library in all 6 apps I have in the App Store without issue so it is reasonably stable. Also, I would not label this a high performance renderer although I've never had cause to complain about it in the way I use it. 
 
-The included library assumes ARC style memory management. It's also been arbitrarily set to support iOS 6 and up. The code would likely run on iOS 5 and up, but I'm not supporting that going forward. 
+The included library assumes ARC style memory management. It's also been arbitrarily set to support iOS 7 and up. The code might run on iOS 5 and up, but I'm not supporting that going forward. 
 
-Because I'm intending on allowing this to be used as a static library, I'm avoiding the use of **categories** in my Objective-C code in order to avoid the use of the **-ObjC** other linker flag. For example, I'd normally have declared a SVGRender+Printing category when I implemented printing.
+Originally, this was distributed as a static library, but that is not a modern way to use it. So the enclosed project will build a framework, and most people will probably find the use of Cocoapods to be more enjoyable.
 
 ### As a Black Box Library
-If you just want to use the code in your app and are uninterested in the underlying engine, the included Xcode project generates a static library (**SVGgh**) with the following public headers. By the way, the reason that classes tend to have a GH (Generally Helpful, or Glenn Howes) prefix is not narcissism, but an attempt of getting around the lack of a namespace in plain Objective-C.
+If you just want to use the code in your app and are uninterested in the underlying engine, the included Xcode project generates a framework (**SVGgh**) with the following public headers. By the way, the reason that classes tend to have a GH (Generally Helpful, or Glenn Howes) prefix is not narcissism, but an attempt of getting around the lack of a namespace in plain Objective-C.
 * SVGDocumentView.h *A simple UIView capable of displaying a SVG document*
 * GHButton.h *A flexible UIControl capable of having an embedded SVG document as an icon*
 * GHSegmentedControl.h *A preliminary control which mimics a UISegmentedControl (incomplete)
@@ -34,11 +34,9 @@ If you just want to use the code in your app and are uninterested in the underly
 * Go through the standard procedures for updating your Xcode workspace via Cocoapods. ````pod update````, ````pod install````, etc.
 
 ####If you are not using Cocoapods
-To compile the static library. 
+To compile the framework. 
 * Load the included **SVGgh.xcodeproj** project in Xcode 5 or above 
 * **Build** the **Framework** target.
-* **Right Click** on the **libSVGgh.a** item in the **Products** folder
-* Select **Show in Finder**
 * Locate the **SVGgh.framework** framework
 * Drag the framework into your own Xcode project
 
@@ -67,7 +65,17 @@ To use, you'll want to follow the following steps:
 ...
 ````
 
-* If you are coding in Swift. You will want to add ````#import <SVGgh/SVGgh.h>```` to your bridging header.
+* If you are coding in Swift. You will want to add ````#import <SVGgh/SVGgh.h>```` to your bridging header. And in your App delegate you should probably put the initialize code somewhere early, like:
+
+````
+    override class func initialize()
+    {
+        super.initialize()
+        MakeSureSVGghLinks()
+        let tintColor = UIColorFromSVGColorString("#5D6")
+        GHControlFactory.setDefaultButtonTint(tintColor)
+    }
+````
 
 To add a button to a .xib file or storyboard:
 * Drag a UIView into your view
@@ -88,7 +96,7 @@ To add a button to a .xib file or storyboard:
 | Title | Localized String | My Label |
 | Scheme Number | Number | 3 |
 
-* There is an attribute of an SVG document called ````currentColor````. You can access it to change the appearance of a button while being pressed via the **textColor**, **textColorPressed** and **textColorSelected** properties of **UIControl**. These are accessible from storyboard or you can set it up globally in your initialize method. Your SVGs will have to be set to use currentColor instead of some explicit color.
+* There is an attribute of an SVG document called ````currentColor````. You can access it to change the appearance of a button while being pressed via the **textColor**, **textColorPressed** and **textColorSelected** properties of **UIControl**. These are accessible from storyboard or you can set it up globally in your initialize method. Your SVGs will have to be written to use currentColor instead of some explicit color.
 
 To add a static view to a .xib file or storyboard:
 * Drag a UIView into your view

@@ -30,10 +30,10 @@
  of the UIButton that Apple provides.
 ******/
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 @class GHButton;
 
-enum  {
+typedef NS_ENUM(NSUInteger, ColorScheme) {
     // do not change the order of these as they are hard coded into storyboards
     kColorSchemeiOS,
     kColorSchemeMachine,
@@ -47,7 +47,7 @@ enum  {
     
     kColorSchemeNone,
 };
-typedef NSUInteger ColorScheme;
+
 
 
 /*! @brief a singleton class devoted to storing configurations for themes and returning useful theme objects like gradients and buttons
@@ -177,11 +177,23 @@ typedef NSUInteger ColorScheme;
  */
 +(CGPathRef) newRoundRectPathForRect:(CGRect)aRect withRadius:(CGFloat) radius;
 
+/*! @brief utility routine to find the location of an SVG document relative to a provided bundle
+ * @param an optional bundle containing the artwork
+ * @param theArtworkPath subpath within a bundle does not include the .svg extension which is assumed.
+ */
++(NSURL*) locateArtworkForBundle:(NSBundle*)mayBeNil atSubpath:(NSString*)theArtworkPath;
+
 /*! @brief utility routine to find the location of an SVG document relative to either the main bundle or the bundle in which the object is located
-* @param anObject for instance a GHButton
-* @param theArtworkPath subpath within a bundle does not include the .svg extension which is assumed.
-*/
-+(NSURL*) locateArtworkForObject:(id<NSObject>)anObject atSubpath:(NSString*)theArtworkPath;
+ * @param anObject for instance a GHButton
+ * @param theArtworkPath subpath within a bundle does not include the .svg extension which is assumed.
+ */
++(NSURL*) locateArtworkForObject:(id<NSObject>)anObject atSubpath:(NSString*)theArtworkPath; // for compatibility
+
+/*! @brief utility routine to locate a URL inside your project when using Interface Builder's IB_DESIGNABLE service
+ * @param anObject for instance a GHButton
+ * @param theArtworkPath subpath within a bundle does not include the .svg extension which is assumed.
+ */
++(NSURL*) findInterfaceBuilderArtwork:(NSString*)artworkSubPath;
 
 @end
 

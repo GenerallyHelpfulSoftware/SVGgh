@@ -24,7 +24,7 @@
 //  THE SOFTWARE.
 //  Created by Glenn Howes on 2/4/14.
 //
-#import <SVGgh/SVGgh.h>
+#import "SVGgh.h"
 
 typedef void(^renderPDFCallback_t)(NSData* pdfData);
 

@@ -35,7 +35,7 @@
 #endif
 
 @class SVGRenderer;
-
+IB_DESIGNABLE
 @interface GHSegmentedControl : GHControl
 
 /*! @property momentary

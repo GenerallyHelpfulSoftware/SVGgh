@@ -27,7 +27,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreGraphics/CoreGraphics.h>
-#import "SVGContext.h"
+#import <SVGgh/SVGContext.h>
 
 
 /*

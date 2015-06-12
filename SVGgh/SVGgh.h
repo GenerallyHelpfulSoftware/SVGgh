@@ -23,13 +23,13 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
 #import <SVGgh/GHButton.h>
-#import <SVGgh/GHControl.h> 
+#import <SVGgh/GHControl.h>
 #import <SVGgh/GHControlFactory.h>
 #import <SVGgh/GHImageCache.h>
-#import <SVGGh/GHSegmentedControl.h>
+#import <SVGgh/GHSegmentedControl.h>
 #import <SVGgh/GHRenderable.h>
 #import <SVGgh/SVGDocumentView.h>
 #import <SVGgh/SVGRendererLayer.h>

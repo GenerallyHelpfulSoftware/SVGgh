@@ -58,7 +58,7 @@ const CGFloat kContentMargin = 10;
 
 @end
 
-typedef enum GHSementType
+typedef enum GHSegmentType
 {
     kSegmentTypeRight,
     kSegmentTypeMiddle,
@@ -67,7 +67,7 @@ typedef enum GHSementType
 }GHSegmentType;
 
 @interface GHSegmentedControlSegmentLayer : CALayer
-@property(nonatomic, assign) enum GHSementType segmentType;
+@property(nonatomic, assign) enum GHSegmentType segmentType;
 @property(nonatomic, strong) GHSegmentDefinition* segmentDefinition;
 @property(nonatomic, weak) CALayer* contentLayer;
 @property(nonatomic, strong) UIColor* currentColor;
@@ -88,7 +88,7 @@ typedef enum GHSementType
     return result;
 }
 
--(void) setSegmentType:(enum GHSementType)segmentType
+-(void) setSegmentType:(enum GHSegmentType)segmentType
 {
     if(_segmentType != segmentType)
     {
@@ -725,6 +725,21 @@ typedef enum GHSementType
         _definitions = [newDefinitions copy];
     }
     return self;
+}
+
++(NSString*) placeholderButterflySVG
+{
+    NSString* result = @"<?xml version=\"1.0\" encoding=\"UTF-8\"?> <svg x=\"0px\" height=\"120\" viewport-fill=\"none\" y=\"0px\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" width=\"138\" xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\" viewBox=\"-25, 0, 138, 120\"> <g stroke=\"black\" xml:id=\"LAYER\" vector-effect=\"non-scaling-stroke\" stroke-width=\"0.5\" fill=\"currentColor\" stroke-linecap=\"round\" transform=\"translate(0,15)\"> <path xml:id=\"PATH\" d=\"M44 42C38 29 42 8 5 5 13 53 14 42 21 47-18 113 43 92 45 66 45 59 45 47 44 42ZM55 66C57 92 106 109 79 47 86 42 87 53 95 5 58 8 62 29 56 42 55 47 55 47 55 66z\"/> <path fill=\"black\" stroke=\"none\" d=\"M56 42A7 7 0 1 0 44 42C45 47 46 59 47 66Q50 95 53 66C54 59 55 47 56 42ZM45 33.5Q46 24 37 15 A1 1 0 1 1 37.5 14.5Q45 19 46 32.5ZM55 33.5Q54 24 63 15A1 1 0 1 0 62.5 14.5Q55 20 54 32.5Z\" /> </g> </svg>";
+    return result;
+}
+
+- (void)prepareForInterfaceBuilder
+{
+    [self insertSegmentWithTitle:NSLocalizedString(@"Add Segments", @"") atIndex:0 animated:NO];
+    [self insertSegmentWithTitle:NSLocalizedString(@"In Code", @"") atIndex:1 animated:NO];
+    SVGRenderer* butterflyRenderer = [[SVGRenderer alloc] initWithString:[GHSegmentedControl placeholderButterflySVG]];
+    [self insertSegmentWithRenderer:butterflyRenderer atIndex:2 animated:NO];
+    self.apportionsSegmentWidthsByContent = NO;
 }
 
 - (void)insertSegmentWithTitle:(NSString *)title atIndex:(NSUInteger)segment animated:(BOOL)animated
