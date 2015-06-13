@@ -44,7 +44,7 @@
 @interface GHRenderableObject()
 {
 @private
-	CGAffineTransform	transform;
+    CGAffineTransform	transform;
 }
 @end
 
@@ -128,27 +128,27 @@
 
 +(void) setupContext:(CGContextRef)quartzContext withAttributes:(NSDictionary*)attributes withSVGContext:(id<SVGContext>)svgContext
 {
-	NSString*	strokeString = [SVGToQuartz valueForStyleAttribute:@"stroke-width" fromDefinition:attributes];
+    NSString*	strokeString = [SVGToQuartz valueForStyleAttribute:@"stroke-width" fromDefinition:attributes];
     NSString* vectorEffect = [SVGToQuartz valueForStyleAttribute:@"vector-effect" fromDefinition:attributes];
     
     [SVGToQuartz setupLineWidthForQuartzContext:quartzContext withSVGStrokeString:strokeString withVectorEffect:vectorEffect withSVGContext:svgContext];
     
-	NSString*	miterLimitString = [SVGToQuartz valueForStyleAttribute:@"stroke-miterlimit" fromDefinition:attributes];
+    NSString*	miterLimitString = [SVGToQuartz valueForStyleAttribute:@"stroke-miterlimit" fromDefinition:attributes];
     [SVGToQuartz setupMiterLimitForQuartzContext:quartzContext withSVGMiterLimitString:miterLimitString];
     
-	NSString*	lineJoinString = [SVGToQuartz valueForStyleAttribute:@"stroke-linejoin" fromDefinition:attributes];
+    NSString*	lineJoinString = [SVGToQuartz valueForStyleAttribute:@"stroke-linejoin" fromDefinition:attributes];
     [SVGToQuartz setupMiterForQuartzContext:quartzContext withSVGMiterString:lineJoinString];
-	
     
-	NSString*	lineCapString = [SVGToQuartz valueForStyleAttribute:@"stroke-linecap" fromDefinition:attributes];
+    
+    NSString*	lineCapString = [SVGToQuartz valueForStyleAttribute:@"stroke-linecap" fromDefinition:attributes];
     [SVGToQuartz setupLineEndForQuartzContext:quartzContext withSVGLineEndString:lineCapString];
     
-	NSString*	strokeDashString = [[SVGToQuartz valueForStyleAttribute:@"stroke-dasharray" fromDefinition:attributes]
-									stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-	
+    NSString*	strokeDashString = [[SVGToQuartz valueForStyleAttribute:@"stroke-dasharray" fromDefinition:attributes]
+                                    stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    
     NSString*	phaseString = [SVGToQuartz valueForStyleAttribute:@"stroke-dashoffset" fromDefinition:attributes];
     [SVGToQuartz setupLineDashForQuartzContext:quartzContext withSVGDashArray:(NSString*)strokeDashString andPhase:phaseString];
-	
+    
     NSString* colorString = [attributes objectForKey:@"color"];
     [SVGToQuartz setupColorForQuartzContext:quartzContext withColorString:colorString withSVGContext:svgContext];
     
@@ -225,28 +225,28 @@
 
 -(NSString*) valueForStyleAttribute:(NSString*)attributeName
 {
-	NSString* result = [SVGToQuartz valueForStyleAttribute:attributeName fromDefinition:self.attributes];
-	return result;
+    NSString* result = [SVGToQuartz valueForStyleAttribute:attributeName fromDefinition:self.attributes];
+    return result;
 }
 
 -(NSString*) defaultFillColor
 {
-	NSString* result = [self valueForStyleAttribute:@"fill"];
-	if([result length] == 0)
-	{
-		result = kBlackInHex;
-	}
-	return result;
+    NSString* result = [self valueForStyleAttribute:@"fill"];
+    if([result length] == 0)
+    {
+        result = kBlackInHex;
+    }
+    return result;
 }
 
 -(id) initWithDictionary:(NSDictionary*)theDefinition
 {
-	if(nil != (self = [super initWithDictionary:theDefinition]))
-	{
-		NSString*	transformAttribute = [self.attributes objectForKey:@"transform"];
-		transform = SVGTransformToCGAffineTransform(transformAttribute);
-	}
-	return self;
+    if(nil != (self = [super initWithDictionary:theDefinition]))
+    {
+        NSString*	transformAttribute = [self.attributes objectForKey:@"transform"];
+        transform = SVGTransformToCGAffineTransform(transformAttribute);
+    }
+    return self;
 }
 
 
@@ -279,8 +279,8 @@
 
 -(BOOL)	hitTest:(CGPoint) testPoint
 {
-	BOOL	result = NO;
-	return result;
+    BOOL	result = NO;
+    return result;
 }
 
 -(id<GHRenderable>) findRenderableObject:(CGPoint)testPoint withSVGContext:(id<SVGContext>)svgContext
@@ -313,11 +313,11 @@
         loaded = YES;
         NSString* reference = [self.attributes objectForKey:@"xlink:href"];
         NSString* basePath = [self.attributes objectForKey:@"xml:base"];
-		if([basePath length])
-		{
-			reference = [basePath stringByAppendingPathComponent:reference];
-		}
-		NSURL*	referenceURL = [svgContext relativeURL:reference];
+        if([basePath length])
+        {
+            reference = [basePath stringByAppendingPathComponent:reference];
+        }
+        NSURL*	referenceURL = [svgContext relativeURL:reference];
         result = renderer = [[SVGRenderer alloc] initWithContentsOfURL:referenceURL];
     }
     return result;
@@ -386,26 +386,26 @@
 
 -(CGRect) boundsBox
 {
-	CGFloat	xLocation = [[self.attributes objectForKey:@"x"] floatValue];
-	CGFloat yLocation = [[self.attributes objectForKey:@"y"] floatValue];
-	CGFloat width = [[self.attributes objectForKey:@"width"] floatValue];
-	CGFloat height = [[self.attributes objectForKey:@"height"] floatValue];
-	
-	CGRect result = CGRectMake(xLocation, yLocation, width, height);
-	return result;
+    CGFloat	xLocation = [[self.attributes objectForKey:@"x"] floatValue];
+    CGFloat yLocation = [[self.attributes objectForKey:@"y"] floatValue];
+    CGFloat width = [[self.attributes objectForKey:@"width"] floatValue];
+    CGFloat height = [[self.attributes objectForKey:@"height"] floatValue];
+    
+    CGRect result = CGRectMake(xLocation, yLocation, width, height);
+    return result;
 }
 
 -(UIImage*) newNativeImageWithSVGContext:(id<SVGContext>)svgContext
 {
-	__block UIImage* result = nil;
-	NSString* subPath = [self.attributes objectForKey:@"xlink:href"];
+    __block UIImage* result = nil;
+    NSString* subPath = [self.attributes objectForKey:@"xlink:href"];
     NSString* basePath = [self.attributes objectForKey:@"xml:base"];
     
     [SVGToQuartz imageAtXLinkPath:subPath orAtRelativeFilePath:basePath withSVGContext:svgContext
                      intoCallback:^(UIImage *anImage, NSURL *location) {
                          result = anImage;
                      }];
-	return result;
+    return result;
 }
 
 -(CGRect) getBoundingBoxWithSVGContext:(id<SVGContext>)svgContext
@@ -416,32 +416,32 @@
 
 -(BOOL)	hitTest:(CGPoint) testPoint
 {
-	BOOL	result = NO;
-	CGRect myRect = [self boundsBox];
-	
-	CGAffineTransform invertedTransform = CGAffineTransformInvert(self.transform);
-	
-	testPoint = CGPointApplyAffineTransform(testPoint,invertedTransform);
-	
-	if(CGRectContainsPoint(myRect, testPoint))
-	{
-		result = YES;
-	}
-	return result;
+    BOOL	result = NO;
+    CGRect myRect = [self boundsBox];
+    
+    CGAffineTransform invertedTransform = CGAffineTransformInvert(self.transform);
+    
+    testPoint = CGPointApplyAffineTransform(testPoint,invertedTransform);
+    
+    if(CGRectContainsPoint(myRect, testPoint))
+    {
+        result = YES;
+    }
+    return result;
 }
 
 -(void) renderIntoContext:(CGContextRef)quartzContext withSVGContext:(id<SVGContext>)svgContext
 {
-	CGRect myRect = [self boundsBox];
-	NSString* subPath = [self.attributes objectForKey:@"xlink:href"];
-	if([subPath length] && !CGRectIsEmpty(myRect))
-	{
-		UIImage* myImage = [self newNativeImageWithSVGContext:svgContext];
-		if(myImage != nil && myImage.CGImage != 0)
-		{
-			CGContextSaveGState(quartzContext);
-			CGContextConcatCTM(quartzContext, self.transform);
-			CGContextTranslateCTM(quartzContext, myRect.origin.x, myRect.origin.y);
+    CGRect myRect = [self boundsBox];
+    NSString* subPath = [self.attributes objectForKey:@"xlink:href"];
+    if([subPath length] && !CGRectIsEmpty(myRect))
+    {
+        UIImage* myImage = [self newNativeImageWithSVGContext:svgContext];
+        if(myImage != nil && myImage.CGImage != 0)
+        {
+            CGContextSaveGState(quartzContext);
+            CGContextConcatCTM(quartzContext, self.transform);
+            CGContextTranslateCTM(quartzContext, myRect.origin.x, myRect.origin.y);
             
             id clippingObject = [GHClipGroup clipObjectForAttributes:self.attributes withSVGContext:svgContext];
             if(clippingObject)
@@ -449,12 +449,12 @@
                 [clippingObject addToClipForContext:quartzContext  withSVGContext:svgContext objectBoundingBox:CGRectZero];
             }
             
-			myRect.origin.x = 0.0;
-			myRect.origin.y = 0.0;
-			CGContextTranslateCTM(quartzContext, 0, myRect.size.height); // now flip the context upside down to render the image.
-			CGContextScaleCTM(quartzContext, 1.0, -1);
-			
-			CGImageRef   quartzImage =  myImage.CGImage;
+            myRect.origin.x = 0.0;
+            myRect.origin.y = 0.0;
+            CGContextTranslateCTM(quartzContext, 0, myRect.size.height); // now flip the context upside down to render the image.
+            CGContextScaleCTM(quartzContext, 1.0, -1);
+            
+            CGImageRef   quartzImage =  myImage.CGImage;
             if(quartzImage != 0)
             {
                 NSString*	viewPortColorString = [self.attributes objectForKey:@"viewport-fill"];
@@ -506,52 +506,52 @@
                 }
             }
             CGContextRestoreGState(quartzContext);
-		}
-	}
+        }
+    }
 }
 
 -(void) addToClipForContext:(CGContextRef)quartzContext  withSVGContext:(id<SVGContext>)svgContext objectBoundingBox:(CGRect) objectBox
 {
-	CGRect myRect = [self boundsBox];
+    CGRect myRect = [self boundsBox];
     NSString* subPath = [self.attributes objectForKey:@"xlink:href"];
-	if([subPath length] && !CGRectIsEmpty(myRect))
-	{
-		UIImage* myImage = [self newNativeImageWithSVGContext:svgContext];
-		if(myImage != nil && myImage.CGImage != 0)
-		{
+    if([subPath length] && !CGRectIsEmpty(myRect))
+    {
+        UIImage* myImage = [self newNativeImageWithSVGContext:svgContext];
+        if(myImage != nil && myImage.CGImage != 0)
+        {
             CGAffineTransform oldTransform = CGContextGetCTM(quartzContext);
-			CGContextConcatCTM(quartzContext, self.transform);
-			CGContextTranslateCTM(quartzContext, myRect.origin.x, myRect.origin.y);
-			myRect.origin.x = 0.0;
-			myRect.origin.y = 0.0;
-			CGContextTranslateCTM(quartzContext, 0, myRect.size.height);
-			CGContextScaleCTM(quartzContext, 1.0, -1);
-			
-			CGImageRef   quartzImage =  myImage.CGImage;
+            CGContextConcatCTM(quartzContext, self.transform);
+            CGContextTranslateCTM(quartzContext, myRect.origin.x, myRect.origin.y);
+            myRect.origin.x = 0.0;
+            myRect.origin.y = 0.0;
+            CGContextTranslateCTM(quartzContext, 0, myRect.size.height);
+            CGContextScaleCTM(quartzContext, 1.0, -1);
             
-			CGRect	drawRect = myRect;
-			NSString* preserveAspectRatioString = [self.attributes objectForKey:@"preserveAspectRatio"];
-			if(preserveAspectRatioString != nil && ![preserveAspectRatioString isEqualToString:@"none"])
-			{
-				CGFloat	naturalWidth = CGImageGetWidth(quartzImage);
-				CGFloat	naturalHeight = CGImageGetHeight(quartzImage);
-				CGSize	naturalSize = CGSizeMake(naturalWidth, naturalHeight);
-				drawRect = [SVGToQuartz aspectRatioDrawRectFromString:preserveAspectRatioString givenBounds:drawRect naturalSize:naturalSize];
-			}
-			if(!CGRectIsEmpty(drawRect))
-			{
+            CGImageRef   quartzImage =  myImage.CGImage;
+            
+            CGRect	drawRect = myRect;
+            NSString* preserveAspectRatioString = [self.attributes objectForKey:@"preserveAspectRatio"];
+            if(preserveAspectRatioString != nil && ![preserveAspectRatioString isEqualToString:@"none"])
+            {
+                CGFloat	naturalWidth = CGImageGetWidth(quartzImage);
+                CGFloat	naturalHeight = CGImageGetHeight(quartzImage);
+                CGSize	naturalSize = CGSizeMake(naturalWidth, naturalHeight);
+                drawRect = [SVGToQuartz aspectRatioDrawRectFromString:preserveAspectRatioString givenBounds:drawRect naturalSize:naturalSize];
+            }
+            if(!CGRectIsEmpty(drawRect))
+            {
                 CGContextClipToMask(quartzContext, drawRect, quartzImage);
-			}
+            }
             
             
             CGAffineTransform modifiedTransform = CGContextGetCTM(quartzContext);
             
             CGAffineTransform invertedModifiedTransform = CGAffineTransformInvert(modifiedTransform);
-			CGContextConcatCTM(quartzContext, invertedModifiedTransform); // set the context's transform back to 1 1 1 0 0
-			CGContextConcatCTM(quartzContext, oldTransform); // set the tranform back to where I started. not using CGContextRestoreGState because it would undo my clipping
+            CGContextConcatCTM(quartzContext, invertedModifiedTransform); // set the context's transform back to 1 1 1 0 0
+            CGContextConcatCTM(quartzContext, oldTransform); // set the tranform back to where I started. not using CGContextRestoreGState because it would undo my clipping
             
-		}
-	}
+        }
+    }
 }
 
 -(ClippingType) getClippingTypeWithSVGContext:(id<SVGContext>)svgContext
@@ -573,18 +573,18 @@
 
 -(CGPathRef) newQuartzPath
 {
-	return 0;
+    return 0;
 }
 
 -(void) setupContext:(CGContextRef)quartzContext withAttributes:(NSDictionary*)attributes withSVGContext:(id<SVGContext>)svgContext
 {
-	[super	setupContext:quartzContext withAttributes:self.attributes withSVGContext:svgContext];
+    [super	setupContext:quartzContext withAttributes:self.attributes withSVGContext:svgContext];
 }
 
 -(void) addPathToQuartzContext:(CGContextRef) quartzContext
 {
-	CGPathRef	myPath  = self.quartzPath;
-	CGContextAddPath(quartzContext, myPath);
+    CGPathRef	myPath  = self.quartzPath;
+    CGContextAddPath(quartzContext, myPath);
 }
 
 
@@ -594,41 +594,41 @@
 @synthesize	isClosed, strokeColor=_strokeColor,  quartzPath=_quartzPath;
 -(CGPathRef) quartzPath
 {
-	if(_quartzPath == 0)
-	{
-		_quartzPath = [self newQuartzPath];
-	}
-	return _quartzPath;
+    if(_quartzPath == 0)
+    {
+        _quartzPath = [self newQuartzPath];
+    }
+    return _quartzPath;
 }
 
 -(NSString*) strokeColor
 {
-	NSString* result = [self valueForStyleAttribute:@"stroke"];
-	return result;
+    NSString* result = [self valueForStyleAttribute:@"stroke"];
+    return result;
 }
 
 -(BOOL) isClosed
 {
-	BOOL	result = NO;
-	return result;
+    BOOL	result = NO;
+    return result;
 }
 
 -(BOOL)	hitTest:(CGPoint) testPoint
 {
-	BOOL	result = NO;
-	
-	if(self.isClosed)
-	{
-		CGPathRef	myPath  = self.quartzPath;
-		
-		CGAffineTransform invertedTransform = CGAffineTransformInvert(self.transform);
-		if(CGPathContainsPoint(myPath, &invertedTransform, testPoint, false))
-		{
-			result = YES;
-		}
-	}
-	
-	return result;
+    BOOL	result = NO;
+    
+    if(self.isClosed)
+    {
+        CGPathRef	myPath  = self.quartzPath;
+        
+        CGAffineTransform invertedTransform = CGAffineTransformInvert(self.transform);
+        if(CGPathContainsPoint(myPath, &invertedTransform, testPoint, false))
+        {
+            result = YES;
+        }
+    }
+    
+    return result;
 }
 
 -(CGRect) getBoundingBoxWithSVGContext:(id<SVGContext>)svgContext
@@ -654,11 +654,11 @@
 
 -(void) renderIntoContext:(CGContextRef)quartzContext  withSVGContext:(id<SVGContext>)svgContext
 {
-	CGContextSaveGState(quartzContext);
-	CGContextConcatCTM(quartzContext, self.transform);
-	[self setupContext:quartzContext withAttributes:self.attributes withSVGContext:svgContext];
-	UIColor* strokeColorUI = nil;
-	NSString* strokeColorString = self.strokeColor;
+    CGContextSaveGState(quartzContext);
+    CGContextConcatCTM(quartzContext, self.transform);
+    [self setupContext:quartzContext withAttributes:self.attributes withSVGContext:svgContext];
+    UIColor* strokeColorUI = nil;
+    NSString* strokeColorString = self.strokeColor;
     
     GHGradient* gradientToStroke = nil;
     
@@ -674,13 +674,13 @@
             gradientToStroke = aColor;
         }
     }
-	
-	NSString* fillString = [self valueForStyleAttribute:@"fill"];
-	CGPathDrawingMode drawingMode = kCGPathStroke;
-	
-	
-	NSString* fillRuleString = [self valueForStyleAttribute:@"fill-rule"];
-	BOOL	evenOddFill = [fillRuleString isEqualToString:@"evenodd"];
+    
+    NSString* fillString = [self valueForStyleAttribute:@"fill"];
+    CGPathDrawingMode drawingMode = kCGPathStroke;
+    
+    
+    NSString* fillRuleString = [self valueForStyleAttribute:@"fill-rule"];
+    BOOL	evenOddFill = [fillRuleString isEqualToString:@"evenodd"];
     if(!evenOddFill)
     {// we might be in a clip path
         fillRuleString = [self valueForStyleAttribute:@"clip-rule"];
@@ -688,25 +688,25 @@
     }
     
     
-	NSString* fillOpacityString = [self valueForStyleAttribute:@"fill-opacity"];
-	CGFloat	fillOpacity = 1.0;
-	if([fillOpacityString length])
-	{
-		fillOpacity = [fillOpacityString floatValue];
-		if(fillOpacity < 0.0) fillOpacity = 0.0;
-		if(fillOpacity > 1.0) fillOpacity = 1.0;
-	}
-	NSString* strokeOpacityString = [self valueForStyleAttribute:@"stroke-opacity"];
-	CGFloat strokeOpacity = 1.0;
-	
-	if([strokeOpacityString length])
-	{
-		strokeOpacity = [strokeOpacityString floatValue];
-		if(strokeOpacity < 0.0) strokeOpacity = 0.0;
-		if(strokeOpacity > 1.0) strokeOpacity = 1.0;
-	}
-	
-	BOOL	fillIt = (fillOpacity > 0.0 && ![fillString isEqualToString:@"none"]);
+    NSString* fillOpacityString = [self valueForStyleAttribute:@"fill-opacity"];
+    CGFloat	fillOpacity = 1.0;
+    if([fillOpacityString length])
+    {
+        fillOpacity = [fillOpacityString floatValue];
+        if(fillOpacity < 0.0) fillOpacity = 0.0;
+        if(fillOpacity > 1.0) fillOpacity = 1.0;
+    }
+    NSString* strokeOpacityString = [self valueForStyleAttribute:@"stroke-opacity"];
+    CGFloat strokeOpacity = 1.0;
+    
+    if([strokeOpacityString length])
+    {
+        strokeOpacity = [strokeOpacityString floatValue];
+        if(strokeOpacity < 0.0) strokeOpacity = 0.0;
+        if(strokeOpacity > 1.0) strokeOpacity = 1.0;
+    }
+    
+    BOOL	fillIt = (fillOpacity > 0.0 && ![fillString isEqualToString:@"none"]);
     if(fillIt && self.isClosed)
     {
     }
@@ -715,17 +715,17 @@
         fillIt = fillString.length > 0;
     }
     
-	BOOL strokeIt = (strokeOpacity > 0.0 && (strokeColorString != nil && ![strokeColorString isEqualToString:@"none"]));
-	
+    BOOL strokeIt = (strokeOpacity > 0.0 && (strokeColorString != nil && ![strokeColorString isEqualToString:@"none"]));
+    
     GHGradient* gradientToFill = nil;
-	if(fillIt)
-	{
-		UIColor* colorToFill = self.fillColor;
-		
-		if(colorToFill == nil)
-		{
-			NSString*	colorToUse = [self defaultFillColor];
-			if(IsStringURL(fillString))
+    if(fillIt)
+    {
+        UIColor* colorToFill = self.fillColor;
+        
+        if(colorToFill == nil)
+        {
+            NSString*	colorToUse = [self defaultFillColor];
+            if(IsStringURL(fillString))
             {
                 id aColor = [svgContext objectAtURL:fillString];
                 if([aColor isKindOfClass:[GHSolidColor class]])
@@ -747,26 +747,26 @@
                 self.fillColor = colorToFill;
             }
             
-		}
-		if(fillOpacity != 1.0)
-		{
-			colorToFill = [colorToFill colorWithAlphaComponent:fillOpacity];
-		}
+        }
+        if(fillOpacity != 1.0)
+        {
+            colorToFill = [colorToFill colorWithAlphaComponent:fillOpacity];
+        }
         if(colorToFill != nil)
         {
             CGContextSetFillColorWithColor(quartzContext, colorToFill.CGColor);
         }
-		if(evenOddFill)
-		{
-			drawingMode = strokeIt?kCGPathEOFillStroke:kCGPathEOFill;
-		}
-		else
-		{
-			drawingMode = strokeIt?kCGPathFillStroke:kCGPathFill;
-		}
-	}
-	if(strokeIt)
-	{
+        if(evenOddFill)
+        {
+            drawingMode = strokeIt?kCGPathEOFillStroke:kCGPathEOFill;
+        }
+        else
+        {
+            drawingMode = strokeIt?kCGPathFillStroke:kCGPathFill;
+        }
+    }
+    if(strokeIt)
+    {
         if(strokeColorUI == nil && self.strokeColor != nil)
         {
             strokeColorUI = [svgContext colorForSVGColorString:self.strokeColor];
@@ -779,12 +779,12 @@
             }
             CGContextSetStrokeColorWithColor(quartzContext, strokeColorUI.CGColor);
         }
-	}
+    }
     
     if(gradientToFill != nil)
     {
         CGContextSaveGState(quartzContext);
-		[self addPathToQuartzContext:quartzContext];
+        [self addPathToQuartzContext:quartzContext];
         CGContextRestoreGState(quartzContext);
         CGRect myBox  =  CGPathGetPathBoundingBox(self.quartzPath);
         if(fillOpacity < 1.0)
@@ -792,7 +792,7 @@
             CGContextSaveGState(quartzContext);
             CGContextSetAlpha(quartzContext, fillOpacity);
         }
-
+        
         [gradientToFill fillPathToContext:quartzContext withSVGContext:svgContext objectBoundingBox:myBox];
         if(fillOpacity < 1.0)
         {
@@ -831,24 +831,24 @@
         }
     }
     
-	if(fillIt || strokeIt)
-	{
-		[self addPathToQuartzContext:quartzContext];
+    if(fillIt || strokeIt)
+    {
+        [self addPathToQuartzContext:quartzContext];
         
         CGContextDrawPath(quartzContext, drawingMode);
-		
-	}
-	CGContextRestoreGState(quartzContext);
+        
+    }
+    CGContextRestoreGState(quartzContext);
 }
 
 -(void) addToClipForContext:(CGContextRef)quartzContext  withSVGContext:(id<SVGContext>)svgContext objectBoundingBox:(CGRect) objectBox
 {
-	CGContextSaveGState(quartzContext);
+    CGContextSaveGState(quartzContext);
     CGContextConcatCTM(quartzContext, self.transform);
     [self addPathToQuartzContext:quartzContext];
-	CGContextRestoreGState(quartzContext);
-	NSString* fillRuleString = [self valueForStyleAttribute:@"clip-rule"];
-	BOOL	evenOddFill = [fillRuleString isEqualToString:@"evenodd"];
+    CGContextRestoreGState(quartzContext);
+    NSString* fillRuleString = [self valueForStyleAttribute:@"clip-rule"];
+    BOOL	evenOddFill = [fillRuleString isEqualToString:@"evenodd"];
     if(evenOddFill)
     {
         CGContextEOClip(quartzContext);
@@ -865,15 +865,15 @@
     CGContextSaveGState(quartzContext);
     CGContextConcatCTM(quartzContext, self.transform);
     [self addPathToQuartzContext:quartzContext];
-	CGContextRestoreGState(quartzContext);
+    CGContextRestoreGState(quartzContext);
 }
 
 -(ClippingType) getClippingTypeWithSVGContext:(id<SVGContext>)svgContext
 {
     ClippingType result = kPathClippingType;
     
-	NSString* fillRuleString = [self valueForStyleAttribute:@"clip-rule"];
-	BOOL	evenOddFill = [fillRuleString isEqualToString:@"evenodd"];
+    NSString* fillRuleString = [self valueForStyleAttribute:@"clip-rule"];
+    BOOL	evenOddFill = [fillRuleString isEqualToString:@"evenodd"];
     if(evenOddFill)
     {
         result = kEvenOddPathClippingType;
@@ -883,7 +883,7 @@
 
 -(void) dealloc
 {
-	CGPathRelease(_quartzPath);
+    CGPathRelease(_quartzPath);
 }
 
 @end
@@ -891,18 +891,18 @@
 @implementation GHCircle
 -(CGPathRef) newQuartzPath
 {
-	CGMutablePathRef	mutableResult = CGPathCreateMutable();
-	CGFloat		centerX = [[self.attributes objectForKey:@"cx"] floatValue];
-	CGFloat		centerY = [[self.attributes objectForKey:@"cy"] floatValue];
-	CGFloat		radiusX = [[self.attributes objectForKey:@"r"] floatValue];
-	CGFloat		radiusY = radiusX;
-	
-	CGRect		ellipseBox = CGRectMake(centerX-radiusX, centerY-radiusY, 2.0f*radiusX, 2.0f*radiusY);
-	CGPathAddEllipseInRect(mutableResult, NULL, ellipseBox);
-	
-	CGPathRef result = CGPathCreateCopy(mutableResult);
-	CGPathRelease(mutableResult);
-	return result;
+    CGMutablePathRef	mutableResult = CGPathCreateMutable();
+    CGFloat		centerX = [[self.attributes objectForKey:@"cx"] floatValue];
+    CGFloat		centerY = [[self.attributes objectForKey:@"cy"] floatValue];
+    CGFloat		radiusX = [[self.attributes objectForKey:@"r"] floatValue];
+    CGFloat		radiusY = radiusX;
+    
+    CGRect		ellipseBox = CGRectMake(centerX-radiusX, centerY-radiusY, 2.0f*radiusX, 2.0f*radiusY);
+    CGPathAddEllipseInRect(mutableResult, NULL, ellipseBox);
+    
+    CGPathRef result = CGPathCreateCopy(mutableResult);
+    CGPathRelease(mutableResult);
+    return result;
 }
 @end
 
@@ -910,25 +910,25 @@
 
 -(BOOL) isClosed
 {
-	BOOL	result = NO;
-	return result;
+    BOOL	result = NO;
+    return result;
 }
 
 -(CGPathRef) newQuartzPath
 {
-	CGMutablePathRef	mutableResult = CGPathCreateMutable();
-	CGFloat		startX = [[self.attributes objectForKey:@"x1"] floatValue];
-	CGFloat		startY = [[self.attributes objectForKey:@"y1"] floatValue];
-	CGFloat		endX = [[self.attributes objectForKey:@"x2"] floatValue];
-	CGFloat		endY = [[self.attributes objectForKey:@"y2"] floatValue];
-	
-	
-	CGPathMoveToPoint(mutableResult, NULL, startX, startY);
-	CGPathAddLineToPoint(mutableResult, NULL, endX, endY);
-	
-	CGPathRef result = CGPathCreateCopy(mutableResult);
-	CGPathRelease(mutableResult);
-	return result;
+    CGMutablePathRef	mutableResult = CGPathCreateMutable();
+    CGFloat		startX = [[self.attributes objectForKey:@"x1"] floatValue];
+    CGFloat		startY = [[self.attributes objectForKey:@"y1"] floatValue];
+    CGFloat		endX = [[self.attributes objectForKey:@"x2"] floatValue];
+    CGFloat		endY = [[self.attributes objectForKey:@"y2"] floatValue];
+    
+    
+    CGPathMoveToPoint(mutableResult, NULL, startX, startY);
+    CGPathAddLineToPoint(mutableResult, NULL, endX, endY);
+    
+    CGPathRef result = CGPathCreateCopy(mutableResult);
+    CGPathRelease(mutableResult);
+    return result;
 }
 
 @end
@@ -937,14 +937,14 @@
 
 -(BOOL) isClosed
 {
-	BOOL	result = NO;
-	return result;
+    BOOL	result = NO;
+    return result;
 }
 
 -(NSString*) renderingPath // Path will take our points and treat them like a M operation followed by a series of implied Line tos
 {
-	NSString* result = [self.attributes objectForKey:@"points"];
-	NSArray* testComponent = [result componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@", "]];
+    NSString* result = [self.attributes objectForKey:@"points"];
+    NSArray* testComponent = [result componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@", "]];
     
     NSMutableArray* mutableTestComponent = [testComponent mutableCopy];
     [mutableTestComponent removeObject:@""];// what if there was both a space and a ,
@@ -954,11 +954,11 @@
         result = [mutableTestComponent componentsJoinedByString:@","];
     }
     
-	if([testComponent count] & 1)
-	{
-		result = nil;
-	}
-	return result;
+    if([testComponent count] & 1)
+    {
+        result = nil;
+    }
+    return result;
 }
 @end
 
@@ -966,14 +966,14 @@
 
 -(BOOL) isClosed
 {
-	BOOL	result = YES;
-	return result;
+    BOOL	result = YES;
+    return result;
 }
 
 -(NSString*) renderingPath // Path will take our points and treat them like a M operation followed by a series of implied Line tos
 {		// followed by a close
-	NSString* result = [self.attributes objectForKey:@"points"];
-	NSArray* testComponent = [result componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@", "]];
+    NSString* result = [self.attributes objectForKey:@"points"];
+    NSArray* testComponent = [result componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@", "]];
     NSMutableArray* mutableTestComponent = [testComponent mutableCopy];
     [mutableTestComponent removeObject:@""];// what if there was both a space and a ,
     if(mutableTestComponent.count != testComponent.count)
@@ -981,12 +981,12 @@
         testComponent = mutableTestComponent;
         result = [mutableTestComponent componentsJoinedByString:@","];
     }
-	if([testComponent count] & 1)
-	{// need an even number of x, y values
-		result = nil;
-	}
-	result = [result stringByAppendingString:@" z"];
-	return result;
+    if([testComponent count] & 1)
+    {// need an even number of x, y values
+        result = nil;
+    }
+    result = [result stringByAppendingString:@" z"];
+    return result;
 }
 
 @end
@@ -995,29 +995,29 @@
 
 -(BOOL) isClosed
 {
-	BOOL	result = YES;
-	return result;
+    BOOL	result = YES;
+    return result;
 }
 
 -(CGPathRef) newQuartzPath
 {
-	CGPathRef result = 0;
-	CGFloat		centerX = [[self.attributes objectForKey:@"cx"] floatValue];
-	CGFloat		centerY = [[self.attributes objectForKey:@"cy"] floatValue];
-	CGFloat		radiusX = [[self.attributes objectForKey:@"rx"] floatValue];
-	CGFloat		radiusY = [[self.attributes objectForKey:@"ry"] floatValue];
-	
-	CGRect		ellipseBox = CGRectMake(centerX-radiusX, centerY-radiusY, 2.0f*radiusX, 2.0f*radiusY);
-	if(!CGRectIsEmpty(ellipseBox))
-	{
+    CGPathRef result = 0;
+    CGFloat		centerX = [[self.attributes objectForKey:@"cx"] floatValue];
+    CGFloat		centerY = [[self.attributes objectForKey:@"cy"] floatValue];
+    CGFloat		radiusX = [[self.attributes objectForKey:@"rx"] floatValue];
+    CGFloat		radiusY = [[self.attributes objectForKey:@"ry"] floatValue];
+    
+    CGRect		ellipseBox = CGRectMake(centerX-radiusX, centerY-radiusY, 2.0f*radiusX, 2.0f*radiusY);
+    if(!CGRectIsEmpty(ellipseBox))
+    {
         
-		CGMutablePathRef	mutableResult = CGPathCreateMutable();
-		CGPathAddEllipseInRect(mutableResult, NULL, ellipseBox);
-		
-		result = CGPathCreateCopy(mutableResult);
-		CGPathRelease(mutableResult);
-	}
-	return result;
+        CGMutablePathRef	mutableResult = CGPathCreateMutable();
+        CGPathAddEllipseInRect(mutableResult, NULL, ellipseBox);
+        
+        result = CGPathCreateCopy(mutableResult);
+        CGPathRelease(mutableResult);
+    }
+    return result;
 }
 
 @end
@@ -1026,121 +1026,121 @@
 
 -(CGRect) asCGRect
 {
-	CGFloat		originX = [[self.attributes objectForKey:@"x"] floatValue];
-	CGFloat		originY = [[self.attributes objectForKey:@"y"] floatValue];
-	CGFloat		width = [[self.attributes objectForKey:@"width"] floatValue];
-	CGFloat		height = [[self.attributes objectForKey:@"height"] floatValue];
-	
-	CGRect		result = CGRectMake(originX, originY, width, height);
-	return result;
+    CGFloat		originX = [[self.attributes objectForKey:@"x"] floatValue];
+    CGFloat		originY = [[self.attributes objectForKey:@"y"] floatValue];
+    CGFloat		width = [[self.attributes objectForKey:@"width"] floatValue];
+    CGFloat		height = [[self.attributes objectForKey:@"height"] floatValue];
+    
+    CGRect		result = CGRectMake(originX, originY, width, height);
+    return result;
 }
 
 
 
 -(BOOL)	hitTest:(CGPoint) testPoint
 {
-	BOOL	result = [super hitTest:testPoint];
-	[self asCGRect];
-	return result;
+    BOOL	result = [super hitTest:testPoint];
+    [self asCGRect];
+    return result;
 }
 
 -(BOOL) isClosed
 {
-	BOOL	result = YES;
-	return result;
+    BOOL	result = YES;
+    return result;
 }
 
 -(CGPathRef) newQuartzPath
 {
-	CGPathRef result = 0;
-	CGRect theRectangle = [self asCGRect];
-	if(!CGRectIsEmpty(theRectangle))
-	{
-		CGMutablePathRef	mutableResult = CGPathCreateMutable();
+    CGPathRef result = 0;
+    CGRect theRectangle = [self asCGRect];
+    if(!CGRectIsEmpty(theRectangle))
+    {
+        CGMutablePathRef	mutableResult = CGPathCreateMutable();
         
-		NSString* radiusXString = [self.attributes objectForKey:@"rx"];
-		NSString* radiusYString = [self.attributes objectForKey:@"ry"];
-		
-		if(radiusXString == nil) radiusXString = radiusYString;
-		if(radiusYString == nil) radiusYString = radiusXString;
+        NSString* radiusXString = [self.attributes objectForKey:@"rx"];
+        NSString* radiusYString = [self.attributes objectForKey:@"ry"];
         
-		if([radiusXString doubleValue] > 0 && [radiusYString doubleValue] > 0.0)
-			// a round rect
-		{
-			CGFloat	xRadius = [radiusXString floatValue];
-			CGFloat yRadius = [radiusYString	floatValue];
-			BOOL	useLargeArc = NO;
-			BOOL	sweepIt = YES;
-			
-			if(xRadius > theRectangle.size.width/2.0)
-			{
-				xRadius = theRectangle.size.width/2.0f;
-			}
-			
-			if(yRadius > theRectangle.size.height/2.0)
-			{
-				yRadius = theRectangle.size.height/2.0f;
-			}
-			
-			CGPathMoveToPoint(mutableResult, NULL, theRectangle.origin.x+xRadius, theRectangle.origin.y);
-			
-			CGPathAddLineToPoint(mutableResult, NULL,
-								 theRectangle.origin.x+theRectangle.size.width-xRadius,
-								 theRectangle.origin.y);
-			
-			AddSVGArcToPath(mutableResult, xRadius,  yRadius,
-							M_PI_2,
-							useLargeArc, sweepIt,
-							theRectangle.origin.x+theRectangle.size.width, theRectangle.origin.y+yRadius);
-			
-			CGPathAddLineToPoint(mutableResult, NULL,
-								 theRectangle.origin.x+theRectangle.size.width,
-								 theRectangle.origin.y+theRectangle.size.height-yRadius);
-			
-			
-			
-			AddSVGArcToPath(mutableResult, xRadius,  yRadius,
-							M_PI_2,
-							useLargeArc, sweepIt,
-							theRectangle.origin.x+theRectangle.size.width-xRadius,
-							theRectangle.origin.y+theRectangle.size.height);
-			
-			CGPathAddLineToPoint(mutableResult, NULL,
-								 theRectangle.origin.x+xRadius,
-								 theRectangle.origin.y+theRectangle.size.height);
-			
-			AddSVGArcToPath(mutableResult, xRadius,  yRadius,
-							M_PI_2,
-							useLargeArc, sweepIt,
-							theRectangle.origin.x,
-							theRectangle.origin.y+theRectangle.size.height-yRadius);
-			
-			
-			
-			CGPathAddLineToPoint(mutableResult, NULL,
-								 theRectangle.origin.x,
-								 theRectangle.origin.y+yRadius);
-			
-			
-			AddSVGArcToPath(mutableResult, xRadius,  yRadius,
-							M_PI_2,
-							useLargeArc, sweepIt,
-							theRectangle.origin.x+xRadius,
-							theRectangle.origin.y);
-			
-			
-			CGPathCloseSubpath(mutableResult);
-			
-		}
-		else
-		{
-			CGPathAddRect(mutableResult,NULL, theRectangle);
-		}
-		
-		result = CGPathCreateCopy(mutableResult);
-		CGPathRelease(mutableResult);
-	}
-	return result;
+        if(radiusXString == nil) radiusXString = radiusYString;
+        if(radiusYString == nil) radiusYString = radiusXString;
+        
+        if([radiusXString doubleValue] > 0 && [radiusYString doubleValue] > 0.0)
+            // a round rect
+        {
+            CGFloat	xRadius = [radiusXString floatValue];
+            CGFloat yRadius = [radiusYString	floatValue];
+            BOOL	useLargeArc = NO;
+            BOOL	sweepIt = YES;
+            
+            if(xRadius > theRectangle.size.width/2.0)
+            {
+                xRadius = theRectangle.size.width/2.0f;
+            }
+            
+            if(yRadius > theRectangle.size.height/2.0)
+            {
+                yRadius = theRectangle.size.height/2.0f;
+            }
+            
+            CGPathMoveToPoint(mutableResult, NULL, theRectangle.origin.x+xRadius, theRectangle.origin.y);
+            
+            CGPathAddLineToPoint(mutableResult, NULL,
+                                 theRectangle.origin.x+theRectangle.size.width-xRadius,
+                                 theRectangle.origin.y);
+            
+            AddSVGArcToPath(mutableResult, xRadius,  yRadius,
+                            M_PI_2,
+                            useLargeArc, sweepIt,
+                            theRectangle.origin.x+theRectangle.size.width, theRectangle.origin.y+yRadius);
+            
+            CGPathAddLineToPoint(mutableResult, NULL,
+                                 theRectangle.origin.x+theRectangle.size.width,
+                                 theRectangle.origin.y+theRectangle.size.height-yRadius);
+            
+            
+            
+            AddSVGArcToPath(mutableResult, xRadius,  yRadius,
+                            M_PI_2,
+                            useLargeArc, sweepIt,
+                            theRectangle.origin.x+theRectangle.size.width-xRadius,
+                            theRectangle.origin.y+theRectangle.size.height);
+            
+            CGPathAddLineToPoint(mutableResult, NULL,
+                                 theRectangle.origin.x+xRadius,
+                                 theRectangle.origin.y+theRectangle.size.height);
+            
+            AddSVGArcToPath(mutableResult, xRadius,  yRadius,
+                            M_PI_2,
+                            useLargeArc, sweepIt,
+                            theRectangle.origin.x,
+                            theRectangle.origin.y+theRectangle.size.height-yRadius);
+            
+            
+            
+            CGPathAddLineToPoint(mutableResult, NULL,
+                                 theRectangle.origin.x,
+                                 theRectangle.origin.y+yRadius);
+            
+            
+            AddSVGArcToPath(mutableResult, xRadius,  yRadius,
+                            M_PI_2,
+                            useLargeArc, sweepIt,
+                            theRectangle.origin.x+xRadius,
+                            theRectangle.origin.y);
+            
+            
+            CGPathCloseSubpath(mutableResult);
+            
+        }
+        else
+        {
+            CGPathAddRect(mutableResult,NULL, theRectangle);
+        }
+        
+        result = CGPathCreateCopy(mutableResult);
+        CGPathRelease(mutableResult);
+    }
+    return result;
 }
 
 @end
@@ -1148,14 +1148,14 @@
 @implementation GHPath
 -(NSString*) renderingPath
 {
-	NSString* result = [self.attributes objectForKey:@"d"];
-	return result;
+    NSString* result = [self.attributes objectForKey:@"d"];
+    return result;
 }
 
 -(BOOL) isClosed
 {
-	BOOL	result = [[self.renderingPath stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] hasSuffix:@"z"];
-	return result;
+    BOOL	result = [[self.renderingPath stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] hasSuffix:@"z"];
+    return result;
 }
 
 -(CGPathRef) newQuartzPath
@@ -1210,7 +1210,7 @@
 @interface GHShapeGroup()
 {
 @private
-	CGAffineTransform	transform;
+    CGAffineTransform	transform;
 }
 -(BOOL) usesParentsCoordinates;
 -(void)setCloneTransform:(CGAffineTransform)newTransform;
@@ -1268,239 +1268,194 @@
     transform = newTransform;
 }
 
++(NSDictionary*) nameToClassMap
+{
+    static NSDictionary* sResult = nil;
+    static dispatch_once_t  done;
+    dispatch_once(&done, ^{
+        NSDictionary* result = @{@"g":[GHShapeGroup class],
+                                 @"switch":[GHSwitchGroup class],
+                                 @"defs":[GHDefinitionGroup class],
+                                 @"rect":[GHRectangle class],
+                                 @"text":[GHText class],
+                                 @"textArea":[GHTextArea class],
+                                 @"path":[GHPath class],
+                                 @"polygon":[GHPolygon class],
+                                 @"polyline":[GHPolyline class],
+                                 @"ellipse":[GHEllipse class],
+                                 @"circle":[GHCircle class],
+                                 @"line":[GHLine class],
+                                 @"image":[GHImage class],
+                                 @"use":[GHRenderableObjectPlaceholder class],
+                                 @"clipPath":[GHClipGroup class],
+                                 @"mask":[GHMask class],
+                                 @"solidColor":[GHSolidColor class],
+                                 @"linearGradient":[GHLinearGradient class],
+                                 @"radialGradient":[GHRadialGradient class]
+                                 };
+        sResult = result;
+    });
+    return sResult;
+    
+}
+
 -(NSArray*) children
 {
     NSArray* result = _children;
     if(result == nil)
     {
         NSMutableArray* mutableChildren = [[NSMutableArray alloc] initWithCapacity:[self.childDefinitions count]];
-		
-		NSDictionary* groupsFontAttributes = [SVGTextUtilities fontAttributesFromSVGAttributes:self.attributes];
-		NSMutableDictionary* groupsSharedAttributes = [NSMutableDictionary dictionary];
-		
-		NSString* fillSetting = [self.attributes objectForKey:@"fill"];
-		if([fillSetting length])
-		{
-			[groupsSharedAttributes setObject:fillSetting forKey:@"fill"];
-		}
-		
-		NSString* strokeSetting = [self.attributes objectForKey:@"stroke"];
-		if([strokeSetting length])
-		{
-			[groupsSharedAttributes setObject:strokeSetting forKey:@"stroke"];
-		}
-		
-		NSString* colorSetting = [self.attributes objectForKey:@"color"];
-		if([colorSetting length] && ![colorSetting isEqualToString:@"inherit"])
-		{
-			[groupsSharedAttributes setObject:colorSetting forKey:@"color"];
-		}
-		
-		NSString* fillOpacitySetting = [self.attributes objectForKey:@"fill-opacity"];
-		if([fillOpacitySetting length] && ![fillOpacitySetting isEqualToString:@"inherit"])
-		{
-			[groupsSharedAttributes setObject:fillOpacitySetting forKey:@"fill-opacity"];
-		}
-		
-		NSString* xmlBaseString = [self.attributes objectForKey:@"xml:base"];
-		if([xmlBaseString length] && ![xmlBaseString isEqualToString:@"inherit"])
-		{
-			[groupsSharedAttributes setObject:xmlBaseString forKey:@"xml:base"];
-		}
-		
-		NSString* strokeOpacitySetting = [self.attributes objectForKey:@"stroke-opacity"];
-		if([strokeOpacitySetting length] && ![strokeOpacitySetting isEqualToString:@"inherit"])
-		{
-			[groupsSharedAttributes setObject:strokeOpacitySetting forKey:@"stroke-opacity"];
-		}
+        
+        NSDictionary* groupsFontAttributes = [SVGTextUtilities fontAttributesFromSVGAttributes:self.attributes];
+        NSMutableDictionary* groupsSharedAttributes = [NSMutableDictionary dictionary];
+        
+        NSString* fillSetting = [self.attributes objectForKey:@"fill"];
+        if([fillSetting length])
+        {
+            [groupsSharedAttributes setObject:fillSetting forKey:@"fill"];
+        }
+        
+        NSString* strokeSetting = [self.attributes objectForKey:@"stroke"];
+        if([strokeSetting length])
+        {
+            [groupsSharedAttributes setObject:strokeSetting forKey:@"stroke"];
+        }
+        
+        NSString* colorSetting = [self.attributes objectForKey:@"color"];
+        if([colorSetting length] && ![colorSetting isEqualToString:@"inherit"])
+        {
+            [groupsSharedAttributes setObject:colorSetting forKey:@"color"];
+        }
+        
+        NSString* fillOpacitySetting = [self.attributes objectForKey:@"fill-opacity"];
+        if([fillOpacitySetting length] && ![fillOpacitySetting isEqualToString:@"inherit"])
+        {
+            [groupsSharedAttributes setObject:fillOpacitySetting forKey:@"fill-opacity"];
+        }
+        
+        NSString* xmlBaseString = [self.attributes objectForKey:@"xml:base"];
+        if([xmlBaseString length] && ![xmlBaseString isEqualToString:@"inherit"])
+        {
+            [groupsSharedAttributes setObject:xmlBaseString forKey:@"xml:base"];
+        }
+        
+        NSString* strokeOpacitySetting = [self.attributes objectForKey:@"stroke-opacity"];
+        if([strokeOpacitySetting length] && ![strokeOpacitySetting isEqualToString:@"inherit"])
+        {
+            [groupsSharedAttributes setObject:strokeOpacitySetting forKey:@"stroke-opacity"];
+        }
         
         NSString* stopColorSetting = [self.attributes objectForKey:@"stop-color"];
         if([stopColorSetting length] && ![stopColorSetting isEqualToString:@"inherit"])
-		{
-			[groupsSharedAttributes setObject:stopColorSetting forKey:@"stop-color"];
-		}
+        {
+            [groupsSharedAttributes setObject:stopColorSetting forKey:@"stop-color"];
+        }
         
         NSString* stopOpacitySetting = [self.attributes objectForKey:@"stop-opacity"];
         if([stopOpacitySetting length] && ![stopOpacitySetting isEqualToString:@"inherit"])
-		{
-			[groupsSharedAttributes setObject:stopOpacitySetting forKey:@"stop-opacity"];
-		}
-		
-		for(id aChild in self.childDefinitions)
-		{
-			if([aChild isKindOfClass:[NSDictionary class]])
-			{
-				NSDictionary* aDefinition = (NSDictionary*)aChild;
-				
-				NSDictionary* childsAttributes = [aDefinition objectForKey:kAttributesElementName];
-				if([childsAttributes count] && [groupsSharedAttributes count])
-				{
-					NSMutableDictionary* mutableChildAttributes = [groupsSharedAttributes mutableCopy];
-					
-					NSArray* keys = [childsAttributes allKeys];
-					for(id aKey in keys)
-					{
-						NSString* aValue = [childsAttributes objectForKey:aKey];
-						if(![aValue isEqualToString:@"inherit"])
-						{
-							[mutableChildAttributes setObject:aValue forKey:aKey];
-						}
-					}
-					keys = [mutableChildAttributes allKeys];
-					for(id aKey in keys)
-					{
-						NSString* aValue = [mutableChildAttributes objectForKey:aKey];
-						if([aValue isEqualToString:@"inherit"])
-						{// didn't actually find any inherited property
-							[mutableChildAttributes removeObjectForKey:aKey];
-						}
-					}
-					childsAttributes = mutableChildAttributes;
-				}
-				else if([groupsSharedAttributes count])
-				{
-					childsAttributes = groupsSharedAttributes;
-				}
-				
-				NSString*	elementName = [aDefinition objectForKey:kElementName];
-				if(([elementName isEqualToString:@"g"] || [elementName isEqualToString:@"text"] || [elementName isEqualToString:@"switch"])
-				   && [groupsFontAttributes count])
-				{
-					if([childsAttributes count])
-					{
-						NSMutableDictionary* mutableChildAttributes = [groupsFontAttributes mutableCopy];
-						[mutableChildAttributes addEntriesFromDictionary:childsAttributes];
-						childsAttributes = mutableChildAttributes;
-					}
-					else
-					{
-						childsAttributes = groupsFontAttributes;
-					}
-				}
+        {
+            [groupsSharedAttributes setObject:stopOpacitySetting forKey:@"stop-opacity"];
+        }
+        
+        NSDictionary* nameToClassMap = [GHShapeGroup nameToClassMap];
+        
+        for(id aChild in self.childDefinitions)
+        {
+            if([aChild isKindOfClass:[NSDictionary class]])
+            {
+                NSDictionary* aDefinition = (NSDictionary*)aChild;
                 
-				if(childsAttributes != [aDefinition objectForKey:kAttributesElementName]
-				   && [childsAttributes count])
-				{
-					NSMutableDictionary* mutableDefinition = [aDefinition mutableCopy];
-					[mutableDefinition setObject:childsAttributes forKey:kAttributesElementName];
-					aDefinition = [mutableDefinition copy];
-				}
-				
-				if([elementName isEqualToString:@"g"])
-				{
-					GHShapeGroup* aGroup = [[GHShapeGroup alloc] initWithDictionary:aDefinition];
-					[mutableChildren addObject:aGroup];
-				}
-                else if([elementName isEqualToString:@"switch"])
+                NSDictionary* childsAttributes = [aDefinition objectForKey:kAttributesElementName];
+                if([childsAttributes count] && [groupsSharedAttributes count])
                 {
-                    GHSwitchGroup* aSwitch = [[GHSwitchGroup alloc] initWithDictionary:aDefinition];
-					[mutableChildren addObject:aSwitch];
+                    NSMutableDictionary* mutableChildAttributes = [groupsSharedAttributes mutableCopy];
+                    
+                    NSArray* keys = [childsAttributes allKeys];
+                    for(id aKey in keys)
+                    {
+                        NSString* aValue = [childsAttributes objectForKey:aKey];
+                        if(![aValue isEqualToString:@"inherit"])
+                        {
+                            [mutableChildAttributes setObject:aValue forKey:aKey];
+                        }
+                    }
+                    keys = [mutableChildAttributes allKeys];
+                    for(id aKey in keys)
+                    {
+                        NSString* aValue = [mutableChildAttributes objectForKey:aKey];
+                        if([aValue isEqualToString:@"inherit"])
+                        {// didn't actually find any inherited property
+                            [mutableChildAttributes removeObjectForKey:aKey];
+                        }
+                    }
+                    childsAttributes = mutableChildAttributes;
                 }
-                else if([elementName isEqualToString:@"defs"])
+                else if([groupsSharedAttributes count])
                 {
-					GHDefinitionGroup* aGroup = [[GHDefinitionGroup alloc] initWithDictionary:aDefinition];
-					[mutableChildren addObject:aGroup];
+                    childsAttributes = groupsSharedAttributes;
                 }
-				else if([elementName isEqualToString:@"rect"])
-				{
-					GHRectangle* aRect = [[GHRectangle alloc] initWithDictionary:aDefinition];
-					[mutableChildren addObject:aRect];
-                }
-				else if([elementName isEqualToString:@"text"])
-				{
-					GHText*	aText = [[GHText alloc] initWithDictionary:aDefinition];
-					[mutableChildren addObject:aText];
-				}
-                else if([elementName isEqualToString:@"textArea"])
+                
+                NSString*	elementName = [aDefinition objectForKey:kElementName];
+                if(([elementName isEqualToString:@"g"] || [elementName isEqualToString:@"text"] || [elementName isEqualToString:@"switch"])
+                   && [groupsFontAttributes count])
                 {
-                    GHTextArea* aText = [[GHTextArea alloc] initWithDictionary:aDefinition];
-					[mutableChildren addObject:aText];
+                    if([childsAttributes count])
+                    {
+                        NSMutableDictionary* mutableChildAttributes = [groupsFontAttributes mutableCopy];
+                        [mutableChildAttributes addEntriesFromDictionary:childsAttributes];
+                        childsAttributes = mutableChildAttributes;
+                    }
+                    else
+                    {
+                        childsAttributes = groupsFontAttributes;
+                    }
                 }
-				else if([elementName isEqualToString:@"path"])
-				{
-					GHPath* aPath = [[GHPath alloc] initWithDictionary:aDefinition];
-					[mutableChildren addObject:aPath];
-				}
-				else if([elementName isEqualToString:@"polygon"])
-				{
-					GHPolygon* aPolygon = [[GHPolygon alloc] initWithDictionary:aDefinition];
-					[mutableChildren addObject:aPolygon];
-				}
-				else if([elementName isEqualToString:@"polyline"])
-				{
-					GHPolyline* aPolyline = [[GHPolyline alloc] initWithDictionary:aDefinition];
-					[mutableChildren addObject:aPolyline];
-				}
-				else if([elementName isEqualToString:@"ellipse"])
-				{
-					GHEllipse* anEllipse = [[GHEllipse alloc] initWithDictionary:aDefinition];
-					[mutableChildren addObject:anEllipse];
-				}
-				else if([elementName isEqualToString:@"circle"])
-				{
-					GHCircle* aCircle = [[GHCircle alloc] initWithDictionary:aDefinition];
-					[mutableChildren addObject:aCircle];
-				}
-				else if([elementName isEqualToString:@"line"])
-				{
-					GHLine* aLine = [[GHLine alloc] initWithDictionary:aDefinition];
-					[mutableChildren addObject:aLine];
-				}
-				else if([elementName isEqualToString:@"image"])
-				{
-					id  anImage = [GHImage newImageWithDictionary:aDefinition];
+                
+                if(childsAttributes != [aDefinition objectForKey:kAttributesElementName]
+                   && [childsAttributes count])
+                {
+                    NSMutableDictionary* mutableDefinition = [aDefinition mutableCopy];
+                    [mutableDefinition setObject:childsAttributes forKey:kAttributesElementName];
+                    aDefinition = [mutableDefinition copy];
+                }
+                
+                if([elementName isEqualToString:@"image"]) // images are created differently from other SVGAttributedObjects, it might be either a bitmap or an SVG.
+                {
+                    id  anImage = [GHImage newImageWithDictionary:aDefinition];
                     if(anImage != nil)
                     {
                         [mutableChildren addObject:anImage];
                     }
-				}
-                else if([elementName isEqualToString:@"use"])
-                {
-                    GHRenderableObjectPlaceholder* aPlaceholder = [[GHRenderableObjectPlaceholder alloc] initWithDictionary:aDefinition];
-					[mutableChildren addObject:aPlaceholder];
                 }
-                else if([elementName isEqualToString:@"clipPath"])
+                else
                 {
-                    GHClipGroup* aClipper = [[GHClipGroup alloc] initWithDictionary:aDefinition];
-					[mutableChildren addObject:aClipper];
+                    Class theClass = [nameToClassMap valueForKey:elementName];
+                    if(theClass != nil)
+                    {
+                        GHAttributedObject* aChild = [[theClass alloc] initWithDictionary:aDefinition];
+                        if(aChild != nil)
+                        {
+                            [mutableChildren addObject:aChild];
+                        }
+                    }
                 }
-                else if([elementName isEqualToString:@"mask"])
-                {
-                    GHMask* aMask =  [[GHMask alloc] initWithDictionary:aDefinition];
-					[mutableChildren addObject:aMask];
-                }
-                else if([elementName isEqualToString:@"solidColor"])
-                {
-                    GHSolidColor* aColor = [[GHSolidColor alloc] initWithDictionary:aDefinition];
-                    [mutableChildren addObject:aColor];
-                }
-                else if([elementName isEqualToString:@"linearGradient"])
-                {
-                    GHLinearGradient* aGradient = [[GHLinearGradient alloc] initWithDictionary:aDefinition];
-                    [mutableChildren addObject: aGradient];
-                }
-                else if([elementName isEqualToString:@"radialGradient"])
-                {
-                    GHRadialGradient* aGradient = [[GHRadialGradient alloc] initWithDictionary:aDefinition];
-                    [mutableChildren addObject: aGradient];
-                }
-			}
-		}
+            }
+        }
         result = _children = [mutableChildren copy];
-		
+        
     }
     return result;
 }
 
 -(id) initWithDictionary:(NSDictionary*)theDefinition
 {
-	if(nil != (self = [super initWithDictionary:theDefinition]))
-	{
-		transform = [self calculateTransform];
-		_childDefinitions = [theDefinition objectForKey:kContentsElementName];
+    if(nil != (self = [super initWithDictionary:theDefinition]))
+    {
+        transform = [self calculateTransform];
+        _childDefinitions = [theDefinition objectForKey:kContentsElementName];
         
-	}
-	return self;
+    }
+    return self;
 }
 
 -(NSUInteger)calculatedHash
@@ -1563,10 +1518,10 @@
 
 -(void) renderChildrenIntoContext:(CGContextRef)quartzContext withSVGContext:(id<SVGContext>)svgContext
 {
-	CGContextSaveGState(quartzContext);
+    CGContextSaveGState(quartzContext);
     CGAffineTransform   myTransform = self.transform;
-	CGContextConcatCTM(quartzContext, myTransform);
-	[GHRenderableObject	setupContext:quartzContext withAttributes:self.attributes  withSVGContext:svgContext];
+    CGContextConcatCTM(quartzContext, myTransform);
+    [GHRenderableObject	setupContext:quartzContext withAttributes:self.attributes  withSVGContext:svgContext];
     id clippingObject = [GHClipGroup clipObjectForAttributes:self.attributes withSVGContext:svgContext];
     if(clippingObject)
     {
@@ -1586,16 +1541,16 @@
     
     
     NSArray* myChildren = self.children;
-	for(id aChild in myChildren)
-	{
+    for(id aChild in myChildren)
+    {
         if([aChild environmentOKWithSVGContext:svgContext])
         {
             [svgContext setCurrentColor:colorToDefaultTo];
             [aChild renderIntoContext:quartzContext withSVGContext:svgContext];
         }
-	}
-	[svgContext setCurrentColor:savedColor];
-	CGContextRestoreGState(quartzContext);
+    }
+    [svgContext setCurrentColor:savedColor];
+    CGContextRestoreGState(quartzContext);
 }
 
 -(UIImage*) newClipMaskWithSVGContext:(id<SVGContext>)svgContext andObjectBox:(CGRect)objectBox
@@ -1625,7 +1580,7 @@
 -(void) addToClipForContext:(CGContextRef)quartzContext  withSVGContext:(id<SVGContext>)svgContext objectBoundingBox:(CGRect) objectBox
 {
     CGContextConcatCTM(quartzContext, self.transform);
-	[GHRenderableObject	setupContext:quartzContext withAttributes:self.attributes  withSVGContext:svgContext];
+    [GHRenderableObject	setupContext:quartzContext withAttributes:self.attributes  withSVGContext:svgContext];
     ClippingType type = [self getClippingTypeWithSVGContext:svgContext];
     
     
@@ -1737,8 +1692,8 @@
     ClippingType    result = kNoClippingType;
     NSArray* myChildren = self.children;
     for(id aChild in myChildren)
-	{
-		ClippingType childClippingType = [aChild getClippingTypeWithSVGContext:svgContext];
+    {
+        ClippingType childClippingType = [aChild getClippingTypeWithSVGContext:svgContext];
         if(result == kNoClippingType)
         {
             result = childClippingType;
@@ -1747,7 +1702,7 @@
         {
             result = kMixedClippingType;
         }
-	}
+    }
     return result;
 }
 
@@ -1758,13 +1713,13 @@
 
 -(id<GHRenderable>) findRenderableObject:(CGPoint)testPoint withSVGContext:(id<SVGContext>)svgContext
 {
-	id<GHRenderable> result = nil;
-	CGAffineTransform invertedTransform = CGAffineTransformInvert(self.transform);
-	CGPoint relativePoint = CGPointApplyAffineTransform(testPoint, invertedTransform);
+    id<GHRenderable> result = nil;
+    CGAffineTransform invertedTransform = CGAffineTransformInvert(self.transform);
+    CGPoint relativePoint = CGPointApplyAffineTransform(testPoint, invertedTransform);
     
     NSArray* myChildren = self.children;
-	for(id aChild in myChildren)
-	{
+    for(id aChild in myChildren)
+    {
         if([aChild environmentOKWithSVGContext:svgContext])
         {
             id<GHRenderable> foundShape = [aChild findRenderableObject:relativePoint withSVGContext:svgContext];
@@ -1773,8 +1728,8 @@
                 result = foundShape;
             }
         }
-	}
-	return result;
+    }
+    return result;
 }
 -(void) addNamedObjects:(NSMutableDictionary*)namedObjectsMap
 {
@@ -1794,12 +1749,12 @@
     
     NSArray* myChildren = self.children;
     for(id aChild in myChildren)
-	{
-		if([aChild respondsToSelector:@selector(addNamedObjects:)])
-		{
-			[aChild addNamedObjects:namedObjectsMap];
-		}
-	}
+    {
+        if([aChild respondsToSelector:@selector(addNamedObjects:)])
+        {
+            [aChild addNamedObjects:namedObjectsMap];
+        }
+    }
 }
 
 @end
