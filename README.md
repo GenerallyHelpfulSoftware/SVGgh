@@ -58,7 +58,6 @@ To use, you'll want to follow the following steps:
 +(void) initialize
 {
     [super initialize];
-    MakeSureSVGghLinks(); // classes only used in Storyboards might not link otherwise
     [GHControlFactory setDefaultScheme:kColorSchemeClear];
     [GHControlFactory setDefaultTextColor:[UIColor greenColor]];
 }
@@ -71,7 +70,6 @@ To use, you'll want to follow the following steps:
     override class func initialize()
     {
         super.initialize()
-        MakeSureSVGghLinks()
         let tintColor = UIColorFromSVGColorString("#5D6")
         GHControlFactory.setDefaultButtonTint(tintColor)
     }
