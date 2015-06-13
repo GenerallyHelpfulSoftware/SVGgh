@@ -203,7 +203,7 @@
     {
         CGFloat deltaX = x2Float-x1Float;
         CGFloat deltaY  = y2Float-y1Float;
-        if(deltaX != 0.0 && deltaY != 0.0)
+        if(deltaX != 0.0 || deltaY != 0.0)
         {
             CGContextTranslateCTM(quartzContext, objectBox.origin.x, objectBox.origin.y);
             CGContextScaleCTM(quartzContext, objectBox.size.width, objectBox.size.height);
