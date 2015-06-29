@@ -33,7 +33,7 @@
 @interface SVGghDebuggingViewController ()
 @property (weak, nonatomic) IBOutlet GHSegmentedControl *segmentedControl;
 @property (weak, nonatomic) IBOutlet UIView *containerView;
-
+@property (assign, nonatomic) NSInteger lastSelectedSegment;
 
 @end
 
@@ -121,9 +121,9 @@
 
 - (IBAction)toggleView:(GHSegmentedControl *)sender
 {
-    NSInteger index = sender.selectedSegmentIndex;
+    NSInteger selectedSegment = sender.selectedSegmentIndex;
     NSString* controlIdentifier = nil;
-    switch(index)
+    switch(selectedSegment)
     {
         case 0:
             controlIdentifier = @"helmet";
@@ -142,8 +142,23 @@
     UIViewController* artworkController = [self.storyboard instantiateViewControllerWithIdentifier:controlIdentifier];
     UIViewController* oldController = nil;
     CGRect endBounds = self.containerView.bounds;
+    CGRect leftStartRect = CGRectMake(-endBounds.size.width, endBounds.origin.y, endBounds.size.width, endBounds.size.height);
+    CGRect rightStartRect =  CGRectOffset(endBounds, endBounds.size.width, 0.0);
+    CGRect terminalBounds = leftStartRect;
     
-    artworkController.view.frame = CGRectMake(-endBounds.size.width, endBounds.origin.y, endBounds.size.width, endBounds.size.height);
+    if(self.lastSelectedSegment > selectedSegment)
+    {
+        artworkController.view.frame = leftStartRect;
+        terminalBounds = rightStartRect;
+    }
+    else
+    {
+        artworkController.view.frame = rightStartRect;
+        terminalBounds = leftStartRect;
+    }
+    
+    self.lastSelectedSegment = selectedSegment;
+    
     
     for(UIViewController* anOldController in self.childViewControllers)
     {
@@ -169,6 +184,7 @@
         [self addChildViewController:artworkController];
         [self transitionFromViewController:oldController toViewController:artworkController duration:0.35 options:UIViewAnimationOptionCurveEaseInOut animations:^{
             artworkController.view.frame = endBounds;
+            oldController.view.frame = terminalBounds;
             
         } completion:^(BOOL finished) {
             [oldController removeFromParentViewController];
