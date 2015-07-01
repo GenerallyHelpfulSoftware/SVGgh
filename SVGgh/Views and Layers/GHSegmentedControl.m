@@ -26,6 +26,8 @@
 //  Created by Glenn Howes on 2015-03-26.
 //
 
+@import UIKit;
+
 #import "GHSegmentedControl.h"
 #import "GHControlFactory.h"
 #import "SVGRendererLayer.h"
@@ -394,7 +396,7 @@ typedef enum GHSegmentType
     else if(newDefinitions.count > segment)
     {
         [newDefinitions insertObject:aDefinition atIndex:segment];
-        GHSegmentedControlSegmentLayer* leftSegmentLayer = [self.sublayers objectAtIndex:segment];
+        GHSegmentedControlSegmentLayer* leftSegmentLayer = (GHSegmentedControlSegmentLayer*)[self.sublayers objectAtIndex:segment];
         startRect.origin.x = leftSegmentLayer.frame.origin.x+leftSegmentLayer.frame.size.width;
         
         newLayer.frame = startRect;

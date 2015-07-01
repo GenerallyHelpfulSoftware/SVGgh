@@ -122,56 +122,60 @@
 
 -(CGGradientRef) newGradientRefWithSVGContext:(id<SVGContext>)svgContext
 {
-    CFMutableArrayRef colors = CFArrayCreateMutable(kCFAllocatorDefault, (CFIndex)[stops count], &kCFTypeArrayCallBacks);
+    CGGradientRef result = 0;
     CGFloat* locations = malloc(sizeof(CGFloat)*[stops count]);
-    
-    
-    UIColor* savedColor = [svgContext currentColor];
-    NSString* colorString = [self.attributes objectForKey:@"color"];
-    if([colorString isEqualToString:@"inherit"] || [colorString length] == 0)
+    if (locations != nil)
     {
-    }
-    else if([colorString length])
-    {
-        UIColor* colorToDefaultTo = [svgContext colorForSVGColorString:colorString];
-        [svgContext setCurrentColor:colorToDefaultTo];
-    }
-    
-    
-    NSUInteger  index = 0;
-    CGFloat minimumOffset = 0.0;
-    for(GHGradientStop* aStop in stops)
-    {
-        CGColorRef stopColor = [aStop colorWithSVGContext:svgContext].CGColor;
-        if(stopColor == 0) stopColor = [UIColor blackColor].CGColor;
-        CFArrayAppendValue(colors, stopColor);
-        CGFloat nominalOffset = aStop.offset;
+        CFMutableArrayRef colors = CFArrayCreateMutable(kCFAllocatorDefault, (CFIndex)[stops count], &kCFTypeArrayCallBacks);
         
-        if(nominalOffset > 1.0)
+        
+        UIColor* savedColor = [svgContext currentColor];
+        NSString* colorString = [self.attributes objectForKey:@"color"];
+        if([colorString isEqualToString:@"inherit"] || [colorString length] == 0)
         {
-            nominalOffset = 1.0;
         }
-        else if (nominalOffset < 0.0)
+        else if([colorString length])
         {
-            nominalOffset = 0.0;
+            UIColor* colorToDefaultTo = [svgContext colorForSVGColorString:colorString];
+            [svgContext setCurrentColor:colorToDefaultTo];
         }
-        if(nominalOffset < minimumOffset)
+        
+        
+        NSUInteger  index = 0;
+        CGFloat minimumOffset = 0.0;
+        for(GHGradientStop* aStop in stops)
         {
-            nominalOffset = minimumOffset;
-            if(index > 0)
+            CGColorRef stopColor = [aStop colorWithSVGContext:svgContext].CGColor;
+            if(stopColor == 0) stopColor = [UIColor blackColor].CGColor;
+            CFArrayAppendValue(colors, stopColor);
+            CGFloat nominalOffset = aStop.offset;
+            
+            if(nominalOffset > 1.0)
             {
-                locations[index-1] -= 0.000000000001;
+                nominalOffset = 1.0;
             }
+            else if (nominalOffset < 0.0)
+            {
+                nominalOffset = 0.0;
+            }
+            if(nominalOffset < minimumOffset)
+            {
+                nominalOffset = minimumOffset;
+                if(index > 0)
+                {
+                    locations[index-1] -= 0.000000000001;
+                }
+            }
+            minimumOffset = nominalOffset;
+            locations[index++] = nominalOffset;
         }
-        minimumOffset = nominalOffset;
-        locations[index++] = nominalOffset;
+        [svgContext setCurrentColor:savedColor];
+        
+        result = CGGradientCreateWithColors([SVGGradientUtilities colorSpace],
+                                                 colors, locations);
+        CFRelease(colors);
+        free(locations);
     }
-    [svgContext setCurrentColor:savedColor];
-    
-    CGGradientRef result = CGGradientCreateWithColors([SVGGradientUtilities colorSpace],
-                                             colors, locations);
-    CFRelease(colors);
-    free(locations);
     return result;
 }
 
@@ -241,10 +245,13 @@
     }
     
     CGGradientRef   gradient = [self newGradientRefWithSVGContext:svgContext];
-    CGContextDrawLinearGradient(quartzContext,
+    if(gradient != 0)
+    {
+        CGContextDrawLinearGradient(quartzContext,
                                 gradient, startPoint, endPoint,
                                 options);
-    CGGradientRelease(gradient);
+        CGGradientRelease(gradient);
+    }
     CGContextRestoreGState(quartzContext);
 }
 
@@ -288,11 +295,13 @@
     
     CGGradientDrawingOptions options = kCGGradientDrawsBeforeStartLocation | kCGGradientDrawsAfterEndLocation;
     CGGradientRef   gradient = [self newGradientRefWithSVGContext:svgContext];
-    
-    CGContextDrawRadialGradient(quartzContext,
+    if(gradient != 0)
+    {
+        CGContextDrawRadialGradient(quartzContext,
                                 gradient, CGPointMake(cxFloat, cyFloat), 0.0,
                                 CGPointMake(fxFloat, fyFloat), radiusFloat, options);
-    CGGradientRelease(gradient);
+        CGGradientRelease(gradient);
+    }
     CGContextRestoreGState(quartzContext);
 }
  

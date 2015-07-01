@@ -154,7 +154,6 @@
     else
     {
         artworkController.view.frame = rightStartRect;
-        terminalBounds = leftStartRect;
     }
     
     self.lastSelectedSegment = selectedSegment;
