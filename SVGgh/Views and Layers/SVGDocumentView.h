@@ -26,7 +26,14 @@
 //  Created by Glenn Howes on 1/15/11.
 
 
+#if defined(__has_feature) && __has_feature(modules)
+@import Foundation;
+@import UIKit;
+#else
+#import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#endif
+
 #import "GHRenderable.h"
 
 #ifndef IBInspectable
@@ -59,17 +66,17 @@ IB_DESIGNABLE
 /*! @property artworkPath
 * @brief the text contents of an SVG document can be accessed via 'User Defined RuntimeAttributes'
 */
-@property(nonatomic, strong) IBInspectable NSString*       artworkPath;
+@property(nonatomic, strong) IBInspectable NSString* __nullable        artworkPath;
 
 /*! @property defaultColor
  * @brief the color that 'currentColor' in SVG documents will be set to 
 */
-@property(nonatomic, strong) IBInspectable UIColor* defaultColor;
+@property(nonatomic, strong) IBInspectable UIColor* __nullable  defaultColor;
 
 /*! @property renderer
 * @brief a pre-configured SVGRenderer object which will be called to draw the content
 */
-@property(nonatomic, strong)	SVGRenderer*	renderer;
+@property(nonatomic, strong)	SVGRenderer* __nullable 	renderer;
 
 /*! @property beTransparent
  * @brief ignore the document's 'viewport-fill' property
@@ -80,6 +87,6 @@ IB_DESIGNABLE
 * @param testPoint a point in the coordinate system of the view
 * @return an object hit by the point
 */
--(id<GHRenderable>) findRenderableObject:(CGPoint)testPoint;
+-(nullable id<GHRenderable>) findRenderableObject:(CGPoint)testPoint;
 +(void)makeSureLoaded;
 @end

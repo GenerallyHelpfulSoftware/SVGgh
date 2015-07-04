@@ -25,9 +25,14 @@
 //
 //  Created by Glenn Howes on 2/3/13.
 
-
+#if defined(__has_feature) && __has_feature(modules)
+@import Foundation;
+@import CoreText;
+#else
 #import <Foundation/Foundation.h>
 #import <CoreText/CoreText.h>
+#endif
+
 #import "GHAttributedObject.h"
 #import "GHPathDescription.h"
 #import "SVGUtilities.h"
@@ -41,33 +46,33 @@
  * @param svgContext svg state information at this point of the render
  @ @see GHGlyph
  */
--(void)addGlyphsToArray:(NSMutableArray*)glyphList  withSVGContext:(id<SVGContext>)svgContext;
+-(void)addGlyphsToArray:(nonnull NSMutableArray*)glyphList  withSVGContext:(nonnull id<SVGContext>)svgContext;
 
 /*! @brief Draw individually positioned glyphs to the context.
 * @param quartzContext context to draw into
 * @param svgContext svg state information at this point of the render
 */
--(void)addGlyphsToContext:(CGContextRef)quartzContext withSVGContext:(id<SVGContext>)svgContext;
+-(void)addGlyphsToContext:(nonnull CGContextRef)quartzContext withSVGContext:(nonnull id<SVGContext>)svgContext;
 
 
 /*! @brief Draw the glyphs to the context (draw more as lines than individually positioned glyphs).
  * @param quartzContext context to draw into
  * @param theContext svg state information at this point of the render
  */
--(void) renderIntoContext:(CGContextRef)quartzContext withSVGContext:(id<SVGContext>)theContext;
+-(void) renderIntoContext:(nonnull CGContextRef)quartzContext withSVGContext:(nonnull id<SVGContext>)theContext;
 
 /*! @brief Render the glyphs into a path.
 * @return a path. Caller responsible for disposal.
 */
--(CGPathRef) newPath;
+-(nonnull CGPathRef) newPath;
 @end
 
 /*! @brief a class which wraps the CGGlyph object, and allows for individualy positioning glyphs
 */
 @interface GHGlyph : GHAttributedObject<GHPathDescription>
-@property(nonatomic, readonly)      CTFontRef           font;
+@property(nonatomic, readonly)   CTFontRef    __nonnull          font;
 @property(nonatomic, readonly)      CGGlyph             glyph;
-@property(nonatomic, readonly)      NSDictionary*       textAttributes;
+@property(nonatomic, readonly)     NSDictionary* __nonnull        textAttributes;
 @property(nonatomic, readonly)      CGPoint             offset;
 @property(nonatomic, readonly)      CGPoint             renderPoint;
 @property(nonatomic, readonly)      CGFloat             rotationAngleInRadians;
@@ -86,12 +91,12 @@
 * @param listOfGlyphs array of GHGlyphs that need to be positioned
 * @param aPath a Core Graphics path along which to position the baselines of the GHGlyphs
 */
-+(void) positionGlyphs:(NSArray*)listOfGlyphs alongCGPath:(CGPathRef)aPath;
++(void) positionGlyphs:(nonnull NSArray*)listOfGlyphs alongCGPath:(nonnull CGPathRef)aPath;
 
 /*! @brief Given a list of GHGlyphs that have already been positioned. Figure out their bounding box.
 * @param listOfGlyphs pre-positioned GHGlyphs.
 */
-+(CGRect)rectForGlyphs:(NSArray*)listOfGlyphs; // glyphs should be prepositioned
++(CGRect)rectForGlyphs:(nonnull NSArray*)listOfGlyphs; // glyphs should be prepositioned
 
 /*! @brief the init method you should call lots of parameters
 * @param theAttributes the parent entity's SVG attributes
@@ -103,11 +108,11 @@
 * @param theWidth pre-calculated width of the glyph
 * @see coreTextAttributesFromSVGStyleAttributes:
 */
--(id) initWithDictionary:(NSDictionary *)theAttributes textAttributes:(NSDictionary*) textAttributes font:(CTFontRef)aFont glyph:(CGGlyph)aGlyph transform:(CGAffineTransform)aTransform offset:(CGPoint)offset runBox:(CGRect)runRect andWidth:(CGFloat)theWidth;
+-(nonnull instancetype) initWithDictionary:(nonnull NSDictionary *)theAttributes textAttributes:(nonnull NSDictionary*) textAttributes font:(nonnull CTFontRef)aFont glyph:(CGGlyph)aGlyph transform:(CGAffineTransform)aTransform offset:(CGPoint)offset runBox:(CGRect)runRect andWidth:(CGFloat)theWidth;
 
 /*! @brief not allowing a standard init method
 */
--(instancetype) init __attribute__((unavailable("init not available")));
+-(nullable instancetype) init __attribute__((unavailable("init not available")));
 
 /*! @brief Asks the question for hit testing.
 * @param aPoint a point in the same coordinate system as this glyph
@@ -119,5 +124,5 @@
 * @param quartzContext a Core Graphics context to add this glyph's path to.
 * @param svgContext a drawing state context for extra information
 */
--(void) addPathToContext:(CGContextRef)quartzContext  withSVGContext:(id<SVGContext>) svgContext;
+-(void) addPathToContext:(nonnull CGContextRef)quartzContext  withSVGContext:(nonnull id<SVGContext>) svgContext;
 @end

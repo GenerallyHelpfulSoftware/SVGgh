@@ -26,8 +26,14 @@
 //  Created by Glenn Howes on 1/28/14.
 //
 
+#if defined(__has_feature) && __has_feature(modules)
+@import Foundation;
+@import UIKit;
+#else
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#endif
+
 
 /*! @brief a protocol followed to communicate state when walking through a tree of SVG objects, passed into nodes/leaves in that tree
  */
@@ -37,40 +43,40 @@
  * @return a UIColor from the RGB color space
  * @see UIColorFromSVGColorString
  */
--(UIColor*) colorForSVGColorString:(NSString*)svgColorString;
+-(nullable UIColor*) colorForSVGColorString:(nonnull NSString*)svgColorString;
 /*! @brief make a URL relative to the document being parsed
  * @param subPath a location inside the app's resource bundle
  * @return an NSURL to some resource (hopefully)
  */
--(NSURL*)	relativeURL:(NSString*)subPath;
+-(nullable NSURL*)	relativeURL:(nonnull NSString*)subPath;
 
 /*! @brief make a URL
  * @param absolutePath a file path
  * @return an NSURL to some resource (hopefully)
  */
--(NSURL*)   absoluteURL:(NSString*)absolutePath; // sort of...
+-(nullable NSURL*)   absoluteURL:(nonnull NSString*)absolutePath; // sort of...
 
 /*! @brief find an object whose 'id' or maybe 'xml:id' property have the given name
  * @param objectName the name key to look for
  * @return some object (usually an id<GHRenderable> but not always
  */
--(id)       objectNamed:(NSString*)objectName;
+-(nullable id)       objectNamed:(nonnull NSString*)objectName;
 
 /*! @brief sometimes objects in SVG are referenced in the form 'URL(#aRef)'. This returns them.
  * @param aLocation some object in this document probably
  * @return some object (usually an id<GHRenderable> but not always
  */
--(id)       objectAtURL:(NSString*)aLocation;
+-(nullable id)       objectAtURL:(nonnull NSString*)aLocation;
 /*! @brief sometimes SVG colors are specified as 'currentColor'. This sets the starting currentColor before the tree is visited. Good for colorizing artwork.
  * @param startingCurrentColor a UIColor to start with
  */
--(void)     setCurrentColor:(UIColor*)startingCurrentColor;
+-(void)     setCurrentColor:(nullable UIColor*)startingCurrentColor;
 /*! @brief the value for 'currentColor' at this moment in the process of visiting a document
  */
--(UIColor*) currentColor;
+-(nullable UIColor*) currentColor;
 /*! @brief the active language expected by the user like 'en' or 'sp' or 'zh'
  */
--(NSString*) isoLanguage;
+-(nullable NSString*) isoLanguage;
 
 /*! @brief if the SVG document specifies a 'non-scaling-stroke' this could be used to scale that. Rarely used.
  */

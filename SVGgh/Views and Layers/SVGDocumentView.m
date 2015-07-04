@@ -29,6 +29,7 @@
 #import "SVGDocumentView.h"
 #import "SVGRendererLayer.h"
 #import "GHControlFactory.h" // for findInterfaceBuilderArtwork
+
 @interface SVGDocumentView (Private)
 -(SVGRendererLayer*)renderingLayer;
 @end

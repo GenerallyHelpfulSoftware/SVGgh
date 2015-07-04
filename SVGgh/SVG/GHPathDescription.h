@@ -28,13 +28,19 @@
 //  Created by Glenn Howes on 2/4/13.
 //
 
+
+#if defined(__has_feature) && __has_feature(modules)
+@import Foundation;
+@import CoreGraphics;
+#else
 #import <Foundation/Foundation.h>
 #import <CoreGraphics/CoreGraphics.h>
+#endif
 
 /*! @brief a protocol for objects able to provide style information for strokes and fills
 */
 @protocol GHPathDescription <NSObject>
-@property(nonatomic, readonly)  NSString*   fillDescription;
-@property(nonatomic, readonly)  NSString*   strokeDescription;
+@property(nonatomic, readonly)  NSString* __nullable    fillDescription;
+@property(nonatomic, readonly)   NSString* __nullable    strokeDescription;
 @property(nonatomic, readonly)  CGFloat     strokeWidth;
 @end

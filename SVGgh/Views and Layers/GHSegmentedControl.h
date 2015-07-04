@@ -66,18 +66,18 @@ IB_DESIGNABLE
  */
 @property(nonatomic) NSInteger selectedSegmentIndex;
 
-- (instancetype)initWithItems:(NSArray *)items;
+- (nonnull instancetype)initWithItems:(nonnull NSArray *)items;
 
-- (void)insertSegmentWithTitle:(NSString *)title atIndex:(NSUInteger)segment animated:(BOOL)animated;
-- (void)insertSegmentWithRenderer:(SVGRenderer *)renderer  atIndex:(NSUInteger)segment animated:(BOOL)animated;
+- (void)insertSegmentWithTitle:(nonnull NSString *)title atIndex:(NSUInteger)segment animated:(BOOL)animated;
+- (void)insertSegmentWithRenderer:(nonnull SVGRenderer *)renderer  atIndex:(NSUInteger)segment animated:(BOOL)animated;
 - (void)removeSegmentAtIndex:(NSUInteger)segment animated:(BOOL)animated;
 - (void)removeAllSegments;
 
-- (void)setTitle:(NSString *)title forSegmentAtIndex:(NSUInteger)segment;
-- (NSString *)titleForSegmentAtIndex:(NSUInteger)segment;
+- (void)setTitle:(nullable NSString *)title forSegmentAtIndex:(NSUInteger)segment;
+- (nullable NSString *)titleForSegmentAtIndex:(NSUInteger)segment;
 
--(void) setRenderer:(SVGRenderer *)renderer forSegmentedIndex:(NSUInteger)segment;
--(SVGRenderer*) rendererForSegmentedIndex:(NSUInteger)segment;
+-(void) setRenderer:(nullable SVGRenderer *)renderer forSegmentedIndex:(NSUInteger)segment;
+-(nullable SVGRenderer*) rendererForSegmentedIndex:(NSUInteger)segment;
 
 - (void)setWidth:(CGFloat)width forSegmentAtIndex:(NSUInteger)segment;
 - (CGFloat)widthForSegmentAtIndex:(NSUInteger)segment;

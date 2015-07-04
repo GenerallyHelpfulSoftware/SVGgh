@@ -27,7 +27,7 @@
 
 
 #import "SVGghDebuggingViewController.h"
-@import SVGgh;
+#import <SVGgh/SVGgh.h>
 
 
 @interface SVGghDebuggingViewController ()

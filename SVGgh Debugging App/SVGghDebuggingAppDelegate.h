@@ -27,7 +27,13 @@
 //  THE SOFTWARE.
 
 
+#if defined(__has_feature) && __has_feature(modules)
+@import Foundation;
+@import UIKit;
+#else
+#import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#endif
 
 @interface SVGghDebuggingAppDelegate : UIResponder <UIApplicationDelegate>
 

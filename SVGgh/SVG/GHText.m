@@ -25,9 +25,17 @@
 //
 //  Created by Glenn Howes on 5/19/11.
 
+
+#if defined(__has_feature) && __has_feature(modules)
+@import Foundation;
+@import CoreText;
+#else
+#import <Foundation/Foundation.h>
+#import <CoreText/CoreText.h>
+#endif
+
 #import "GHText.h"
 #import "GHGradient.h"
-#import <CoreText/CoreText.h>
 #import "SVGPathGenerator.h"
 #import "SVGUtilities.h"
 #import "SVGTextUtilities.h"

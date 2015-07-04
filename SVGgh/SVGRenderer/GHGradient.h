@@ -34,7 +34,7 @@
 * @param svgContext a context capable of providing additional information
 * @param objectBox This is needed to know the extent of the object being filled.
 */
--(void) fillPathToContext:(CGContextRef)quartzContext  withSVGContext:(id<SVGContext>)svgContext objectBoundingBox:(CGRect) objectBox;
+-(void) fillPathToContext:(nonnull CGContextRef)quartzContext  withSVGContext:(nonnull id<SVGContext>)svgContext objectBoundingBox:(CGRect) objectBox;
 @end
 
 /*! @brief GHGradient concrete class that uses CGContextDrawLinearGradient

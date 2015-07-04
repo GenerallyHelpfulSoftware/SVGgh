@@ -25,7 +25,7 @@
 //  Created by Glenn Howes on 2/4/14.
 //
 
-#import "SVGtoPDFConverter.h"
+#import "SVGgh.h"
 
 CGContextRef	CreatePDFContext(const CGRect mediaRect, CFMutableDataRef theData)
 {

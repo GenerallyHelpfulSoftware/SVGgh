@@ -26,8 +26,15 @@
 //  Created by Glenn Howes on 2/2/13.
 //
 
-#import "SVGTextUtilities.h"
+#if defined(__has_feature) && __has_feature(modules)
+@import Foundation;
+@import CoreText;
+#else
+#import <Foundation/Foundation.h>
 #import <CoreText/CoreText.h>
+#endif
+
+#import "SVGTextUtilities.h"
 #import "SVGUtilities.h"
 
 

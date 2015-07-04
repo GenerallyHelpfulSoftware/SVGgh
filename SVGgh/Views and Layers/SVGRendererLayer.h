@@ -25,13 +25,19 @@
 //
 //  Created by Glenn Howes on 1/15/11.
 
-
+#if defined(__has_feature) && __has_feature(modules)
+@import Foundation;
+@import QuartzCore;
+#else
 #import <Foundation/Foundation.h>
-#import <QuartzCore/CALayer.h>
+#import <QuartzCore/QuartzCore.h>
+#endif
+
+
 #import "SVGRenderer.h"
 
 @protocol FillColorProtocol <NSObject>
--(UIColor*) copyFillColor;
+-(nullable UIColor*) copyFillColor;
 @end
 
 /*! @brief a layer which takes an SVGRenderer and uses it to draw itself
@@ -42,12 +48,12 @@
 /*! @property renderer
 * @brief the object that does the actual drawing.
 */
-@property(nonatomic, strong) SVGRenderer*	renderer;
+@property(nonatomic, strong) SVGRenderer* __nullable 	renderer;
 
 /*! @property defaultColor
  * @brief the value for 'currentColor' when the SVG is rendered from the root element
  */
-@property(nonatomic, strong) UIColor* defaultColor;
+@property(nonatomic, strong) UIColor* __nullable  defaultColor;
 
 /*! @property beTransparent
  * @brief ignore the document's 'viewport-fill' property
@@ -58,5 +64,5 @@
  * @param testPoint point in the coordinate system of the layer
  * @return an object hit by the point
  */
--(id<GHRenderable>) findRenderableObject:(CGPoint)testPoint;
+-(nullable id<GHRenderable>) findRenderableObject:(CGPoint)testPoint;
 @end

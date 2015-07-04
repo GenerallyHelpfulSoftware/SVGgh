@@ -26,20 +26,25 @@
 //  Created by Glenn Howes on 2/11/13.
 //
 
+#if defined(__has_feature) && __has_feature(modules)
+@import Foundation;
+@import CoreGraphics;
+#else
 #import <Foundation/Foundation.h>
 #import <CoreGraphics/CoreGraphics.h>
+#endif
 
 /*! @brief a couple of methods of general use
 */
 @interface SVGGradientUtilities : NSObject
 /*! @brief no need to keep reallocating the color space
 */
-+(CGColorSpaceRef) colorSpace;
++(nonnull CGColorSpaceRef) colorSpace;
 
 /*! @brief a method to extract an individual fraction from a gradient entity definition
 * @param svgFractionOrPercentage the kind of fraction found in the 'cx', 'cy', etc attributes of a SVG gradient
 * @param defaultValue if the attribute wasn't set
 * @return the fraction used to define the gradient parameter
 */
-+(CGFloat) extractFractionFromCoordinateString:(NSString*)svgFractionOrPercentage givenDefault:(CGFloat)defaultValue;
++(CGFloat) extractFractionFromCoordinateString:(nonnull NSString*)svgFractionOrPercentage givenDefault:(CGFloat)defaultValue;
 @end

@@ -25,9 +25,15 @@
 //
 //  Created by Glenn Howes on 1/12/11.
 
+#if defined(__has_feature) && __has_feature(modules)
+@import Foundation;
+@import CoreGraphics;
+#else
 #import <Foundation/Foundation.h>
 #import <CoreGraphics/CoreGraphics.h>
-#import <SVGgh/SVGContext.h>
+#endif
+
+@protocol SVGContext;
 
 
 /*
@@ -63,42 +69,42 @@ typedef uint32_t ClippingType;
 /*! @property attributes
 * @brief presumably this object will be an GHAttributedObject
 */
-@property(nonatomic, readonly)          NSDictionary*       attributes;
+@property(nonatomic, readonly)         NSDictionary* __nullable        attributes;
 
 /*! @brief draw the object into a Core Graphics context
 * @param quartzContext the Core Graphics context into which to render
 * @param svgContext state information about the document environment in which this object is being rendered (currentColor, etc.)
 */
--(void) renderIntoContext:(CGContextRef)quartzContext withSVGContext:(id<SVGContext>)svgContext;
+-(void) renderIntoContext:(nonnull CGContextRef)quartzContext withSVGContext:(nonnull id<SVGContext>)svgContext;
 
 /*! @brief routine to retrieve this object or a sub-object during hit testing
 * @param testPoint a Core Graphic point in the coordinate system of this object's parent
 * @param svgContext state information about the document environment in which this object is being visited
 */
--(id<GHRenderable>) findRenderableObject:(CGPoint)testPoint withSVGContext:(id<SVGContext>)svgContext;
+-(nullable id<GHRenderable>) findRenderableObject:(CGPoint)testPoint withSVGContext:(nonnull id<SVGContext>)svgContext;
 
 /*! @brief clip the appropriate region for this region
 * @param quartzContext the Core Graphics context needing clipping
 * @param svgContext state information about the document environment (parent attributes, etc.) 
 * @param objectBox rectangle of the object being clipped in the coordinate system of this object
 */
--(void) addToClipForContext:(CGContextRef)quartzContext  withSVGContext:(id<SVGContext>)svgContext objectBoundingBox:(CGRect) objectBox;
+-(void) addToClipForContext:(nonnull CGContextRef)quartzContext  withSVGContext:(nonnull id<SVGContext>)svgContext objectBoundingBox:(CGRect) objectBox;
 
 /*! @brief if possible add to the clipping path (as opposed to using a bitmap mask for clipping)
 * @param quartzContext the Core Graphics context needing clipping
 * @param svgContext state information about the document environment (parent attributes, etc.) 
 * @param objectBox rectangle of the object being clipped in the coordinate system of this object
 */
--(void) addToClipPathForContext:(CGContextRef)quartzContext  withSVGContext:(id<SVGContext>)svgContext objectBoundingBox:(CGRect) objectBox;
+-(void) addToClipPathForContext:(nonnull CGContextRef)quartzContext  withSVGContext:(nonnull id<SVGContext>)svgContext objectBoundingBox:(CGRect) objectBox;
 
 /*! @briefmethod to communicate the preferred clipping type that this object can provide (path clipping preferred)
 @param svgContext state information about the document environment
 */
--(ClippingType) getClippingTypeWithSVGContext:(id<SVGContext>)svgContext;
+-(ClippingType) getClippingTypeWithSVGContext:(nonnull id<SVGContext>)svgContext;
 
 /*! @brief return a tight bounding box for the object's content
 * @param svgContext state information about the document environment
 */
--(CGRect) getBoundingBoxWithSVGContext:(id<SVGContext>)svgContext;
+-(CGRect) getBoundingBoxWithSVGContext:(nonnull id<SVGContext>)svgContext;
 
 @end

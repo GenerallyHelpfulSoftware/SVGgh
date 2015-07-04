@@ -27,6 +27,7 @@
 
 #import "SVGRendererLayer.h"
 #import "SVGUtilities.h"
+
 @interface SVGRendererLayer (Private)
 -(CGRect) makeDrawingRect;
 @end

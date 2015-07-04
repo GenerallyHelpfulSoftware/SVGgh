@@ -26,8 +26,15 @@
 //  Created by Glenn Howes on 5/19/11.
 
 
+#if defined(__has_feature) && __has_feature(modules)
+    @import Foundation;
+    @import CoreText;
+#else
+    #import <Foundation/Foundation.h>
+    #import <CoreText/CoreText.h>
+#endif
+
 #import "SVGAttributedObject.h"
-#import <CoreText/CoreText.h>
 #import "GHPathDescription.h"
 
 /*! @brief manifestation of an SVG 'text' entity a collection of other entities
@@ -38,11 +45,11 @@
 * @param glyphList list to Fill with glyphs
 * @param svgContext state information to give context to how this object behaves
 */
--(void)addGlyphsToArray:(NSMutableArray*)glyphList  withSVGContext:(id<SVGContext>)svgContext;
+-(void)addGlyphsToArray:(nonnull NSMutableArray*)glyphList  withSVGContext:(nonnull id<SVGContext>)svgContext;
 @end
 
 /*! @brief manifestation of an SVG 'textArea' entity a collection of other entities
  */
 @interface GHTextArea : GHText
-@property(nonatomic, readonly) NSAttributedString* text;
+@property(nonatomic, readonly) NSAttributedString* __nullable  text;
 @end

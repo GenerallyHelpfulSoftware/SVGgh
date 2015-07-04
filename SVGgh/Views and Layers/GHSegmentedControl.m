@@ -26,7 +26,14 @@
 //  Created by Glenn Howes on 2015-03-26.
 //
 
+
+#if defined(__has_feature) && __has_feature(modules)
+@import Foundation;
 @import UIKit;
+#else
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#endif
 
 #import "GHSegmentedControl.h"
 #import "GHControlFactory.h"

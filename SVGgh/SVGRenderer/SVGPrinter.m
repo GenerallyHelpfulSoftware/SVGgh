@@ -26,6 +26,7 @@
 //
 
 #import "SVGPrinter.h"
+#import "SVGgh.h"
 #import "SVGtoPDFConverter.h"
 
 

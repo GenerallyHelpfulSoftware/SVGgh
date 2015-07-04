@@ -50,26 +50,26 @@ IB_DESIGNABLE
 /*! @property title
 * @brief this text (if any) will be displayed embedded in the button
 */
-@property(nonatomic, strong) IBInspectable NSString*           title;
+@property(nonatomic, strong) IBInspectable NSString*      __nullable     title;
 /*! @property artworkPath
  * @brief optional subpath to an svg file inside the resources folder, svg is displayed inside the button at appropriate size
  * @attention do not append '.svg'
  */
-@property(nonatomic, strong) IBInspectable NSString*           artworkPath;
+@property(nonatomic, strong) IBInspectable NSString*      __nullable     artworkPath;
 /*! @property selectedArtworkPath
  * @brief optional subpath to an svg file inside the resources folder, svg is displayed inside the button at appropriate size. When button is in selected state.
  * @attention do not append '.svg'
  */
-@property(nonatomic, strong) IBInspectable NSString*           selectedArtworkPath;
+@property(nonatomic, strong) IBInspectable NSString*     __nullable      selectedArtworkPath;
 /*! @property pressedArtworkPath
  * @brief optional subpath to an svg file inside the resources folder, svg is displayed inside the button at appropriate size. When button is in pressed state.
  * @attention do not append '.svg'
  */
-@property(nonatomic, strong) IBInspectable NSString*           pressedArtworkPath;
+@property(nonatomic, strong) IBInspectable NSString*      __nullable     pressedArtworkPath;
 /*! @property artworkView
  * @brief optional view to embed inside this button to display artwork. Usually used from storyboard or nib
  */
-@property(nonatomic, weak)   IBOutlet UIView*    artworkView;
+@property(nonatomic, weak)   IBOutlet UIView*  __nullable  artworkView;
 
 +(void)makeSureLoaded;
 @end

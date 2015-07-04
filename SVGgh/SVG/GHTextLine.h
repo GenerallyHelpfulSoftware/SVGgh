@@ -26,8 +26,14 @@
 //  Created by Glenn Howes on 2/6/13.
 
 
+#if defined(__has_feature) && __has_feature(modules)
+@import Foundation;
+@import CoreText;
+#else
 #import <Foundation/Foundation.h>
 #import <CoreText/CoreText.h>
+#endif
+
 #import "GHAttributedObject.h"
 #import "GHPathDescription.h"
 #import "GHGlyph.h"
@@ -38,11 +44,11 @@
 @interface GHTextLine : GHAttributedObject<GHPathDescription, GHGlyphMaker>
 /*! @brief init method that takes a a CTLineRef
 */
--(id) initWithAttributes:(NSDictionary *)theAttributes andTextLine:(CTLineRef)lineRef;
+-(nonnull instancetype) initWithAttributes:(nonnull NSDictionary *)theAttributes andTextLine:(nonnull CTLineRef)lineRef;
 
 
 /*! @brief return a tight bounding box for the object's content
  * @param svgContext state information about the document environment
  */
--(CGRect) getBoundingBoxWithSVGContext:(id<SVGContext>)svgContext;
+-(CGRect) getBoundingBoxWithSVGContext:(nonnull id<SVGContext>)svgContext;
 @end
