@@ -35,18 +35,22 @@
 #import <Foundation/Foundation.h>
 #endif
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface NSData (Base64Addons)
 
-+(__nullable id)decodeBase64ForString:(NSString * __nonnull )decodeString;
-+(__nullable id)decodeWebSafeBase64ForString:( NSString * __nonnull )decodeString;
++(__nullable id)decodeBase64ForString:(NSString * )decodeString;
++(__nullable id)decodeWebSafeBase64ForString:( NSString * )decodeString;
 
--( NSString * __nonnull )encodeBase64ForData;
--( NSString * __nonnull )encodeWebSafeBase64ForData;
--( NSString * __nonnull )encodeWrappedBase64ForData;
+-( NSString * )encodeBase64ForData;
+-( NSString * )encodeWebSafeBase64ForData;
+-( NSString * )encodeWrappedBase64ForData;
 
 @end
 
 
 /*! Because static libraries and categories on existing objects don't mix well, making a C routine here to avoid a category
 */
- NSData* __nullable  DecodeBase64FromStringToData( NSString* __nonnull  decodeString);
+ NSData* __nullable  DecodeBase64FromStringToData( NSString*  decodeString);
+
+NS_ASSUME_NONNULL_END

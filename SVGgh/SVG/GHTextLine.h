@@ -38,17 +38,20 @@
 #import "GHPathDescription.h"
 #import "GHGlyph.h"
 
+NS_ASSUME_NONNULL_BEGIN
 
 /*! @brief manifestation of an SVG 'tspan' entity a collection of other entities
  */
 @interface GHTextLine : GHAttributedObject<GHPathDescription, GHGlyphMaker>
 /*! @brief init method that takes a a CTLineRef
 */
--(nonnull instancetype) initWithAttributes:(nonnull NSDictionary *)theAttributes andTextLine:(nonnull CTLineRef)lineRef;
+-(instancetype) initWithAttributes:(NSDictionary *)theAttributes andTextLine:(CTLineRef)lineRef;
 
 
 /*! @brief return a tight bounding box for the object's content
  * @param svgContext state information about the document environment
  */
--(CGRect) getBoundingBoxWithSVGContext:(nonnull id<SVGContext>)svgContext;
+-(CGRect) getBoundingBoxWithSVGContext:(id<SVGContext>)svgContext;
 @end
+
+NS_ASSUME_NONNULL_END

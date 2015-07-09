@@ -49,6 +49,8 @@
 typedef NSUInteger ColorScheme;
 #endif
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface GHControl : UIControl
 @property(nonatomic, assign) ColorScheme         scheme;
 /*! @property schemeNumber
@@ -66,9 +68,9 @@ typedef NSUInteger ColorScheme;
 @property(nonatomic, assign) CGGradientRef   __nullable    faceGradient;
 @property(nonatomic, assign) CGGradientRef  __nullable    faceGradientPressed;
 @property(nonatomic, assign) CGGradientRef   __nullable    faceGradientSelected;
-@property(nonatomic, strong) IBInspectable UIColor*      __nonnull      textColor;
-@property(nonatomic, strong) IBInspectable UIColor*       __nonnull     textColorPressed;
-@property(nonatomic, strong) IBInspectable UIColor*      __nonnull      textColorSelected;
+@property(nonatomic, strong) IBInspectable UIColor*          textColor;
+@property(nonatomic, strong) IBInspectable UIColor*        textColorPressed;
+@property(nonatomic, strong) IBInspectable UIColor*        textColorSelected;
 @property(nonatomic, assign) BOOL                   drawsChrome;
 @property(nonatomic, assign) BOOL                   drawsBackground;
 @property(nonatomic, strong) UIColor*       __nullable      ringColor;
@@ -87,3 +89,5 @@ typedef NSUInteger ColorScheme;
 extern const CGFloat kRingThickness;
 extern const CGFloat kRoundButtonRadius;
 extern const CGFloat kShadowInset;
+
+NS_ASSUME_NONNULL_END

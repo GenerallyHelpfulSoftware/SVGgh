@@ -39,7 +39,7 @@
 @implementation GHTextLine
 @synthesize fillDescription, strokeDescription, strokeWidth;
 
--(id) initWithAttributes:(NSDictionary *)theAttributes andTextLine:(CTLineRef)theLineRef
+-(instancetype) initWithAttributes:(NSDictionary *)theAttributes andTextLine:(CTLineRef)theLineRef
 {
 	if(nil != (self = [super initWithAttributes:theAttributes]))
 	{

@@ -438,7 +438,7 @@
 
 @implementation KeyboardPressedPopup
 
--(id) initWithFrame:(CGRect)frame
+-(instancetype) initWithFrame:(CGRect)frame
 {
     if(nil != (self = [super initWithFrame:frame]))
     {

@@ -41,6 +41,8 @@
 
 @class GHButton;
 
+NS_ASSUME_NONNULL_BEGIN
+
 enum {
     // do not change the order of these as they are hard coded into storyboards
     kColorSchemeiOS,
@@ -143,13 +145,13 @@ typedef NSUInteger ColorScheme;
  * @param scheme one of the enumerated list in the typedef ColorScheme
  * @return a color which willbe dark if backgrounds are light, and light if backgrounds are dark
  */
-+(nonnull UIColor*) newTextColorForScheme:(ColorScheme)scheme;
++(UIColor*) newTextColorForScheme:(ColorScheme)scheme;
 
 /*! @brief makes a color appropriate for button text on a pressed button
  * @param scheme one of the enumerated list in the typedef ColorScheme
  * @return a color which willbe dark if backgrounds are light, and light if backgrounds are dark
  */
-+(nonnull UIColor*) newTextColorPressedForScheme:(ColorScheme)scheme;
++(UIColor*) newTextColorPressedForScheme:(ColorScheme)scheme;
 
 /*! @brief makes a color appropriate for drop shadow on text
  * @param scheme one of the enumerated list in the typedef ColorScheme
@@ -167,20 +169,20 @@ typedef NSUInteger ColorScheme;
  * @param scheme one of the enumerated list in the typedef ColorScheme
  * @return a color (if any) for use in a ring's outline
  */
-+(nonnull UIColor*) newPressedColorForColor:(nonnull UIColor*)originalColor forScheme:(ColorScheme)scheme;
++(UIColor*) newPressedColorForColor:(UIColor*)originalColor forScheme:(ColorScheme)scheme;
 
 /*! @brief generates a button appropriate for the given scheme
  * @param scheme one of the enumerated list in the typedef ColorScheme
  * @return a GHButton (you can instantiate these without the factory too, like in a storyboard)
  */
-+(nonnull GHButton*) newButtonForScheme:(ColorScheme)scheme; // not a subclass of UIButton as that's too hard to subclass
++(GHButton*) newButtonForScheme:(ColorScheme)scheme; // not a subclass of UIButton as that's too hard to subclass
 
 /*! @brief clone a color with a change in brightness
  * @param originalColor the starting Color
  * @param brightnessDelta number between -1,1 to ramp up or diminish the brightness (0.1 typical)
  * @return the cloned color
  */
-+(nonnull UIColor*) newColor:(nonnull UIColor*)originalColor withBrightnessDelta:(CGFloat)brightnessDelta;
++(UIColor*) newColor:(UIColor*)originalColor withBrightnessDelta:(CGFloat)brightnessDelta;
 
 
 /*! @brief create a round rect path where the provided rect is given round corners
@@ -188,27 +190,29 @@ typedef NSUInteger ColorScheme;
  * @param radius ideally less than half the width or height of the rect
  * @return a path user responsible for disposal
  */
-+(nonnull CGPathRef) newRoundRectPathForRect:(CGRect)aRect withRadius:(CGFloat) radius;
++(CGPathRef) newRoundRectPathForRect:(CGRect)aRect withRadius:(CGFloat) radius;
 
 /*! @brief utility routine to find the location of an SVG document relative to a provided bundle
  * @param an optional bundle containing the artwork
  * @param theArtworkPath subpath within a bundle does not include the .svg extension which is assumed.
  */
-+(nullable NSURL*) locateArtworkForBundle:(nullable NSBundle*)mayBeNil atSubpath:(nonnull NSString*)theArtworkPath;
++(nullable NSURL*) locateArtworkForBundle:(nullable NSBundle*)mayBeNil atSubpath:(NSString*)theArtworkPath;
 
 /*! @brief utility routine to find the location of an SVG document relative to either the main bundle or the bundle in which the object is located
  * @param anObject for instance a GHButton
  * @param theArtworkPath subpath within a bundle does not include the .svg extension which is assumed.
  */
-+(nullable NSURL*) locateArtworkForObject:(nonnull id<NSObject>)anObject atSubpath:(nonnull NSString*)theArtworkPath; // for compatibility
++(nullable NSURL*) locateArtworkForObject:(id<NSObject>)anObject atSubpath:(NSString*)theArtworkPath; // for compatibility
 
 /*! @brief utility routine to locate a URL inside your project when using Interface Builder's IB_DESIGNABLE service
  * @param anObject for instance a GHButton
  * @param theArtworkPath subpath within a bundle does not include the .svg extension which is assumed.
  */
-+(nullable NSURL*) findInterfaceBuilderArtwork:(nonnull NSString*)artworkSubPath;
++(nullable NSURL*) findInterfaceBuilderArtwork:(NSString*)artworkSubPath;
 
 @end
 
-extern UIColor* __nullable  UIColorFromSVGColorString (NSString * __nonnull  stringToConvert);
-extern __nullable CGPathRef CreatePathFromSVGPathString(NSString* __nonnull  dAttribute, CGAffineTransform transformToApply);
+extern UIColor* __nullable  UIColorFromSVGColorString (NSString *  stringToConvert);
+extern __nullable CGPathRef CreatePathFromSVGPathString(NSString*  dAttribute, CGAffineTransform transformToApply);
+
+NS_ASSUME_NONNULL_END

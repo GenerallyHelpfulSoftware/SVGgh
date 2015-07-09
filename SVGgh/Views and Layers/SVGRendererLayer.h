@@ -36,6 +36,8 @@
 
 #import "SVGRenderer.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @protocol FillColorProtocol <NSObject>
 -(nullable UIColor*) copyFillColor;
 @end
@@ -66,3 +68,5 @@
  */
 -(nullable id<GHRenderable>) findRenderableObject:(CGPoint)testPoint;
 @end
+
+NS_ASSUME_NONNULL_END

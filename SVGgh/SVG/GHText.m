@@ -257,7 +257,7 @@
     }
 }
 
--(id) initWithDictionary:(NSDictionary*)theDefinition
+-(instancetype) initWithDictionary:(NSDictionary*)theDefinition
 {
 	if(nil != (self = [super initWithDictionary:theDefinition]))
 	{
@@ -588,7 +588,7 @@
 
 @implementation GHTextArea
 @synthesize text = _text;
--(id) initWithDictionary:(NSDictionary*)theDefinition
+-(instancetype) initWithDictionary:(NSDictionary*)theDefinition
 {
     if(nil != (self = [super initWithDictionary:theDefinition]))
     {

@@ -66,7 +66,7 @@
 	return result;
 }
 
--(id) initWithString:(NSString *)utf8String
+-(instancetype) initWithString:(NSString *)utf8String
 {
     if(nil != (self = [super initWithString:utf8String]))
     {
@@ -80,7 +80,7 @@
 	return self;
 }
 
-- (id)initWithContentsOfURL:(NSURL *)url
+- (instancetype)initWithContentsOfURL:(NSURL *)url
 {
 	if(nil != (self = [super initWithContentsOfURL:url]))
     {
@@ -187,7 +187,7 @@
 	return result;
 }
 
--(id) objectAtURL:(NSString*)aLocation
+-(instancetype) objectAtURL:(NSString*)aLocation
 {
     id  result = nil;
     if(IsStringURL(aLocation))

@@ -37,10 +37,15 @@
 #import <CoreGraphics/CoreGraphics.h>
 #endif
 
+NS_ASSUME_NONNULL_BEGIN
+
 /*! @brief a protocol for objects able to provide style information for strokes and fills
 */
 @protocol GHPathDescription <NSObject>
 @property(nonatomic, readonly)  NSString* __nullable    fillDescription;
-@property(nonatomic, readonly)   NSString* __nullable    strokeDescription;
+@property(nonatomic, readonly)  NSString* __nullable    strokeDescription;
 @property(nonatomic, readonly)  CGFloat     strokeWidth;
 @end
+
+
+NS_ASSUME_NONNULL_END

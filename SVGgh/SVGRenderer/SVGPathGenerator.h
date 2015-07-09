@@ -45,6 +45,7 @@ typedef enum SVGPathValidationError
     kPathParsingErrorMissingVirtualControlPoint
 }SVGPathValidationError;
 
+NS_ASSUME_NONNULL_BEGIN
 
 /*! @brief an object which encapsulates the results of trying to verify an SVG paths 'd' attribute
 */
@@ -79,25 +80,25 @@ typedef enum SVGPathValidationError
 * @param aPath a path to be serialized
 * @return a string appropriate for a 'd' attribute of an SVG path entity
 */
-+(nullable NSString*) svgPathFromCGPath:(nonnull CGPathRef)aPath;
++(nullable NSString*) svgPathFromCGPath:(CGPathRef)aPath;
 
 /*! @brief given a 'd' attribute from an SVG path entity, create a Core Graphics Path
 * @param anSVGPath something like 'M33 11 H22 L 100 100 a 20 40 0 1 1 12 14 Z'
 * @param aTransform an affine transform to apply to the result at the time of creation
 */
-+(nullable CGPathRef) newCGPathFromSVGPath:(nonnull NSString*)anSVGPath whileApplyingTransform:(CGAffineTransform)aTransform;
++(nullable CGPathRef) newCGPathFromSVGPath:(NSString*)anSVGPath whileApplyingTransform:(CGAffineTransform)aTransform;
 
 /*! @brief given a SVG path in text form, return a bounding box (includes control points)
 * @param anSVGPath a string from a path entity's 'd' attribute
 * @return a rectangle which encapulates all the points on the path and any control points
 */
-+(CGRect)  maxBoundingBoxForSVGPath:(nonnull NSString*)anSVGPath;
++(CGRect)  maxBoundingBoxForSVGPath:(NSString*)anSVGPath;
 
 /*! @brief validate the provided SVG path string
 * @param anSVGPath a string from a path entity's 'd' attribute
 * @return an object which should be checked for errors in parsing the path
 */
-+(nullable PathValidationResult*) findFailure:(nonnull NSString*)anSVGPath;
++(nullable PathValidationResult*) findFailure:(NSString*)anSVGPath;
 
 /*! @brief given an SVG operator e.g. 'm', 'z', 'l', 'H', etc., give the number of expected parameters
 * @param svgOperator one of the expected operators for an SVG path
@@ -108,9 +109,8 @@ typedef enum SVGPathValidationError
 /*! @brief set of characters that should never appear in a 'd' attribute of an SVG path entity
 * @return a set of characters like 'b' or '!' or whatever that never appear
 */
-+(nonnull NSCharacterSet*)invalidPathCharacters;
-
++(NSCharacterSet*)invalidPathCharacters;
 
 @end
-
+NS_ASSUME_NONNULL_END
 

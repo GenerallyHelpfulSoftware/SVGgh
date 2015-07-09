@@ -36,25 +36,27 @@
 #import "GHImageCache.h"
 #import "SVGContext.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 /*!
 *    @brief callback called to ask if a given attribute with a given key should be replaced by a given replacement
 *   @see SVGMergeStyleAttributes
 */
-typedef BOOL (^attribute_replacement_filter_t)(NSString* __nonnull  key, __nullable id sourceAttribute, __nullable id destAttribute);
+typedef BOOL (^attribute_replacement_filter_t)(NSString*  key, __nullable id sourceAttribute, __nullable id destAttribute);
 
 
 /*! \brief utility routine which takes a string and converts it to a CGRect
  * \param serializedRect a string of the form 'x, y, width, height'
  * \return an appropriate rectangle
  */
-CGRect SVGStringToRect( NSString* __nonnull  serializedRect);
-CGRect SVGStringToRectSlow( NSString* __nonnull  serializedRect);
+CGRect SVGStringToRect( NSString*  serializedRect);
+CGRect SVGStringToRectSlow( NSString*  serializedRect);
 
 /*! \brief utility routine which takes a string and converts it to a UIColor
 * \param stringToConvert such as @"blue", 3 char hex like @"#A7A", 6 char hex like @"#FF77C0", or rgb like @"rgb(0,255,127)"
 * \return a color with an RGB color space
 */
- UIColor* __nullable  UIColorFromSVGColorString ( NSString * __nonnull  stringToConvert);
+ UIColor* __nullable  UIColorFromSVGColorString ( NSString *  stringToConvert);
 
 
 /*! \brief utility routine which transitions from one color to another
@@ -63,14 +65,14 @@ CGRect SVGStringToRectSlow( NSString* __nonnull  serializedRect);
  * \param fractionThere a number between 0 and 1 indicating relative weight to the color strings
  * \return a string expressing a color
  */
- NSString* __nonnull  MorphColorString( NSString* __nonnull  oldSVGColorString,  NSString* __nonnull  newSVGColorString, CGFloat fractionThere);
+ NSString*  MorphColorString( NSString*  oldSVGColorString,  NSString*  newSVGColorString, CGFloat fractionThere);
 
 /*! \brief utitlity routine to convert an SVG string representing a set of affine transform operations to the resulting CGAffineTransform
  * \param transformAttribute a string like 'scale(10,20), translate(22, 0), rotate(.5)'
  * \return an affine transform
  * \see CGAffineTransform
  */
-CGAffineTransform SVGTransformToCGAffineTransform( NSString* __nonnull  transformAttribute);
+CGAffineTransform SVGTransformToCGAffineTransform( NSString*  transformAttribute);
 
 /*! \brief utility routine which transitions from one affine transform to another (like moving an object across the view)
  * \param oldtransform an SVG transform string (fractionThere at 0)
@@ -78,14 +80,14 @@ CGAffineTransform SVGTransformToCGAffineTransform( NSString* __nonnull  transfor
  * \param fractionThere a number between 0 and 1 indicating relative weight to the transform strings
  * \return a string expressing a transform in matrix form
  */
- NSString* __nonnull  SVGTransformMorph( NSString* __nonnull  oldtransform,  NSString* __nonnull  newTransform, CGFloat fractionThere);
-CGAffineTransform SVGTransformToCGAffineTransformSlow( NSString* __nonnull  transformAttribute);// older better tested version
+ NSString*  SVGTransformMorph( NSString*  oldtransform,  NSString*  newTransform, CGFloat fractionThere);
+CGAffineTransform SVGTransformToCGAffineTransformSlow( NSString*  transformAttribute);// older better tested version
 
 /*! \brief serialize an affine transform back to an SVG style string version of a transform (probably in matrix form)
 * \param aTransform Core Graphics affine transform
 * \return a string appropriate for an SVG entities 'transform' attribute
 */
- NSString* __nonnull  CGAffineTransformToSVGTransform(CGAffineTransform aTransform);
+ NSString*  CGAffineTransformToSVGTransform(CGAffineTransform aTransform);
 
 /*! \brief utility routine to take one set of entity attributes and try to determine intermediate values for appropriate ones
 * \param oldAttributes set of attributes in the beginning (fractionThere at 0)
@@ -93,7 +95,7 @@ CGAffineTransform SVGTransformToCGAffineTransformSlow( NSString* __nonnull  tran
 * \param fractionThere a number between 0 and 1 indicating relative weight to the beginning and ending attributes
 * \return an intermediate dictionary of attributes
 */
- NSDictionary* __nonnull  SVGMorphStyleAttributes( NSDictionary* __nonnull oldAttributes,  NSDictionary* __nonnull  newAttributes, CGFloat fractionThere);
+ NSDictionary*  SVGMorphStyleAttributes( NSDictionary* oldAttributes,  NSDictionary*  newAttributes, CGFloat fractionThere);
 
 /*! \brief a routine to allocate an offscreen bitmap drawing context
 * \param pixelsWide width of the bitmap
@@ -107,17 +109,17 @@ __nullable CGContextRef BitmapContextCreate (size_t pixelsWide, size_t pixelsHig
 * \param key an attribute name like 'font-weight' which might be the key to a list of alternative values
 * \return an array of acceptable alternatives in order of preference
 */
- NSArray* __nullable  ArrayForSVGAttribute( NSDictionary* __nonnull  svgAttributes,  NSString* __nonnull  key);
+ NSArray* __nullable  ArrayForSVGAttribute( NSDictionary*  svgAttributes,  NSString*  key);
 
 /*! \brief the root element of an SVG document assumes certain default attributes it doesn't have to explicitly provide. This provides them
 * \return a dictionary of attributes to be used if not provided by the root svg entity
 */
- NSDictionary* __nonnull  DefaultSVGDrawingAttributes();
+ NSDictionary*  DefaultSVGDrawingAttributes();
 
 /*! an SVG path entity has a set of attributes it accepts. This returns them
 * \return a set of attributes like 'stroke-dashoffset' or 'fill'
 */
- NSSet* __nonnull  StandardPathAttributes();
+ NSSet*  StandardPathAttributes();
 
 /*! \brief given a set of attributes, build a new set by selectiving merging in attributes from a superceding set
 * \param parentAttributes the starting attributes from higher up in the document
@@ -125,31 +127,31 @@ __nullable CGContextRef BitmapContextCreate (size_t pixelsWide, size_t pixelsHig
 * \param filter callback block which allows the calling routine to selectively do this merging
 * \return a dictionary of attributes which is the result of the merger
 */
- NSDictionary* __nonnull  SVGMergeStyleAttributes( NSDictionary* __nonnull  parentAttributes,  NSDictionary* __nonnull  attributesToMergeIn, __nullable attribute_replacement_filter_t filter);
+ NSDictionary*  SVGMergeStyleAttributes( NSDictionary*  parentAttributes,  NSDictionary*  attributesToMergeIn, __nullable attribute_replacement_filter_t filter);
 
 /*! \brief Answer the question is the input string of the form 'URL(#nameOfEntity)'
 * \param aString some string that might be of the right form
 * \return YES if it does appear to be of that form
 */
-BOOL IsStringURL( NSString* __nonnull  aString); // has URL prefix
+BOOL IsStringURL( NSString*  aString); // has URL prefix
 
 /*! \brief utitlity routine to strip out the URL function boilerplate around an internal URL reference
 * \param aString a string of the form 'URL(#nameOfEntity)'
 * \return 'nameOfEntity'
 */
- NSString* __nullable  ExtractURLContents( NSString* __nonnull  aString);
+ NSString* __nullable  ExtractURLContents( NSString*  aString);
 
 /*! \brief sometimes instead of having attributes in individual XML attributes, they are bundled up in 1 single attribute as in the 'style' attribute
 * \param compactedAttributes a string of colon and semi-colon separated components such as 'stroke-width:8;fill:black;stroke-linecap:round;stroke:purple' 
 *\return dictionary with these extracted into individual attributes
 */
- NSDictionary* __nullable  AttributesFromSVGCompactAttributes( NSString* __nonnull  compactedAttributes);
+ NSDictionary* __nullable  AttributesFromSVGCompactAttributes( NSString*  compactedAttributes);
 
 /*! \brief remove the " character
 * \param possiblyQuotedString string with SVG quoting in it
 * \return input string shorn of quotes
 */
- NSString* __nullable  UnquotedSVGString( NSString* __nonnull  possiblyQuotedString);
+ NSString* __nullable  UnquotedSVGString( NSString*  possiblyQuotedString);
 
 /*! \brief given two vectors, caclculate the angle
 * \param vector1 a vector
@@ -167,7 +169,7 @@ CGFloat CalculateVectorAngle(CGPoint	vector1, CGPoint vector2);
  * \param endPointX where does this arc terminate x
  * \param endPointY where does this arc terminate y
  */
-void AddSVGArcToPath(__nonnull CGMutablePathRef thePath,
+void AddSVGArcToPath(CGMutablePathRef thePath,
                      CGFloat xRadius,
                      CGFloat  yRadius,
                      double  xAxisRotationDegrees,
@@ -181,12 +183,12 @@ void AddSVGArcToPath(__nonnull CGMutablePathRef thePath,
  * \param startAngle where should it start (degrees)
  * \param endAngle where should it end (degrees)
 */
- NSString* __nonnull  SVGArcFromSensibleParameters(CGFloat xRadius, CGFloat yRadius, double xAxisRotationDegrees,
+ NSString*  SVGArcFromSensibleParameters(CGFloat xRadius, CGFloat yRadius, double xAxisRotationDegrees,
                                          double startAngle, double endAngle);
 
 extern const CGFloat kDegreesToRadiansConstant;
-extern  NSString* __nonnull  const	kWhiteInHex;
-extern  NSString* __nonnull  const   kBlackInHex;
+extern  NSString*  const	kWhiteInHex;
+extern  NSString*  const   kBlackInHex;
 extern const CGColorRenderingIntent	kColoringRenderingIntent;
 
 
@@ -198,44 +200,44 @@ extern const CGColorRenderingIntent	kColoringRenderingIntent;
 * @attention feel free to log this from XCode's debugger console if you happen to have a Core Graphics context handy. 
 * @attention (lldb) call (void) [SVGToQuartz LogQuartzContextState:quartzContext];
 */
-+(void) LogQuartzContextState:(nonnull CGContextRef)quartzContext;
++(void) LogQuartzContextState:(CGContextRef)quartzContext;
 
 /*! @brief does the given dictionary of attributes does one of them have the 'display' attribute set to 'none'. i.e. is the element invisible?
 * @param attributes an entities elements to check
 * @return YES if the attributes indicate hiding is in order
 */
-+(BOOL)attributeHasDisplaySetToNone:(nonnull NSDictionary*)attributes;
++(BOOL)attributeHasDisplaySetToNone:(NSDictionary*)attributes;
 
 /*! @brief try to find the value for a style attribute inside a dictionary of attributes. Might be free-standing or in a 'style' attribute
 * @param attributeName which style type attribute are we looking for?
 * @param elementAttributes attributes to look inside
 * @return the value if it is found
 */
-+(nullable NSString*) valueForStyleAttribute:(nonnull NSString*)attributeName fromDefinition:(nonnull NSDictionary*)elementAttributes;
++(nullable NSString*) valueForStyleAttribute:(NSString*)attributeName fromDefinition:(NSDictionary*)elementAttributes;
 
 /*! @brief given a composite style attribute, break it apart into individual attributes
 * @param styleString a string with potentially many attributes encoded into it.
 * @return a dictionary of the individual attributes
 * @see AttributesFromSVGCompactAttributes
 */
-+(nonnull NSDictionary*  )dictionaryForStyleAttributeString:(nonnull NSString* )styleString;
++(NSDictionary*  )dictionaryForStyleAttributeString:(NSString* )styleString;
 /*! @brief take a bunch of individual attributes and package them up in a single 'style' type string
 * @param styleDictionary a bunch of style attributes that can be compacted up
 * @return a compact version of style attributes where they are all jammed together in one string
 */
-+(nonnull NSString*)styleAttributeStringForDictionary:(nonnull NSDictionary*)styleDictionary;
++(NSString*)styleAttributeStringForDictionary:(NSDictionary*)styleDictionary;
 
 /*! @brief given a 'stroke-linejoin' SVG attribute setup the context for drawing with that line join
 * @param quartzContext a Core Graphics context
 * @param miterString a valid SVG const string for this: 'miter', 'round', 'bevel'
 */
-+(void)setupMiterForQuartzContext:(__nonnull CGContextRef)quartzContext withSVGMiterString:(nullable NSString*)miterString;
++(void)setupMiterForQuartzContext:(CGContextRef)quartzContext withSVGMiterString:(nullable NSString*)miterString;
 
 /*! @brief given a 'stroke-linecap' SVG attribute setup the context for drawing with that line cap
 * @param quartzContext a Core Graphics context
 * @param lineCapString a valid SVG const string for this: 'butt', 'round', 'square'
 */
-+(void)setupLineEndForQuartzContext:(__nonnull CGContextRef)quartzContext withSVGLineEndString:(nullable NSString*)lineCapString;
++(void)setupLineEndForQuartzContext:(CGContextRef)quartzContext withSVGLineEndString:(nullable NSString*)lineCapString;
 
 /*! @brief given a 'stroke-miterlimit' SVG attribute setup the context for drawing with that miter limit 
 * @attention miter limits involve the behavior of acute intersections of line sections (look it up)
@@ -243,7 +245,7 @@ extern const CGColorRenderingIntent	kColoringRenderingIntent;
 * @param miterLimitString a number string setting the miter
 * @see CGContextSetMiterLimit
 */
-+(void) setupMiterLimitForQuartzContext:(__nonnull CGContextRef)quartzContext withSVGMiterLimitString:(nullable NSString*)miterLimitString;
++(void) setupMiterLimitForQuartzContext:(CGContextRef)quartzContext withSVGMiterLimitString:(nullable NSString*)miterLimitString;
 
 /*! @brief setup line drawing to use a given dash pattern and phase into that dash pattern
 * @param quartzContext a Core Graphics context
@@ -251,14 +253,14 @@ extern const CGColorRenderingIntent	kColoringRenderingIntent;
 * @param phaseString a number indicating how far into the pattern to start drawing
 * @see CGContextSetLineDash
 */
-+(void) setupLineDashForQuartzContext:(__nonnull CGContextRef)quartzContext withSVGDashArray:(nullable NSString*)strokeDashString andPhase:(nullable NSString*)phaseString;
++(void) setupLineDashForQuartzContext:(CGContextRef)quartzContext withSVGDashArray:(nullable NSString*)strokeDashString andPhase:(nullable NSString*)phaseString;
 
 /*! @brief setup the opacity of future drawing into a context
 * @param quartzContext a Core Graphics context
 * @param opacityString a number as a string between 0 and 1
 * @see CGContextSetAlpha
 */
-+(void) setupOpacityForQuartzContext:(__nonnull CGContextRef)quartzContext withSVGOpacity:(nonnull NSString*)opacityString;
++(void) setupOpacityForQuartzContext:(CGContextRef)quartzContext withSVGOpacity:(NSString*)opacityString;
 
 /*! @brief setup the line width for stroking lines. May have a vector effect which results in scale ignoring drawing
 * @param quartzContext a Core Graphics context
@@ -266,14 +268,14 @@ extern const CGColorRenderingIntent	kColoringRenderingIntent;
 * @param vectorEffect may be 'non-scaling-stroke' which means that a line width of 1 will always be 1 point wide on screen.
 * @param svgContext this is passed in to allow for some tricks with scaling (rarely done)
 */
-+(void) setupLineWidthForQuartzContext:(nonnull CGContextRef)quartzContext withSVGStrokeString:(nullable NSString*)strokeString withVectorEffect:(nullable NSString*)vectorEffect withSVGContext:(nonnull id<SVGContext>)svgContext;
++(void) setupLineWidthForQuartzContext:(CGContextRef)quartzContext withSVGStrokeString:(nullable NSString*)strokeString withVectorEffect:(nullable NSString*)vectorEffect withSVGContext:(id<SVGContext>)svgContext;
 
 /*! @brief set the color for drawing with the given color string. Perhaps with some contextual help.
 * @param quartzContext a Core Graphics context
 * @param colorString some string which can be interpreted by the context to become a UIColor and then setup the drawing enviroment
 * @param svgContext needed to answer such questions as what the 'currentColor' is.
 */
-+(void) setupColorForQuartzContext:(nonnull CGContextRef)quartzContext withColorString:(nullable NSString*)colorString withSVGContext:(nonnull id<SVGContext>)svgContext;
++(void) setupColorForQuartzContext:(CGContextRef)quartzContext withColorString:(nullable NSString*)colorString withSVGContext:(id<SVGContext>)svgContext;
 
 /*! @brief bitmap images can be embedded as hex in SVG documents or referenced relatively to the document's URL or file path. This retrieves them
 * @param xLinkPath contents of SVG's 'xlink:href' attribute
@@ -281,7 +283,7 @@ extern const CGColorRenderingIntent	kColoringRenderingIntent;
 * @param svgContext needed to do the location
 * @param retrievalCallback callback to get your image back
 */
-+(void) imageAtXLinkPath:(nullable NSString*)xLinkPath orAtRelativeFilePath:(nullable NSString*)relativeFilePath withSVGContext:(nonnull id<SVGContext>)svgContext intoCallback:(nonnull handleRetrievedImage_t)retrievalCallback;
++(void) imageAtXLinkPath:(nullable NSString*)xLinkPath orAtRelativeFilePath:(nullable NSString*)relativeFilePath withSVGContext:(id<SVGContext>)svgContext intoCallback:(handleRetrievedImage_t)retrievalCallback;
 
 /*! @brief SVG image entities have various modes to draw taking into account their natural aspect ratios and sizes. These modes are selected via the 'preserveAspectRatio' attribute
 * @param preserveAspectRatioString a variety of possible selectors here such as 'xMidYMin', 'slice', 'meet' ... See the SVG specification.
@@ -293,5 +295,5 @@ extern const CGColorRenderingIntent	kColoringRenderingIntent;
 @end
 
 
-CGFloat	GetNextCoordinate( const char* __nonnull  buffer,  NSUInteger* __nonnull  indexPtr, NSUInteger bufferLength,  BOOL* __nonnull  failed);
-
+CGFloat	GetNextCoordinate( const char* buffer,  NSUInteger*  indexPtr, NSUInteger bufferLength,  BOOL* failed);
+NS_ASSUME_NONNULL_END

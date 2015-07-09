@@ -34,8 +34,9 @@
 #import <CoreGraphics/CoreGraphics.h>
 #endif
 
+NS_ASSUME_NONNULL_BEGIN
 
-typedef void (^pathVisitor_t)(const CGPathElement * __nonnull element);
+typedef void (^pathVisitor_t)(const CGPathElement * element);
 
 /*! @brief block definition that returns the point on a path and it's direction at that point
  @param point the point being returned
@@ -45,7 +46,7 @@ typedef void (^pathVisitor_t)(const CGPathElement * __nonnull element);
 typedef void (^pointAndVectorCallback_t)(CGPoint point, CGPoint vector);
 
 
-void CGPathApplyCallbackFunction(void* __nonnull  aVisitor, const CGPathElement * __nonnull element);
+void CGPathApplyCallbackFunction(void*   aVisitor, const CGPathElement *  element);
 
 @interface GHPathUtilities : NSObject
 
@@ -93,14 +94,16 @@ void CGPathApplyCallbackFunction(void* __nonnull  aVisitor, const CGPathElement 
  * @param aPath a Core Graphics path to find the lengh of
  * @return a length
  */
-+(CGFloat) totalLengthOfCGPath:(nonnull CGPathRef)aPath; // does not include jumps via move to
++(CGFloat) totalLengthOfCGPath:(CGPathRef)aPath; // does not include jumps via move to
 
 /*! @brief go a given distance along a path and find out the location of the point at that distance and the direction vector at that point
  * @param length a distance along the path to go
  * @param aPath a Core Graphics path to test
  * @param callback the block to call when you retrieve this information
  */
-+(void) findPointAndVectorAtDistance:(CGFloat)length intoPath:(nonnull CGPathRef)aPath intoCallback:(nonnull pointAndVectorCallback_t)callback;
++(void) findPointAndVectorAtDistance:(CGFloat)length intoPath:(CGPathRef)aPath intoCallback:(pointAndVectorCallback_t)callback;
 @end
 
 CGPoint CalculateForward(CGPoint startPoint, CGPoint endPoint);
+
+NS_ASSUME_NONNULL_END

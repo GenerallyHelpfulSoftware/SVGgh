@@ -45,7 +45,7 @@ NSString*	const kLengthIntoParentsContents = @"parentContentLocation"; // for ob
 @synthesize attributes=_attributes;
 
 
--(id) initWithAttributes:(NSDictionary*)theAttributes
+-(instancetype) initWithAttributes:(NSDictionary*)theAttributes
 {
     if(nil != (self = [self init]))
 	{
@@ -54,7 +54,7 @@ NSString*	const kLengthIntoParentsContents = @"parentContentLocation"; // for ob
 	return self;
 }
 
--(id) initWithDictionary:(NSDictionary*)theDefinition
+-(instancetype) initWithDictionary:(NSDictionary*)theDefinition
 {
     NSDictionary* theAttributes = [theDefinition objectForKey:kAttributesElementName];
 	if(nil != (self = [self initWithAttributes:theAttributes]))

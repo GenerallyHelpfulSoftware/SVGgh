@@ -41,6 +41,8 @@
 
 #import "GHControl.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 /*! @brief a button widget that can take on various themed appearances and host vectored svg content
 * @attention not a UIButton (too hard to subclass)
 * @attention wire any UIAction up to the up inside event not the value changed event
@@ -73,3 +75,5 @@ IB_DESIGNABLE
 
 +(void)makeSureLoaded;
 @end
+
+NS_ASSUME_NONNULL_END

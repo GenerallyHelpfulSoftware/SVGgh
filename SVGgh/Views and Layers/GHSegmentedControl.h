@@ -39,6 +39,9 @@
 #endif
 
 @class SVGRenderer;
+
+NS_ASSUME_NONNULL_BEGIN
+
 IB_DESIGNABLE
 @interface GHSegmentedControl : GHControl
 
@@ -66,10 +69,10 @@ IB_DESIGNABLE
  */
 @property(nonatomic) NSInteger selectedSegmentIndex;
 
-- (nonnull instancetype)initWithItems:(nonnull NSArray *)items;
+- (instancetype)initWithItems:(NSArray *)items;
 
-- (void)insertSegmentWithTitle:(nonnull NSString *)title atIndex:(NSUInteger)segment animated:(BOOL)animated;
-- (void)insertSegmentWithRenderer:(nonnull SVGRenderer *)renderer  atIndex:(NSUInteger)segment animated:(BOOL)animated;
+- (void)insertSegmentWithTitle:(NSString *)title atIndex:(NSUInteger)segment animated:(BOOL)animated;
+- (void)insertSegmentWithRenderer:(SVGRenderer *)renderer  atIndex:(NSUInteger)segment animated:(BOOL)animated;
 - (void)removeSegmentAtIndex:(NSUInteger)segment animated:(BOOL)animated;
 - (void)removeAllSegments;
 
@@ -90,3 +93,5 @@ IB_DESIGNABLE
 
 +(void)makeSureLoaded;
 @end
+
+NS_ASSUME_NONNULL_END

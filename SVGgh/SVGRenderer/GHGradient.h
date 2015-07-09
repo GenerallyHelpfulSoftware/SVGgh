@@ -26,6 +26,8 @@
 
 #import "SVGAttributedObject.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 /*! @brief An abstract implementation of a GHFill that will add gradients to a properly setup Core Graphics Context
 */
 @interface GHGradient : GHFill
@@ -34,7 +36,7 @@
 * @param svgContext a context capable of providing additional information
 * @param objectBox This is needed to know the extent of the object being filled.
 */
--(void) fillPathToContext:(nonnull CGContextRef)quartzContext  withSVGContext:(nonnull id<SVGContext>)svgContext objectBoundingBox:(CGRect) objectBox;
+-(void) fillPathToContext:(CGContextRef)quartzContext  withSVGContext:(id<SVGContext>)svgContext objectBoundingBox:(CGRect) objectBox;
 @end
 
 /*! @brief GHGradient concrete class that uses CGContextDrawLinearGradient
@@ -46,3 +48,5 @@
 */
 @interface GHRadialGradient : GHGradient
 @end
+
+NS_ASSUME_NONNULL_END

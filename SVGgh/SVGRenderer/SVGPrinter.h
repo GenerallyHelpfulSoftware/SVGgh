@@ -44,6 +44,11 @@ typedef enum PrintingResults
 }PrintingResults;
 
 typedef void(^printingCallback_t)(NSError* __nullable  error, PrintingResults printingResult);
+
+NS_ASSUME_NONNULL_BEGIN
+
 @interface SVGPrinter :NSObject
-+(void) printRenderer:(nonnull SVGRenderer*)renderer  withJobName:(nonnull NSString*)jobName withCallback:(nonnull printingCallback_t)callback;
++(void) printRenderer:(SVGRenderer*)renderer  withJobName:(NSString*)jobName withCallback:(printingCallback_t)callback;
 @end
+
+NS_ASSUME_NONNULL_END

@@ -38,7 +38,7 @@
 @interface GHAttributedObject(SVGRenderer)
 
 +(NSDictionary*) overideObjectsForPrototype:(id)prototype withDictionary:(NSDictionary*)deltaDictionary;
--(id) cloneWithOverridingDictionary:(NSDictionary*)overrideAttributes;
+-(instancetype) cloneWithOverridingDictionary:(NSDictionary*)overrideAttributes;
 @end
 
 @interface GHRenderableObject()
@@ -1251,7 +1251,7 @@
     return result;
 }
 
--(id) cloneWithOverridingDictionary:(NSDictionary*)overrideAttributes
+-(instancetype) cloneWithOverridingDictionary:(NSDictionary*)overrideAttributes
 {
     GHShapeGroup* result = [super cloneWithOverridingDictionary:overrideAttributes];
     result.childDefinitions = self.childDefinitions;
@@ -1447,7 +1447,7 @@
     return result;
 }
 
--(id) initWithDictionary:(NSDictionary*)theDefinition
+-(instancetype) initWithDictionary:(NSDictionary*)theDefinition
 {
     if(nil != (self = [super initWithDictionary:theDefinition]))
     {

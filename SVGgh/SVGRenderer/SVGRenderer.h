@@ -35,6 +35,7 @@
 #import "GHRenderable.h"
 #import "SVGContext.h"
 
+NS_ASSUME_NONNULL_BEGIN
 
 /*! @brief a class capable of rendering itself into a core graphics context
 */
@@ -47,12 +48,12 @@
 /*! @brief a queue where it is convenient to renders when the main queue is not necessary
 * @return a shared operation queue
 */
-+(nonnull NSOperationQueue*) rendererQueue;
++(NSOperationQueue*) rendererQueue;
 
 /*! @brief draw the SVG
 * @param quartzContext context into which to draw, cold be a CALayer, a PDF, an offscreen bitmap, whatever
 */
--(void)renderIntoContext:(nonnull CGContextRef)quartzContext;
+-(void)renderIntoContext:(CGContextRef)quartzContext;
 
 /*! @brief try to locate an object that's been tapped
 * @param testPoint a point in the coordinate system of this renderer
@@ -62,6 +63,6 @@
 
 @end
 
-
+NS_ASSUME_NONNULL_END
 
 

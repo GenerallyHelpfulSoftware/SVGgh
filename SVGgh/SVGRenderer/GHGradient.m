@@ -52,7 +52,7 @@
     return result;
 }
 
--(id) initWithDictionary:(NSDictionary*)theDefinition
+-(instancetype) initWithDictionary:(NSDictionary*)theDefinition
 {
 	if(nil != (self = [super initWithDictionary:theDefinition]))
 	{

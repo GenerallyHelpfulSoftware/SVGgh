@@ -56,13 +56,13 @@ NSData* DecodeBase64FromStringToData(NSString* decodeString)
 
 @implementation NSData (Base64Addons)
 
-+(id)decodeBase64ForString:(NSString *)decodeString
++(instancetype)decodeBase64ForString:(NSString *)decodeString
 {
     NSData* result = DecodeBase64FromStringToData(decodeString);
     return result;
 }
 
-+(id)decodeWebSafeBase64ForString:(NSString *)decodeString
++(instancetype)decodeWebSafeBase64ForString:(NSString *)decodeString
 {
     return [NSData decodeBase64ForString:[[decodeString stringByReplacingOccurrencesOfString:@"-" withString:@"+"] stringByReplacingOccurrencesOfString:@"_" withString:@"/"]];
 }

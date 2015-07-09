@@ -36,6 +36,8 @@
 #import "GHAttributedObject.h"
 #import "GHRenderable.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 /*! @brief base object for objects defined in an SVG document
 */
 @interface SVGAttributedObject : GHAttributedObject
@@ -43,13 +45,13 @@
 * @param svgContext state information needed to make this decision
 * @return YES if object should be drawn
 */
--(BOOL)environmentOKWithSVGContext:(nonnull id<SVGContext>)svgContext;
+-(BOOL)environmentOKWithSVGContext:(id<SVGContext>)svgContext;
 
 /*! @brief answers the question if this particular object should be rendered given the user's language settings.
  * @param isoLanguage something like 'en', 'zh' 
  * @return YES if object should be drawn
  */
--(BOOL)environmentOKWithISOCode:(nonnull NSString*)isoLanguage;
+-(BOOL)environmentOKWithISOCode:(NSString*)isoLanguage;
 
 /*! @brief is this object hidden during drawing, i.e. attribute 'display' is set to 'none'
 * @return YES if it's not to be rendered
@@ -70,7 +72,7 @@
 * @param svgContext the state in which this object finds itself called
 * @return the found color as a UIColor*
 */
--(nullable UIColor*) asColorWithSVGContext:(nonnull id<SVGContext>)svgContext;
+-(nullable UIColor*) asColorWithSVGContext:(id<SVGContext>)svgContext;
 @end
 
 /*! @brief an abstract object which implements the GHRenderable protocol
@@ -82,7 +84,7 @@
 @property (strong, nonatomic, strong) 	UIColor* __nullable 		fillColor;
 /*! @property defaultFillColor if the fillColor isn't explicitly set, this is what be used (typically black)
 */
-@property (strong, nonatomic, readonly)  NSString* __nonnull 		defaultFillColor;
+@property (strong, nonatomic, readonly)  NSString*                  defaultFillColor;
 
 /*! @property transform 
 * @brief every renderable object can have its own transform which scales, translates, rotates or skews
@@ -94,14 +96,14 @@
 * @param attributes a collection of attributes
 * @param svgContext a state object needed to retrieve some properties not explicitly set in the provided attributes
 */
-+(void) setupContext:(nonnull CGContextRef)quartzContext withAttributes:(nullable NSDictionary*)attributes withSVGContext:(nonnull id<SVGContext>)svgContext;
++(void) setupContext:(CGContextRef)quartzContext withAttributes:(nullable NSDictionary*)attributes withSVGContext:(id<SVGContext>)svgContext;
 
 /*! @brief retrieve a bounding box for an object. As sometimes an objects bounds are given in terms of its parent, provided the parent bounds
 * @param anObject object to test
 * @param svgContext a state object needed to retrieve some properties not explicitly set in the provided attributes
 * @param parentBounds needed as sometimes objects are sized in reference to their containing object
 */
-+(CGRect) boundingBoxForRenderableObject:(nonnull id<GHRenderable>)anObject withSVGContext:(nonnull id<SVGContext>) svgContext givenParentObjectsBounds:(CGRect)parentBounds;
++(CGRect) boundingBoxForRenderableObject:(id<GHRenderable>)anObject withSVGContext:(id<SVGContext>) svgContext givenParentObjectsBounds:(CGRect)parentBounds;
 
 /*! @brief see if this object contains the given point
 * @param testPoint point to check
@@ -113,12 +115,12 @@
 * @param attributeName attribute to search for in this object's attributes
 * @return the value of the attribute if it exists
 */
--(nullable NSString*) valueForStyleAttribute:(nonnull NSString*)attributeName;
+-(nullable NSString*) valueForStyleAttribute:(NSString*)attributeName;
 
 /*! @brief sometimes objects are referenced internally in a document by name, this adds them to a map to keep track of
 * @param namedObjectsMap a collection of objects to add
 */
--(void) addNamedObjects:(nonnull NSMutableDictionary*)namedObjectsMap;
+-(void) addNamedObjects:(NSMutableDictionary*)namedObjectsMap;
 @end
 
 /*! @brief an encapsulation of a bitmap or other static image
@@ -128,7 +130,7 @@
 * @param theAttributes appropriate attributes for an SVG 'image'
 * @return a renderable object (probably a GHImage*)
 */
-+(nullable id<GHRenderable>)newImageWithDictionary:(nonnull NSDictionary*)theAttributes;
++(nullable id<GHRenderable>)newImageWithDictionary:(NSDictionary*)theAttributes;
 @end
 
 /*! @brief an abstract class whose concrete subclasses will be wrappers for CGPathRefs
@@ -188,7 +190,7 @@
 */
 @property (strong, nonatomic, retain)  NSArray* __nullable  childDefinitions;
 
--(void) addNamedObjects:(nonnull NSMutableDictionary*)namedObjectsMap;
+-(void) addNamedObjects:(NSMutableDictionary*)namedObjectsMap;
 @end
 
 /*! @brief manifestation of an SVG 'switch' entity which allows decisions to be made about what to draw
@@ -206,7 +208,7 @@
 /*! @brief manifestation of an SVG 'clipPath' entity
  */
 @interface GHClipGroup : GHShapeGroup
-+(nullable instancetype)clipObjectForAttributes:(nonnull NSDictionary*)attributes withSVGContext:(nonnull id<SVGContext>)svgContext;
++(nullable instancetype)clipObjectForAttributes:(NSDictionary*)attributes withSVGContext:(id<SVGContext>)svgContext;
 @end
 /*! @brief manifestation of an SVG 'mask' entity
  */
@@ -216,6 +218,7 @@
 /*! @brief manifestation of an SVG 'use' entity which allows an object defined elsewhere in the document to be used in this place
  */
 @interface GHRenderableObjectPlaceholder : GHRenderableObject
--(nullable GHRenderableObject*)  concreteObjectForSVGContext:(nonnull id<SVGContext>)svgContext excludingPrevious:(nullable NSMutableSet*)setToAvoidLoops;
+-(nullable GHRenderableObject*)  concreteObjectForSVGContext:(id<SVGContext>)svgContext excludingPrevious:(nullable NSMutableSet*)setToAvoidLoops;
 @end
 
+NS_ASSUME_NONNULL_END

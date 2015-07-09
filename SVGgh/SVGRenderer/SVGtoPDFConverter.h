@@ -33,7 +33,12 @@
 #endif
 
 @class SVGRenderer;
+
+NS_ASSUME_NONNULL_BEGIN
+
 typedef void(^renderPDFCallback_t)(NSData* __nullable  pdfData);
+
+
 
 @interface SVGtoPDFConverter : NSObject
 /*! @brief call to create a PDF, does so on another queue
@@ -41,7 +46,7 @@ typedef void(^renderPDFCallback_t)(NSData* __nullable  pdfData);
 * @param callback the block to get called when done
 * @attention will callback on another queue may return nil pdfData
 */
-+(void) createPDFFromRenderer:(nonnull SVGRenderer*)aRenderer intoCallback:(nonnull renderPDFCallback_t)callback;
++(void) createPDFFromRenderer:(SVGRenderer*)aRenderer intoCallback:(renderPDFCallback_t)callback;
 @end
 
 /*! \brief utility method to create a PDF context
@@ -49,4 +54,6 @@ typedef void(^renderPDFCallback_t)(NSData* __nullable  pdfData);
 * \param theData an allocated but empty block of data which will be filled with the PDF
 * \return a Core Graphics context. Caller responsible for disposal.
 */
-__nullable CGContextRef	CreatePDFContext(const CGRect mediaRect, __nonnull CFMutableDataRef theData);
+__nullable CGContextRef	CreatePDFContext(const CGRect mediaRect, CFMutableDataRef theData);
+
+NS_ASSUME_NONNULL_END

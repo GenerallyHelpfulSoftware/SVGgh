@@ -34,6 +34,7 @@
 #import <UIKit/UIKit.h>
 #endif
 
+NS_ASSUME_NONNULL_BEGIN
 
 /*! @brief a protocol followed to communicate state when walking through a tree of SVG objects, passed into nodes/leaves in that tree
  */
@@ -43,30 +44,30 @@
  * @return a UIColor from the RGB color space
  * @see UIColorFromSVGColorString
  */
--(nullable UIColor*) colorForSVGColorString:(nonnull NSString*)svgColorString;
+-(nullable UIColor*) colorForSVGColorString:(NSString*)svgColorString;
 /*! @brief make a URL relative to the document being parsed
  * @param subPath a location inside the app's resource bundle
  * @return an NSURL to some resource (hopefully)
  */
--(nullable NSURL*)	relativeURL:(nonnull NSString*)subPath;
+-(nullable NSURL*)	relativeURL:(NSString*)subPath;
 
 /*! @brief make a URL
  * @param absolutePath a file path
  * @return an NSURL to some resource (hopefully)
  */
--(nullable NSURL*)   absoluteURL:(nonnull NSString*)absolutePath; // sort of...
+-(nullable NSURL*)   absoluteURL:(NSString*)absolutePath; // sort of...
 
 /*! @brief find an object whose 'id' or maybe 'xml:id' property have the given name
  * @param objectName the name key to look for
  * @return some object (usually an id<GHRenderable> but not always
  */
--(nullable id)       objectNamed:(nonnull NSString*)objectName;
+-(nullable id)       objectNamed:(NSString*)objectName;
 
 /*! @brief sometimes objects in SVG are referenced in the form 'URL(#aRef)'. This returns them.
  * @param aLocation some object in this document probably
  * @return some object (usually an id<GHRenderable> but not always
  */
--(nullable id)       objectAtURL:(nonnull NSString*)aLocation;
+-(nullable id)       objectAtURL:(NSString*)aLocation;
 /*! @brief sometimes SVG colors are specified as 'currentColor'. This sets the starting currentColor before the tree is visited. Good for colorizing artwork.
  * @param startingCurrentColor a UIColor to start with
  */
@@ -83,3 +84,4 @@
 -(CGFloat)  explicitLineScaling;
 @end
 
+NS_ASSUME_NONNULL_END

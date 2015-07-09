@@ -31,25 +31,27 @@
 #import <Foundation/Foundation.h>
 #endif
 
-
+NS_ASSUME_NONNULL_BEGIN
 
 
 /*! @brief basically just a wrapper around an NSDictionary. A convenient object when generating from XML
 */
 @interface GHAttributedObject : NSObject
-@property (strong, nonatomic, readonly) NSDictionary* __nonnull 	attributes;
+@property (strong, nonatomic, readonly) NSDictionary*  	attributes;
 
--(nonnull instancetype) initWithDictionary:(nonnull NSDictionary*)theAttributes;
--(nonnull instancetype) initWithAttributes:(nonnull NSDictionary*)theAttributes;
+-(nonnull instancetype) initWithDictionary:(NSDictionary*)theAttributes;
+-(instancetype) initWithAttributes:(NSDictionary*)theAttributes;
 
 
 -(NSUInteger)calculatedHash; // attributed objects are immutable, I can calculate their hash once and be done with it.
 @end
-
 // useful in parsing XML
-extern  NSString* __nonnull 	const kAttributesElementName;
-extern  NSString* __nonnull 	const kContentsElementName;
-extern  NSString* __nonnull 	const kElementName;
-extern  NSString* __nonnull 	const kElementText;
-extern  NSString* __nonnull 	const kElementData;
-extern  NSString* __nonnull 	const kLengthIntoParentsContents;
+extern  NSString*  	const kAttributesElementName;
+extern  NSString*  	const kContentsElementName;
+extern  NSString*  	const kElementName;
+extern  NSString*  	const kElementText;
+extern  NSString*  	const kElementData;
+extern  NSString*  	const kLengthIntoParentsContents;
+
+
+NS_ASSUME_NONNULL_END

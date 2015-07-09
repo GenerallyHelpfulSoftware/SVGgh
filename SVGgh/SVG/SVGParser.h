@@ -32,6 +32,7 @@
 #import <Foundation/Foundation.h>
 #endif
 
+NS_ASSUME_NONNULL_BEGIN
 
 /*! @brief object capable of reading in an SVG document in XML form
 */
@@ -43,12 +44,12 @@
 /*! @brief init method which takes a URL reference to a .svg file
 * @param url a reference to a standard .svg file
 */
-- (nullable id)initWithContentsOfURL:(nonnull NSURL *)url;
+- (nullable id)initWithContentsOfURL:(NSURL *)url;
 
 /*! @brief init method which takes an SVG document which already exists as a string
 * @param utf8String string containing the SVG document
 */
--(nullable id)initWithString:(nonnull NSString*)utf8String;
+-(nullable id)initWithString:(NSString*)utf8String;
 
 
 /*! @brief not allowing a standard init method
@@ -58,10 +59,12 @@
 /*! @brief method to create a URL relative to the URL used to create this object (assuming use of a URL to create it)
 * @param subPath relative path to this parser's svgURL
 */
--(nullable NSURL*)	relativeURL:(nonnull NSString*)subPath;
+-(nullable NSURL*)	relativeURL:(NSString*)subPath;
 
 /*! @brief a routine to return an absolute URL
 * @param aPath the file path to the resource
 */
--(nullable NSURL*)   absoluteURL:(nonnull NSString*)aPath;
+-(nullable NSURL*)   absoluteURL:(NSString*)aPath;
 @end
+
+NS_ASSUME_NONNULL_END

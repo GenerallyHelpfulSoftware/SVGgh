@@ -37,6 +37,9 @@
 #import "SVGAttributedObject.h"
 #import "GHPathDescription.h"
 
+
+NS_ASSUME_NONNULL_BEGIN
+
 /*! @brief manifestation of an SVG 'text' entity a collection of other entities
 */
 @interface GHText : GHRenderableObject<GHPathDescription>
@@ -45,7 +48,7 @@
 * @param glyphList list to Fill with glyphs
 * @param svgContext state information to give context to how this object behaves
 */
--(void)addGlyphsToArray:(nonnull NSMutableArray*)glyphList  withSVGContext:(nonnull id<SVGContext>)svgContext;
+-(void)addGlyphsToArray:(NSMutableArray*)glyphList  withSVGContext:(id<SVGContext>)svgContext;
 @end
 
 /*! @brief manifestation of an SVG 'textArea' entity a collection of other entities
@@ -53,3 +56,5 @@
 @interface GHTextArea : GHText
 @property(nonatomic, readonly) NSAttributedString* __nullable  text;
 @end
+
+NS_ASSUME_NONNULL_END

@@ -46,7 +46,7 @@ const CGFloat kShadowInset = 3.0;
 }
 
 
--(id) initWithFrame:(CGRect)frame
+-(instancetype) initWithFrame:(CGRect)frame
 {
     if(nil != (self = [super initWithFrame:frame]))
     {
@@ -58,7 +58,7 @@ const CGFloat kShadowInset = 3.0;
     return self;
 }
 
--(id) initWithCoder:(NSCoder *)aDecoder
+-(instancetype) initWithCoder:(NSCoder *)aDecoder
 {
     if(nil != (self = [super initWithCoder:aDecoder]))
     {

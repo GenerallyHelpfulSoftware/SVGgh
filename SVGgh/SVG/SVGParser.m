@@ -150,7 +150,7 @@
 @implementation SVGParser
 @synthesize parserError=_parserError, root, svgURL=_svgURL;
 
--(id)initWithString:(NSString*)utf8String
+-(instancetype)initWithString:(NSString*)utf8String
 {
     if(nil != (self = [super init]))
 	{
@@ -163,7 +163,7 @@
 	return self;
 }
 
-- (id)initWithContentsOfURL:(NSURL *)url
+- (instancetype)initWithContentsOfURL:(NSURL *)url
 {
 	if(nil != (self = [super init]))
 	{

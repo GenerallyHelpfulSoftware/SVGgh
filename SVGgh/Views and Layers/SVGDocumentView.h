@@ -44,6 +44,8 @@
 #define IB_DESIGNABLE
 #endif
 
+NS_ASSUME_NONNULL_BEGIN
+
 /*
  * Note you can instantiate a SVGDocumentView in a storyboard or a XIB by dragging a UIView into your view and giving it a class of SVGDocumentView.
  * You can configure the contents of the view by adding "User Defined Runtime Attributes" in XCode's "Identity Inspector"
@@ -90,3 +92,5 @@ IB_DESIGNABLE
 -(nullable id<GHRenderable>) findRenderableObject:(CGPoint)testPoint;
 +(void)makeSureLoaded;
 @end
+
+NS_ASSUME_NONNULL_END
