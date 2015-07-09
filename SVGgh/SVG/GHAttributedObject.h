@@ -39,7 +39,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface GHAttributedObject : NSObject
 @property (strong, nonatomic, readonly) NSDictionary*  	attributes;
 
--(nonnull instancetype) initWithDictionary:(NSDictionary*)theAttributes;
+-(instancetype) initWithDictionary:(NSDictionary*)theAttributes;
 -(instancetype) initWithAttributes:(NSDictionary*)theAttributes;
 
 
