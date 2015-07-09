@@ -30,19 +30,11 @@
 
 #import "GHControl.h"
 
-#ifndef IBInspectable
-#define IBInspectable
-#endif
-
-#ifndef IB_DESIGNABLE
-#define IB_DESIGNABLE
-#endif
-
 @class SVGRenderer;
 
 NS_ASSUME_NONNULL_BEGIN
 
-IB_DESIGNABLE
+//IB_DESIGNABLE
 @interface GHSegmentedControl : GHControl
 
 /*! @property momentary
