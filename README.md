@@ -1,6 +1,6 @@
 **SVGgh** *an SVG Rendering Framework for iOS*
 -
-Author [Glenn R. Howes](mailto:grhowes@mac.com), *owner [Generally Helpful Software](http://genhelp.com)*
+Author [Glenn R. Howes](mailto:glenn@genhelp.com), *owner [Generally Helpful Software](http://genhelp.com)*
 
 ### Introduction
 In my own apps, I've often wished to avoid using bitmapped images for my interface elements. Often, I'll need to add PNG files for Retina, and non-retina, iPhone and iPad, and find myself confined to what I can do with an interface in terms of stretching elements. And all this artwork made my app bulky. So, I decided to implement an SVG renderer which could use standard **Scalable Vector Graphics** documents to draw button icons, background art or whatever my art needs were. I have Apps in the App Store like [SVG Paths](http://AppStore.com/SVGPaths) whose only PNG files are the required icons. 
@@ -11,9 +11,9 @@ Handles shapes quite well such as paths, ellipses, circles, rectangles, polygons
 ### Limitations
 The entire [SVG specification](http://www.w3.org/TR/SVG11/) is not implemented. At present, it only implements the portions of the specification I needed or thought I might need. In particular, it doesn't support SVG fonts, animation, Javascript, or effects. Also, some attributes remain unimplemented or partially implemented, for example the *width* attribute of an *svg* entity cannot be expressed as a percentage. I hope users of this library will contribute back implementations of at least some of these. 
 
-There are undoubtably bugs but I've used this library in all 6 apps I have in the App Store without issue so it is reasonably stable. Also, I would not label this a high performance renderer although I've never had cause to complain about it in the way I use it. 
+There are undoubtably bugs but I've used this library in all 8 apps I have in the App Store without issue so it is reasonably stable. Also, I would not label this a high performance renderer although I've never had cause to complain about it in the way I use it. 
 
-The included library assumes ARC style memory management. It's also been arbitrarily set to support iOS 7 and up. The code might run on iOS 5 and up, but I'm not supporting that going forward. 
+The included library assumes ARC style memory management. It's also been arbitrarily set to support iOS 7 and up. I've moved to using newer code annotations such as *nullable* so it requires a recent version of Xcode to compile. 
 
 Originally, this was distributed as a static library, but that is not a modern way to use it. So the enclosed project will build a framework, and most people will probably find the use of Cocoapods to be more enjoyable.
 
