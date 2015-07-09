@@ -44,12 +44,12 @@ NS_ASSUME_NONNULL_BEGIN
 /*! @brief init method which takes a URL reference to a .svg file
 * @param url a reference to a standard .svg file
 */
-- (nullable id)initWithContentsOfURL:(NSURL *)url;
+-(id)initWithContentsOfURL:(NSURL *)url;
 
 /*! @brief init method which takes an SVG document which already exists as a string
 * @param utf8String string containing the SVG document
 */
--(nullable id)initWithString:(NSString*)utf8String;
+-(id)initWithString:(NSString*)utf8String;
 
 
 /*! @brief not allowing a standard init method
