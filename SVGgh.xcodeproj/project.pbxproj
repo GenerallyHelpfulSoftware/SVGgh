@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		211E70931B2A1E4300667BE9 /* Artwork in Resources */ = {isa = PBXBuildFile; fileRef = 21F6BCE71B29A8FE00DCEEC2 /* Artwork */; };
 		21309A4E1B29FA3700E8B812 /* SVGgh.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F6BBE21B29A21E00DCEEC2 /* SVGgh.framework */; };
+		2181F3A71B4F5D8F007617A7 /* SVGTabBarItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 2181F3A51B4F5D8F007617A7 /* SVGTabBarItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2181F3A81B4F5D8F007617A7 /* SVGTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2181F3A61B4F5D8F007617A7 /* SVGTabBarItem.m */; };
 		2194CD3F1B29FB4F00702F44 /* Artwork in Resources */ = {isa = PBXBuildFile; fileRef = 21F6BCE71B29A8FE00DCEEC2 /* Artwork */; };
 		21F6BBE81B29A21E00DCEEC2 /* SVGgh.h in Headers */ = {isa = PBXBuildFile; fileRef = 21F6BBE71B29A21E00DCEEC2 /* SVGgh.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		21F6BBEE1B29A21E00DCEEC2 /* SVGgh.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F6BBE21B29A21E00DCEEC2 /* SVGgh.framework */; };
@@ -92,6 +94,8 @@
 
 /* Begin PBXFileReference section */
 		211E709E1B2AEC1D00667BE9 /* SVGgh.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = SVGgh.podspec; sourceTree = "<group>"; };
+		2181F3A51B4F5D8F007617A7 /* SVGTabBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVGTabBarItem.h; sourceTree = "<group>"; };
+		2181F3A61B4F5D8F007617A7 /* SVGTabBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVGTabBarItem.m; sourceTree = "<group>"; };
 		21F6BBE21B29A21E00DCEEC2 /* SVGgh.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SVGgh.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		21F6BBE61B29A21E00DCEEC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		21F6BBE71B29A21E00DCEEC2 /* SVGgh.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SVGgh.h; sourceTree = "<group>"; };
@@ -309,6 +313,8 @@
 				21F6BC211B29A41C00DCEEC2 /* SVGDocumentView.m */,
 				21F6BC221B29A41C00DCEEC2 /* SVGRendererLayer.h */,
 				21F6BC231B29A41C00DCEEC2 /* SVGRendererLayer.m */,
+				2181F3A51B4F5D8F007617A7 /* SVGTabBarItem.h */,
+				2181F3A61B4F5D8F007617A7 /* SVGTabBarItem.m */,
 			);
 			path = "Views and Layers";
 			sourceTree = "<group>";
@@ -403,6 +409,7 @@
 				21F6BC2B1B29A41C00DCEEC2 /* SVGPathGenerator.h in Headers */,
 				21F6BBE81B29A21E00DCEEC2 /* SVGgh.h in Headers */,
 				21F6BC6E1B29A42800DCEEC2 /* GHText.h in Headers */,
+				2181F3A71B4F5D8F007617A7 /* SVGTabBarItem.h in Headers */,
 				21F6BC311B29A41C00DCEEC2 /* SVGRenderer.h in Headers */,
 				21F6BC3A1B29A41C00DCEEC2 /* NSData+Base64Additions.h in Headers */,
 				21F6BC711B29A42800DCEEC2 /* GHTextLine.h in Headers */,
@@ -591,6 +598,7 @@
 				21F6BC751B29A42800DCEEC2 /* SVGAttributedObject.m in Sources */,
 				21F6BC281B29A41C00DCEEC2 /* GHGradient.m in Sources */,
 				21F6BC381B29A41C00DCEEC2 /* Base64Transcoder.m in Sources */,
+				2181F3A81B4F5D8F007617A7 /* SVGTabBarItem.m in Sources */,
 				21F6BC7F1B29A42800DCEEC2 /* SVGTextUtilities.m in Sources */,
 				21F6BC681B29A42800DCEEC2 /* GHAttributedObject.m in Sources */,
 			);
@@ -693,7 +701,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "arm64 armv7 armv7s";
@@ -739,7 +747,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
