@@ -8,14 +8,20 @@ In my own apps, I've often wished to avoid using bitmapped images for my interfa
 ### Features
 Handles shapes quite well such as paths, ellipses, circles, rectangles, polygons, polylines, and arcs with all the standard style attributes. Implements basic text and font handling, including rough text along a path. Implements both linear and radial gradients, including applying gradients to strokes and text. Implements scale invariant line widths. Provides a static UIView subclass, a UIControl button, and a segmented control. All are configurable from either nib or storyboards. Supports embedded bitmap images in standard formats. 
 
+Can export to PDF, create UIImages, and print via the UIPrintInteractionController mechanism.
+
+In the Xcode debugger, you can use the QuickLook button (the eye icon) to see the contents of an SVGRenderer. 
+
 ### Limitations
 The entire [SVG specification](http://www.w3.org/TR/SVG11/) is not implemented. At present, it only implements the portions of the specification I needed or thought I might need. In particular, it doesn't support SVG fonts, animation, Javascript, or effects. Also, some attributes remain unimplemented or partially implemented, for example the *width* attribute of an *svg* entity cannot be expressed as a percentage. I hope users of this library will contribute back implementations of at least some of these. 
 
 There are undoubtably bugs but I've used this library in all 8 apps I have in the App Store without issue so it is reasonably stable. Also, I would not label this a high performance renderer although I've never had cause to complain about it in the way I use it. 
 
-The included library assumes ARC style memory management. It's also been arbitrarily set to support iOS 7 and up. I've moved to using newer code annotations such as *nullable* so it requires a recent version of Xcode to compile. 
+The included library assumes ARC style memory management. It's also been arbitrarily set to support iOS 7 and up. I've moved to using newer code annotations such as *nullable* so it requires a recent version of Xcode to compile. Supports both traditional and module based framework includes.
 
-Originally, this was distributed as a static library, but that is not a modern way to use it. So the enclosed project will build a framework, and most people will probably find the use of Cocoapods to be more enjoyable.
+Originally, this was distributed as a static library, but that is not a modern way to use it. So the enclosed project will build a framework, and most people will probably find the use of **Cocoapods** to be more enjoyable.
+
+I've commented out **IB_DESIGNABLE** for the view classes pending more consistent and performant behavior on Xcode's part (or maybe I can figure out how to make it work better.) Try uncommenting it to see for yourself if it works, as it is satisfying when it does.
 
 ### As a Black Box Library
 If you just want to use the code in your app and are uninterested in the underlying engine, the included Xcode project generates a framework (**SVGgh**) with the following public headers. By the way, the reason that classes tend to have a GH (Generally Helpful, or Glenn Howes) prefix is not narcissism, but an attempt of getting around the lack of a namespace in plain Objective-C.
@@ -35,7 +41,7 @@ If you just want to use the code in your app and are uninterested in the underly
 
 ####If you are not using Cocoapods
 To compile the framework. 
-* Load the included **SVGgh.xcodeproj** project in Xcode 5 or above 
+* Load the included **SVGgh.xcodeproj** project in Xcode 6.3 or above 
 * **Build** the **Framework** target.
 * Locate the **SVGgh.framework** framework
 * Drag the framework into your own Xcode project
@@ -80,7 +86,7 @@ To use, you'll want to follow the following steps:
 To add a button to a .xib file or storyboard:
 * Drag a UIView into your view
 * In the **Identity Inspector** give it a **Custom Class** name of **GHButton**
-* Using Xcode 6 and above you should see the following custom attributes in the Attribute Inspector pane
+* In Xcode you should see the following custom attributes in the Attribute Inspector pane
 
 | Key Path | Type | Value |
 | -------- | ---- | ----- |
@@ -139,5 +145,4 @@ I've gone through and added Doxygen style comments to all the header files, so t
 While the vast majority of the code in this release was written by me. There are a couple of classes or categories that were found online but have a flexible enough license for me to include here.
 * Jonathan Wight wrote a Base64 Transcoder which I found quite useful for handling embedded images.
 * Ian Baird wrote a category for NSData for Base64 which I also found very easy to use. 
-* [Jeff Verkoeyen] (https://github.com/jverkoey/iOS-Framework) provided the instructions for building a static library. Be sure to set **Build Active Architecture Only** to **NO**
 * [Ryan Hornberger] (http://www.ryanhornberger.com) was thoughtful enough to do something I had been too slammed to do: create a CocoaPod Spec for this library making it much more useful.
