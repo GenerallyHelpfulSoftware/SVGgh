@@ -31,4 +31,6 @@ void MakeSureSVGghLinks()
 {
     [SVGDocumentView makeSureLoaded];
     [GHButton makeSureLoaded];
+    [GHSegmentedControl makeSureLoaded];
+    [SVGTabBarItem makeSureLoaded];
 }
