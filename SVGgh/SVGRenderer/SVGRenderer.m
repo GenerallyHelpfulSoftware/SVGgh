@@ -162,6 +162,45 @@
     }
 	return result;
 }
+
+-(UIImage*)asImageWithSize:(CGSize)maximumSize andScale:(CGFloat)scale
+{
+    CGSize documentSize = self.viewRect.size;
+    
+    CGFloat interiorAspectRatio = maximumSize.width/maximumSize.height;
+    CGFloat rendererAspectRatio = documentSize.width/documentSize.height;
+    CGFloat fittedScaling;
+    if(interiorAspectRatio >= rendererAspectRatio)
+    {
+        fittedScaling = maximumSize.height/documentSize.height;
+    }
+    else
+    {
+        fittedScaling = maximumSize.width/documentSize.width;
+    }
+    
+    CGFloat scaledWidth = floor(documentSize.width*fittedScaling);
+    CGFloat scaleHeight = floor(documentSize.height*fittedScaling);
+    
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(scaledWidth, scaleHeight), NO, scale);
+    CGContextRef quartzContext = UIGraphicsGetCurrentContext();
+    CGContextClearRect(quartzContext, CGRectMake(0, 0, scaledWidth, scaleHeight));
+    CGContextSaveGState(quartzContext);
+    CGContextTranslateCTM(quartzContext, (maximumSize.width-scaledWidth)/2.0, (maximumSize.height-scaleHeight)/2.0);
+    CGContextScaleCTM(quartzContext, fittedScaling, fittedScaling);
+    
+    // tell the renderer to draw into my context
+    [self renderIntoContext:quartzContext];
+    CGContextRestoreGState(quartzContext);
+    UIImage* result = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return result;
+}
+
+- (id)debugQuickLookObject // select an SVGRenderer in Xcode debugger and hit the eye button
+{
+    return [self asImageWithSize:CGSizeMake(512, 512) andScale:1.0];
+}
 				  
 -(CGRect) viewRect
 {

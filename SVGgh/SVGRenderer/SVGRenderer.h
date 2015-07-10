@@ -61,6 +61,13 @@ NS_ASSUME_NONNULL_BEGIN
 */
 -(nullable id<GHRenderable>) findRenderableObject:(CGPoint)testPoint;
 
+/*! @brief make a scaled image from the renderer
+ * @param maximumSize the maximum dimension in points to render into.
+ * @param scale same as a UIWindow's scale
+ * @return a UIImage
+ */
+-(UIImage*)asImageWithSize:(CGSize)maximumSize andScale:(CGFloat)scale;
+
 @end
 
 NS_ASSUME_NONNULL_END
