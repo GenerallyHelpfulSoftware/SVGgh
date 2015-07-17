@@ -78,7 +78,7 @@ To use, you'll want to follow the following steps:
     {
         super.initialize()        
         MakeSureSVGghLinks()
-        let tintColor = UIColorFromSVGColorString("#5D6")
+        let tintColor = UIColorFromSVGColorString("#5D6")!
         GHControlFactory.setDefaultButtonTint(tintColor)
     }
 ````
