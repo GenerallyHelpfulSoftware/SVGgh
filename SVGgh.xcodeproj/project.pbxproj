@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		211E70931B2A1E4300667BE9 /* Artwork in Resources */ = {isa = PBXBuildFile; fileRef = 21F6BCE71B29A8FE00DCEEC2 /* Artwork */; };
+		212A8B781B63C4E8009B28C9 /* SVGPerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212A8B771B63C4E8009B28C9 /* SVGPerformanceTests.swift */; };
+		212A8B791B63C542009B28C9 /* Artwork in Resources */ = {isa = PBXBuildFile; fileRef = 21F6BCE71B29A8FE00DCEEC2 /* Artwork */; };
 		21309A4E1B29FA3700E8B812 /* SVGgh.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F6BBE21B29A21E00DCEEC2 /* SVGgh.framework */; };
 		2181F3A71B4F5D8F007617A7 /* SVGTabBarItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 2181F3A51B4F5D8F007617A7 /* SVGTabBarItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2181F3A81B4F5D8F007617A7 /* SVGTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2181F3A61B4F5D8F007617A7 /* SVGTabBarItem.m */; };
@@ -94,6 +96,8 @@
 
 /* Begin PBXFileReference section */
 		211E709E1B2AEC1D00667BE9 /* SVGgh.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = SVGgh.podspec; sourceTree = "<group>"; };
+		212A8B761B63C4E6009B28C9 /* SVGghTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SVGghTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		212A8B771B63C4E8009B28C9 /* SVGPerformanceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVGPerformanceTests.swift; sourceTree = "<group>"; };
 		2181F3A51B4F5D8F007617A7 /* SVGTabBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVGTabBarItem.h; sourceTree = "<group>"; };
 		2181F3A61B4F5D8F007617A7 /* SVGTabBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVGTabBarItem.m; sourceTree = "<group>"; };
 		21F6BBE21B29A21E00DCEEC2 /* SVGgh.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SVGgh.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -244,8 +248,10 @@
 		21F6BBF11B29A21E00DCEEC2 /* SVGghTests */ = {
 			isa = PBXGroup;
 			children = (
+				212A8B771B63C4E8009B28C9 /* SVGPerformanceTests.swift */,
 				21F6BBF41B29A21E00DCEEC2 /* SVGghTests.m */,
 				21F6BBF21B29A21E00DCEEC2 /* Supporting Files */,
+				212A8B761B63C4E6009B28C9 /* SVGghTests-Bridging-Header.h */,
 			);
 			path = SVGghTests;
 			sourceTree = "<group>";
@@ -491,6 +497,7 @@
 		21F6BBD91B29A21E00DCEEC2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Generally Helpful";
 				TargetAttributes = {
@@ -538,6 +545,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				212A8B791B63C542009B28C9 /* Artwork in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -609,6 +617,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				21F6BBF51B29A21E00DCEEC2 /* SVGghTests.m in Sources */,
+				212A8B781B63C4E8009B28C9 /* SVGPerformanceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -790,6 +799,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -803,6 +813,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.genhelp.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SVGghTests/SVGghTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
@@ -811,6 +823,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -820,6 +833,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.genhelp.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SVGghTests/SVGghTests-Bridging-Header.h";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;
