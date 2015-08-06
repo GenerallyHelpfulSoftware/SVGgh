@@ -53,23 +53,23 @@ NS_ASSUME_NONNULL_BEGIN
 
 /*! @property rangeOfError where in the path string was an error found
 */
-@property(nonatomic, assign) NSRange rangeOfError;
+@property(nonatomic, readonly) NSRange rangeOfError;
 
 /*! @property error which of the enumerated SVGPathValidationError codes were found
 */
-@property(nonatomic, assign) SVGPathValidationError errorCode;
+@property(nonatomic, readonly) SVGPathValidationError errorCode;
 
 /*! @property operatorAtError which SVG path operation was the point at which an invalid string was reached
 */
-@property(nonatomic, assign) unsigned char  operatorAtError;
+@property(nonatomic, readonly) unsigned char  operatorAtError;
 
 /*! @property errorInLastOperation was the error (if any) found while parsing the last operation
 */
-@property(nonatomic, assign) BOOL   errorInLastOperation;
+@property(nonatomic, readonly) BOOL   errorInLastOperation;
 
 /*! @property unexpectedCharacters a string of characters that should never be in an SVG path entity's 'd' attribute but were
 */
-@property(nonatomic, strong) NSString* __nullable  unexpectedCharacters;
+@property(nonatomic, readonly) NSString* __nullable  unexpectedCharacters;
 
 @end
 

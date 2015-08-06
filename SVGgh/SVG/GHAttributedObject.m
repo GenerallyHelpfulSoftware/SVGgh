@@ -42,8 +42,6 @@ NSString*	const kLengthIntoParentsContents = @"parentContentLocation"; // for ob
 @end
 
 @implementation GHAttributedObject
-@synthesize attributes=_attributes;
-
 
 -(instancetype) initWithAttributes:(NSDictionary*)theAttributes
 {

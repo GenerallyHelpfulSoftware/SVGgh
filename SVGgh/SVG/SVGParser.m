@@ -30,12 +30,11 @@
 #import "SVGParser.h"
 #import "GHAttributedObject.h"
 
-@interface SVGParser () 
-{
-	NSMutableDictionary*	root;
-	NSMutableArray*			groupStack;
-	BOOL					insideSVG;
-}
+@interface SVGParser ()
+@property(nonatomic, strong) NSError* __nullable 	parserError;
+@property(nonatomic, strong) NSMutableDictionary*	__nullable root;
+@property(nonatomic, assign) BOOL					insideSVG;
+@property(nonatomic, strong) NSMutableArray*		__nullable groupStack;
 @end
 
 @interface SVGParser (Private)<NSXMLParserDelegate>
@@ -47,13 +46,13 @@
 
 - (void)parser:(NSXMLParser *)parser foundCDATA:(NSData *)CDATABlock
 {
-	NSMutableDictionary*	currentObject = [groupStack lastObject];
+	NSMutableDictionary*	currentObject = [self.groupStack lastObject];
 	[currentObject setObject:CDATABlock forKey:kElementData];
 }
 
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
 {
-	NSMutableDictionary*	currentObject = [groupStack lastObject];
+	NSMutableDictionary*	currentObject = [self.groupStack lastObject];
 	NSString*	currentObjectString = [currentObject objectForKey:kElementText];
 	if(currentObjectString != nil)
 	{
@@ -96,17 +95,18 @@
 				qualifiedName:(NSString *)qName 
 				attributes:(NSDictionary *)attributeDict
 {
-	if([elementName isEqualToString:@"svg"] && root == nil)
+	if([elementName isEqualToString:@"svg"] && self.root == nil)
 	{
-		insideSVG = YES;
-		root = [NSMutableDictionary dictionary];
-		groupStack	= [[NSMutableArray alloc] initWithObjects:root, nil];
-		[root setObject:attributeDict forKey:kAttributesElementName];
-		[root setObject:elementName forKey:kElementName];
+		self.insideSVG = YES;
+        NSMutableDictionary* newRoot = [NSMutableDictionary dictionary];
+		self.root = newRoot;
+		self.groupStack	= [[NSMutableArray alloc] initWithObjects:newRoot, nil];
+		[newRoot setObject:attributeDict forKey:kAttributesElementName];
+		[newRoot setObject:elementName forKey:kElementName];
 	}
-	else if (insideSVG)
+	else if (self.insideSVG)
 	{
-		NSMutableDictionary*	currentObject = [groupStack lastObject];
+		NSMutableDictionary*	currentObject = [self.groupStack lastObject];
 		
         NSString* currentObjectsText = [currentObject objectForKey:kElementText];
         NSNumber*   indexIntoParentNumber = nil;
@@ -132,15 +132,15 @@
 		{
 			[currentObjectContent addObject:anElement];
 		}
-		[groupStack addObject:anElement];
+		[self.groupStack addObject:anElement];
 	}
 }
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
 {
-	if (insideSVG)
+	if (self.insideSVG)
 	{
-		[groupStack removeLastObject];
+		[self.groupStack removeLastObject];
 	}
 }
 
@@ -148,7 +148,6 @@
 
 
 @implementation SVGParser
-@synthesize parserError=_parserError, root, svgURL=_svgURL;
 
 -(instancetype)initWithString:(NSString*)utf8String
 {
@@ -175,7 +174,6 @@
 	}
 	return self;
 }
-
 
 -(NSURL*)	relativeURL:(NSString*)subPath
 {

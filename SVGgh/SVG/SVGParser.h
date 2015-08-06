@@ -37,8 +37,8 @@ NS_ASSUME_NONNULL_BEGIN
 /*! @brief object capable of reading in an SVG document in XML form
 */
 @interface SVGParser : NSObject 
-@property(nonatomic, strong)           NSError* __nullable 	parserError;
-@property(nonatomic, strong)           NSDictionary* __nullable  root;
+@property(nonatomic, readonly)           NSError* __nullable 	parserError;
+@property(nonatomic, readonly)           NSDictionary* __nullable  root;
 @property(strong, nonatomic, readonly) NSURL* __nullable 	svgURL;
 
 /*! @brief init method which takes a URL reference to a .svg file

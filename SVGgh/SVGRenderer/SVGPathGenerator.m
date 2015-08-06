@@ -141,6 +141,16 @@ int ParameterCountForOperator(unichar anOperator)
     return result;
 }
 
+@interface PathValidationResult()
+// redefining the properties so that I can present a non-mutable interface for this object (see header file). 
+@property(nonatomic, assign) NSRange rangeOfError;
+@property(nonatomic, assign) SVGPathValidationError errorCode;
+@property(nonatomic, assign) unsigned char  operatorAtError;
+@property(nonatomic, assign) BOOL   errorInLastOperation;
+@property(nonatomic, strong) NSString* __nullable  unexpectedCharacters;
+
+@end
+
 @implementation PathValidationResult
 
 @end
