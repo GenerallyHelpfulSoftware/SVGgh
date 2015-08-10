@@ -165,7 +165,8 @@
 
 -(UIImage*)asImageWithSize:(CGSize)maximumSize andScale:(CGFloat)scale
 {
-    CGSize documentSize = self.viewRect.size;
+    CGRect documentRect = self.viewRect;
+    CGSize documentSize = documentRect.size;
     
     CGFloat interiorAspectRatio = maximumSize.width/maximumSize.height;
     CGFloat rendererAspectRatio = documentSize.width/documentSize.height;
@@ -185,9 +186,10 @@
     UIGraphicsBeginImageContextWithOptions(CGSizeMake(scaledWidth, scaleHeight), NO, scale);
     CGContextRef quartzContext = UIGraphicsGetCurrentContext();
     CGContextClearRect(quartzContext, CGRectMake(0, 0, scaledWidth, scaleHeight));
+    
     CGContextSaveGState(quartzContext);
-    CGContextTranslateCTM(quartzContext, (maximumSize.width-scaledWidth)/2.0, (maximumSize.height-scaleHeight)/2.0);
-    CGContextScaleCTM(quartzContext, fittedScaling, fittedScaling);
+    CGContextScaleCTM(quartzContext,fittedScaling,fittedScaling);
+    CGContextTranslateCTM(quartzContext, -documentRect.origin.x*fittedScaling, -documentRect.origin.y*fittedScaling);
     
     // tell the renderer to draw into my context
     [self renderIntoContext:quartzContext];

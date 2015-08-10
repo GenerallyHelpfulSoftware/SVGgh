@@ -61,6 +61,82 @@
     }
 }
 
+- (UIColor*)pixelColorInImage:(UIImage*)image atX:(int)x atY:(int)y { // from StackOverflow http://stackoverflow.com/questions/3284185/get-pixel-color-of-uiimage
+    
+    
+    CFDataRef pixelData = CGDataProviderCopyData(CGImageGetDataProvider(image.CGImage));
+    const UInt8* data = CFDataGetBytePtr(pixelData);
+    
+    int pixelInfo = ((image.size.width  * y) + x ) * 4; // 4 bytes per pixel
+    if(pixelInfo >= 0 && pixelInfo < CFDataGetLength(pixelData))
+    {
+        UInt8 red   = data[pixelInfo + 0];
+        UInt8 green = data[pixelInfo + 1];
+        UInt8 blue  = data[pixelInfo + 2];
+        UInt8 alpha = data[pixelInfo + 3];
+        CFRelease(pixelData);
+        
+        return [UIColor colorWithRed:red/255.0f
+                               green:green/255.0f
+                                blue:blue/255.0f
+                               alpha:alpha/255.0f];
+    }
+    else
+    {
+        CFRelease(pixelData);
+        return nil;
+    }
+}
+
+-(NSString*) baseSVGWithFrame:(CGRect)frame
+{
+    NSString* result = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?> <svg viewport-fill=\"none\"  x=\"%f\" y=\"%f\" width=\"%f\" height=\"%f\" viewBox=\"%f, %f, %f, %f\" > <g  fill=\"none\" stroke=\"none\">INSERT_CONTENT_HERE</g></svg>",
+                        frame.origin.x, frame.origin.y, frame.size.width, frame.size.height, frame.origin.x, frame.origin.y, frame.size.width, frame.size.height];
+    
+    return result;
+}
+
+
+
+-(void) testImageCreation
+{
+    [self testImageCreationForFrame:CGRectMake(40, 0, 200, 400)];
+    [self testImageCreationForFrame:CGRectMake(0, 40, 200, 400)];
+    [self testImageCreationForFrame:CGRectMake(0.0, 0.0, 200, 400)];
+    // images should adjust the origin so it isn't cut off
+    [self testImageCreationForFrame:CGRectMake(-50, -100, 200, 400)];
+    
+}
+
+-(void) testImageCreationForFrame:(CGRect)frame
+{
+    NSString* frameString = NSStringFromCGRect(frame);
+    NSString* baseSVG = [self baseSVGWithFrame:frame];
+    NSString* greenRectangle = [NSString stringWithFormat:@"<rect x=\"%f\" y=\"%f\" width=\"%f\" height=\"%f\" fill=\"#00FF00\" stroke=\"#00FF00\" />", frame.origin.x, frame.origin.y, frame.size.width, frame.size.height];
+    
+    NSString* svgToRender = [baseSVG stringByReplacingOccurrencesOfString:@"INSERT_CONTENT_HERE" withString:greenRectangle];
+    SVGRenderer* renderer = [[SVGRenderer alloc] initWithString:svgToRender];
+    
+    //  XCTAssertNil(renderer.parserError, [NSString stringWithFormat:@"Error making renderer from baseSVG, %@", renderer.parserError]);
+    
+    CGRect extractedFrame = renderer.viewRect;
+    XCTAssert(CGRectEqualToRect(extractedFrame, frame), @"Expected one frame got another for %@", frameString);
+    
+    CGSize bitmapSize = CGSizeMake(extractedFrame.size.width*2.0, extractedFrame.size.height*2.0); // double size
+    UIImage* image = [renderer asImageWithSize:bitmapSize andScale:2.0];
+    XCTAssertNotNil(image, @"No image from Renderer for %@", frameString);
+    
+    UIColor* topLeftColor = [self pixelColorInImage:image atX:0.0 atY:0.0];
+    XCTAssertNotNil(topLeftColor, @"No topLeftColor for %@", frameString);
+    UIColor*bottomRightColor = [self pixelColorInImage:image atX:bitmapSize.width-1.0 atY:bitmapSize.height-1.0];
+    XCTAssertNotNil(bottomRightColor, @"No bottomRightColor for %@", frameString);
+    UIColor* greenColor = UIColorFromSVGColorString(@"#00FF00");
+    
+    XCTAssertEqualObjects(topLeftColor, greenColor, @"Not Green for %@", frameString);
+    XCTAssertEqualObjects(bottomRightColor, greenColor, @"Not Green for %@", frameString);
+}
+
+
 
 -(void) testRectParsing
 {// I replaced a method to generate a rect from a string with something faster and this test is just to see they agree
