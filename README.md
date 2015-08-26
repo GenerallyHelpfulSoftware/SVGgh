@@ -102,6 +102,19 @@ To add a button to a .xib file or storyboard:
 | Title | Localized String | My Label |
 | Scheme Number | Number | 3 |
 
+* Here is a listing of available color schemes, some of which are more useful than others. I prefer 3, kColorSchemeClear.
+
+| Constant |     Enumeration     | Description                                 |
+| :------: | :----------------- | --------------------------------------------|
+|    0     |    kColorSchemeiOS  | Round solid buttons with a thin inset ring  |
+|    1     | kColorSchemeMachine | Grey top to bottom gradient with inset ring |
+|    2     | kColorSchemeKeyboard| Gray gradient, light on top, no ring        |
+|    3     | kColorSchemeClear   | Gray gradient, light on top, ring           |
+|    4     | kColorSchemeEmpty   | No chrome. Just the artwork or label        |
+|    5     | kColorSchemeHomeTheatre | Garish gold gradient, ring              |
+|    6     | kColorSchemeiOSVersionAppropriate | Same as kColorSchemeEmpty for now|
+|    7     | kColorSchemeFlatAndBoxy | Solid fill color with square corners.   |
+
 * There is an attribute of an SVG document called ````currentColor````. You can access it to change the appearance of a button while being pressed via the **textColor**, **textColorPressed** and **textColorSelected** properties of **UIControl**. These are accessible from storyboard or you can set it up globally in your initialize method. Your SVGs will have to be written to use currentColor instead of some explicit color.
 
 To add a static view to a .xib file or storyboard:
