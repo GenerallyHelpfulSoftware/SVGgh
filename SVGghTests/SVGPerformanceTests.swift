@@ -68,7 +68,7 @@ class SVGPerformanceTests: XCTestCase {
 
         self.measureBlock
         {
-            renderer.renderIntoContext(quartzContext)
+            renderer.renderIntoContext(quartzContext!)
             UIGraphicsEndImageContext();
         }
     }
