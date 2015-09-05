@@ -90,6 +90,35 @@
     [super setNeedsDisplay];
 }
 
+- (BOOL)isAccessibilityElement
+{
+    return YES;
+}
+
+- (UIAccessibilityTraits)accessibilityTraits
+{
+    return UIAccessibilityTraitButton;
+}
+
+
+-(NSString*) accessibilityLabel
+{
+    NSString* result = [super accessibilityLabel];
+    
+    if(result.length == 0)
+    {
+        if(self.textLabel.text.length > 0)
+        {
+            result = self.textLabel.text;
+        }
+    }
+    
+    return result;
+}
+
+
+
+
 -(void) setSelected:(BOOL)selected
 {
     BOOL isChange = selected != self.isSelected;

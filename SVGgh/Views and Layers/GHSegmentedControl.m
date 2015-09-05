@@ -43,10 +43,9 @@ const CGFloat kContentMargin = 10;
 
 
 
-
-
 @interface GHSegmentDefinition : NSObject
 @property(nonatomic, strong) NSString* title;
+@property(nonatomic, strong) NSString* accessibilityLabel;
 @property(nonatomic, strong) SVGRenderer* renderer;
 @property(nonatomic, assign) BOOL enabled;
 @property(nonatomic, assign) CGFloat width; // 0.0 means automatic
@@ -85,6 +84,12 @@ typedef enum GHSegmentType
 @property(nonatomic, assign) BOOL isHighlighted;
 
 -(CGFloat) preferredWidthGivenHeight:(CGFloat)height;
+
+@end
+
+@interface GHSegmentedControlAccessibilityWrapper : UIAccessibilityElement
+@property(nonatomic, strong) GHSegmentDefinition* segmentDefinition;
+@property(nonatomic, assign) NSInteger index;
 
 @end
 
@@ -310,6 +315,18 @@ typedef enum GHSegmentType
     }
     return result;
 }
+
+-(NSString*) accessibilityLabel
+{
+    NSString* result = _accessibilityLabel;
+    if(result.length == 0)
+    {
+        result = self.title;
+    }
+    
+    return result;
+}
+
 @end
 
 @interface GHSegmentedControl ()
@@ -353,6 +370,25 @@ typedef enum GHSegmentType
         }
     }
     
+    return result;
+}
+
+-(CGRect) frameForSegmentAtIndex:(NSInteger)testIndex
+{
+    CGRect result = CGRectZero;
+    NSInteger index = 0;
+    for(CALayer* aLayer in self.sublayers)
+    {
+        if([aLayer isKindOfClass:[GHSegmentedControlSegmentLayer class]])
+        {
+            if(testIndex == index)
+            {
+                result = aLayer.frame;
+                break;
+            }
+            index++;
+        }
+    }
     return result;
 }
 
@@ -534,7 +570,6 @@ typedef enum GHSegmentType
             [aLayer setNeedsLayout];
         }
     }
-    
 }
 
 -(UIColor*) selectedColor
@@ -797,9 +832,29 @@ typedef enum GHSegmentType
 {
     if(segment <= self.definitions.count)
     {
+        [self insertSegmentWithRenderer:renderer accessibilityLabel:nil atIndex:segment animated:animated];
+    }
+}
+
+-(void) invalidateAccessibility
+{
+    if([NSObject instancesRespondToSelector:@selector(setAccessibilityElements:)])
+    {
+        if([super accessibilityElements].count > 0)
+        {
+            [super setAccessibilityElements:nil];
+        }
+    }
+}
+
+- (void)insertSegmentWithRenderer:(SVGRenderer *)renderer accessibilityLabel:(nullable NSString*)accessibilityLabel  atIndex:(NSUInteger)segment animated:(BOOL)animated;
+{
+    if(segment <= self.definitions.count)
+    {
         NSMutableArray* mutableDefinitions = (self.definitions == nil)?[NSMutableArray new]:[self.definitions mutableCopy];
         GHSegmentDefinition* newDefinition = [GHSegmentDefinition new];
         newDefinition.enabled = YES;
+        newDefinition.accessibilityLabel = accessibilityLabel;
         newDefinition.renderer = renderer;
         newDefinition.artInsetFraction = self.artInsetFraction;
         
@@ -811,8 +866,9 @@ typedef enum GHSegmentType
         }
         else
         {
-            self.definitions =[mutableDefinitions copy];
+            self.definitions = [mutableDefinitions copy];
         }
+        [self invalidateAccessibility];
     }
 }
 
@@ -831,6 +887,7 @@ typedef enum GHSegmentType
         {
             self.definitions =[mutableDefinitions copy];
         }
+        [self invalidateAccessibility];
     }
 }
 
@@ -849,6 +906,7 @@ typedef enum GHSegmentType
         definition.title = title;
         [self.layerAsControlLayer updateSegmentAtIndex:segment withDefinition:definition];
     }
+    [self invalidateAccessibility];
 }
 
 - (NSString *)titleForSegmentAtIndex:(NSUInteger)segment
@@ -872,6 +930,7 @@ typedef enum GHSegmentType
         definition.renderer = renderer;
         [self.layerAsControlLayer updateSegmentAtIndex:segment withDefinition:definition];
     }
+    [self invalidateAccessibility];
 }
 
 -(SVGRenderer*) rendererForSegmentedIndex:(NSUInteger)segment
@@ -881,6 +940,29 @@ typedef enum GHSegmentType
     {
         GHSegmentDefinition* definition = [self.definitions objectAtIndex:segment];
         result = definition.renderer;
+    }
+    
+    return result;
+}
+
+-(void) setAccessibilityLabel:(NSString *)accessibilityLabel forSegmentIndex:(NSUInteger)segment
+{
+    if(segment < self.definitions.count)
+    {
+        GHSegmentDefinition* definition = [self.definitions objectAtIndex:segment];
+        definition.accessibilityLabel = accessibilityLabel;
+        [self.layerAsControlLayer updateSegmentAtIndex:segment withDefinition:definition];
+    }
+    [self invalidateAccessibility];
+}
+
+-(nullable NSString*)accessibilityLabelForSegmentedIndex:(NSUInteger)segment
+{
+    NSString* result = nil;
+    if(segment < self.definitions.count)
+    {
+        GHSegmentDefinition* definition = [self.definitions objectAtIndex:segment];
+        result = definition.accessibilityLabel;
     }
     
     return result;
@@ -914,6 +996,20 @@ typedef enum GHSegmentType
         GHSegmentDefinition* definition = [self.definitions objectAtIndex:segment];
         definition.enabled = enabled;
         [self.layerAsControlLayer updateSegmentAtIndex:segment withDefinition:definition];
+        
+        NSArray* accessibilityElements = [super accessibilityElements];
+        if(accessibilityElements.count > segment)
+        {
+            GHSegmentedControlAccessibilityWrapper* aWrapper = [accessibilityElements objectAtIndex:segment];
+            if(enabled)
+            {
+                aWrapper.accessibilityTraits &= ~UIAccessibilityTraitNotEnabled;
+            }
+            else
+            {
+                aWrapper.accessibilityTraits |= UIAccessibilityTraitNotEnabled;
+            }
+        }
     }
 }
 
@@ -975,7 +1071,24 @@ typedef enum GHSegmentType
 {
     _selectedSegmentIndex = selectedSegmentIndex;
     self.layerAsControlLayer.selectedSegmentIndex = selectedSegmentIndex;
+    NSArray* accessibilityElements = [super accessibilityElements];
+    if(accessibilityElements.count > selectedSegmentIndex)
+    {
+        for(GHSegmentedControlAccessibilityWrapper* aWrapper in accessibilityElements)
+        {
+            if(aWrapper.index == selectedSegmentIndex)
+            {
+                aWrapper.accessibilityTraits |= UIAccessibilityTraitSelected;
+            }
+            else
+            {
+                aWrapper.accessibilityTraits &= ~ UIAccessibilityTraitSelected;
+            }
+        }
+    }
 }
+
+
 
 -(NSInteger) indexOfTouch:(CGPoint)touchLocation
 {
@@ -1032,5 +1145,117 @@ typedef enum GHSegmentType
     [super cancelTrackingWithEvent:event];
 }
 
+- (BOOL)isAccessibilityElement
+{
+    return NO;
+}
 
+- (UIAccessibilityTraits)accessibilityTraits
+{
+    return UIAccessibilityTraitButton;
+}
+
+- (NSInteger)accessibilityElementCount
+{
+    NSInteger result = self.definitions.count;
+    return result;
+}
+
+-(NSString*) accessibilityLabel
+{
+    NSString* result = [super accessibilityLabel];
+    
+    return result;
+}
+
+- (nullable id)accessibilityElementAtIndex:(NSInteger)index
+{
+    GHSegmentedControlAccessibilityWrapper* result = nil;
+    if(index >= 0 && index < self.definitions.count)
+    {
+        result = [[GHSegmentedControlAccessibilityWrapper alloc] initWithAccessibilityContainer:self];
+        CGRect localFrame = [self.layerAsControlLayer frameForSegmentAtIndex:index];
+        result.accessibilityFrame = UIAccessibilityConvertFrameToScreenCoordinates(localFrame, self);
+        result.index = index;
+        result.segmentDefinition = [self.definitions objectAtIndex:index];
+        result.accessibilityLabel = result.segmentDefinition.accessibilityLabel;
+        result.accessibilityTraits = UIAccessibilityTraitButton | UIAccessibilityTraitAllowsDirectInteraction | UIAccessibilityTraitUpdatesFrequently;
+        result.isAccessibilityElement = YES;
+        result.accessibilityHint = [[[NSNumber numberWithUnsignedInteger:index+1].stringValue stringByAppendingString:NSLocalizedString(@" of " , @"")] stringByAppendingString:[NSNumber numberWithUnsignedInteger:self.definitions.count].stringValue];
+        if(index == self.selectedSegmentIndex)
+        {
+            result.accessibilityTraits |= UIAccessibilityTraitSelected;
+        }
+        
+        if(!self.enabled)
+        {
+            result.accessibilityTraits |= UIAccessibilityTraitNotEnabled;
+        }
+    }
+    return result;
+}
+
+- (NSInteger)indexOfAccessibilityElement:(id)element
+{
+    NSInteger result = NSNotFound;
+    if([element isKindOfClass:[GHSegmentedControlAccessibilityWrapper class]])
+    {
+        GHSegmentedControlAccessibilityWrapper* wrapper = element;
+        
+        result = wrapper.index;
+    }
+    return result;
+}
+
+-(NSArray*) accessibilityElements
+{
+    NSArray* result = [super accessibilityElements];
+    if(result == nil)
+    {
+        NSMutableArray* mutableResult = [[NSMutableArray alloc] initWithCapacity:self.definitions.count];
+        for(NSUInteger index = 0; index < self.definitions.count; index++)
+        {
+            GHSegmentedControlAccessibilityWrapper* aWrapper = [self accessibilityElementAtIndex:index];
+            [mutableResult addObject:aWrapper];
+        }
+        result = [mutableResult copy];
+        [self setAccessibilityElements:result];
+    }
+    return result;
+}
+
+- (void)accessibilityIncrement
+{
+    if(self.selectedSegmentIndex < self.definitions.count-1)
+    {
+        [self setSelectedSegmentIndex:self.selectedSegmentIndex+1];
+    }
+}
+
+- (void)accessibilityDecrement
+{
+    if(self.selectedSegmentIndex > 0 && self.definitions.count > 0)
+    {
+        [self setSelectedSegmentIndex:self.selectedSegmentIndex-1];
+    }
+}
+
+
+@end
+
+@implementation GHSegmentedControlAccessibilityWrapper
+
+
+-(CGRect) accessibilityFrame
+{
+    CGRect result = [super accessibilityFrame];
+    if([self.accessibilityContainer isKindOfClass:[GHSegmentedControl class]])
+    {
+        GHSegmentedControl* myControl = self.accessibilityContainer;
+        CGRect localFrame = [myControl.layerAsControlLayer frameForSegmentAtIndex:self.index];
+        result = UIAccessibilityConvertFrameToScreenCoordinates(localFrame, myControl);;
+    }
+    
+    return result;
+}
 @end

@@ -65,6 +65,7 @@ IB_DESIGNABLE
 
 - (void)insertSegmentWithTitle:(NSString *)title atIndex:(NSUInteger)segment animated:(BOOL)animated;
 - (void)insertSegmentWithRenderer:(SVGRenderer *)renderer  atIndex:(NSUInteger)segment animated:(BOOL)animated;
+- (void)insertSegmentWithRenderer:(SVGRenderer *)renderer accessibilityLabel:(nullable NSString*)accessibilityLabel  atIndex:(NSUInteger)segment animated:(BOOL)animated;
 - (void)removeSegmentAtIndex:(NSUInteger)segment animated:(BOOL)animated;
 - (void)removeAllSegments;
 
@@ -73,6 +74,9 @@ IB_DESIGNABLE
 
 -(void) setRenderer:(nullable SVGRenderer *)renderer forSegmentedIndex:(NSUInteger)segment;
 -(nullable SVGRenderer*) rendererForSegmentedIndex:(NSUInteger)segment;
+
+-(void) setAccessibilityLabel:(NSString *)accessibilityLabel forSegmentIndex:(NSUInteger)segment;
+-(nullable NSString*)accessibilityLabelForSegmentedIndex:(NSUInteger)segment;
 
 - (void)setWidth:(CGFloat)width forSegmentAtIndex:(NSUInteger)segment;
 - (CGFloat)widthForSegmentAtIndex:(NSUInteger)segment;

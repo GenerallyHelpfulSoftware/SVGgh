@@ -43,8 +43,6 @@
 -(IBAction)redrawSVG:(id)sender
 {
     [self.svgView setNeedsDisplay];
-    
-    
 }
 
 - (void)viewDidLoad
@@ -54,19 +52,19 @@
     NSURL*  myArtwork = [GHControlFactory locateArtworkForObject:self atSubpath:@"Artwork/Helmet"];
     
     SVGRenderer* aRenderer = [[SVGRenderer alloc] initWithContentsOfURL:myArtwork];
-    [self.segmentedControl insertSegmentWithRenderer:aRenderer atIndex:0 animated:NO];
+    [self.segmentedControl insertSegmentWithRenderer:aRenderer accessibilityLabel:NSLocalizedString(@"Football Helmet", @"") atIndex:0 animated:NO];
     
     myArtwork = [GHControlFactory locateArtworkForObject:self atSubpath:@"Artwork/Eye"];
     aRenderer = [[SVGRenderer alloc] initWithContentsOfURL:myArtwork];
     
-    [self.segmentedControl insertSegmentWithRenderer:aRenderer atIndex:1 animated:NO];
+    [self.segmentedControl insertSegmentWithRenderer:aRenderer accessibilityLabel:NSLocalizedString(@"Eye", @"") atIndex:1 animated:NO];
     
     
     
     myArtwork = [GHControlFactory locateArtworkForObject:self atSubpath:@"Artwork/Butterfly"];
     aRenderer = [[SVGRenderer alloc] initWithContentsOfURL:myArtwork];
     
-    [self.segmentedControl insertSegmentWithRenderer:aRenderer atIndex:2 animated:NO];
+    [self.segmentedControl insertSegmentWithRenderer:aRenderer accessibilityLabel:NSLocalizedString(@"Butterfly", @"") atIndex:2 animated:NO];
     [self.segmentedControl insertSegmentWithTitle:NSLocalizedString(@"Curvy", @"") atIndex:3 animated:NO];
     self.segmentedControl.selectedSegmentIndex = 0;
     
@@ -83,14 +81,22 @@
 
 -(IBAction)print:(id)sender
 {
+    UIAlertAction* okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", @"") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    
+    
     self.svgView.renderer.currentColor = self.svgView.defaultColor;
     [SVGPrinter printRenderer:self.svgView.renderer
                 withJobName:NSLocalizedString(@"SVGgh Test Printing", @"")
                  withCallback:^(NSError *error, PrintingResults printingResult) {
         if(error != nil)
         {
-            UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Printing Error", @"Error Printing") message:error.localizedDescription   delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [alertView show];
+            
+            UIAlertController* alertView = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Printing Error", @"Error Printing") message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
+            [alertView addAction:okAction];
+            [self presentViewController:alertView animated:YES completion:nil];
+            
         }
         else if(printingResult != kSuccessfulPrintingResult)
         {
@@ -100,14 +106,16 @@
                 case kCouldntCreatePrintingDataResult:
                 case kCouldntInterfaceWithPrinterResult:
                 {
-                    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Printing Error", @"Error Printing") message:NSLocalizedString(@"Couldn't Connect to Printer", @"")   delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                    [alertView show];
+                    UIAlertController* alertView = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Printing Error", @"Error Printing") message:NSLocalizedString(@"Couldn't Connect to a Printer", @"") preferredStyle:UIAlertControllerStyleAlert];
+                    [alertView addAction:okAction];
+                    [self presentViewController:alertView animated:YES completion:nil];
                 }
                 break;
             }
             
         }
     }];
+    
 }
 
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
