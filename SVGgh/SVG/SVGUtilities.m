@@ -1323,7 +1323,7 @@ UIColor* UIColorFromSVGColorString (NSString * stringToConvert)
             }
             else if([stringToConvert isEqualToString:@"GrayText"])
             {
-                result = [UIColor darkTextColor];
+                result = [UIColor darkGrayColor];
             }
             else if([stringToConvert isEqualToString:@"Highlight"])
             {
