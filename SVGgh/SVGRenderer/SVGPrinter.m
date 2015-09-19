@@ -33,6 +33,7 @@
 @implementation SVGPrinter
 +(void) printRenderer:(SVGRenderer*)renderer  withJobName:(NSString*)jobName withCallback:(printingCallback_t)callback
 {
+#if !TARGET_OS_TV
     [SVGtoPDFConverter createPDFFromRenderer:renderer intoCallback:^(NSData *pdfData)
     {
         if(pdfData.length)
@@ -69,6 +70,9 @@
             callback(nil, kCouldntCreatePrintingDataResult);
         }
     }];
+#else 
+    NSLog(@"Printing not supported on tvOS");
+#endif
 }
 
 @end
