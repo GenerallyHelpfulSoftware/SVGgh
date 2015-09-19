@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
 s.name        = 'SVGgh'
-s.version     = '1.2.2'
+s.version     = '1.2.3'
 s.license     = 'MIT'
 s.platform    = :ios, '7.0'
 s.summary     = "SVG Rendering Library for iOS"
