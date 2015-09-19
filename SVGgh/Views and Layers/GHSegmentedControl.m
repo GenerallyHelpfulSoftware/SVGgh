@@ -299,18 +299,9 @@ typedef enum GHSegmentType
         else if(self.title.length)
         {
             UIFont* textFont = [GHSegmentedControlLayer titleFontForState:UIControlStateNormal];
-            if([self.title respondsToSelector:@selector(sizeWithAttributes:)])
-            {
-                NSDictionary* fontAttributes = @{NSFontAttributeName:textFont};
-                result = ceil([self.title sizeWithAttributes:fontAttributes].width);
-            }
-            else
-            {
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-                result = ceil([self.title sizeWithFont:textFont].width);
-#pragma GCC diagnostic pop                
-            }
+            NSDictionary* fontAttributes = @{NSFontAttributeName:textFont};
+            result = ceil([self.title sizeWithAttributes:fontAttributes].width);
+            
         }
     }
     return result;
@@ -327,6 +318,14 @@ typedef enum GHSegmentType
     return result;
 }
 
+-(NSString*) description
+{
+    NSString* result = [NSString stringWithFormat:@"%@, enabled:%@ customWidth:%0.2f artInsetFraction:%0.2f title:'%@' renderer='%@'", NSStringFromClass([self class]), self.enabled?@"Yes":@"No", self.width, self.artInsetFraction, self.title, self.renderer.svgURL.lastPathComponent];
+    
+    
+    return result;
+}
+
 @end
 
 @interface GHSegmentedControl ()
@@ -339,15 +338,14 @@ typedef enum GHSegmentType
 {
     UIFont* result = nil;
     NSDictionary* titleProperties = [[UISegmentedControl appearance] titleTextAttributesForState:state];
-    if(titleProperties.count != 0  &&  [[UIFont class] resolveClassMethod:@selector(fontDescriptorWithFontAttributes:)])
+    if(titleProperties == nil) // iOS 9 stopped returning the titleProperties from UISegmentedControl appearance
     {
-        UIFontDescriptor* fontDescriptor = [UIFontDescriptor fontDescriptorWithFontAttributes:titleProperties];
-        result = [UIFont fontWithDescriptor:fontDescriptor size:fontDescriptor.pointSize];
+        result = [UIFont systemFontOfSize:14];
     }
     else
     {
-        
-        result = [UIFont systemFontOfSize:[UIFont systemFontSize]];
+        UIFontDescriptor* fontDescriptor = [UIFontDescriptor fontDescriptorWithFontAttributes:titleProperties];
+        result = [UIFont fontWithDescriptor:fontDescriptor size:fontDescriptor.pointSize];
     }
     return result;
 }
