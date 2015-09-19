@@ -184,6 +184,8 @@
         artworkController.view.frame = endBounds;
         [self.containerView addSubview:artworkController.view];
         [artworkController didMoveToParentViewController:self];
+        
+        UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, nil);
     }
     else
     {
@@ -196,6 +198,8 @@
         } completion:^(BOOL finished) {
             [oldController removeFromParentViewController];
             [artworkController didMoveToParentViewController:self];
+            
+            UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, nil);
         }];
     }
     
