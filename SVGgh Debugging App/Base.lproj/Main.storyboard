@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8173.3" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8142"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -74,12 +74,13 @@
                                 </connections>
                             </view>
                             <view opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" placeholderIntrinsicWidth="280" placeholderIntrinsicHeight="30" translatesAutoresizingMaskIntoConstraints="NO" id="uoD-rr-R4J" customClass="GHSegmentedControl">
-                                <rect key="frame" x="150" y="28" width="300" height="30"/>
+                                <rect key="frame" x="150" y="28" width="300" height="44"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" red="0.098100321044329669" green="0.67385912698412698" blue="0.14746175900577321" alpha="1" colorSpace="calibratedRGB"/>
                                 <accessibility key="accessibilityConfiguration" hint="Choose a View" identifier="View  Selector" label="Chooser"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="TfQ-iy-nK7"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="YOl-ht-zTU"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="schemeNumber">
@@ -100,7 +101,7 @@
                                 </connections>
                             </view>
                             <containerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LDH-8f-BQz">
-                                <rect key="frame" x="20" y="66" width="560" height="427"/>
+                                <rect key="frame" x="20" y="80" width="560" height="413"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <segue destination="Ux3-B9-VgV" kind="embed" identifier="initialEmbed" id="JTJ-Ke-eWm"/>
