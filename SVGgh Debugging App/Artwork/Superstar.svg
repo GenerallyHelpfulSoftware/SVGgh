@@ -913,7 +913,7 @@ iehp1OXpQ1AH/9k=" width="384.000000" clip-path="url(#clip_F4C745ED-E424-4951-95F
 <path d="M 85 0 V 512" stroke-width="2" vector-effect="non-scaling-stroke" stroke="#E09999"/>
 <path d="M 0 85 H18 m24 0 H512 m0 20 H0m0 20H512 m0 20 H0m0 20H512 m0 20 H0m0 20H512 m0 20 H0m0 20H512 m0 20 H42m-24 0 H0m0 20H512 m0 20 H0m0 20H512 m0 20 H0m0 20H512 m0 20 H0m0 20H512 m0 20 H0m0 20H18 m24 0 H512 m0 20 H0m0 20H512" stroke-width="1" vector-effect="non-scaling-stroke" stroke="#2288F0"/>
 </g>
-<g stroke-width="3" fill="red" color="red" stroke="none">
+<g stroke-width="3" stroke="none">
 <use xlink:href="#IMG_F4C745ED-E424-4951-95FE-630E468A7770.jpg" transform="matrix(3.05921 0 0 3.05921 105.092 107.992)"/>
 <use xlink:href="#Football Helmet Front" transform="matrix(3.23999 0.194152 -0.194152 3.23999 102.771 64.9279)" fill="url(#balltoblack_#FFA500)" color="#FFA500"/>
 <text x="0" font-family="Georgia" y="50" font-size="28" color="#ff69b4" fill="url(#uptoblack_#ff69b4)" transform="matrix(1.31961 0 0 1.31961 100.936 367.628)" stroke="none">✧SVGgh Test File✧</text>
@@ -924,6 +924,17 @@ iehp1OXpQ1AH/9k=" width="384.000000" clip-path="url(#clip_F4C745ED-E424-4951-95F
 <path d="M 40 100 A 60 60 0 1 1 40 100.1 Z" stroke="black" fill="none" transform="matrix(0.559392 -0.583437 0.583437 0.559392 316.081 115.379)" stroke-width="1"/>
 <text stroke="none" font-size="40" font-family="Georgia" transform="matrix(0.559392 -0.583437 0.583437 0.559392 316.081 115.379)" fill="#228B22" color="#228B22"><textPath xlink:href="#CIRCLE_TEXT_PATH">Generally Helpful</textPath>
 </text>
+
+
+
+      <path transform="translate(-395, 1200)"
+         d="m 470.62543,-1041.6816 0,-2.8127 2.68028,0 5.70981,-30.0817 3.24983,0 6.2897,30.0817 2.1644,0 0,2.8127 -7.37513,0 0,-2.8127 1.99038,0 -0.79484,-4.6099 -7.44035,0 -0.57473,4.6099 1.99028,0 0,2.8127 -7.88963,0 z m 13.27957,-10.7064 -3.2345,-16.1007 -3.02962,16.1007 6.26412,0 z m 0,0" />
+
+      <path transform="translate(-395, 1250)"
+         d="m 470.62543,-1041.6816 0,-2.8127 2.68028,0 5.70981,-30.0817 3.24983,0 6.2897,30.0817 2.1644,0 0,2.8127 -7.37513,0 0,-2.8127 1.99038,0 -0.79484,-4.6099 -7.44035,0 -0.57473,4.6099 1.99028,0 0,2.8127 -7.88963,0 z m 13.27957,-10.7064 -3.2345,-16.1007 -3.02962,16.1007 6.26412,0" />
+
+	<polyline points="500 500 500 520 520 520" />
+
 </g>
 </g>
 <polygon fill="green" points="143.24,30.955 , 124.594,30.955 124.594,66.027 118.378,66.027 118.378,30.955
