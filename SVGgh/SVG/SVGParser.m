@@ -32,7 +32,7 @@
 
 @interface SVGParser ()
 @property(nonatomic, strong) NSError* __nullable 	parserError;
-@property(nonatomic, strong) NSMutableDictionary*	__nullable root;
+@property(nonatomic, strong) NSDictionary*	__nullable root;
 @property(nonatomic, assign) BOOL					insideSVG;
 @property(nonatomic, strong) NSMutableArray*		__nullable groupStack;
 @end
@@ -99,7 +99,7 @@
 	{
 		self.insideSVG = YES;
         NSMutableDictionary* newRoot = [NSMutableDictionary dictionary];
-		self.root = newRoot;
+		self.root = [newRoot copy];
 		self.groupStack	= [[NSMutableArray alloc] initWithObjects:newRoot, nil];
 		[newRoot setObject:attributeDict forKey:kAttributesElementName];
 		[newRoot setObject:elementName forKey:kElementName];
