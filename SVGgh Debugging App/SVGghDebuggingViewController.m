@@ -1,5 +1,5 @@
 //
-//  GHViewController.m
+//  SVGghDebuggingViewController.m
 //  SVGgh Debugging App
 //
 //  Created by Glenn Howes on 1/30/14.
@@ -67,7 +67,7 @@
     [self.segmentedControl insertSegmentWithRenderer:aRenderer accessibilityLabel:NSLocalizedString(@"Butterfly", @"") atIndex:2 animated:NO];
     [self.segmentedControl insertSegmentWithTitle:NSLocalizedString(@"Curvy", @"") atIndex:3 animated:NO];
     self.segmentedControl.selectedSegmentIndex = 0;
-    
+
     
     
 	// Do any additional setup after loading the view, typically from a nib.
@@ -81,7 +81,7 @@
 
 -(IBAction)print:(id)sender
 {
-    UIAlertAction* okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", @"") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction* okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", @"") style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
         
     }];
     
@@ -204,4 +204,5 @@
     }
     
 }
+
 @end
