@@ -340,7 +340,11 @@ typedef enum GHSegmentType
     NSDictionary* titleProperties = [[UISegmentedControl appearance] titleTextAttributesForState:state];
     if(titleProperties == nil) // iOS 9 stopped returning the titleProperties from UISegmentedControl appearance
     {
+#if TARGET_OS_TV
+        result = [UIFont systemFontOfSize:40 weight:UIFontWeightMedium];
+#else
         result = [UIFont systemFontOfSize:14];
+#endif
     }
     else
     {
@@ -349,6 +353,8 @@ typedef enum GHSegmentType
     }
     return result;
 }
+
+
 
 -(NSInteger) indexOfTouch:(CGPoint)touchLocation
 {
@@ -600,12 +606,12 @@ typedef enum GHSegmentType
     
     CGContextSaveGState(quartzContext);
     
-    if(scheme == kColorSchemeEmpty || scheme == kColorSchemeFlatAndBoxy) // approximate an iOS 7 segmented control
+    if(scheme == kColorSchemeEmpty || scheme == kColorSchemeFlatAndBoxy || scheme == kColorSchemeTVOS) // approximate an iOS 7 segmented control
     {
         UIColor* baseColor = [self selectedColor];
         
         CGContextSetStrokeColorWithColor(quartzContext, baseColor.CGColor);
-        if(inNormalMode)
+        if(inNormalMode && scheme != kColorSchemeTVOS)
         {
             CGContextSetFillColorWithColor(quartzContext, self.control.backgroundColor.CGColor);
         }
@@ -613,21 +619,30 @@ typedef enum GHSegmentType
         {
             CGContextSetFillColorWithColor(quartzContext, baseColor.CGColor);
         }
-        CGFloat lineWidth = 1/self.contentsScale;
-        
-        CGContextSetLineWidth(quartzContext, lineWidth);
-        if(scheme == kColorSchemeEmpty)
+        if(scheme == kColorSchemeTVOS)
         {
-            CGPathRef   boundingPath = [layer newOutlinePathWhileUsingRadialGradient:NO];
+            CGPathRef   boundingPath = [layer newOutlinePathWhileUsingRadialGradient:YES];
             CGContextAddPath(quartzContext, boundingPath);
-            CGContextDrawPath(quartzContext, kCGPathFillStroke);
+            CGContextDrawPath(quartzContext, kCGPathFill);
             CGPathRelease(boundingPath);
         }
         else
         {
-            CGRect drawBounds = CGRectInset(layerBounds, 0, 0);
-            CGContextAddRect(quartzContext, drawBounds);
-            CGContextDrawPath(quartzContext, kCGPathFillStroke);
+            CGFloat lineWidth = 1/self.contentsScale;
+            
+            CGContextSetLineWidth(quartzContext, lineWidth);
+            if(scheme == kColorSchemeEmpty)
+            {
+                CGPathRef   boundingPath = [layer newOutlinePathWhileUsingRadialGradient:NO];
+                CGContextAddPath(quartzContext, boundingPath);
+                CGContextDrawPath(quartzContext, kCGPathFillStroke);
+                CGPathRelease(boundingPath);
+            }
+            else
+            {
+                CGContextAddRect(quartzContext, layerBounds);
+                CGContextDrawPath(quartzContext, kCGPathFillStroke);
+            }
         }
     }
     else
@@ -729,6 +744,23 @@ typedef enum GHSegmentType
 {
     return [GHSegmentedControlLayer class];
 }
+
+-(UIView*) preferredFocusView
+{
+    return self;
+}
+
+//- (BOOL)shouldUpdateFocusInContext:(UIFocusUpdateContext *)context
+//{
+//    if(context.nextFocusedView == self)
+//    {
+//        return YES;
+//    }
+//    else
+//    {
+//        return [super shouldUpdateFocusInContext:context];
+//    }
+//}
 
 -(GHSegmentedControlLayer*)layerAsControlLayer
 {

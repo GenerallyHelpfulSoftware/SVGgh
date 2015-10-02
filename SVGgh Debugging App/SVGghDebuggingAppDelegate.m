@@ -1,5 +1,5 @@
 //
-//  GHAppDelegate.m
+//  SVGghDebuggingAppDelegate.m
 //  SVGgh Debugging App
 //
 //  Created by Glenn Howes on 1/30/14.

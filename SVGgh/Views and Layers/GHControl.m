@@ -74,6 +74,9 @@ const CGFloat kShadowInset = 3.0;
 {
     if(kColorSchemeiOSVersionAppropriate == schemeNumber)
     {
+#if TARGET_OS_TV
+        schemeNumber = kColorSchemeTVOS;
+#else
         NSString* systemVersion = [UIDevice currentDevice].systemVersion;
         if(systemVersion.doubleValue >= 7)
         {
@@ -83,6 +86,7 @@ const CGFloat kShadowInset = 3.0;
         {
             schemeNumber = kColorSchemeiOS;
         }
+#endif
     }
     self.scheme = schemeNumber;
     [self setupForScheme:self.scheme];
@@ -132,6 +136,23 @@ const CGFloat kShadowInset = 3.0;
         {
             self.drawsChrome = NO;
             self.drawsBackground = NO;
+        }
+        break;
+        case kColorSchemeTVOS:
+        {
+            self.drawsBackground = YES;
+            self.drawsChrome = NO;
+            
+            if([GHControlFactory textColor] == nil)
+            {
+                self.textColor = self.tintColor;
+            }
+            if([GHControlFactory pressedTextColor] == nil)
+            {
+                //self.
+            }
+            
+            self.textColorSelected = self.textColorPressed;
         }
         break;
         case kColorSchemeFlatAndBoxy:

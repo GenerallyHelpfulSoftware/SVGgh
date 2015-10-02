@@ -197,6 +197,7 @@ UIColor* gDefaultSelectedTextColor = nil;
     UIColor* result = gDefaultButtonColor;
     if(result == nil)
     {
+
         result = gDefaultButtonColor = [[UIColor alloc] initWithHue:0.611 saturation:0.45 brightness:0.92 alpha:1.0];
 
     }
@@ -274,6 +275,7 @@ UIColor* gDefaultSelectedTextColor = nil;
             result = [GHControlFactory buttonTint];
         }
         break;
+        case kColorSchemeTVOS:
         case kColorSchemeFlatAndBoxy:
         {
             result = [GHControlFactory buttonTint];
@@ -362,6 +364,7 @@ UIColor* gDefaultSelectedTextColor = nil;
         }
         break;
         case kColorSchemeFlatAndBoxy:
+        case kColorSchemeTVOS:
         {
         }
         break;
@@ -465,6 +468,7 @@ UIColor* gDefaultSelectedTextColor = nil;
             CGColorSpaceRelease(colorSpace);
         }
         break;
+        case kColorSchemeTVOS:
         case kColorSchemeFlatAndBoxy:
         {
         }
@@ -502,6 +506,11 @@ UIColor* gDefaultSelectedTextColor = nil;
                 result = [[UIColor whiteColor] colorWithAlphaComponent:0.75];
             }
             break;
+            case kColorSchemeTVOS:
+            {
+                result = [UIColor blackColor];
+            }
+            break;
             default:
             {
                 result = [UIColor whiteColor];
@@ -536,6 +545,12 @@ UIColor* gDefaultSelectedTextColor = nil;
             case kColorSchemeClear:
             {
                 result = [[UIColor blackColor] colorWithAlphaComponent:0.50];
+            }
+            break;
+                
+            case kColorSchemeTVOS:
+            {
+                result = [UIColor whiteColor];
             }
             break;
             default:

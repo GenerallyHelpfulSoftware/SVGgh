@@ -53,7 +53,9 @@ enum {
     kColorSchemeHomeTheatre,
     kColorSchemeiOSVersionAppropriate,
     kColorSchemeFlatAndBoxy,
-    kLastColorScheme = kColorSchemeFlatAndBoxy,
+    
+    kColorSchemeTVOS,
+    kLastColorScheme = kColorSchemeTVOS,
     
     kColorSchemeNone,
 };

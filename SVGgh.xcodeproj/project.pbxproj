@@ -9,14 +9,78 @@
 /* Begin PBXBuildFile section */
 		210DF4691B9132FE00D702D5 /* SVGgh.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F6BBE21B29A21E00DCEEC2 /* SVGgh.framework */; };
 		210DF46A1B9132FE00D702D5 /* SVGgh.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 21F6BBE21B29A21E00DCEEC2 /* SVGgh.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		211E70931B2A1E4300667BE9 /* Artwork in Resources */ = {isa = PBXBuildFile; fileRef = 21F6BCE71B29A8FE00DCEEC2 /* Artwork */; };
 		212A8B781B63C4E8009B28C9 /* SVGPerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212A8B771B63C4E8009B28C9 /* SVGPerformanceTests.swift */; };
 		212A8B791B63C542009B28C9 /* Artwork in Resources */ = {isa = PBXBuildFile; fileRef = 21F6BCE71B29A8FE00DCEEC2 /* Artwork */; };
-		21309A4E1B29FA3700E8B812 /* SVGgh.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F6BBE21B29A21E00DCEEC2 /* SVGgh.framework */; };
 		2181F3A71B4F5D8F007617A7 /* SVGTabBarItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 2181F3A51B4F5D8F007617A7 /* SVGTabBarItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2181F3A81B4F5D8F007617A7 /* SVGTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2181F3A61B4F5D8F007617A7 /* SVGTabBarItem.m */; };
 		2194CD3F1B29FB4F00702F44 /* Artwork in Resources */ = {isa = PBXBuildFile; fileRef = 21F6BCE71B29A8FE00DCEEC2 /* Artwork */; };
 		21B7993B1B9A60080014F13D /* DebugApp_UI_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 21B7993A1B9A60080014F13D /* DebugApp_UI_Tests.m */; };
+		21DEC8AC1BAD89C90044BAD7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 21DEC8AB1BAD89C90044BAD7 /* main.m */; };
+		21DEC8AF1BAD89C90044BAD7 /* SVGghTVDebuggingAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 21DEC8AE1BAD89C90044BAD7 /* SVGghTVDebuggingAppDelegate.m */; };
+		21DEC8B51BAD89C90044BAD7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21DEC8B31BAD89C90044BAD7 /* Main.storyboard */; };
+		21DEC8B71BAD89C90044BAD7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21DEC8B61BAD89C90044BAD7 /* Assets.xcassets */; };
+		21DEC8C41BAD89E50044BAD7 /* SVGghtv.h in Headers */ = {isa = PBXBuildFile; fileRef = 21DEC8C31BAD89E50044BAD7 /* SVGghtv.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		21DEC8CB1BAD89E50044BAD7 /* SVGghtv.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21DEC8C11BAD89E50044BAD7 /* SVGghtv.framework */; };
+		21DEC8D21BAD89E50044BAD7 /* SVGghtvTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 21DEC8D11BAD89E50044BAD7 /* SVGghtvTests.m */; };
+		21DEC8D61BAD89E50044BAD7 /* SVGghtv.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21DEC8C11BAD89E50044BAD7 /* SVGghtv.framework */; };
+		21DEC8D71BAD89E50044BAD7 /* SVGghtv.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 21DEC8C11BAD89E50044BAD7 /* SVGghtv.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		21DEC8DF1BAD8A080044BAD7 /* GHAttributedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F6BC541B29A42800DCEEC2 /* GHAttributedObject.m */; };
+		21DEC8E01BAD8A100044BAD7 /* GHAttributedObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 21F6BC531B29A42800DCEEC2 /* GHAttributedObject.h */; };
+		21DEC8E11BAD8A1A0044BAD7 /* GHPathDescription.h in Headers */ = {isa = PBXBuildFile; fileRef = 21F6BC551B29A42800DCEEC2 /* GHPathDescription.h */; };
+		21DEC8E21BAD8A1E0044BAD7 /* GHPathUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 21F6BC561B29A42800DCEEC2 /* GHPathUtilities.h */; };
+		21DEC8E31BAD8A220044BAD7 /* GHPathUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F6BC571B29A42800DCEEC2 /* GHPathUtilities.m */; };
+		21DEC8E41BAD8A2B0044BAD7 /* GHText.h in Headers */ = {isa = PBXBuildFile; fileRef = 21F6BC581B29A42800DCEEC2 /* GHText.h */; };
+		21DEC8E51BAD8A2F0044BAD7 /* GHText.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F6BC591B29A42800DCEEC2 /* GHText.m */; };
+		21DEC8E61BAD8A320044BAD7 /* GHTextLine.h in Headers */ = {isa = PBXBuildFile; fileRef = 21F6BC5A1B29A42800DCEEC2 /* GHTextLine.h */; };
+		21DEC8E71BAD8A360044BAD7 /* GHTextLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F6BC5B1B29A42800DCEEC2 /* GHTextLine.m */; };
+		21DEC8E81BAD8A390044BAD7 /* SVGAttributedObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 21F6BC5C1B29A42800DCEEC2 /* SVGAttributedObject.h */; };
+		21DEC8E91BAD8A3D0044BAD7 /* SVGAttributedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F6BC5D1B29A42800DCEEC2 /* SVGAttributedObject.m */; };
+		21DEC8EA1BAD8A420044BAD7 /* SVGContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 21F6BC5E1B29A42800DCEEC2 /* SVGContext.h */; };
+		21DEC8EB1BAD8A460044BAD7 /* SVGGradientUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 21F6BC5F1B29A42800DCEEC2 /* SVGGradientUtilities.h */; };
+		21DEC8EC1BAD8A4A0044BAD7 /* SVGGradientUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F6BC601B29A42800DCEEC2 /* SVGGradientUtilities.m */; };
+		21DEC8ED1BAD8A4D0044BAD7 /* SVGParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 21F6BC611B29A42800DCEEC2 /* SVGParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		21DEC8EE1BAD8A510044BAD7 /* SVGParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F6BC621B29A42800DCEEC2 /* SVGParser.m */; };
+		21DEC8EF1BAD8A540044BAD7 /* SVGTextUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 21F6BC631B29A42800DCEEC2 /* SVGTextUtilities.h */; };
+		21DEC8F01BAD8A570044BAD7 /* SVGTextUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F6BC641B29A42800DCEEC2 /* SVGTextUtilities.m */; };
+		21DEC8F11BAD8A5B0044BAD7 /* SVGUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 21F6BC651B29A42800DCEEC2 /* SVGUtilities.h */; };
+		21DEC8F21BAD8A5E0044BAD7 /* SVGUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F6BC661B29A42800DCEEC2 /* SVGUtilities.m */; };
+		21DEC8F31BAD8A640044BAD7 /* GHGlyph.h in Headers */ = {isa = PBXBuildFile; fileRef = 21F6BC021B29A41C00DCEEC2 /* GHGlyph.h */; };
+		21DEC8F41BAD8A670044BAD7 /* GHGlyph.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F6BC031B29A41C00DCEEC2 /* GHGlyph.m */; };
+		21DEC8F51BAD8A6B0044BAD7 /* GHGradient.h in Headers */ = {isa = PBXBuildFile; fileRef = 21F6BC041B29A41C00DCEEC2 /* GHGradient.h */; };
+		21DEC8F61BAD8A730044BAD7 /* GHGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F6BC051B29A41C00DCEEC2 /* GHGradient.m */; };
+		21DEC8F71BAD8A770044BAD7 /* GHRenderable.h in Headers */ = {isa = PBXBuildFile; fileRef = 21F6BC061B29A41C00DCEEC2 /* GHRenderable.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		21DEC8F81BAD8A830044BAD7 /* SVGPathGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 21F6BC071B29A41C00DCEEC2 /* SVGPathGenerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		21DEC8F91BAD8A8C0044BAD7 /* SVGPathGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F6BC081B29A41C00DCEEC2 /* SVGPathGenerator.m */; };
+		21DEC8FA1BAD8A980044BAD7 /* SVGPrinter.h in Headers */ = {isa = PBXBuildFile; fileRef = 21F6BC091B29A41C00DCEEC2 /* SVGPrinter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		21DEC8FB1BAD8A9C0044BAD7 /* SVGPrinter.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F6BC0A1B29A41C00DCEEC2 /* SVGPrinter.m */; };
+		21DEC8FC1BAD8AA00044BAD7 /* SVGRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = 21F6BC0B1B29A41C00DCEEC2 /* SVGRenderer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		21DEC8FD1BAD8AA60044BAD7 /* SVGRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F6BC0C1B29A41C00DCEEC2 /* SVGRenderer.m */; };
+		21DEC8FE1BAD8AAA0044BAD7 /* SVGtoPDFConverter.h in Headers */ = {isa = PBXBuildFile; fileRef = 21F6BC0D1B29A41C00DCEEC2 /* SVGtoPDFConverter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		21DEC8FF1BAD8AAE0044BAD7 /* SVGtoPDFConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F6BC0E1B29A41C00DCEEC2 /* SVGtoPDFConverter.m */; };
+		21DEC9001BAD8AB20044BAD7 /* Base64Transcoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 21F6BC101B29A41C00DCEEC2 /* Base64Transcoder.h */; };
+		21DEC9011BAD8AB60044BAD7 /* Base64Transcoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F6BC111B29A41C00DCEEC2 /* Base64Transcoder.m */; };
+		21DEC9021BAD8AB90044BAD7 /* NSData+Base64Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 21F6BC121B29A41C00DCEEC2 /* NSData+Base64Additions.h */; };
+		21DEC9031BAD8ABC0044BAD7 /* NSData+Base64Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F6BC131B29A41C00DCEEC2 /* NSData+Base64Additions.m */; };
+		21DEC9041BAD8AC30044BAD7 /* GHImageCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 21F6BC151B29A41C00DCEEC2 /* GHImageCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		21DEC9051BAD8AC80044BAD7 /* GHImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F6BC161B29A41C00DCEEC2 /* GHImageCache.m */; };
+		21DEC9061BAD8ACD0044BAD7 /* GHButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 21F6BC181B29A41C00DCEEC2 /* GHButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		21DEC9071BAD8AD20044BAD7 /* GHButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F6BC191B29A41C00DCEEC2 /* GHButton.m */; };
+		21DEC9081BAD8AD70044BAD7 /* GHControl.h in Headers */ = {isa = PBXBuildFile; fileRef = 21F6BC1A1B29A41C00DCEEC2 /* GHControl.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		21DEC9091BAD8ADC0044BAD7 /* GHControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F6BC1B1B29A41C00DCEEC2 /* GHControl.m */; };
+		21DEC90A1BAD8AE00044BAD7 /* GHControlFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 21F6BC1C1B29A41C00DCEEC2 /* GHControlFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		21DEC90B1BAD8AE50044BAD7 /* GHControlFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F6BC1D1B29A41C00DCEEC2 /* GHControlFactory.m */; };
+		21DEC90C1BAD8AE80044BAD7 /* GHSegmentedControl.h in Headers */ = {isa = PBXBuildFile; fileRef = 21F6BC1E1B29A41C00DCEEC2 /* GHSegmentedControl.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		21DEC90D1BAD8AEE0044BAD7 /* GHSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F6BC1F1B29A41C00DCEEC2 /* GHSegmentedControl.m */; };
+		21DEC90E1BAD8AF10044BAD7 /* SVGDocumentView.h in Headers */ = {isa = PBXBuildFile; fileRef = 21F6BC201B29A41C00DCEEC2 /* SVGDocumentView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		21DEC90F1BAD8AF80044BAD7 /* SVGDocumentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F6BC211B29A41C00DCEEC2 /* SVGDocumentView.m */; };
+		21DEC9101BAD8AFC0044BAD7 /* SVGRendererLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 21F6BC221B29A41C00DCEEC2 /* SVGRendererLayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		21DEC9111BAD8B020044BAD7 /* SVGRendererLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F6BC231B29A41C00DCEEC2 /* SVGRendererLayer.m */; };
+		21DEC9121BAD8B060044BAD7 /* SVGTabBarItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 2181F3A51B4F5D8F007617A7 /* SVGTabBarItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		21DEC9131BAD8B0C0044BAD7 /* SVGTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2181F3A61B4F5D8F007617A7 /* SVGTabBarItem.m */; };
+		21DEC9141BAD8B0F0044BAD7 /* SVGgh.h in Headers */ = {isa = PBXBuildFile; fileRef = 21F6BBE71B29A21E00DCEEC2 /* SVGgh.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		21DEC9151BAD8B140044BAD7 /* SVGgh.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F6BBFE1B29A2F100DCEEC2 /* SVGgh.m */; };
+		21DEC9161BAD8DCF0044BAD7 /* Artwork in Resources */ = {isa = PBXBuildFile; fileRef = 21F6BCE71B29A8FE00DCEEC2 /* Artwork */; };
+		21DEC91A1BAE8D130044BAD7 /* SVGghDebuggingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F6BCE11B29A52600DCEEC2 /* SVGghDebuggingViewController.m */; };
 		21F6BBE81B29A21E00DCEEC2 /* SVGgh.h in Headers */ = {isa = PBXBuildFile; fileRef = 21F6BBE71B29A21E00DCEEC2 /* SVGgh.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		21F6BBEE1B29A21E00DCEEC2 /* SVGgh.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F6BBE21B29A21E00DCEEC2 /* SVGgh.framework */; };
 		21F6BBF51B29A21E00DCEEC2 /* SVGghTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F6BBF41B29A21E00DCEEC2 /* SVGghTests.m */; };
@@ -88,6 +152,27 @@
 			remoteGlobalIDString = 21F6BBE11B29A21E00DCEEC2;
 			remoteInfo = SVGgh;
 		};
+		21DEC8CC1BAD89E50044BAD7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 21F6BBD91B29A21E00DCEEC2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 21DEC8C01BAD89E50044BAD7;
+			remoteInfo = SVGghtv;
+		};
+		21DEC8CE1BAD89E50044BAD7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 21F6BBD91B29A21E00DCEEC2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 21DEC8A71BAD89C90044BAD7;
+			remoteInfo = "SVGgh TV Debugging App";
+		};
+		21DEC8D41BAD89E50044BAD7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 21F6BBD91B29A21E00DCEEC2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 21DEC8C01BAD89E50044BAD7;
+			remoteInfo = SVGghtv;
+		};
 		21F6BBEF1B29A21E00DCEEC2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 21F6BBD91B29A21E00DCEEC2 /* Project object */;
@@ -109,6 +194,27 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		21DEC8DB1BAD89E50044BAD7 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				21DEC8D71BAD89E50044BAD7 /* SVGghtv.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		21E048491BBE390D003892E5 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -118,6 +224,20 @@
 		2181F3A51B4F5D8F007617A7 /* SVGTabBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVGTabBarItem.h; sourceTree = "<group>"; };
 		2181F3A61B4F5D8F007617A7 /* SVGTabBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVGTabBarItem.m; sourceTree = "<group>"; };
 		21B7993A1B9A60080014F13D /* DebugApp_UI_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugApp_UI_Tests.m; sourceTree = "<group>"; };
+		21DEC8A81BAD89C90044BAD7 /* SVGgh TV Debugging App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SVGgh TV Debugging App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		21DEC8AB1BAD89C90044BAD7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		21DEC8AD1BAD89C90044BAD7 /* SVGghTVDebuggingAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SVGghTVDebuggingAppDelegate.h; sourceTree = "<group>"; };
+		21DEC8AE1BAD89C90044BAD7 /* SVGghTVDebuggingAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SVGghTVDebuggingAppDelegate.m; sourceTree = "<group>"; };
+		21DEC8B41BAD89C90044BAD7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		21DEC8B61BAD89C90044BAD7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		21DEC8B81BAD89C90044BAD7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		21DEC8C11BAD89E50044BAD7 /* SVGghtv.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SVGghtv.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		21DEC8C31BAD89E50044BAD7 /* SVGghtv.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SVGghtv.h; sourceTree = "<group>"; };
+		21DEC8C51BAD89E50044BAD7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		21DEC8CA1BAD89E50044BAD7 /* SVGghtvTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SVGghtvTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		21DEC8D11BAD89E50044BAD7 /* SVGghtvTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SVGghtvTests.m; sourceTree = "<group>"; };
+		21DEC8D31BAD89E50044BAD7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		21DEC9171BAE8BB10044BAD7 /* SVGgh TV Debugging App-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SVGgh TV Debugging App-Bridging-Header.h"; sourceTree = "<group>"; };
 		21F6BBE21B29A21E00DCEEC2 /* SVGgh.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SVGgh.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		21F6BBE61B29A21E00DCEEC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		21F6BBE71B29A21E00DCEEC2 /* SVGgh.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SVGgh.h; sourceTree = "<group>"; };
@@ -192,6 +312,29 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		21DEC8A51BAD89C90044BAD7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21DEC8D61BAD89E50044BAD7 /* SVGghtv.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		21DEC8BD1BAD89E50044BAD7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		21DEC8C71BAD89E50044BAD7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21DEC8CB1BAD89E50044BAD7 /* SVGghtv.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		21F6BBDE1B29A21E00DCEEC2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -212,13 +355,52 @@
 			buildActionMask = 2147483647;
 			files = (
 				210DF4691B9132FE00D702D5 /* SVGgh.framework in Frameworks */,
-				21309A4E1B29FA3700E8B812 /* SVGgh.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		21DEC8A91BAD89C90044BAD7 /* SVGgh TV Debugging App */ = {
+			isa = PBXGroup;
+			children = (
+				21DEC8AD1BAD89C90044BAD7 /* SVGghTVDebuggingAppDelegate.h */,
+				21DEC8AE1BAD89C90044BAD7 /* SVGghTVDebuggingAppDelegate.m */,
+				21DEC8B31BAD89C90044BAD7 /* Main.storyboard */,
+				21DEC8B61BAD89C90044BAD7 /* Assets.xcassets */,
+				21DEC8B81BAD89C90044BAD7 /* Info.plist */,
+				21DEC8AA1BAD89C90044BAD7 /* Supporting Files */,
+				21DEC9171BAE8BB10044BAD7 /* SVGgh TV Debugging App-Bridging-Header.h */,
+			);
+			path = "SVGgh TV Debugging App";
+			sourceTree = "<group>";
+		};
+		21DEC8AA1BAD89C90044BAD7 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				21DEC8AB1BAD89C90044BAD7 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		21DEC8C21BAD89E50044BAD7 /* SVGghtv */ = {
+			isa = PBXGroup;
+			children = (
+				21DEC8C31BAD89E50044BAD7 /* SVGghtv.h */,
+				21DEC8C51BAD89E50044BAD7 /* Info.plist */,
+			);
+			path = SVGghtv;
+			sourceTree = "<group>";
+		};
+		21DEC8D01BAD89E50044BAD7 /* SVGghtvTests */ = {
+			isa = PBXGroup;
+			children = (
+				21DEC8D11BAD89E50044BAD7 /* SVGghtvTests.m */,
+				21DEC8D31BAD89E50044BAD7 /* Info.plist */,
+			);
+			path = SVGghtvTests;
+			sourceTree = "<group>";
+		};
 		21F6BBD81B29A21E00DCEEC2 = {
 			isa = PBXGroup;
 			children = (
@@ -227,6 +409,9 @@
 				21F6BBF11B29A21E00DCEEC2 /* SVGghTests */,
 				21F6BC891B29A48600DCEEC2 /* SVGgh Debugging App */,
 				21F6BCA31B29A48600DCEEC2 /* SVGgh Debugging AppTests */,
+				21DEC8A91BAD89C90044BAD7 /* SVGgh TV Debugging App */,
+				21DEC8C21BAD89E50044BAD7 /* SVGghtv */,
+				21DEC8D01BAD89E50044BAD7 /* SVGghtvTests */,
 				21F6BBE31B29A21E00DCEEC2 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -237,6 +422,9 @@
 				21F6BBE21B29A21E00DCEEC2 /* SVGgh.framework */,
 				21F6BBED1B29A21E00DCEEC2 /* SVGghTests.xctest */,
 				21F6BC881B29A48600DCEEC2 /* SVGgh Debugging App.app */,
+				21DEC8A81BAD89C90044BAD7 /* SVGgh TV Debugging App.app */,
+				21DEC8C11BAD89E50044BAD7 /* SVGghtv.framework */,
+				21DEC8CA1BAD89E50044BAD7 /* SVGghtvTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -417,6 +605,43 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		21DEC8BE1BAD89E50044BAD7 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21DEC9101BAD8AFC0044BAD7 /* SVGRendererLayer.h in Headers */,
+				21DEC8E81BAD8A390044BAD7 /* SVGAttributedObject.h in Headers */,
+				21DEC8E01BAD8A100044BAD7 /* GHAttributedObject.h in Headers */,
+				21DEC8F71BAD8A770044BAD7 /* GHRenderable.h in Headers */,
+				21DEC8FE1BAD8AAA0044BAD7 /* SVGtoPDFConverter.h in Headers */,
+				21DEC8C41BAD89E50044BAD7 /* SVGghtv.h in Headers */,
+				21DEC8FC1BAD8AA00044BAD7 /* SVGRenderer.h in Headers */,
+				21DEC8EB1BAD8A460044BAD7 /* SVGGradientUtilities.h in Headers */,
+				21DEC8EF1BAD8A540044BAD7 /* SVGTextUtilities.h in Headers */,
+				21DEC8F51BAD8A6B0044BAD7 /* GHGradient.h in Headers */,
+				21DEC9081BAD8AD70044BAD7 /* GHControl.h in Headers */,
+				21DEC8E61BAD8A320044BAD7 /* GHTextLine.h in Headers */,
+				21DEC8FA1BAD8A980044BAD7 /* SVGPrinter.h in Headers */,
+				21DEC90C1BAD8AE80044BAD7 /* GHSegmentedControl.h in Headers */,
+				21DEC8E11BAD8A1A0044BAD7 /* GHPathDescription.h in Headers */,
+				21DEC8E21BAD8A1E0044BAD7 /* GHPathUtilities.h in Headers */,
+				21DEC90E1BAD8AF10044BAD7 /* SVGDocumentView.h in Headers */,
+				21DEC8F31BAD8A640044BAD7 /* GHGlyph.h in Headers */,
+				21DEC9041BAD8AC30044BAD7 /* GHImageCache.h in Headers */,
+				21DEC90A1BAD8AE00044BAD7 /* GHControlFactory.h in Headers */,
+				21DEC9021BAD8AB90044BAD7 /* NSData+Base64Additions.h in Headers */,
+				21DEC8F11BAD8A5B0044BAD7 /* SVGUtilities.h in Headers */,
+				21DEC8F81BAD8A830044BAD7 /* SVGPathGenerator.h in Headers */,
+				21DEC9121BAD8B060044BAD7 /* SVGTabBarItem.h in Headers */,
+				21DEC9141BAD8B0F0044BAD7 /* SVGgh.h in Headers */,
+				21DEC8E41BAD8A2B0044BAD7 /* GHText.h in Headers */,
+				21DEC8ED1BAD8A4D0044BAD7 /* SVGParser.h in Headers */,
+				21DEC9001BAD8AB20044BAD7 /* Base64Transcoder.h in Headers */,
+				21DEC9061BAD8ACD0044BAD7 /* GHButton.h in Headers */,
+				21DEC8EA1BAD8A420044BAD7 /* SVGContext.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		21F6BBDF1B29A21E00DCEEC2 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -456,6 +681,62 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		21DEC8A71BAD89C90044BAD7 /* SVGgh TV Debugging App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 21DEC8BB1BAD89C90044BAD7 /* Build configuration list for PBXNativeTarget "SVGgh TV Debugging App" */;
+			buildPhases = (
+				21DEC8A41BAD89C90044BAD7 /* Sources */,
+				21DEC8A51BAD89C90044BAD7 /* Frameworks */,
+				21DEC8A61BAD89C90044BAD7 /* Resources */,
+				21DEC8DB1BAD89E50044BAD7 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				21DEC8D51BAD89E50044BAD7 /* PBXTargetDependency */,
+			);
+			name = "SVGgh TV Debugging App";
+			productName = "SVGgh TV Debugging App";
+			productReference = 21DEC8A81BAD89C90044BAD7 /* SVGgh TV Debugging App.app */;
+			productType = "com.apple.product-type.application";
+		};
+		21DEC8C01BAD89E50044BAD7 /* SVGghtv */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 21DEC8D81BAD89E50044BAD7 /* Build configuration list for PBXNativeTarget "SVGghtv" */;
+			buildPhases = (
+				21DEC8BC1BAD89E50044BAD7 /* Sources */,
+				21DEC8BD1BAD89E50044BAD7 /* Frameworks */,
+				21DEC8BE1BAD89E50044BAD7 /* Headers */,
+				21DEC8BF1BAD89E50044BAD7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SVGghtv;
+			productName = SVGghtv;
+			productReference = 21DEC8C11BAD89E50044BAD7 /* SVGghtv.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		21DEC8C91BAD89E50044BAD7 /* SVGghtvTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 21DEC8DC1BAD89E50044BAD7 /* Build configuration list for PBXNativeTarget "SVGghtvTests" */;
+			buildPhases = (
+				21DEC8C61BAD89E50044BAD7 /* Sources */,
+				21DEC8C71BAD89E50044BAD7 /* Frameworks */,
+				21DEC8C81BAD89E50044BAD7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				21DEC8CD1BAD89E50044BAD7 /* PBXTargetDependency */,
+				21DEC8CF1BAD89E50044BAD7 /* PBXTargetDependency */,
+			);
+			name = SVGghtvTests;
+			productName = SVGghtvTests;
+			productReference = 21DEC8CA1BAD89E50044BAD7 /* SVGghtvTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		21F6BBE11B29A21E00DCEEC2 /* SVGgh */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 21F6BBF81B29A21E00DCEEC2 /* Build configuration list for PBXNativeTarget "SVGgh" */;
@@ -501,6 +782,7 @@
 				21F6BC851B29A48600DCEEC2 /* Frameworks */,
 				21F6BC861B29A48600DCEEC2 /* Resources */,
 				210DF46B1B9132FF00D702D5 /* Embed Frameworks */,
+				21E048491BBE390D003892E5 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
@@ -518,10 +800,20 @@
 		21F6BBD91B29A21E00DCEEC2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0700;
+				LastSwiftUpdateCheck = 0710;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Generally Helpful";
 				TargetAttributes = {
+					21DEC8A71BAD89C90044BAD7 = {
+						CreatedOnToolsVersion = 7.1;
+					};
+					21DEC8C01BAD89E50044BAD7 = {
+						CreatedOnToolsVersion = 7.1;
+					};
+					21DEC8C91BAD89E50044BAD7 = {
+						CreatedOnToolsVersion = 7.1;
+						TestTargetID = 21DEC8A71BAD89C90044BAD7;
+					};
 					21F6BBE11B29A21E00DCEEC2 = {
 						CreatedOnToolsVersion = 6.3.2;
 					};
@@ -547,18 +839,44 @@
 			projectRoot = "";
 			targets = (
 				21F6BBE11B29A21E00DCEEC2 /* SVGgh */,
+				21DEC8C01BAD89E50044BAD7 /* SVGghtv */,
 				21F6BBEC1B29A21E00DCEEC2 /* SVGghTests */,
+				21DEC8C91BAD89E50044BAD7 /* SVGghtvTests */,
 				21F6BC871B29A48600DCEEC2 /* SVGgh Debugging App */,
+				21DEC8A71BAD89C90044BAD7 /* SVGgh TV Debugging App */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		21DEC8A61BAD89C90044BAD7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21DEC9161BAD8DCF0044BAD7 /* Artwork in Resources */,
+				21DEC8B71BAD89C90044BAD7 /* Assets.xcassets in Resources */,
+				21DEC8B51BAD89C90044BAD7 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		21DEC8BF1BAD89E50044BAD7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		21DEC8C81BAD89E50044BAD7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		21F6BBE01B29A21E00DCEEC2 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				211E70931B2A1E4300667BE9 /* Artwork in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -600,6 +918,57 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		21DEC8A41BAD89C90044BAD7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21DEC8AF1BAD89C90044BAD7 /* SVGghTVDebuggingAppDelegate.m in Sources */,
+				21DEC8AC1BAD89C90044BAD7 /* main.m in Sources */,
+				21DEC91A1BAE8D130044BAD7 /* SVGghDebuggingViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		21DEC8BC1BAD89E50044BAD7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21DEC8EE1BAD8A510044BAD7 /* SVGParser.m in Sources */,
+				21DEC8F61BAD8A730044BAD7 /* GHGradient.m in Sources */,
+				21DEC8FB1BAD8A9C0044BAD7 /* SVGPrinter.m in Sources */,
+				21DEC8F41BAD8A670044BAD7 /* GHGlyph.m in Sources */,
+				21DEC8E51BAD8A2F0044BAD7 /* GHText.m in Sources */,
+				21DEC9051BAD8AC80044BAD7 /* GHImageCache.m in Sources */,
+				21DEC8EC1BAD8A4A0044BAD7 /* SVGGradientUtilities.m in Sources */,
+				21DEC8F91BAD8A8C0044BAD7 /* SVGPathGenerator.m in Sources */,
+				21DEC9011BAD8AB60044BAD7 /* Base64Transcoder.m in Sources */,
+				21DEC9151BAD8B140044BAD7 /* SVGgh.m in Sources */,
+				21DEC8E91BAD8A3D0044BAD7 /* SVGAttributedObject.m in Sources */,
+				21DEC90F1BAD8AF80044BAD7 /* SVGDocumentView.m in Sources */,
+				21DEC90B1BAD8AE50044BAD7 /* GHControlFactory.m in Sources */,
+				21DEC8E31BAD8A220044BAD7 /* GHPathUtilities.m in Sources */,
+				21DEC9071BAD8AD20044BAD7 /* GHButton.m in Sources */,
+				21DEC90D1BAD8AEE0044BAD7 /* GHSegmentedControl.m in Sources */,
+				21DEC8DF1BAD8A080044BAD7 /* GHAttributedObject.m in Sources */,
+				21DEC8FF1BAD8AAE0044BAD7 /* SVGtoPDFConverter.m in Sources */,
+				21DEC9111BAD8B020044BAD7 /* SVGRendererLayer.m in Sources */,
+				21DEC8F21BAD8A5E0044BAD7 /* SVGUtilities.m in Sources */,
+				21DEC8F01BAD8A570044BAD7 /* SVGTextUtilities.m in Sources */,
+				21DEC9131BAD8B0C0044BAD7 /* SVGTabBarItem.m in Sources */,
+				21DEC8E71BAD8A360044BAD7 /* GHTextLine.m in Sources */,
+				21DEC8FD1BAD8AA60044BAD7 /* SVGRenderer.m in Sources */,
+				21DEC9091BAD8ADC0044BAD7 /* GHControl.m in Sources */,
+				21DEC9031BAD8ABC0044BAD7 /* NSData+Base64Additions.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		21DEC8C61BAD89E50044BAD7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21DEC8D21BAD89E50044BAD7 /* SVGghtvTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		21F6BBDD1B29A21E00DCEEC2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -661,6 +1030,21 @@
 			target = 21F6BBE11B29A21E00DCEEC2 /* SVGgh */;
 			targetProxy = 21309A4C1B29F9DF00E8B812 /* PBXContainerItemProxy */;
 		};
+		21DEC8CD1BAD89E50044BAD7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 21DEC8C01BAD89E50044BAD7 /* SVGghtv */;
+			targetProxy = 21DEC8CC1BAD89E50044BAD7 /* PBXContainerItemProxy */;
+		};
+		21DEC8CF1BAD89E50044BAD7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 21DEC8A71BAD89C90044BAD7 /* SVGgh TV Debugging App */;
+			targetProxy = 21DEC8CE1BAD89E50044BAD7 /* PBXContainerItemProxy */;
+		};
+		21DEC8D51BAD89E50044BAD7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 21DEC8C01BAD89E50044BAD7 /* SVGghtv */;
+			targetProxy = 21DEC8D41BAD89E50044BAD7 /* PBXContainerItemProxy */;
+		};
 		21F6BBF01B29A21E00DCEEC2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 21F6BBE11B29A21E00DCEEC2 /* SVGgh */;
@@ -669,6 +1053,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		21DEC8B31BAD89C90044BAD7 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				21DEC8B41BAD89C90044BAD7 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
 		21F6BC991B29A48600DCEEC2 /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -688,6 +1080,111 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		21DEC8B91BAD89C90044BAD7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				INFOPLIST_FILE = "SVGgh TV Debugging App/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.genhelp.SVGgh-TV-Debugging-App";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_OBJC_BRIDGING_HEADER = "SVGgh TV Debugging App/SVGgh TV Debugging App-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Debug;
+		};
+		21DEC8BA1BAD89C90044BAD7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
+				INFOPLIST_FILE = "SVGgh TV Debugging App/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.genhelp.SVGgh-TV-Debugging-App";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_OBJC_BRIDGING_HEADER = "SVGgh TV Debugging App/SVGgh TV Debugging App-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Release;
+		};
+		21DEC8D91BAD89E50044BAD7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = SVGghtv/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.genhelp.SVGghtv;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Debug;
+		};
+		21DEC8DA1BAD89E50044BAD7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = SVGghtv/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.genhelp.SVGghtv;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Release;
+		};
+		21DEC8DD1BAD89E50044BAD7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				INFOPLIST_FILE = SVGghtvTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.genhelp.SVGghtvTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SVGgh TV Debugging App.app/SVGgh TV Debugging App";
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Debug;
+		};
+		21DEC8DE1BAD89E50044BAD7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = SVGghtvTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.genhelp.SVGghtvTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SVGgh TV Debugging App.app/SVGgh TV Debugging App";
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Release;
+		};
 		21F6BBF61B29A21E00DCEEC2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -886,6 +1383,33 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		21DEC8BB1BAD89C90044BAD7 /* Build configuration list for PBXNativeTarget "SVGgh TV Debugging App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				21DEC8B91BAD89C90044BAD7 /* Debug */,
+				21DEC8BA1BAD89C90044BAD7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		21DEC8D81BAD89E50044BAD7 /* Build configuration list for PBXNativeTarget "SVGghtv" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				21DEC8D91BAD89E50044BAD7 /* Debug */,
+				21DEC8DA1BAD89E50044BAD7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		21DEC8DC1BAD89E50044BAD7 /* Build configuration list for PBXNativeTarget "SVGghtvTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				21DEC8DD1BAD89E50044BAD7 /* Debug */,
+				21DEC8DE1BAD89E50044BAD7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		21F6BBDC1B29A21E00DCEEC2 /* Build configuration list for PBXProject "SVGgh" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="9052" systemVersion="15A284" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9040"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Ggh Debugging View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="SVGghDebuggingViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="s3b-Jy-c85">
+                                <rect key="frame" x="20" y="8" width="1880" height="1064"/>
+                                <subviews>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="L1s-wI-BYO">
+                                        <rect key="frame" x="792" y="0.0" width="296" height="70"/>
+                                        <animations/>
+                                        <segments>
+                                            <segment title="First"/>
+                                            <segment title="Curvy"/>
+                                        </segments>
+                                    </segmentedControl>
+                                    <view tag="6" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="O3e-Ee-Zru" customClass="GHSegmentedControl">
+                                        <rect key="frame" x="690" y="89" width="500" height="69"/>
+                                        <animations/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="500" id="jn6-dN-epe"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="schemeNumber">
+                                                <integer key="value" value="6"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="toggleView:" destination="BYZ-38-t0r" eventType="valueChanged" id="K8S-oo-xHX"/>
+                                        </connections>
+                                    </view>
+                                    <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n8B-f7-LQU">
+                                        <rect key="frame" x="550" y="178" width="780" height="780"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="n8B-f7-LQU" secondAttribute="height" multiplier="1:1" priority="750" id="EwD-tJ-kfR"/>
+                                        </constraints>
+                                        <connections>
+                                            <segue destination="sOM-fE-xv3" kind="embed" id="rFV-pr-p5K"/>
+                                        </connections>
+                                    </containerView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="K4N-8X-hWK">
+                                        <rect key="frame" x="727" y="978" width="426" height="86"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pmT-aW-m4D">
+                                                <rect key="frame" x="0.0" y="0.0" width="213" height="86"/>
+                                                <animations/>
+                                                <color key="tintColor" red="0.97254901959999995" green="0.5568627451" blue="0.1215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                                <state key="normal" title="Refresh"/>
+                                                <connections>
+                                                    <action selector="redrawSVG:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kF3-VI-zcq"/>
+                                                </connections>
+                                            </button>
+                                            <view contentMode="scaleAspectFit" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EFb-bb-chr" customClass="GHButton">
+                                                <rect key="frame" x="213" y="0.0" width="213" height="86"/>
+                                                <animations/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="artworkPath" value="Artwork/ReloadButton"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="schemeNumber">
+                                                        <integer key="value" value="6"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="redrawSVG:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7ei-FX-kgT"/>
+                                                </connections>
+                                            </view>
+                                        </subviews>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstItem="EFb-bb-chr" firstAttribute="width" secondItem="pmT-aW-m4D" secondAttribute="width" id="dHI-33-6h8"/>
+                                            <constraint firstItem="EFb-bb-chr" firstAttribute="height" secondItem="pmT-aW-m4D" secondAttribute="height" id="fmd-zf-3Zd"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstItem="O3e-Ee-Zru" firstAttribute="height" secondItem="L1s-wI-BYO" secondAttribute="height" id="9LH-bM-1l0"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="s3b-Jy-c85" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="Goi-cM-421"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="s3b-Jy-c85" secondAttribute="trailing" id="QfX-PA-ck5"/>
+                            <constraint firstItem="s3b-Jy-c85" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="dgx-Oe-SIl"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="s3b-Jy-c85" secondAttribute="bottom" constant="8" symbolic="YES" id="qy1-Fq-dHo"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="containerView" destination="n8B-f7-LQU" id="RVG-Dh-lUb"/>
+                        <outlet property="preferredFocusedView" destination="O3e-Ee-Zru" id="Bwj-ub-fb2"/>
+                        <outlet property="segmentedControl" destination="O3e-Ee-Zru" id="NS6-9W-1so"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="483" y="152"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Nq2-Gn-Umh">
+            <objects>
+                <viewController storyboardIdentifier="helmet" useStoryboardIdentifierAsRestorationIdentifier="YES" id="sOM-fE-xv3" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Pmb-ua-lbH"/>
+                        <viewControllerLayoutGuide type="bottom" id="w93-3e-eXb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleAspectFit" id="kAW-9z-SSq" customClass="SVGDocumentView">
+                        <rect key="frame" x="0.0" y="0.0" width="780" height="780"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="artworkPath" value="Artwork/Superstar"/>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2Do-ZB-Cpn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-345" y="1660"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="rdm-Ly-1TV">
+            <objects>
+                <viewController storyboardIdentifier="creatures" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="mOc-Po-XBx" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="72v-Dc-90i"/>
+                        <viewControllerLayoutGuide type="bottom" id="N7c-V6-2hq"/>
+                    </layoutGuides>
+                    <view key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" id="1w3-Rh-3OP" customClass="SVGDocumentView">
+                        <rect key="frame" x="0.0" y="0.0" width="280" height="280"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <accessibility key="accessibilityConfiguration" identifier="Butterflies"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="artworkPath" value="Artwork/Creatures"/>
+                            <userDefinedRuntimeAttribute type="color" keyPath="defaultColor">
+                                <color key="value" red="0.96470588239999999" green="0.90588235289999997" blue="0.76862745099999996" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <toolbarItems/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="280" height="280"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rEn-6B-2tn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="926" y="1623"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="fik-dY-vAD">
+            <objects>
+                <viewController storyboardIdentifier="eyes" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="CqI-hg-qfb" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="MjG-uU-GM3"/>
+                        <viewControllerLayoutGuide type="bottom" id="vHF-r4-QbF"/>
+                    </layoutGuides>
+                    <view key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" id="9mX-He-clO" customClass="SVGDocumentView">
+                        <rect key="frame" x="0.0" y="0.0" width="280" height="280"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <accessibility key="accessibilityConfiguration" identifier="Drawing Eyes"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="artworkPath" value="Artwork/Eyes"/>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <toolbarItems/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="280" height="280"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hCM-Uu-lO0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="515" y="1639"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Rfw-2w-ewz">
+            <objects>
+                <viewController storyboardIdentifier="textOnCurve" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="B6L-LL-0Pq" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="rD2-J9-4d0"/>
+                        <viewControllerLayoutGuide type="bottom" id="gaR-tr-vcj"/>
+                    </layoutGuides>
+                    <view key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" id="VWp-Ou-J9C" customClass="SVGDocumentView">
+                        <rect key="frame" x="0.0" y="0.0" width="280" height="280"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <accessibility key="accessibilityConfiguration" identifier="Curvy Text"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="artworkPath" value="Artwork/TextOnCurve"/>
+                            <userDefinedRuntimeAttribute type="color" keyPath="defaultColor">
+                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <toolbarItems/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="280" height="280"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zm0-J9-mGv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1282" y="1639"/>
+        </scene>
+    </scenes>
+</document>

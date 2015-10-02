@@ -52,6 +52,43 @@
 +(void)makeSureLoaded
 {
 }
+#if TARGET_OS_TV
+-(UIView*) preferredFocusView
+{
+    return self;
+}
+
+- (BOOL)shouldUpdateFocusInContext:(UIFocusUpdateContext *)context
+{
+    BOOL result =  NO;
+    if(context.nextFocusedView == self)
+    {
+        result = YES;
+    }
+    else
+    {
+        result = [super shouldUpdateFocusInContext:context];
+    }
+    
+    return result;
+}
+
+- (void)didUpdateFocusInContext:(UIFocusUpdateContext *)context withAnimationCoordinator:(UIFocusAnimationCoordinator *)coordinator
+{
+    
+}
+
+- (void)updateFocusIfNeeded
+{
+    
+}
+
+-(BOOL) canBecomeFocused
+{
+    return self.enabled;
+}
+
+#endif
 
 -(void)setupForScheme:(NSUInteger)aScheme
 {
@@ -100,7 +137,6 @@
     return UIAccessibilityTraitButton;
 }
 
-
 -(NSString*) accessibilityLabel
 {
     NSString* result = [super accessibilityLabel];
@@ -115,9 +151,6 @@
     
     return result;
 }
-
-
-
 
 -(void) setSelected:(BOOL)selected
 {
@@ -238,6 +271,7 @@
         baseColor = [GHControlFactory newPressedColorForColor:baseColor forScheme:self.scheme];
     }
     [baseColor setFill];
+    
     UIRectFill(self.bounds);
     
     CGContextRestoreGState(quartzContext);
