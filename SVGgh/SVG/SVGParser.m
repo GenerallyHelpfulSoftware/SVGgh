@@ -32,7 +32,8 @@
 
 @interface SVGParser ()
 @property(nonatomic, strong) NSError* __nullable 	parserError;
-@property(nonatomic, strong) NSMutableDictionary*	__nullable root;
+@property(nonatomic, strong) NSMutableDictionary*	__nullable mutableRoot;
+@property(nonatomic, strong) NSDictionary*          __nullable root;
 @property(nonatomic, assign) BOOL					insideSVG;
 @property(nonatomic, strong) NSMutableArray*		__nullable groupStack;
 @end
@@ -42,6 +43,7 @@
 @end
 
 @implementation SVGParser(Private)
+
 
 
 - (void)parser:(NSXMLParser *)parser foundCDATA:(NSData *)CDATABlock
@@ -95,11 +97,11 @@
 				qualifiedName:(NSString *)qName 
 				attributes:(NSDictionary *)attributeDict
 {
-	if([elementName isEqualToString:@"svg"] && self.root == nil)
+	if([elementName isEqualToString:@"svg"] && self.mutableRoot == nil)
 	{
 		self.insideSVG = YES;
         NSMutableDictionary* newRoot = [NSMutableDictionary dictionary];
-		self.root = newRoot;
+		self.mutableRoot = newRoot;
 		self.groupStack	= [[NSMutableArray alloc] initWithObjects:newRoot, nil];
 		[newRoot setObject:attributeDict forKey:kAttributesElementName];
 		[newRoot setObject:elementName forKey:kElementName];
@@ -157,7 +159,8 @@
 		NSXMLParser* theParser = [[NSXMLParser alloc] initWithData:stringAsData];
 		[theParser setDelegate:self];
 		[theParser parse];
-		self.parserError = [theParser parserError];
+        self.parserError = [theParser parserError];
+        self.root = [self.mutableRoot copy];
 	}
 	return self;
 }
@@ -171,8 +174,19 @@
 		_svgURL = url;
 		[theParser parse];
 		self.parserError = [theParser parserError];
+        self.root = [self.mutableRoot copy];
 	}
 	return self;
+}
+
+-(nullable NSDictionary*) root
+{
+    NSDictionary* result = _root;
+    if(result == nil)
+    {
+        result = [self.mutableRoot copy];
+    }
+    return result;
 }
 
 -(NSURL*)	relativeURL:(NSString*)subPath
