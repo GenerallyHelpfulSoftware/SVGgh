@@ -141,7 +141,6 @@ const CGFloat kShadowInset = 3.0;
         case kColorSchemeTVOS:
         {
             self.drawsBackground = YES;
-            self.drawsChrome = NO;
             
             if([GHControlFactory textColor] == nil)
             {

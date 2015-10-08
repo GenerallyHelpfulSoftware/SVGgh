@@ -306,7 +306,7 @@
 		21F6BCDE1B29A52600DCEEC2 /* SVGghDebuggingAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVGghDebuggingAppDelegate.h; sourceTree = "<group>"; };
 		21F6BCDF1B29A52600DCEEC2 /* SVGghDebuggingAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVGghDebuggingAppDelegate.m; sourceTree = "<group>"; };
 		21F6BCE01B29A52600DCEEC2 /* SVGghDebuggingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVGghDebuggingViewController.h; sourceTree = "<group>"; };
-		21F6BCE11B29A52600DCEEC2 /* SVGghDebuggingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVGghDebuggingViewController.m; sourceTree = "<group>"; };
+		21F6BCE11B29A52600DCEEC2 /* SVGghDebuggingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVGghDebuggingViewController.m; sourceTree = "<group>"; usesTabs = 1; };
 		21F6BCE51B29A57C00DCEEC2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		21F6BCE71B29A8FE00DCEEC2 /* Artwork */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Artwork; sourceTree = "<group>"; };
 /* End PBXFileReference section */

@@ -73,9 +73,13 @@
     return result;
 }
 
-- (void)didUpdateFocusInContext:(UIFocusUpdateContext *)context withAnimationCoordinator:(UIFocusAnimationCoordinator *)coordinator
+-(void) pressesBegan:(NSSet<UIPress *> *)presses withEvent:(UIPressesEvent *)event
 {
-    
+}
+
+-(void) pressesEnded:(NSSet<UIPress *> *)presses withEvent:(UIPressesEvent *)event
+{
+    [self sendActionsForControlEvents:UIControlEventPrimaryActionTriggered];
 }
 
 - (void)updateFocusIfNeeded
@@ -86,6 +90,24 @@
 -(BOOL) canBecomeFocused
 {
     return self.enabled;
+}
+
+- (void)didUpdateFocusInContext:(UIFocusUpdateContext *)context withAnimationCoordinator:(UIFocusAnimationCoordinator *)coordinator
+{
+    if(self == context.nextFocusedView)
+    {
+        context.nextFocusedView.layer.shadowOffset = CGSizeMake(0, 10);
+        context.nextFocusedView.layer.shadowOpacity = 0.6;
+        context.nextFocusedView.layer.shadowRadius = 15;
+        context.nextFocusedView.layer.shadowColor = [UIColor blackColor].CGColor;
+        self.selected = YES;
+    }
+    else if(self == context.previouslyFocusedView)
+    {
+        context.nextFocusedView.layer.shadowOffset = CGSizeZero;
+        context.previouslyFocusedView.layer.shadowOpacity = 0;
+        self.selected = NO;
+    }
 }
 
 #endif
@@ -277,7 +299,7 @@
     CGContextRestoreGState(quartzContext);
 }
 
--(void)drawBackgroundIntoContext:(CGContextRef)quartzContext
+-(void)drawChromeBackgroundIntoContext:(CGContextRef)quartzContext
 {
     CGContextSaveGState(quartzContext);
     BOOL drawRing = YES;
@@ -295,8 +317,7 @@
     {
         gradientToUse = self.faceGradient;
     }
-    
-    NSAssert((gradientToUse != 0), @"GHControl: Not setup properly");
+
     
     // draw subtly gradiented interior
     CGRect interiorRect = self.useRadialGradient?self.bounds:CGRectInset(self.bounds, kRingThickness, kRingThickness);
@@ -344,9 +365,13 @@
         CGPathRelease(interiorRingPath);
         drawRing = NO;
     }
-    else
+    else if(gradientToUse != nil)
     {
         CGContextDrawLinearGradient(quartzContext,gradientToUse, topPoint, bottomPoint, 0);
+    }
+    else
+    {
+        [self drawFlatBackgroundIntoContext:quartzContext];
     }
     
     CGContextRestoreGState(quartzContext);
@@ -458,7 +483,7 @@
     {
         if(self.drawsChrome)
         {
-            [self drawBackgroundIntoContext:quartzContext];
+            [self drawChromeBackgroundIntoContext:quartzContext];
         }
         else
         {

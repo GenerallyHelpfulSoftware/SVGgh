@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="9052" systemVersion="15A284" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="9058" systemVersion="15A284" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9040"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9048"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -55,10 +55,10 @@
                                             <segue destination="sOM-fE-xv3" kind="embed" id="rFV-pr-p5K"/>
                                         </connections>
                                     </containerView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="K4N-8X-hWK">
-                                        <rect key="frame" x="727" y="978" width="426" height="86"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="K4N-8X-hWK">
+                                        <rect key="frame" x="683" y="978" width="514" height="86"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pmT-aW-m4D">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pmT-aW-m4D">
                                                 <rect key="frame" x="0.0" y="0.0" width="213" height="86"/>
                                                 <animations/>
                                                 <color key="tintColor" red="0.97254901959999995" green="0.5568627451" blue="0.1215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -68,8 +68,8 @@
                                                     <action selector="redrawSVG:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kF3-VI-zcq"/>
                                                 </connections>
                                             </button>
-                                            <view contentMode="scaleAspectFit" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EFb-bb-chr" customClass="GHButton">
-                                                <rect key="frame" x="213" y="0.0" width="213" height="86"/>
+                                            <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="EFb-bb-chr" customClass="GHButton">
+                                                <rect key="frame" x="301" y="0.0" width="213" height="86"/>
                                                 <animations/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <userDefinedRuntimeAttributes>
@@ -79,7 +79,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="redrawSVG:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7ei-FX-kgT"/>
+                                                    <action selector="redrawSVG:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="NQx-3e-fLX"/>
                                                 </connections>
                                             </view>
                                         </subviews>
@@ -87,6 +87,7 @@
                                         <constraints>
                                             <constraint firstItem="EFb-bb-chr" firstAttribute="width" secondItem="pmT-aW-m4D" secondAttribute="width" id="dHI-33-6h8"/>
                                             <constraint firstItem="EFb-bb-chr" firstAttribute="height" secondItem="pmT-aW-m4D" secondAttribute="height" id="fmd-zf-3Zd"/>
+                                            <constraint firstItem="EFb-bb-chr" firstAttribute="leading" secondItem="pmT-aW-m4D" secondAttribute="trailing" constant="88" id="p4L-Hn-8V5"/>
                                         </constraints>
                                     </stackView>
                                 </subviews>
@@ -113,7 +114,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="483" y="152"/>
+            <point key="canvasLocation" x="377" y="238"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Nq2-Gn-Umh">
