@@ -164,3 +164,4 @@ While the vast majority of the code in this release was written by me. There are
 * Jonathan Wight wrote a Base64 Transcoder which I found quite useful for handling embedded images.
 * Ian Baird wrote a category for NSData for Base64 which I also found very easy to use. 
 * [Ryan Hornberger] (http://www.ryanhornberger.com) was thoughtful enough to do something I had been too slammed to do: create a CocoaPod Spec for this library making it much more useful.
+* I think a snippet from [Erica Sadun] (https://github.com/erica) was the basis of my UIColorFromSVGColorString, although it's grown quite a bit since then. 
