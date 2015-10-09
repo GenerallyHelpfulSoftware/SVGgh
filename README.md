@@ -37,6 +37,9 @@ If you just want to use the code in your app and are uninterested in the underly
 
 ####If you are familiar with using Cocoapods and using it in your project
 * Insert ````pod 'SVGgh'```` into your PodFile
+• If you set your deployment target to iOS 8 or above, you should insert 
+````use_frameworks!```` in your Podfile. 
+
 * Go through the standard procedures for updating your Xcode workspace via Cocoapods. ````pod update````, ````pod install````, etc.
 
 ####If you are not using Cocoapods
@@ -48,7 +51,7 @@ To compile the framework.
 
 To use, you'll want to follow the following steps:
 * Add the **SVGgh** library to your Xcode project.
-* \#include &lt;SVGgh/SVGgh.h&gt;
+* ````#include <SVGgh/SVGgh.h>;````
 
 ####Once you have installed the library
 * early in the launch of your app call 
@@ -71,9 +74,11 @@ To use, you'll want to follow the following steps:
 ...
 ````
 
-* If you are coding in Swift. You will want to add ````#import <SVGgh/SVGgh.h>```` to your bridging header. And in your App delegate you should probably put the initialize code somewhere early, like:
+* If you are coding in Swift and not using the ````use_frameworks!```` option in your Podfile, you will want to add ````#import <SVGgh/SVGgh.h>```` to your bridging header. If you are using ````use_frameworks!````, you will want to use ````import SVGgh```` in files that refer to SVGgh classes.  In your App delegate you should probably put the initialize code somewhere early, like:
 
 ````
+	import SVGgh
+	
     override class func initialize()
     {
         super.initialize()        
