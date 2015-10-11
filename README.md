@@ -19,7 +19,7 @@ There are undoubtably bugs but I've used this library in all 8 apps I have in th
 
 The included library assumes ARC style memory management. It's also been arbitrarily set to support iOS 7 and up. I've moved to using newer code annotations such as *nullable* so it requires a recent version of Xcode to compile. Supports both traditional and module based framework includes.
 
-Originally, this was distributed as a static library, but that is not a modern way to use it. So the enclosed project will build a framework, and most developers will probably find the use of **Cocoapods** more enjoyable.
+Originally, this was distributed as a static library, but that is not a modern way to use it. So the enclosed project will build a framework, and most developers will probably find the use of **Cocoapods** more enjoyable. Requires Cocoapods 0.39 or above.
 
 I've enabled **IB_DESIGNABLE** for the view classes for environments with a minimum OS version of iOS 8 and above. This will allow artwork and widgets to be visible in Interface Builder. Cocoapods users should put ````use_frameworks!```` in their Podfile.
 
