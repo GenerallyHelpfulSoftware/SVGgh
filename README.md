@@ -19,9 +19,11 @@ There are undoubtably bugs but I've used this library in all 8 apps I have in th
 
 The included library assumes ARC style memory management. It's also been arbitrarily set to support iOS 7 and up. I've moved to using newer code annotations such as *nullable* so it requires a recent version of Xcode to compile. Supports both traditional and module based framework includes.
 
-Originally, this was distributed as a static library, but that is not a modern way to use it. So the enclosed project will build a framework, and most people will probably find the use of **Cocoapods** to be more enjoyable.
+Originally, this was distributed as a static library, but that is not a modern way to use it. So the enclosed project will build a framework, and most developers will probably find the use of **Cocoapods** more enjoyable.
 
-I've commented out **IB_DESIGNABLE** for the view classes pending more consistent and performant behavior on Xcode's part (or maybe I can figure out how to make it work better.) Try uncommenting it to see for yourself if it works, as it is satisfying when it does.
+I've enabled **IB_DESIGNABLE** for the view classes for environments with a minimum OS version of iOS 8 and above. This will allow artwork and widgets to be visible in Interface Builder. Cocoapods users should put ````use_frameworks!```` in their Podfile.
+
+The segmented control is not ready for use in tvOS apps. 
 
 ### As a Black Box Library
 If you just want to use the code in your app and are uninterested in the underlying engine, the included Xcode project generates a framework (**SVGgh**) with the following public headers. By the way, the reason that classes tend to have a GH (Generally Helpful, or Glenn Howes) prefix is not narcissism, but an attempt of getting around the lack of a namespace in plain Objective-C.
@@ -117,8 +119,9 @@ To add a button to a .xib file or storyboard:
 |    3     | kColorSchemeClear   | Gray gradient, light on top, ring           |
 |    4     | kColorSchemeEmpty   | No chrome. Just the artwork or label        |
 |    5     | kColorSchemeHomeTheatre | Garish gold gradient, ring              |
-|    6     | kColorSchemeiOSVersionAppropriate | Same as kColorSchemeEmpty for now|
+|    6     | kColorSchemeiOSVersionAppropriate | kColorSchemeEmpty on iOS, kColorSchemeTVOS on AppleTV|
 |    7     | kColorSchemeFlatAndBoxy | Solid fill color with square corners.   |
+|    8     | kColorSchemeTVOS | Attempt to mimic the appearance and behavior of an AppleTV button.   |
 
 * There is an attribute of an SVG document called ````currentColor````. You can access it to change the appearance of a button while being pressed via the **textColor**, **textColorPressed** and **textColorSelected** properties of **UIControl**. These are accessible from storyboard or you can set it up globally in your initialize method. Your SVGs will have to be written to use currentColor instead of some explicit color.
 
