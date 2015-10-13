@@ -51,7 +51,7 @@ NS_ASSUME_NONNULL_BEGIN
 +(NSOperationQueue*) rendererQueue;
 
 /*! @brief draw the SVG
-* @param quartzContext context into which to draw, cold be a CALayer, a PDF, an offscreen bitmap, whatever
+* @param quartzContext context into which to draw, could be a CALayer, a PDF, an offscreen bitmap, whatever
 */
 -(void)renderIntoContext:(CGContextRef)quartzContext;
 
