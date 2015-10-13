@@ -140,7 +140,7 @@ const CGFloat kShadowInset = 3.0;
         break;
         case kColorSchemeTVOS:
         {
-            self.drawsBackground = YES;
+            self.drawsBackground = NO;
             
             if([GHControlFactory textColor] == nil)
             {

@@ -62,7 +62,9 @@ NS_ASSUME_NONNULL_BEGIN
 @class SVGRenderer;
 /*! @brief a view capable of hosting an SVGRenderer or rendering a chunk of SVG
 */
-//IB_DESIGNABLE
+#if __IPHONE_OS_VERSION_MIN_REQUIRED >= 80000
+IB_DESIGNABLE // Cocapods users should add the use_frameworks! directive if this causes an error
+#endif
 @interface SVGDocumentView : UIView
 
 /*! @property artworkPath

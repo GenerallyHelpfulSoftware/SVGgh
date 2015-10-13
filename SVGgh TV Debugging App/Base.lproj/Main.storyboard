@@ -71,11 +71,14 @@
                                             <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="EFb-bb-chr" customClass="GHButton">
                                                 <rect key="frame" x="301" y="0.0" width="213" height="86"/>
                                                 <animations/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="tintColor" red="0.4823529412" green="0.4823529412" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="artworkPath" value="Artwork/ReloadButton"/>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="schemeNumber">
                                                         <integer key="value" value="6"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="textColor">
+                                                        <color key="value" red="0.97254901959999995" green="0.5568627451" blue="0.1215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
@@ -125,17 +128,19 @@
                         <viewControllerLayoutGuide type="bottom" id="w93-3e-eXb"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleAspectFit" id="kAW-9z-SSq" customClass="SVGDocumentView">
-                        <rect key="frame" x="0.0" y="0.0" width="780" height="780"/>
+                        <rect key="frame" x="0.0" y="0.0" width="280" height="280"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="string" keyPath="artworkPath" value="Artwork/Superstar"/>
                         </userDefinedRuntimeAttributes>
                     </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="280" height="280"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Do-ZB-Cpn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-345" y="1660"/>
+            <point key="canvasLocation" x="-385" y="1079"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="rdm-Ly-1TV">
@@ -164,7 +169,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rEn-6B-2tn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="926" y="1623"/>
+            <point key="canvasLocation" x="287" y="1067"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="fik-dY-vAD">
@@ -190,7 +195,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hCM-Uu-lO0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="515" y="1639"/>
+            <point key="canvasLocation" x="-43" y="1067"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Rfw-2w-ewz">
@@ -219,7 +224,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zm0-J9-mGv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1282" y="1639"/>
+            <point key="canvasLocation" x="631" y="1067"/>
         </scene>
     </scenes>
 </document>

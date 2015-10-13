@@ -34,7 +34,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-//IB_DESIGNABLE
+#if __IPHONE_OS_VERSION_MIN_REQUIRED >= 80000
+IB_DESIGNABLE // Cocapods users should add the use_frameworks! directive if this causes an error
+#endif
 @interface GHSegmentedControl : GHControl
 
 /*! @property momentary

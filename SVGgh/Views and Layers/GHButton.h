@@ -47,7 +47,9 @@ NS_ASSUME_NONNULL_BEGIN
 * @attention not a UIButton (too hard to subclass)
 * @attention wire any UIAction up to the up inside event not the value changed event
 */
-//IB_DESIGNABLE
+#if __IPHONE_OS_VERSION_MIN_REQUIRED >= 80000
+IB_DESIGNABLE // Cocapods users should add the use_frameworks! directive if this causes an error
+#endif
 @interface GHButton : GHControl
 /*! @property title
 * @brief this text (if any) will be displayed embedded in the button

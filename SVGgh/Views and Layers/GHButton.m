@@ -37,21 +37,65 @@
 @property(nonatomic, strong) NSString* artworkPath;
 @property(nonatomic, assign) UILabel*      textLabel;
 @end
+@interface GHButtonContentLayer : CALayer
+@property(nonatomic, weak) GHButton* button;
+@end
+@interface GHButtonLayer : CALayer
+@property(nonatomic, weak) GHButtonContentLayer* contentLayer;
+@end
+
+
 
 @interface GHButton ()
 {
-@private
 }
+@property(nonatomic, weak) GHButtonContentLayer*                     contentLayer;
 @property(nonatomic, weak) UILabel*                     textLabel;
 @property(nonatomic, weak) KeyboardPressedPopup*        pressedView;
+@property(nonatomic, assign) BOOL                       beingPressed;
+
 @end
 
+@implementation GHButtonLayer
+
+-(void) layoutSublayers
+{
+    [super layoutSublayers];
+    if(self.contentLayer)
+    {
+        if(self.contentLayer.button.beingPressed || !self.contentLayer.button.selected)
+        {
+            self.contentLayer.frame = self.bounds;
+        }
+        else
+        {
+            self.contentLayer.frame = CGRectInset(self.bounds, -8, -8);
+        }
+    }
+}
+
+@end
+
+@implementation GHButtonContentLayer
+-(void) drawInContext:(CGContextRef)ctx
+{
+    [self.button drawLayer:self inContext:ctx];
+}
+
+@end
 
 @implementation GHButton
 
 +(void)makeSureLoaded
 {
 }
+
++(Class)layerClass
+{
+    return [GHButtonLayer class];
+}
+
+
 #if TARGET_OS_TV
 -(UIView*) preferredFocusView
 {
@@ -75,11 +119,24 @@
 
 -(void) pressesBegan:(NSSet<UIPress *> *)presses withEvent:(UIPressesEvent *)event
 {
+    CALayer* layerToFocus = self.nominalContentLayer;
+    self.beingPressed = YES;
+    layerToFocus.shadowOpacity = 0.0;
+    [self.layer setNeedsLayout];
+    [layerToFocus setNeedsDisplay];
 }
 
 -(void) pressesEnded:(NSSet<UIPress *> *)presses withEvent:(UIPressesEvent *)event
 {
     [self sendActionsForControlEvents:UIControlEventPrimaryActionTriggered];
+    self.beingPressed = NO;
+    self.selected = self.selected;
+}
+
+- (void)pressesCancelled:(NSSet<UIPress *> *)presses withEvent:(nullable UIPressesEvent *)event
+{
+    self.beingPressed = NO;
+    self.selected = self.selected;
 }
 
 - (void)updateFocusIfNeeded
@@ -87,35 +144,107 @@
     
 }
 
+-(CALayer*) nominalContentLayer
+{
+    CALayer* result = self.contentLayer;
+    if(result == nil)
+    {
+        result = self.layer;
+    }
+    return result;
+}
+
 -(BOOL) canBecomeFocused
 {
     return self.enabled;
+}
+
+-(void) setSelected:(BOOL)selected
+{
+    [super setSelected:selected];
+    CALayer* layerToFocus = self.nominalContentLayer;
+    if(selected)
+    {
+        layerToFocus.shadowOffset = CGSizeMake(0, 10);
+        layerToFocus.shadowOpacity = 0.6;
+        layerToFocus.shadowRadius = 15;
+        layerToFocus.shadowColor = [UIColor blackColor].CGColor;
+        layerToFocus.backgroundColor = [UIColor whiteColor].CGColor;
+    }
+    else
+    {
+        layerToFocus.shadowOffset = CGSizeZero;
+        layerToFocus.shadowOpacity = 0;
+        layerToFocus.backgroundColor = self.tintColor.CGColor;
+    }
+    
+    [self.layer setNeedsLayout];
+    [layerToFocus setNeedsDisplay];
+    
+    if([self.artworkView respondsToSelector:@selector(setSelected:)])
+    {
+        [(UIControl*)self.artworkView setSelected:selected];
+    }
 }
 
 - (void)didUpdateFocusInContext:(UIFocusUpdateContext *)context withAnimationCoordinator:(UIFocusAnimationCoordinator *)coordinator
 {
     if(self == context.nextFocusedView)
     {
-        context.nextFocusedView.layer.shadowOffset = CGSizeMake(0, 10);
-        context.nextFocusedView.layer.shadowOpacity = 0.6;
-        context.nextFocusedView.layer.shadowRadius = 15;
-        context.nextFocusedView.layer.shadowColor = [UIColor blackColor].CGColor;
         self.selected = YES;
+        
     }
     else if(self == context.previouslyFocusedView)
     {
-        context.nextFocusedView.layer.shadowOffset = CGSizeZero;
-        context.previouslyFocusedView.layer.shadowOpacity = 0;
         self.selected = NO;
     }
 }
+#else
+
+-(void) setSelected:(BOOL)selected
+{
+    BOOL isChange = selected != self.isSelected;
+    [super setSelected:selected];
+    if(isChange)
+    {
+        [self setNeedsDisplay];
+    }
+    if([self.artworkView respondsToSelector:@selector(setSelected:)])
+    {
+        [(UIControl*)self.artworkView setSelected:selected];
+    }
+}
+
 
 #endif
+
+-(GHButtonLayer*) layerAsButtonLayer
+{
+    return (GHButtonLayer*)self.layer;
+}
 
 -(void)setupForScheme:(NSUInteger)aScheme
 {
     [super setupForScheme:aScheme];
+    if(aScheme == kColorSchemeTVOS)
+    {
+        [self.contentLayer removeFromSuperlayer];
+        
+        GHButtonContentLayer* newContentLayer = [GHButtonContentLayer new];
+        newContentLayer.backgroundColor = self.tintColor.CGColor;
+        newContentLayer.zPosition = -10;
+        newContentLayer.button = self;
+        newContentLayer.frame = self.bounds;
+        newContentLayer.cornerRadius = 6;
+        newContentLayer.borderColor = [UIColor blackColor].CGColor;
+        newContentLayer.borderWidth = 0.0;
+        self.contentLayer =  newContentLayer;
+        self.layerAsButtonLayer.contentLayer = newContentLayer;
+        [self.layer addSublayer:newContentLayer];
+        [newContentLayer setNeedsDisplay];
+    }
 }
+
 
 -(NSString*)title
 {
@@ -174,19 +303,6 @@
     return result;
 }
 
--(void) setSelected:(BOOL)selected
-{
-    BOOL isChange = selected != self.isSelected;
-    [super setSelected:selected];
-    if(isChange)
-    {
-        [self setNeedsDisplay];
-    }
-    if([self.artworkView respondsToSelector:@selector(setSelected:)])
-    {
-        [(UIControl*)self.artworkView setSelected:selected];
-    }
-}
 
 -(void) setHighlighted:(BOOL)highlighted
 {
@@ -256,30 +372,30 @@
     [self setNeedsLayout];
 }
 
--(CGPathRef) newOutlinePath
+-(CGPathRef) newOutlinePathForBounds:(CGRect)bounds
 {
-    CGRect interiorRect = self.useRadialGradient?self.bounds:CGRectInset(self.bounds, kRingThickness, kRingThickness);
+    CGRect interiorRect = self.useRadialGradient?bounds:CGRectInset(bounds, kRingThickness, kRingThickness);
     CGPathRef result = [GHControlFactory newRoundRectPathForRect:interiorRect withRadius:kRoundButtonRadius];
     return result;
 }
 
--(CGPathRef) newInteriorRingPath
+-(CGPathRef) newInteriorRingPathForBounds:(CGRect)bounds
 {
-    CGRect interiorRect = self.useRadialGradient?self.bounds:CGRectInset(self.bounds, kRingThickness, kRingThickness);
+    CGRect interiorRect = self.useRadialGradient?bounds:CGRectInset(bounds, kRingThickness, kRingThickness);
     CGRect ringRect = CGRectInset(interiorRect, 3.0, 3.0);
     CGPathRef result = [GHControlFactory newRoundRectPathForRect:ringRect withRadius:kRoundButtonRadius-2];
     return result;
 }
 
--(CGPathRef) newExteriorRingPath
+-(CGPathRef) newExteriorRingPathForBounds:(CGRect)bounds
 {
-    CGRect ringRect = CGRectInset(self.bounds, kRingThickness, kRingThickness);
+    CGRect ringRect = CGRectInset(bounds, kRingThickness, kRingThickness);
     CGPathRef result = [GHControlFactory newRoundRectPathForRect:ringRect withRadius:kRoundButtonRadius];
     return result;
 }
 
 
--(void) drawFlatBackgroundIntoContext:(CGContextRef)quartzContext
+-(void) drawFlatBackgroundIntoContext:(CGContextRef)quartzContext bounds:(CGRect)bounds
 {
     CGContextSaveGState(quartzContext);
     BOOL    inNormalMode = !(self.isSelected || self.isHighlighted);
@@ -294,12 +410,12 @@
     }
     [baseColor setFill];
     
-    UIRectFill(self.bounds);
+    UIRectFill(bounds);
     
     CGContextRestoreGState(quartzContext);
 }
 
--(void)drawChromeBackgroundIntoContext:(CGContextRef)quartzContext
+-(void)drawChromeBackgroundIntoContext:(CGContextRef)quartzContext  bounds:(CGRect)bounds
 {
     CGContextSaveGState(quartzContext);
     BOOL drawRing = YES;
@@ -320,7 +436,7 @@
 
     
     // draw subtly gradiented interior
-    CGRect interiorRect = self.useRadialGradient?self.bounds:CGRectInset(self.bounds, kRingThickness, kRingThickness);
+    CGRect interiorRect = self.useRadialGradient?bounds:CGRectInset(bounds, kRingThickness, kRingThickness);
     
     if(self.showShadow)
     {
@@ -328,14 +444,14 @@
     }
     
     
-    CGPathRef   boundingPath = [self newOutlinePath];
+    CGPathRef   boundingPath = [self newOutlinePathForBounds:bounds];
     
     CGContextSaveGState(quartzContext);
     CGContextAddPath(quartzContext, boundingPath);
     CGContextClip(quartzContext);
     
-    CGPoint topPoint = self.bounds.origin;
-    CGPoint bottomPoint = CGPointMake(self.bounds.origin.x, self.bounds.origin.y+self.bounds.size.height);
+    CGPoint topPoint = bounds.origin;
+    CGPoint bottomPoint = CGPointMake(bounds.origin.x, bounds.origin.y+bounds.size.height);
     if(self.useRadialGradient)
     {
         CGContextSaveGState(quartzContext);
@@ -350,7 +466,7 @@
                                     startPoint, startRadius,
                                     startPoint, endRadius, kCGGradientDrawsBeforeStartLocation | kCGGradientDrawsAfterEndLocation);
         CGContextRestoreGState(quartzContext);
-        CGPathRef interiorRingPath = [self newInteriorRingPath];
+        CGPathRef interiorRingPath = [self newInteriorRingPathForBounds:bounds];
         CGContextSetLineWidth(quartzContext, 0.5);
         if(inNormalMode)
         {
@@ -371,7 +487,7 @@
     }
     else
     {
-        [self drawFlatBackgroundIntoContext:quartzContext];
+        [self drawFlatBackgroundIntoContext:quartzContext bounds:bounds];
     }
     
     CGContextRestoreGState(quartzContext);
@@ -379,7 +495,7 @@
     
     if(drawRing)
     {
-        CGPathRef exteriorRingPath = [self newExteriorRingPath];
+        CGPathRef exteriorRingPath = [self newExteriorRingPathForBounds:bounds];
         CGContextSetLineWidth(quartzContext, 0.5);
         CGContextSetStrokeColorWithColor(quartzContext, self.ringColor.CGColor);
         
@@ -391,7 +507,7 @@
     CGContextRestoreGState(quartzContext);
 }
 
--(void) drawArtWithRenderer:(SVGRenderer*)renderer  intoContext:(CGContextRef)quartzContext
+-(void) drawArtWithRenderer:(SVGRenderer*)renderer  intoContext:(CGContextRef)quartzContext bounds:(CGRect)bounds
 {
     if(renderer != nil)
     {
@@ -417,7 +533,7 @@
         
         renderer.currentColor = currentColor;
         
-        CGFloat inset = self.artInsetFraction*self.bounds.size.height;
+        CGFloat inset = self.artInsetFraction*bounds.size.height;
         CGRect interiorRect = CGRectZero;
         if(inset == 0)
         {
@@ -426,12 +542,12 @@
             {
                 inset += 5;
             }
-            interiorRect = (self.useRadialGradient || !self.drawsChrome)?self.bounds:CGRectInset(self.bounds, inset, inset);
+            interiorRect = (self.useRadialGradient || !self.drawsChrome)?bounds:CGRectInset(bounds, inset, inset);
         }
         else
         {
             inset = floor(inset);
-            interiorRect = CGRectInset(self.bounds, inset, inset);
+            interiorRect = CGRectInset(bounds, inset, inset);
         }
         
         
@@ -465,39 +581,67 @@
     }
 }
 
--(void)drawArtworkAtPath:(NSString*)theArtworkPath intoContext:(CGContextRef)quartzContext
+-(void)drawArtworkAtPath:(NSString*)theArtworkPath intoContext:(CGContextRef)quartzContext bounds:(CGRect)bounds
 {
     NSURL*  myArtwork = [GHControlFactory locateArtworkForObject:self atSubpath:theArtworkPath];
     
     if(myArtwork != nil)
     {// draw my SVG
         SVGRenderer* renderer = [[SVGRenderer alloc] initWithContentsOfURL:myArtwork];
-        [self drawArtWithRenderer:renderer intoContext:quartzContext];
+        [self drawArtWithRenderer:renderer intoContext:quartzContext bounds:bounds];
     }
+}
+
+- (void)drawLayer:(CALayer *)layer inContext:(CGContextRef)ctx
+{
+    if(layer == self.contentLayer)
+    {
+        CGContextSaveGState(ctx);
+        CGContextSetFillColorWithColor(ctx, layer.backgroundColor);
+        
+        CGPathRef boundary = [GHControlFactory newRoundRectPathForRect:layer.bounds withRadius:6];
+        CGContextAddPath(ctx, boundary);
+        CGContextClip(ctx);
+        CGPathRelease(boundary);
+        CGContextFillRect(ctx, layer.bounds);
+        [self drawRect:layer.bounds withContext:ctx];
+        CGContextRestoreGState(ctx);
+    }
+    else if (self.contentLayer == nil && layer == self.layer)
+    {
+        [self drawRect:layer.bounds withContext:ctx];
+    }
+}
+
+-(void) drawRect:(CGRect)rect withContext:(CGContextRef)quartzContext
+{
+    if(self.drawsBackground)
+    {
+        if(self.drawsChrome)
+        {
+            [self drawChromeBackgroundIntoContext:quartzContext bounds:rect];
+        }
+        else
+        {
+            [self drawFlatBackgroundIntoContext:quartzContext  bounds:rect];
+        }
+    }
+    if(self.selected && self.selectedArtworkPath.length)
+    {
+        [self drawArtworkAtPath:self.selectedArtworkPath intoContext:quartzContext  bounds:rect];
+    }
+    else if(self.artworkPath.length)
+    {
+        [self drawArtworkAtPath:self.artworkPath intoContext:quartzContext bounds:rect];
+    }
+
 }
 
 - (void)drawRect:(CGRect)rect
 {
     CGContextRef quartzContext = UIGraphicsGetCurrentContext();
-    if(self.drawsBackground)
-    {
-        if(self.drawsChrome)
-        {
-            [self drawChromeBackgroundIntoContext:quartzContext];
-        }
-        else
-        {
-            [self drawFlatBackgroundIntoContext:quartzContext];
-        }
-    }
-    if(self.selected && self.selectedArtworkPath.length)
-    {
-        [self drawArtworkAtPath:self.selectedArtworkPath intoContext:quartzContext];
-    }
-    else if(self.artworkPath.length)
-    {
-        [self drawArtworkAtPath:self.artworkPath intoContext:quartzContext];
-    }
+    [self drawRect:self.bounds withContext:quartzContext];
+
 }
 
 -(void) setArtworkPath:(NSString *)artworkPath
