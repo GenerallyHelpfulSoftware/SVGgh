@@ -118,7 +118,6 @@ const CGFloat kShadowInset = 3.0;
     self.textColorPressed = [GHControlFactory newTextColorPressedForScheme:aScheme];
     self.ringColor = [GHControlFactory newRingColorForScheme:aScheme];
     self.textShadowColor = [GHControlFactory newLightBackgroundColorForScheme:aScheme];
-    self.backgroundColor = [UIColor clearColor];
     self.useRadialGradient = [GHControlFactory preferRadialGradientForScheme:aScheme];
     self.textFontSize = kButtonTitleFontSize;
     self.useBoldText = NO;

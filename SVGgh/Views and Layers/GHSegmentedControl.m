@@ -41,6 +41,10 @@
 
 const CGFloat kContentMargin = 10;
 
+@interface GHSegmentedControl()
+@property(nonatomic, strong) UIColor* segmentBackgroundColor;
+
+@end
 
 
 @interface GHSegmentDefinition : NSObject
@@ -611,16 +615,18 @@ typedef enum GHSegmentType
         UIColor* baseColor = [self selectedColor];
         
         CGContextSetStrokeColorWithColor(quartzContext, baseColor.CGColor);
-        if(inNormalMode && scheme != kColorSchemeTVOS)
-        {
-            CGContextSetFillColorWithColor(quartzContext, self.control.backgroundColor.CGColor);
-        }
-        else
-        {
-            CGContextSetFillColorWithColor(quartzContext, baseColor.CGColor);
-        }
+        
         if(scheme == kColorSchemeTVOS)
         {
+            if(inNormalMode || !self.control.selected)
+            {
+                CGContextSetFillColorWithColor(quartzContext, self.control.backgroundColor.CGColor);
+            }
+            else
+            {
+                CGContextSetFillColorWithColor(quartzContext, baseColor.CGColor);
+            }
+            
             CGPathRef   boundingPath = [layer newOutlinePathWhileUsingRadialGradient:YES];
             CGContextAddPath(quartzContext, boundingPath);
             CGContextDrawPath(quartzContext, kCGPathFill);
@@ -628,6 +634,15 @@ typedef enum GHSegmentType
         }
         else
         {
+            if(inNormalMode)
+            {
+                CGContextSetFillColorWithColor(quartzContext, self.control.backgroundColor.CGColor);
+            }
+            else
+            {
+                CGContextSetFillColorWithColor(quartzContext, baseColor.CGColor);
+            }
+            
             CGFloat lineWidth = 1/self.contentsScale;
             
             CGContextSetLineWidth(quartzContext, lineWidth);
@@ -647,7 +662,6 @@ typedef enum GHSegmentType
     }
     else
     {
-        
         CGPathRef   boundingPath = [layer newOutlinePathWhileUsingRadialGradient:self.control.useRadialGradient];
         CGContextAddPath(quartzContext, boundingPath);
         CGGradientRef   gradientToUse = 0;
@@ -731,6 +745,11 @@ typedef enum GHSegmentType
     CGContextRestoreGState(quartzContext);
 }
 
+-(void) drawInContext:(CGContextRef)ctx
+{
+    
+}
+
 @end
 
 
@@ -745,22 +764,13 @@ typedef enum GHSegmentType
     return [GHSegmentedControlLayer class];
 }
 
--(UIView*) preferredFocusView
+-(void)setupForScheme:(NSUInteger)aScheme
 {
-    return self;
+    [super setupForScheme:aScheme];
+    self.opaque = NO;
+    self.layer.backgroundColor = [UIColor clearColor].CGColor;
+    self.layer.opaque = NO;
 }
-
-//- (BOOL)shouldUpdateFocusInContext:(UIFocusUpdateContext *)context
-//{
-//    if(context.nextFocusedView == self)
-//    {
-//        return YES;
-//    }
-//    else
-//    {
-//        return [super shouldUpdateFocusInContext:context];
-//    }
-//}
 
 -(GHSegmentedControlLayer*)layerAsControlLayer
 {
@@ -920,6 +930,7 @@ typedef enum GHSegmentType
         [self invalidateAccessibility];
     }
 }
+
 
 - (void)removeAllSegments
 {
@@ -1269,6 +1280,44 @@ typedef enum GHSegmentType
         [self setSelectedSegmentIndex:self.selectedSegmentIndex-1];
     }
 }
+
+#if TARGET_OS_TV
+-(BOOL) canBecomeFocused
+{
+    return self.enabled;
+}
+
+-(UIView*) preferredFocusView
+{
+    return self;
+}
+
+- (void)updateFocusIfNeeded
+{
+    
+}
+
+- (BOOL)shouldUpdateFocusInContext:(UIFocusUpdateContext *)context
+{
+    BOOL result =  NO;
+    if(context.nextFocusedView == self)
+    {
+        result = YES;
+    }
+    else
+    {
+        result = [super shouldUpdateFocusInContext:context];
+    }
+    
+    return result;
+}
+
+-(void) setHighlighted:(BOOL)highlighted
+{
+    [super setHighlighted:highlighted];
+}
+
+#endif
 
 
 @end

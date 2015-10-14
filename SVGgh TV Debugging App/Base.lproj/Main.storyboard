@@ -21,24 +21,38 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="s3b-Jy-c85">
                                 <rect key="frame" x="20" y="8" width="1880" height="1064"/>
                                 <subviews>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="L1s-wI-BYO">
-                                        <rect key="frame" x="792" y="0.0" width="296" height="70"/>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="L1s-wI-BYO">
+                                        <rect key="frame" x="510" y="0.0" width="860" height="70"/>
                                         <animations/>
                                         <segments>
-                                            <segment title="First"/>
+                                            <segment title="Helmet"/>
+                                            <segment title="Eyes"/>
+                                            <segment title="Creatures"/>
                                             <segment title="Curvy"/>
                                         </segments>
+                                        <connections>
+                                            <action selector="toggleViewClassic:" destination="BYZ-38-t0r" eventType="valueChanged" id="itB-w7-8vk"/>
+                                        </connections>
                                     </segmentedControl>
                                     <view tag="6" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="O3e-Ee-Zru" customClass="GHSegmentedControl">
                                         <rect key="frame" x="690" y="89" width="500" height="69"/>
                                         <animations/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" red="0.71372549019999998" green="0.78039215689999997" blue="0.7843137255" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="500" id="jn6-dN-epe"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="schemeNumber">
-                                                <integer key="value" value="6"/>
+                                                <integer key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="textColor">
+                                                <color key="value" red="0.4823529412" green="0.4823529412" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="textColorSelected">
+                                                <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="textColorPressed">
+                                                <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
@@ -110,6 +124,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="classicSegmentedControl" destination="L1s-wI-BYO" id="r0A-ap-eFR"/>
                         <outlet property="containerView" destination="n8B-f7-LQU" id="RVG-Dh-lUb"/>
                         <outlet property="preferredFocusedView" destination="O3e-Ee-Zru" id="Bwj-ub-fb2"/>
                         <outlet property="segmentedControl" destination="O3e-Ee-Zru" id="NS6-9W-1so"/>

@@ -242,6 +242,12 @@
         self.layerAsButtonLayer.contentLayer = newContentLayer;
         [self.layer addSublayer:newContentLayer];
         [newContentLayer setNeedsDisplay];
+        self.layer.backgroundColor = [UIColor clearColor].CGColor;
+        self.layer.opaque = NO;
+    }
+    else
+    {
+        self.backgroundColor = [UIColor clearColor];
     }
 }
 
