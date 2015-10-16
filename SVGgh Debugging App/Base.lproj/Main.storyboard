@@ -76,7 +76,7 @@
                                     <action selector="redrawSVG:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="cE8-v2-XOf"/>
                                 </connections>
                             </view>
-                            <view opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" placeholderIntrinsicWidth="280" placeholderIntrinsicHeight="30" translatesAutoresizingMaskIntoConstraints="NO" id="uoD-rr-R4J" customClass="GHSegmentedControl">
+                            <view opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="1000" placeholderIntrinsicWidth="280" placeholderIntrinsicHeight="30" translatesAutoresizingMaskIntoConstraints="NO" id="uoD-rr-R4J" customClass="GHSegmentedControl">
                                 <rect key="frame" x="150" y="28" width="300" height="44"/>
                                 <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -114,7 +114,7 @@
                             </containerView>
                         </subviews>
                         <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="dcx-QT-sUV" firstAttribute="top" secondItem="M1t-pk-vRl" secondAttribute="top" id="0os-m3-DR8"/>
                             <constraint firstItem="dcx-QT-sUV" firstAttribute="width" secondItem="M1t-pk-vRl" secondAttribute="width" id="1ph-Go-QGy"/>
