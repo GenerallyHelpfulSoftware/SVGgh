@@ -185,6 +185,20 @@ typedef enum GHSegmentType
     return [GHSegmentLayer class];
 }
 
+-(instancetype) initWithFrame:(CGRect)frame
+{
+    if(nil != (self = [super initWithFrame:frame]))
+    {
+#if !TARGET_OS_TV
+        self.userInteractionEnabled = NO;
+#endif
+    }
+    return self;
+}
+
+-(void)drawRect:(CGRect)rect
+{
+}
 
 -(GHSegmentLayer*) segmentLayer
 {
@@ -319,10 +333,6 @@ typedef enum GHSegmentType
     return result;
 }
 
--(void)drawRect:(CGRect)rect
-{
-    
-}
 
 -(void) drawLayer:(CALayer *)layer inContext:(CGContextRef)quartzContext
 {
@@ -345,7 +355,11 @@ typedef enum GHSegmentType
         
         if(scheme == kColorSchemeTVOS)
         {
-            if(inNormalMode || !control.selected)
+            if(self.isHighlighted)
+            {
+                CGContextSetFillColorWithColor(quartzContext, [UIColor whiteColor].CGColor);
+            }
+            else if(inNormalMode || !control.selected)
             {
                 CGContextSetFillColorWithColor(quartzContext, control.backgroundColor.CGColor);
             }
@@ -619,7 +633,6 @@ typedef enum GHSegmentType
 {
     NSMutableArray* newDefinitions = (self.definitions.count)?[self.definitions mutableCopy]:[NSMutableArray new];
     GHSegmentedControlSegmentView* newView = [[GHSegmentedControlSegmentView alloc] initWithFrame:CGRectZero];
-    newView.userInteractionEnabled = NO;
     newView.segmentDefinition = aDefinition;
     newView.parentContent = self;
     CGRect startRect = CGRectMake(0, 0, 0, self.bounds.size.height);
@@ -744,7 +757,6 @@ typedef enum GHSegmentType
         {
             GHSegmentedControlSegmentView* newView = [[GHSegmentedControlSegmentView alloc] initWithFrame:CGRectZero];
             newView.segmentDefinition = aDefinition;
-            newView.userInteractionEnabled = NO;
             newView.parentContent = self;
             [self addSubview:newView];
         }
@@ -771,7 +783,7 @@ typedef enum GHSegmentType
     {
         CGFloat extra = self.bounds.size.width-x;
         CGFloat extraPer = floor(extra/self.subviews.count);
-        CGFloat remainder = extra-extraPer;
+        CGFloat remainder = extra-extraPer*self.subviews.count;
         x = 0.0;
         for(GHSegmentedControlSegmentView* aView in self.subviews)
         {
@@ -812,6 +824,10 @@ typedef enum GHSegmentType
 
 }
 
+-(void)drawRect:(CGRect)rect
+{
+}
+
 @end
 
 
@@ -824,8 +840,8 @@ typedef enum GHSegmentType
 -(void)setupForScheme:(NSUInteger)aScheme
 {
     [super setupForScheme:aScheme];
-    self.opaque = NO;
-    self.layer.backgroundColor = [UIColor clearColor].CGColor;
+    [self setNeedsDisplay];
+    self.layer.opaque = NO;
 }
 
 
@@ -1157,6 +1173,8 @@ typedef enum GHSegmentType
     {
         _contentView = result = [[GHSegmentedControlContentView alloc] initWithFrame:self.bounds];
         result.control = self;
+        result.opaque = NO;
+        result.backgroundColor = [UIColor clearColor];
         result.userInteractionEnabled = NO;
         result.definitions = self.definitions;
         [result setNeedsLayout];
@@ -1170,6 +1188,7 @@ typedef enum GHSegmentType
 {
     [super layoutSubviews];
     self.contentView.frame = self.bounds;
+    [self.contentView setNeedsDisplay];
     [self.contentView setNeedsLayout];
 }
 
@@ -1346,6 +1365,7 @@ typedef enum GHSegmentType
     if(self.selectedSegmentIndex < self.definitions.count-1)
     {
         [self setSelectedSegmentIndex:self.selectedSegmentIndex+1];
+        [self sendActionsForControlEvents:UIControlEventValueChanged];
     }
 }
 
@@ -1354,23 +1374,206 @@ typedef enum GHSegmentType
     if(self.selectedSegmentIndex > 0 && self.definitions.count > 0)
     {
         [self setSelectedSegmentIndex:self.selectedSegmentIndex-1];
+        [self sendActionsForControlEvents:UIControlEventValueChanged];
     }
 }
 
-#if TARGET_OS_TV
--(BOOL) canBecomeFocused
+-(void) drawLayer:(CALayer *)layer inContext:(CGContextRef)ctx
 {
-    return self.enabled;
+    CGContextClearRect(ctx, self.bounds);
 }
 
--(UIView*) preferredFocusView
+-(void)drawRect:(CGRect)rect
 {
-    return self;
+}
+
+@end
+
+@implementation GHSegmentedControlAccessibilityWrapper
+
+
+-(CGRect) accessibilityFrame
+{
+    CGRect result = [super accessibilityFrame];
+    if([self.accessibilityContainer isKindOfClass:[GHSegmentedControl class]])
+    {
+        GHSegmentedControl* myControl = self.accessibilityContainer;
+        CGRect localFrame = [myControl.contentView frameForSegmentAtIndex:self.index];
+        result = UIAccessibilityConvertFrameToScreenCoordinates(localFrame, myControl);;
+    }
+    
+    return result;
+}
+@end
+
+
+#if TARGET_OS_TV
+#pragma mark tvOS
+@interface GHSegmentedControl(tvOS)
+@end
+
+@interface GHSegmentedControlContentView(tvOS)
+-(void) syncFocus;
+@end
+
+@interface GHSegmentedControlSegmentView (tvOS)
+
+@end
+
+@implementation GHSegmentedControlSegmentView(tvOS)
+
+-(BOOL) canBecomeFocused
+{
+    return self.parentContent.control.enabled;
 }
 
 - (void)updateFocusIfNeeded
 {
     
+    [self setNeedsDisplay];
+}
+
+- (BOOL)shouldUpdateFocusInContext:(UIFocusUpdateContext *)context
+{
+    BOOL result =  NO;
+    if(context.nextFocusedView == self)
+    {
+        result = YES;
+        self.layer.shadowOffset = CGSizeMake(0, 10);
+        self.layer.shadowOpacity = 0.6;
+        self.layer.shadowRadius = 15;
+        self.layer.cornerRadius = 6.0;
+        self.layer.shadowColor = [UIColor blackColor].CGColor;
+        if(context.focusHeading == UIFocusHeadingRight)
+        {
+            [self.parentContent.control accessibilityIncrement];
+            [self.parentContent.control setNeedsFocusUpdate];
+        }
+        else if(context.focusHeading == UIFocusHeadingLeft)
+        {
+            [self.parentContent.control accessibilityDecrement];
+            [self.parentContent.control setNeedsFocusUpdate];
+        }
+        self.isHighlighted = self.selected;
+        [self setNeedsDisplay];
+        [self.parentContent syncFocus];
+    }
+    else
+    {
+        self.isHighlighted = NO;
+        result = [super shouldUpdateFocusInContext:context];
+    }
+    
+    BOOL resetPrevious =  (self != context.nextFocusedView && self == context.previouslyFocusedView) ||
+                    (self != context.previouslyFocusedView && [context.previouslyFocusedView isKindOfClass:[self class]]);
+    
+    if(resetPrevious)
+    {
+        GHSegmentedControlSegmentView* previousView = (GHSegmentedControlSegmentView*)context.previouslyFocusedView;
+        previousView.layer.shadowOffset = CGSizeMake(0, 0);
+        previousView.layer.shadowOpacity = 0.;
+        previousView.layer.shadowRadius = 0;
+        previousView.layer.cornerRadius = 0.0;
+        previousView.isHighlighted = NO;
+        [previousView setNeedsDisplay];
+    }
+    
+    
+    return result;
+}
+
+@end
+
+
+@implementation GHSegmentedControlContentView(tvOS)
+-(BOOL) canBecomeFocused
+{
+    return self.control.enabled;
+}
+
+-(void) syncFocus
+{
+    NSInteger whichIndex = 0;
+    NSInteger selectedIndex = self.control.selectedSegmentIndex;
+    for(GHSegmentedControlSegmentView* segmentView in self.subviews)
+    {
+        CALayer* viewsLayer = segmentView.layer;
+        if(whichIndex == selectedIndex)
+        {
+            viewsLayer.shadowOffset = CGSizeMake(0, 10);
+            viewsLayer.shadowOpacity = 0.6;
+            viewsLayer.shadowRadius = 15;
+            viewsLayer.cornerRadius = 6.0;
+            viewsLayer.shadowColor = [UIColor blackColor].CGColor;
+            if(!segmentView.isHighlighted)
+            {
+                segmentView.isHighlighted = YES;
+                [segmentView setNeedsDisplay];
+            }
+        }
+        else
+        {
+            if(segmentView.isHighlighted)
+            {
+                segmentView.isHighlighted = NO;
+                [segmentView setNeedsDisplay];
+            }
+            viewsLayer.shadowOffset = CGSizeMake(0, 0);
+            viewsLayer.shadowOpacity = 0.;
+            viewsLayer.shadowRadius = 0;
+            viewsLayer.cornerRadius = 0.0;
+        }
+        whichIndex++;
+    }
+}
+
+- (BOOL)shouldUpdateFocusInContext:(UIFocusUpdateContext *)context
+{
+    BOOL result =  NO;
+    if(context.nextFocusedView == self)
+    {
+        result = NO;
+    }
+    else
+    {
+        result = [super shouldUpdateFocusInContext:context];
+    }
+    
+    return result;
+}
+
+
+-(UIView*) preferredFocusedView
+{
+    UIView* result = nil;
+    
+    if(self.selectedSegmentIndex == NSNotFound)
+    {
+        if(self.canBecomeFocused && self.subviews.count)
+        {
+            result = [self.subviews objectAtIndex:0];
+        }
+    }
+    else
+    {
+        result = [self.subviews objectAtIndex:self.selectedSegmentIndex];
+    }
+    
+    return result;
+}
+
+@end
+
+@implementation GHSegmentedControl(tvOS)
+-(BOOL) canBecomeFocused
+{
+    return self.enabled;
+}
+
+
+-(UIView*) preferredFocusedView
+{
+    return self.contentView.preferredFocusedView;
 }
 
 - (BOOL)shouldUpdateFocusInContext:(UIFocusUpdateContext *)context
@@ -1394,24 +1597,8 @@ typedef enum GHSegmentType
     [super setHighlighted:highlighted];
 }
 
+
+
+@end
+
 #endif
-
-
-@end
-
-@implementation GHSegmentedControlAccessibilityWrapper
-
-
--(CGRect) accessibilityFrame
-{
-    CGRect result = [super accessibilityFrame];
-    if([self.accessibilityContainer isKindOfClass:[GHSegmentedControl class]])
-    {
-        GHSegmentedControl* myControl = self.accessibilityContainer;
-        CGRect localFrame = [myControl.contentView frameForSegmentAtIndex:self.index];
-        result = UIAccessibilityConvertFrameToScreenCoordinates(localFrame, myControl);;
-    }
-    
-    return result;
-}
-@end

@@ -34,7 +34,7 @@
                                             <action selector="toggleViewClassic:" destination="BYZ-38-t0r" eventType="valueChanged" id="itB-w7-8vk"/>
                                         </connections>
                                     </segmentedControl>
-                                    <view tag="6" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="O3e-Ee-Zru" customClass="GHSegmentedControl">
+                                    <view opaque="NO" tag="6" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="O3e-Ee-Zru" customClass="GHSegmentedControl">
                                         <rect key="frame" x="690" y="89" width="500" height="69"/>
                                         <animations/>
                                         <color key="backgroundColor" red="0.71372549019999998" green="0.78039215689999997" blue="0.7843137255" alpha="1" colorSpace="calibratedRGB"/>
@@ -52,7 +52,7 @@
                                                 <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="textColorPressed">
-                                                <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="value" red="0.97254901959999995" green="0.5568627451" blue="0.1215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
@@ -126,7 +126,6 @@
                     <connections>
                         <outlet property="classicSegmentedControl" destination="L1s-wI-BYO" id="r0A-ap-eFR"/>
                         <outlet property="containerView" destination="n8B-f7-LQU" id="RVG-Dh-lUb"/>
-                        <outlet property="preferredFocusedView" destination="O3e-Ee-Zru" id="Bwj-ub-fb2"/>
                         <outlet property="segmentedControl" destination="O3e-Ee-Zru" id="NS6-9W-1so"/>
                     </connections>
                 </viewController>
