@@ -1245,6 +1245,8 @@ typedef enum GHSegmentType
     }
 }
 
+#if !TARGET_OS_TV
+
 - (BOOL)beginTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
 {
     BOOL result = [super beginTrackingWithTouch:touch withEvent:event];
@@ -1281,6 +1283,7 @@ typedef enum GHSegmentType
     self.contentView.trackedSegmentIndex = NSNotFound;
     [super cancelTrackingWithEvent:event];
 }
+#endif
 
 - (BOOL)isAccessibilityElement
 {
