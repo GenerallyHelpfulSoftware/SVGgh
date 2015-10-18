@@ -55,6 +55,7 @@ typedef enum GHSegmentType
 @interface GHSegmentedControl()
 @property(nonatomic, strong) UIColor* segmentBackgroundColor;
 @property(nonatomic, weak) GHSegmentedControlContentView* contentView;
+@property(nonatomic, assign) BOOL beingPressed;
 @end
 
 
@@ -1486,11 +1487,6 @@ typedef enum GHSegmentType
 
 
 @implementation GHSegmentedControlContentView(tvOS)
--(BOOL) canBecomeFocused
-{
-    return self.control.enabled;
-}
-
 -(void) syncFocus
 {
     NSInteger whichIndex = 0;
@@ -1525,21 +1521,6 @@ typedef enum GHSegmentType
         }
         whichIndex++;
     }
-}
-
-- (BOOL)shouldUpdateFocusInContext:(UIFocusUpdateContext *)context
-{
-    BOOL result =  NO;
-    if(context.nextFocusedView == self)
-    {
-        result = NO;
-    }
-    else
-    {
-        result = [super shouldUpdateFocusInContext:context];
-    }
-    
-    return result;
 }
 
 
@@ -1597,7 +1578,32 @@ typedef enum GHSegmentType
     [super setHighlighted:highlighted];
 }
 
+-(void) pressesBegan:(NSSet<UIPress *> *)presses withEvent:(UIPressesEvent *)event
+{
+    for(GHSegmentedControlSegmentView* aView in self.contentView.subviews)
+    {
+        aView.layer.shadowOpacity = 0.0;
+    }
+    
+}
 
+-(void) pressesEnded:(NSSet<UIPress *> *)presses withEvent:(UIPressesEvent *)event
+{
+    for(GHSegmentedControlSegmentView* aView in self.contentView.subviews)
+    {
+        aView.layer.shadowOpacity = 1.0;
+    }
+    self.beingPressed = NO;
+}
+
+- (void)pressesCancelled:(NSSet<UIPress *> *)presses withEvent:(nullable UIPressesEvent *)event
+{
+    for(GHSegmentedControlSegmentView* aView in self.contentView.subviews)
+    {
+        aView.layer.shadowOpacity = 1.0;
+    }
+    self.beingPressed = NO;
+}
 
 @end
 
