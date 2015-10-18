@@ -32,7 +32,6 @@
 
 @interface SVGghDebuggingViewController ()
 @property (weak, nonatomic) IBOutlet GHSegmentedControl *segmentedControl;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *classicSegmentedControl; // remove when done testing tvOS
 @property (weak, nonatomic) IBOutlet UIView *containerView;
 @property (assign, nonatomic) NSInteger lastSelectedSegment;
 
@@ -128,18 +127,10 @@
     }
 }
 
--(IBAction)toggleViewClassic:(UISegmentedControl*)sender
-{
-	NSInteger selectedSegment = sender.selectedSegmentIndex;
-	[self chooseArtworkIndex:selectedSegment];
-	self.segmentedControl.selectedSegmentIndex = selectedSegment;
-}
-
 - (IBAction)toggleView:(GHSegmentedControl *)sender
 {
 	NSInteger selectedSegment = sender.selectedSegmentIndex;
 	[self chooseArtworkIndex:selectedSegment];
-	self.classicSegmentedControl.selectedSegmentIndex = selectedSegment;
 }
 -(void)chooseArtworkIndex:(NSInteger)selectedSegment
 {

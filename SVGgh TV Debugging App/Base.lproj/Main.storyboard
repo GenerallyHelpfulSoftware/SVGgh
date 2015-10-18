@@ -21,25 +21,13 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="s3b-Jy-c85">
                                 <rect key="frame" x="20" y="8" width="1880" height="1064"/>
                                 <subviews>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="L1s-wI-BYO">
-                                        <rect key="frame" x="510" y="0.0" width="860" height="70"/>
-                                        <animations/>
-                                        <segments>
-                                            <segment title="Helmet"/>
-                                            <segment title="Eyes"/>
-                                            <segment title="Creatures"/>
-                                            <segment title="Curvy"/>
-                                        </segments>
-                                        <connections>
-                                            <action selector="toggleViewClassic:" destination="BYZ-38-t0r" eventType="valueChanged" id="itB-w7-8vk"/>
-                                        </connections>
-                                    </segmentedControl>
                                     <view opaque="NO" tag="6" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="O3e-Ee-Zru" customClass="GHSegmentedControl">
-                                        <rect key="frame" x="690" y="89" width="500" height="69"/>
+                                        <rect key="frame" x="540" y="0.0" width="800" height="100"/>
                                         <animations/>
                                         <color key="backgroundColor" red="0.71372549019999998" green="0.78039215689999997" blue="0.7843137255" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="500" id="jn6-dN-epe"/>
+                                            <constraint firstAttribute="height" constant="100" id="ah7-QP-evg"/>
+                                            <constraint firstAttribute="width" constant="800" id="jn6-dN-epe"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="schemeNumber">
@@ -60,7 +48,7 @@
                                         </connections>
                                     </view>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n8B-f7-LQU">
-                                        <rect key="frame" x="550" y="178" width="780" height="780"/>
+                                        <rect key="frame" x="528" y="120" width="824" height="824"/>
                                         <animations/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="n8B-f7-LQU" secondAttribute="height" multiplier="1:1" priority="750" id="EwD-tJ-kfR"/>
@@ -69,48 +57,32 @@
                                             <segue destination="sOM-fE-xv3" kind="embed" id="rFV-pr-p5K"/>
                                         </connections>
                                     </containerView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="K4N-8X-hWK">
-                                        <rect key="frame" x="683" y="978" width="514" height="86"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pmT-aW-m4D">
-                                                <rect key="frame" x="0.0" y="0.0" width="213" height="86"/>
-                                                <animations/>
-                                                <color key="tintColor" red="0.97254901959999995" green="0.5568627451" blue="0.1215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
-                                                <state key="normal" title="Refresh"/>
-                                                <connections>
-                                                    <action selector="redrawSVG:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kF3-VI-zcq"/>
-                                                </connections>
-                                            </button>
-                                            <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="EFb-bb-chr" customClass="GHButton">
-                                                <rect key="frame" x="301" y="0.0" width="213" height="86"/>
-                                                <animations/>
-                                                <color key="tintColor" red="0.4823529412" green="0.4823529412" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="artworkPath" value="Artwork/ReloadButton"/>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="schemeNumber">
-                                                        <integer key="value" value="6"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="textColor">
-                                                        <color key="value" red="0.97254901959999995" green="0.5568627451" blue="0.1215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="redrawSVG:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="NQx-3e-fLX"/>
-                                                </connections>
-                                            </view>
-                                        </subviews>
+                                    <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="EFb-bb-chr" customClass="GHButton">
+                                        <rect key="frame" x="640" y="964" width="600" height="100"/>
                                         <animations/>
+                                        <color key="tintColor" red="0.4823529412" green="0.4823529412" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstItem="EFb-bb-chr" firstAttribute="width" secondItem="pmT-aW-m4D" secondAttribute="width" id="dHI-33-6h8"/>
-                                            <constraint firstItem="EFb-bb-chr" firstAttribute="height" secondItem="pmT-aW-m4D" secondAttribute="height" id="fmd-zf-3Zd"/>
-                                            <constraint firstItem="EFb-bb-chr" firstAttribute="leading" secondItem="pmT-aW-m4D" secondAttribute="trailing" constant="88" id="p4L-Hn-8V5"/>
+                                            <constraint firstAttribute="width" constant="600" id="FHh-BI-lFs"/>
+                                            <constraint firstAttribute="height" constant="100" id="Mlp-eh-Gdc"/>
                                         </constraints>
-                                    </stackView>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="artworkPath" value="Artwork/ReloadButton"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="schemeNumber">
+                                                <integer key="value" value="6"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="textColor">
+                                                <color key="value" red="0.97254901959999995" green="0.5568627451" blue="0.1215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="redrawSVG:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="NQx-3e-fLX"/>
+                                        </connections>
+                                    </view>
                                 </subviews>
                                 <animations/>
                                 <constraints>
-                                    <constraint firstItem="O3e-Ee-Zru" firstAttribute="height" secondItem="L1s-wI-BYO" secondAttribute="height" id="9LH-bM-1l0"/>
+                                    <constraint firstItem="O3e-Ee-Zru" firstAttribute="centerX" secondItem="s3b-Jy-c85" secondAttribute="centerX" id="4ER-wU-KYm"/>
+                                    <constraint firstItem="EFb-bb-chr" firstAttribute="centerX" secondItem="s3b-Jy-c85" secondAttribute="centerX" id="lzt-k9-cmU"/>
                                 </constraints>
                             </stackView>
                         </subviews>
@@ -124,7 +96,6 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="classicSegmentedControl" destination="L1s-wI-BYO" id="r0A-ap-eFR"/>
                         <outlet property="containerView" destination="n8B-f7-LQU" id="RVG-Dh-lUb"/>
                         <outlet property="segmentedControl" destination="O3e-Ee-Zru" id="NS6-9W-1so"/>
                     </connections>
