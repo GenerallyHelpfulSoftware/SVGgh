@@ -17,7 +17,11 @@
 -(void) updateImages
 {
     CGFloat scale =  [[UIScreen mainScreen] scale];
+#if TARGET_OS_TV
+    CGFloat baseDimension = 138; // Is there an official value for this?
+#else
     CGFloat baseDimension = 30;
+#endif
     CGSize  imageSize = CGSizeMake(baseDimension, baseDimension);
     
     if(self.image == nil && self.artworkPath.length)
