@@ -33,9 +33,9 @@
 
 
 @interface KeyboardPressedPopup : UIView
-@property(nonatomic, assign) GHButton* parent;
+@property(nonatomic, weak) GHButton* parent;
 @property(nonatomic, strong) NSString* artworkPath;
-@property(nonatomic, assign) UILabel*      textLabel;
+@property(nonatomic, weak) UILabel*      textLabel;
 @end
 @interface GHButtonContentLayer : CALayer
 @property(nonatomic, weak) GHButton* button;
