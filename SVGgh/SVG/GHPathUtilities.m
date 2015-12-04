@@ -321,7 +321,7 @@ void CGPathApplyCallbackFunction(void* aVisitor, const CGPathElement *element)
                                 CGFloat distanceIntoSegment = nextOffset-runningLength;
                                 CGPoint thePoint = CGPointMake((distanceIntoSegment/segmentLength)*deltaX+currentPoint.x, (distanceIntoSegment/segmentLength)*deltaY+currentPoint.y);
                                 
-                                vector = CalculateForward(currentPoint, nextPoint);
+                                vector = CalculateNormal(currentPoint, nextPoint);
                                 point = thePoint;
                                 currentPoint = thePoint;
                             }
@@ -436,8 +436,12 @@ void CGPathApplyCallbackFunction(void* aVisitor, const CGPathElement *element)
 }
 @end
 
+CGPoint CalculateForward(CGPoint startPoint, CGPoint endPoint) // deprecated
+{
+    return  CalculateNormal(startPoint, endPoint);
+}
 
-CGPoint CalculateForward(CGPoint startPoint, CGPoint endPoint)
+CGPoint CalculateNormal(CGPoint startPoint, CGPoint endPoint)
 {
     CGPoint result = CGPointMake(0.0, 1.0); // for the case of a zero length segment
     CGFloat deltaX = endPoint.x-startPoint.x;
