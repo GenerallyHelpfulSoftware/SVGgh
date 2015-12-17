@@ -90,11 +90,11 @@ void CGPathApplyCallbackFunction(void*   aVisitor, const CGPathElement *  elemen
                          withControlPoint2:(CGPoint)controlPoint2 andStep:(CGFloat)step;
 
 
-/*! @brief get the total length of a Core Graphics path (somewhat of an approximation)
+/*! @brief get the total length of a Core Graphics path (somewhat of an approximation, does not include jumps via move to)
  * @param aPath a Core Graphics path to find the lengh of
  * @return a length
  */
-+(CGFloat) totalLengthOfCGPath:(CGPathRef)aPath; // does not include jumps via move to
++(CGFloat) totalLengthOfCGPath:(CGPathRef)aPath;
 
 /*! @brief go a given distance along a path and find out the location of the point at that distance and the direction vector at that point
  * @param length a distance along the path to go
@@ -104,6 +104,13 @@ void CGPathApplyCallbackFunction(void*   aVisitor, const CGPathElement *  elemen
 +(void) findPointAndVectorAtDistance:(CGFloat)length intoPath:(CGPathRef)aPath intoCallback:(pointAndVectorCallback_t)callback;
 @end
 
-CGPoint CalculateForward(CGPoint startPoint, CGPoint endPoint);
+__attribute__((deprecated)) CGPoint CalculateForward(CGPoint startPoint, CGPoint endPoint);
+
+
+/*! @brief given the start and end of a line segment, calculate the perpendicular normal to them
+ * @param startPoint
+ * @param endPoint
+ */
+CGPoint CalculateNormal(CGPoint startPoint, CGPoint endPoint);
 
 NS_ASSUME_NONNULL_END

@@ -64,7 +64,7 @@
                 {
                     CGFloat segmentLength = sqrtf(deltaX*deltaX+deltaY*deltaY);
                     CGFloat lengthLeft = segmentLength;
-                    CGPoint perpendicularVector = CalculateForward(currentPoint, nextPoint);
+                    CGPoint perpendicularVector = CalculateNormal(currentPoint, nextPoint);
                     while(lengthLeft > 0 && currentGlyph != nil)
                     {
                         if(nextOffset > (runningLength+lengthLeft))

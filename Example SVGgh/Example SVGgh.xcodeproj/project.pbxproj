@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		211E709C1B2AEB5D00667BE9 /* SVGgh.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 211E709B1B2AEB5D00667BE9 /* SVGgh.framework */; };
 		211E709D1B2AEB5D00667BE9 /* SVGgh.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 211E709B1B2AEB5D00667BE9 /* SVGgh.framework */; };
+		21523C931C22E8E800435AAE /* SVGgh.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21523C861C22E88D00435AAE /* SVGgh.framework */; };
+		21523C941C22E8E800435AAE /* SVGgh.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 21523C861C22E88D00435AAE /* SVGgh.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		215371E6189965D8006EBCD5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 215371E5189965D8006EBCD5 /* Foundation.framework */; };
 		215371E8189965D8006EBCD5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 215371E7189965D8006EBCD5 /* CoreGraphics.framework */; };
 		215371EA189965D8006EBCD5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 215371E9189965D8006EBCD5 /* UIKit.framework */; };
@@ -28,6 +29,62 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		21523C851C22E88D00435AAE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 21523C7C1C22E88C00435AAE /* SVGgh.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 21F6BBE21B29A21E00DCEEC2;
+			remoteInfo = SVGgh;
+		};
+		21523C871C22E88D00435AAE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 21523C7C1C22E88C00435AAE /* SVGgh.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 21DEC8C11BAD89E50044BAD7;
+			remoteInfo = SVGghtv;
+		};
+		21523C891C22E88D00435AAE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 21523C7C1C22E88C00435AAE /* SVGgh.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 21F6BBED1B29A21E00DCEEC2;
+			remoteInfo = SVGghTests;
+		};
+		21523C8B1C22E88D00435AAE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 21523C7C1C22E88C00435AAE /* SVGgh.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 21DEC8CA1BAD89E50044BAD7;
+			remoteInfo = SVGghtvTests;
+		};
+		21523C8D1C22E88D00435AAE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 21523C7C1C22E88C00435AAE /* SVGgh.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 21F6BC881B29A48600DCEEC2;
+			remoteInfo = "SVGgh Debugging App";
+		};
+		21523C8F1C22E88D00435AAE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 21523C7C1C22E88C00435AAE /* SVGgh.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 21DEC8A81BAD89C90044BAD7;
+			remoteInfo = "SVGgh TV Debugging App";
+		};
+		21523C911C22E8B700435AAE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 21523C7C1C22E88C00435AAE /* SVGgh.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 21F6BBE11B29A21E00DCEEC2;
+			remoteInfo = SVGgh;
+		};
+		21523C951C22E8E800435AAE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 21523C7C1C22E88C00435AAE /* SVGgh.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 21F6BBE11B29A21E00DCEEC2;
+			remoteInfo = SVGgh;
+		};
 		21537208189965D8006EBCD5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 215371DA189965D8006EBCD5 /* Project object */;
@@ -37,8 +94,23 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		21523C971C22E8E800435AAE /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				21523C941C22E8E800435AAE /* SVGgh.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		211E709B1B2AEB5D00667BE9 /* SVGgh.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVGgh.framework; path = "../../../Library/Developer/Xcode/DerivedData/SVGgh-abxhfwgpgjoknnefwrxunqyijhnl/Build/Products/Debug-iphonesimulator/SVGgh.framework"; sourceTree = "<group>"; };
+		21523C7C1C22E88C00435AAE /* SVGgh.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SVGgh.xcodeproj; path = ../SVGgh.xcodeproj; sourceTree = "<group>"; };
 		215371E2189965D8006EBCD5 /* Example SVGgh.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Example SVGgh.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		215371E5189965D8006EBCD5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		215371E7189965D8006EBCD5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -68,7 +140,7 @@
 			files = (
 				215371E8189965D8006EBCD5 /* CoreGraphics.framework in Frameworks */,
 				215371EA189965D8006EBCD5 /* UIKit.framework in Frameworks */,
-				211E709C1B2AEB5D00667BE9 /* SVGgh.framework in Frameworks */,
+				21523C931C22E8E800435AAE /* SVGgh.framework in Frameworks */,
 				215371E6189965D8006EBCD5 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -87,9 +159,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		21523C7D1C22E88C00435AAE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				21523C861C22E88D00435AAE /* SVGgh.framework */,
+				21523C881C22E88D00435AAE /* SVGghtv.framework */,
+				21523C8A1C22E88D00435AAE /* SVGghTests.xctest */,
+				21523C8C1C22E88D00435AAE /* SVGghtvTests.xctest */,
+				21523C8E1C22E88D00435AAE /* SVGgh Debugging App.app */,
+				21523C901C22E88D00435AAE /* SVGgh TV Debugging App.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		215371D9189965D8006EBCD5 = {
 			isa = PBXGroup;
 			children = (
+				21523C7C1C22E88C00435AAE /* SVGgh.xcodeproj */,
 				215371EB189965D8006EBCD5 /* Example SVGgh */,
 				2153720A189965D8006EBCD5 /* Example SVGghTests */,
 				215371E4189965D8006EBCD5 /* Frameworks */,
@@ -172,10 +258,13 @@
 				215371DE189965D8006EBCD5 /* Sources */,
 				215371DF189965D8006EBCD5 /* Frameworks */,
 				215371E0189965D8006EBCD5 /* Resources */,
+				21523C971C22E8E800435AAE /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				21523C921C22E8B700435AAE /* PBXTargetDependency */,
+				21523C961C22E8E800435AAE /* PBXTargetDependency */,
 			);
 			name = "Example SVGgh";
 			productName = "Example SVGgh";
@@ -206,7 +295,7 @@
 		215371DA189965D8006EBCD5 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Generally Helpful Software";
 				TargetAttributes = {
 					21537202189965D8006EBCD5 = {
@@ -225,6 +314,12 @@
 			mainGroup = 215371D9189965D8006EBCD5;
 			productRefGroup = 215371E3189965D8006EBCD5 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 21523C7D1C22E88C00435AAE /* Products */;
+					ProjectRef = 21523C7C1C22E88C00435AAE /* SVGgh.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				215371E1189965D8006EBCD5 /* Example SVGgh */,
@@ -232,6 +327,51 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		21523C861C22E88D00435AAE /* SVGgh.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SVGgh.framework;
+			remoteRef = 21523C851C22E88D00435AAE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		21523C881C22E88D00435AAE /* SVGghtv.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SVGghtv.framework;
+			remoteRef = 21523C871C22E88D00435AAE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		21523C8A1C22E88D00435AAE /* SVGghTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = SVGghTests.xctest;
+			remoteRef = 21523C891C22E88D00435AAE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		21523C8C1C22E88D00435AAE /* SVGghtvTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = SVGghtvTests.xctest;
+			remoteRef = 21523C8B1C22E88D00435AAE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		21523C8E1C22E88D00435AAE /* SVGgh Debugging App.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "SVGgh Debugging App.app";
+			remoteRef = 21523C8D1C22E88D00435AAE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		21523C901C22E88D00435AAE /* SVGgh TV Debugging App.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "SVGgh TV Debugging App.app";
+			remoteRef = 21523C8F1C22E88D00435AAE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		215371E0189965D8006EBCD5 /* Resources */ = {
@@ -278,6 +418,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		21523C921C22E8B700435AAE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SVGgh;
+			targetProxy = 21523C911C22E8B700435AAE /* PBXContainerItemProxy */;
+		};
+		21523C961C22E8E800435AAE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SVGgh;
+			targetProxy = 21523C951C22E8E800435AAE /* PBXContainerItemProxy */;
+		};
 		21537209189965D8006EBCD5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 215371E1189965D8006EBCD5 /* Example SVGgh */;
@@ -317,7 +467,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -332,6 +482,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -357,7 +508,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -407,6 +558,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Example SVGgh/Example SVGgh-Prefix.pch";
 				INFOPLIST_FILE = "Example SVGgh/Example SVGgh-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.genhelp.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -432,6 +586,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Example SVGgh/Example SVGgh-Prefix.pch";
 				INFOPLIST_FILE = "Example SVGgh/Example SVGgh-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.genhelp.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -463,6 +620,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "Example SVGghTests/Example SVGghTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.genhelp.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -491,6 +649,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Example SVGgh/Example SVGgh-Prefix.pch";
 				INFOPLIST_FILE = "Example SVGghTests/Example SVGghTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.genhelp.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
