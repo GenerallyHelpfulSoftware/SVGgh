@@ -795,13 +795,16 @@
         [self addPathToQuartzContext:quartzContext];
         CGContextRestoreGState(quartzContext);
         CGRect myBox  =  CGPathGetPathBoundingBox(self.quartzPath);
+        
         if(fillOpacity < 1.0)
         {
             CGContextSaveGState(quartzContext);
             CGContextSetAlpha(quartzContext, fillOpacity);
         }
-        
-        [gradientToFill fillPathToContext:quartzContext withSVGContext:svgContext objectBoundingBox:myBox];
+        if(!CGRectIsEmpty(myBox))
+        {
+            [gradientToFill fillPathToContext:quartzContext withSVGContext:svgContext objectBoundingBox:myBox];
+        }
         if(fillOpacity < 1.0)
         {
             CGContextRestoreGState(quartzContext);
@@ -818,7 +821,10 @@
         CGContextReplacePathWithStrokedPath(quartzContext);
         CGRect myBox  =  CGPathGetPathBoundingBox(self.quartzPath);
         myBox = CGRectApplyAffineTransform(myBox, self.transform);
-        [gradientToStroke fillPathToContext:quartzContext withSVGContext:svgContext objectBoundingBox:myBox];
+        if(!CGRectIsEmpty(myBox))
+        {
+            [gradientToStroke fillPathToContext:quartzContext withSVGContext:svgContext objectBoundingBox:myBox];
+        }
         strokeIt = false;
         if(fillIt)
         {
@@ -1182,6 +1188,10 @@
         
         result = CGPathCreateCopy(mutableResult);
         CGPathRelease(mutableResult);
+    }
+    else
+    {
+        result = 0;
     }
     return result;
 }
