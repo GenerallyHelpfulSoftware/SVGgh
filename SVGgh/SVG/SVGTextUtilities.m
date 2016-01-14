@@ -318,28 +318,32 @@ BOOL IsFontFamilyAvailable(NSString* fontFamilyName);
     NSString* decoration = [svgStyle objectForKey:@"text-decoration"];
     if([decoration isKindOfClass:[NSString class]] && decoration.length)
     {
-        decoration = [decoration stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-        if([decoration isEqualToString:@"underline"])
+        NSArray* decorations = [decoration componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        for(NSString* aDecoration in decorations)
         {
-            [outAttributes setObject:[NSNumber numberWithInteger:NSUnderlineStyleSingle]  forKey:NSUnderlineStyleAttributeName];
-        }
-        else if([decoration isEqualToString:@"overline"])
-        {
-            
-        }
-        else if([decoration isEqualToString:@"line-through"]) // This does not actually work, as Core Text does not support NSStrikethroughStyleAttributeName
-        {
-            [outAttributes setObject:[NSNumber numberWithInteger:NSUnderlineStyleSingle | NSUnderlinePatternSolid ] forKey:NSStrikethroughStyleAttributeName];
-        }
-        else if([decoration isEqualToString:@"blink"]) // give me a break...
-        {
-            
-        }
-        else if([decoration isEqualToString:@"none"])
-        {
-            [outAttributes removeObjectForKey:NSUnderlineStyleAttributeName];
-            
-            [outAttributes removeObjectForKey:NSStrikethroughStyleAttributeName];
+            if([aDecoration isEqualToString:@"underline"])
+            {
+                [outAttributes setObject:[NSNumber numberWithInteger:NSUnderlineStyleSingle]  forKey:NSUnderlineStyleAttributeName];
+            }
+            else if([aDecoration isEqualToString:@"overline"])
+            {
+                
+            }
+            else if([aDecoration isEqualToString:@"line-through"]) // This does not actually work, as Core Text does not support NSStrikethroughStyleAttributeName
+            {
+               // [outAttributes setObject:[NSNumber numberWithInteger:NSUnderlineStyleSingle | NSUnderlinePatternSolid ] forKey:NSStrikethroughStyleAttributeName];
+            }
+            else if([aDecoration isEqualToString:@"blink"]) // give me a break...
+            {
+                
+            }
+            else if([aDecoration isEqualToString:@"none"])
+            {
+                [outAttributes removeObjectForKey:NSUnderlineStyleAttributeName];
+                
+                [outAttributes removeObjectForKey:NSStrikethroughStyleAttributeName];
+                break;
+            }
         }
     }
 }

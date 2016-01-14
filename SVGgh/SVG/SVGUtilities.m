@@ -1292,6 +1292,12 @@ UIColor* UIColorFromSVGColorString (NSString * stringToConvert)
                 g=192;
                 b=203;
             }
+            else if([stringToConvert isEqualToString:@"orange"])
+            {
+                r=255;
+                g=165;
+                b=0;
+            }
             else if([stringToConvert isEqualToString:@"none"])
             {
                 return [UIColor clearColor];
