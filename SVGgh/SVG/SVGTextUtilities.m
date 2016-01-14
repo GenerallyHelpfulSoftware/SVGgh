@@ -121,7 +121,7 @@ BOOL IsFontFamilyAvailable(NSString* fontFamilyName);
 	for(NSString* aKeyName in svgAttributeKeys)
 	{
 		if([aKeyName hasPrefix:@"font"]
-		   || [aKeyName isEqualToString:@"text-anchor"])
+		   || [aKeyName hasPrefix:@"text-"])
 		{
 			[mutableFontAttributes setObject:[SVGattributes objectForKey:aKeyName] forKey:aKeyName];
 		}
@@ -310,6 +310,38 @@ BOOL IsFontFamilyAvailable(NSString* fontFamilyName);
 			[outAttributes setObject:characterSetToUse forKey:(NSString*)kCTFontCharacterSetAttribute];
 		}
 	}
+}
+
+
++(void) addTextDecorationFromSVGStyleAttributes:(NSDictionary*)svgStyle toCoreTextAttributes:(NSMutableDictionary*)outAttributes
+{
+    NSString* decoration = [svgStyle objectForKey:@"text-decoration"];
+    if([decoration isKindOfClass:[NSString class]] && decoration.length)
+    {
+        decoration = [decoration stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        if([decoration isEqualToString:@"underline"])
+        {
+            [outAttributes setObject:[NSNumber numberWithInteger:NSUnderlineStyleSingle]  forKey:NSUnderlineStyleAttributeName];
+        }
+        else if([decoration isEqualToString:@"overline"])
+        {
+            
+        }
+        else if([decoration isEqualToString:@"line-through"]) // This does not actually work, as Core Text does not support NSStrikethroughStyleAttributeName
+        {
+            [outAttributes setObject:[NSNumber numberWithInteger:NSUnderlineStyleSingle | NSUnderlinePatternSolid ] forKey:NSStrikethroughStyleAttributeName];
+        }
+        else if([decoration isEqualToString:@"blink"]) // give me a break...
+        {
+            
+        }
+        else if([decoration isEqualToString:@"none"])
+        {
+            [outAttributes removeObjectForKey:NSUnderlineStyleAttributeName];
+            
+            [outAttributes removeObjectForKey:NSStrikethroughStyleAttributeName];
+        }
+    }
 }
 
 +(void) addFontWidthFromSVGStyleAttributes:(NSDictionary*)svgStyle toCoreTextAttributes:(NSMutableDictionary*)outAttributes
@@ -508,7 +540,7 @@ BOOL IsFontFamilyAvailable(NSString* fontFamilyName);
         }
     }*/
     [mutableAttributes setObject:[NSNumber numberWithBool:useContextColor] forKey:(NSString*)kCTForegroundColorFromContextAttributeName];
-    
+    [SVGTextUtilities addTextDecorationFromSVGStyleAttributes:aDefinition toCoreTextAttributes:mutableAttributes];
     if(includeParagraphStyle)
     {
         CTTextAlignment lineAlignment = kCTTextAlignmentNatural;
