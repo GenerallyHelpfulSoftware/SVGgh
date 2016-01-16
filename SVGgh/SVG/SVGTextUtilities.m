@@ -78,6 +78,32 @@ BOOL IsFontFamilyAvailable(NSString* fontFamilyName);
 	return sResult;
 }
 
++(NSDictionary*) systemFontDescription
+{
+    static NSDictionary* sResult = nil;
+    static dispatch_once_t  done;
+    dispatch_once(&done, ^{
+        CTFontRef defaultFontRef = CTFontCreateUIFontForLanguage(kCTFontUIFontSystem, 0.0, 0);
+        if(defaultFontRef != 0)
+        {
+            CFStringRef postscriptNameCF = CTFontCopyPostScriptName(defaultFontRef);
+            NSString* postscriptName = [NSString stringWithString:(__bridge NSString*)postscriptNameCF];
+            CFDictionaryRef fontTraits = CTFontCopyTraits(defaultFontRef);
+            
+            NSMutableDictionary* mutableResult = [NSMutableDictionary dictionaryWithDictionary:(__bridge NSDictionary*)fontTraits];
+            mutableResult[(NSString*)kCTFontNameAttribute] = postscriptName;
+            
+            sResult = [mutableResult copy];
+            CFRelease(defaultFontRef);
+            CFRelease(postscriptNameCF);
+            CFRelease(fontTraits);
+        }
+
+    });
+    
+    return sResult;
+}
+
 +(NSString*) cleanXMLText:(NSString*)sourceText
 {
     NSString* result = sourceText;
@@ -913,10 +939,16 @@ BOOL IsFontFamilyAvailable(NSString* fontFamilyName);
 		else
 		{
 			NSString* unquotedString = UnquotedSVGString(aFontFamilyAttribute);
-			if([unquotedString length] && [mutableResult objectForKey:(NSString*)kCTFontFamilyNameAttribute] == nil)
+			if([unquotedString length] && [mutableResult objectForKey:(NSString*)kCTFontFamilyNameAttribute] == nil
+               && [mutableResult objectForKey:(NSString*)kCTFontNameAttribute] == nil)
 			{ // if I didn't set this before with a fontname that exists on this system.
                 
-				if(IsFontFamilyAvailable(unquotedString))
+                if([unquotedString isEqualToString:@"system"]) // this is as of yet not a W3C standard, could use -apple-system
+                {
+                    NSDictionary* systemFontAttributes = [self systemFontDescription];
+                    [mutableResult addEntriesFromDictionary:systemFontAttributes];
+                }
+				else if(IsFontFamilyAvailable(unquotedString))
 				{
 					[mutableResult setObject:unquotedString forKey:(NSString*)kCTFontFamilyNameAttribute];
 				}
@@ -986,7 +1018,6 @@ BOOL IsFontFamilyAvailable(NSString* fontFamilyName)
         if(boolResult == nil)
         {
             NSString* stringToTest = fontFamilyName;
-            
             CTFontRef	testFont = CTFontCreateWithName((__bridge CFStringRef)stringToTest, 0.0, NULL);
             if(testFont != 0)
             {
@@ -998,6 +1029,7 @@ BOOL IsFontFamilyAvailable(NSString* fontFamilyName)
                 }
                 CFRelease(testFont);
             }
+            
             [sCache setObject:[NSNumber numberWithBool:result] forKey:fontFamilyName];
         }
         else
