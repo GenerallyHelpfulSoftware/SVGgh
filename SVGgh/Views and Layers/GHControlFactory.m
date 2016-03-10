@@ -126,35 +126,46 @@ UIColor* gDefaultSelectedTextColor = nil;
 
 +(NSURL*) locateArtworkForBundle:(NSBundle*)mayBeNil atSubpath:(NSString*)theArtworkPath
 {
-    NSBundle* bundleToUse = (mayBeNil == nil)? [NSBundle mainBundle] : mayBeNil;
-    NSURL*  result = [bundleToUse URLForResource:theArtworkPath withExtension:@"svg"];
-    
+    NSURL*  result = nil;
 #if TARGET_INTERFACE_BUILDER
-    if(result == nil)
-    {
-        result = [GHControlFactory findInterfaceBuilderArtwork:theArtworkPath];
-    }
+    
+#else
+
+    NSBundle* bundleToUse = (mayBeNil == nil)? [NSBundle mainBundle] : mayBeNil;
+    result = [bundleToUse URLForResource:theArtworkPath withExtension:@"svg"];
 #endif
+    
+//#if TARGET_INTERFACE_BUILDER
+//    if(result == nil)
+//    {
+//        result = [GHControlFactory findInterfaceBuilderArtwork:theArtworkPath];
+//    }
+//#endif
     return result;
 }
 
 
 +(NSURL*) locateArtworkForObject:(id<NSObject>)anObject atSubpath:(NSString*)theArtworkPath
 {
+    NSURL*  result = nil;
+#if TARGET_INTERFACE_BUILDER
+    
+#else
+
     NSBundle* myBundle = [NSBundle bundleForClass:[anObject class]];
-    NSURL*  result = [myBundle URLForResource:theArtworkPath withExtension:@"svg"];
+    result = [myBundle URLForResource:theArtworkPath withExtension:@"svg"];
     if(result == nil)
     {
         myBundle = [NSBundle mainBundle];
         result = [myBundle URLForResource:theArtworkPath withExtension:@"svg"];
     }
-    
-#if TARGET_INTERFACE_BUILDER
-    if(result == nil)
-    {
-        result = [GHControlFactory findInterfaceBuilderArtwork:theArtworkPath];
-    }
 #endif
+//#if TARGET_INTERFACE_BUILDER
+//    if(result == nil)
+//    {
+//        result = [GHControlFactory findInterfaceBuilderArtwork:theArtworkPath];
+//    }
+//#endif
     
     return result;
 }

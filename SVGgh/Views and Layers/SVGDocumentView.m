@@ -115,7 +115,7 @@
 #if TARGET_INTERFACE_BUILDER
         if(myArtwork == nil)
         {
-            myArtwork = [GHControlFactory findInterfaceBuilderArtwork:artworkPath];
+           // myArtwork = [GHControlFactory findInterfaceBuilderArtwork:artworkPath];
         }
 #endif
         if(myArtwork != nil)

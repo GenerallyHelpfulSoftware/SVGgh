@@ -347,6 +347,8 @@
             {
                 pressedFrame.origin.x = self.superview.bounds.size.width-pressedFrame.size.width;
             }
+            pressedFrame = CGRectUnion(myFrame, pressedFrame);
+            pressedFrame = CGRectIntegral(pressedFrame);
             
             KeyboardPressedPopup* pressedView = [[KeyboardPressedPopup alloc] initWithFrame:pressedFrame];
             
