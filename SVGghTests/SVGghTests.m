@@ -206,6 +206,14 @@
     
 }
 
+-(void) testHTMLColors
+{
+    XCTAssertNotNil(UIColorFromSVGColorString(@"BURLYWOOD"));
+    XCTAssertNotNil(UIColorFromSVGColorString(@"coral"));
+    XCTAssertNotNil(UIColorFromSVGColorString(@"lemonCHIFFON"));
+    XCTAssertNil(UIColorFromSVGColorString(@"cherry"));
+}
+
 -(void) testStyleMerge
 {
     NSDictionary* parentDictionary = @{@"id":@"TEST", @"style":@"fill:yellow;stroke:#CCC;stroke-width:8", @"opacity":@"1.0"};
