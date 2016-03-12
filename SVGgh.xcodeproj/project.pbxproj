@@ -16,7 +16,6 @@
 		2181F3A71B4F5D8F007617A7 /* SVGTabBarItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 2181F3A51B4F5D8F007617A7 /* SVGTabBarItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2181F3A81B4F5D8F007617A7 /* SVGTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2181F3A61B4F5D8F007617A7 /* SVGTabBarItem.m */; };
 		2194CD3F1B29FB4F00702F44 /* Artwork in Resources */ = {isa = PBXBuildFile; fileRef = 21F6BCE71B29A8FE00DCEEC2 /* Artwork */; };
-		21B7993B1B9A60080014F13D /* DebugApp_UI_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 21B7993A1B9A60080014F13D /* DebugApp_UI_Tests.m */; };
 		21DEC8AC1BAD89C90044BAD7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 21DEC8AB1BAD89C90044BAD7 /* main.m */; };
 		21DEC8AF1BAD89C90044BAD7 /* SVGghTVDebuggingAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 21DEC8AE1BAD89C90044BAD7 /* SVGghTVDebuggingAppDelegate.m */; };
 		21DEC8B51BAD89C90044BAD7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21DEC8B31BAD89C90044BAD7 /* Main.storyboard */; };
@@ -779,7 +778,6 @@
 			files = (
 				21F6BBF51B29A21E00DCEEC2 /* SVGghTests.m in Sources */,
 				212A8B781B63C4E8009B28C9 /* SVGPerformanceTests.swift in Sources */,
-				21B7993B1B9A60080014F13D /* DebugApp_UI_Tests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
