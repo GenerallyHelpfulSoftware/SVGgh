@@ -1465,8 +1465,8 @@ UIColor* UIColorFromSVGColorString (NSString * stringToConvert)
                 g=192;
                 b=203;
             }
-            else if([stringToConvert isEqualToString:@"none"])
-            {
+            else if([stringToConvert isEqualToString:@"none"] || [stringToConvert isEqualToString:@"transparent"])
+            { // I've been told that sometimes web developers will use 'transparent' then the more proper color is 'none'
                 return [UIColor clearColor];
             }
             else if([stringToConvert isEqualToString:@"ActiveBorder"])
