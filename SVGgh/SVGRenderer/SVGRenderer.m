@@ -36,10 +36,12 @@
 @class GHShapeGroup;
 @interface SVGRenderer()
 
-@property (strong, nonatomic, retain)	NSMutableDictionary*	colorMap;
-@property (strong, nonatomic, retain)   NSDictionary*   namedObjects;
-@property (strong, nonatomic, retain)   UIColor* currentColor;
-@property (strong, nonatomic, retain)   NSString* isoLanguage;
+@property (strong, nonatomic)	NSMutableDictionary*	colorMap;
+@property (strong, nonatomic)   NSDictionary*   namedObjects;
+@property (strong, nonatomic)   GHStyle*        cssStyle;
+@property (assign)                      BOOL styleChecked;
+@property (strong, nonatomic)   UIColor* currentColor;
+@property (strong, nonatomic)   NSString* isoLanguage;
 @property (strong, nonatomic, readonly) GHShapeGroup*		contents;
 +(NSDictionary*) defaultAttributes;
 @end
@@ -133,6 +135,55 @@
         }
     }
     return _namedObjects;
+}
+
+-(GHStyle*) cssStyle
+{
+    if(_cssStyle == nil && !self.styleChecked)
+    {
+        self.styleChecked = YES;
+        GHShapeGroup* contents = self.contents;
+        NSArray* firstLevelChildren = contents.children;
+        for(id aChild in firstLevelChildren)
+        {
+            if([aChild isKindOfClass:[GHDefinitionGroup class]])
+            {
+                NSArray* definitions = ((GHDefinitionGroup*)aChild).children;
+                for(id aDefinition in definitions)
+                {
+                    if([aDefinition isKindOfClass:[GHStyle class]])
+                    {
+                        GHStyle* aStyle = aDefinition;
+                        if(aStyle.styleType == kStyleTypeCSS)
+                        {
+                            if(aStyle.classes.count > 0)
+                            {
+                                _cssStyle = aStyle;
+                                return _cssStyle;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return _cssStyle;
+}
+
+-(BOOL) hasCSSAttributes
+{
+    return self.cssStyle.classes.count > 0;
+}
+
+-(NSString*) attributeNamed:(NSString*)attributeName classNamed:(NSString*)className entityName:(NSString*)entityName
+{
+    NSString* result = nil;
+    NSDictionary<NSString*, GHCSSStyle*>* classes = self.cssStyle.classes;
+    if(classes.count > 0)
+    {
+        result = [GHCSSStyle attributeNamed:attributeName classNamed:className entityName:entityName  pseudoClass:self.cssPseudoClass forStyles:self.cssStyle.classes];
+    }
+    return result;
 }
 
 -(void) setCurrentColor:(UIColor *)currentColor
@@ -262,7 +313,6 @@
 	return result;
 }
 
-
 -(void) renderIntoContext:(CGContextRef)quartzContext withSVGContext:(id<SVGContext>)svgContext
 {
 	NSDictionary* defaultAttributes = [SVGRenderer defaultAttributes];
@@ -270,6 +320,7 @@
 	
 	[self.contents renderIntoContext:quartzContext  withSVGContext:self];
 }
+
 -(id<GHRenderable>) findRenderableObject:(CGPoint)testPoint withSVGContext:(id<SVGContext>)svgContext
 {
 	id<GHRenderable> result = [self.contents findRenderableObject:testPoint withSVGContext:svgContext];

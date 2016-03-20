@@ -82,6 +82,18 @@ NS_ASSUME_NONNULL_BEGIN
 /*! @brief if the SVG document specifies a 'non-scaling-stroke' this could be used to scale that. Rarely used.
  */
 -(CGFloat)  explicitLineScaling;
+
+/*! @brief  Does this SVGDocument/renderer have Cascading Style Sheet based attributes. Rarely true.
+ */
+-(BOOL) hasCSSAttributes;
+
+/*! @brief  Look through the CSS attributes for a given styling attribute.
+ * @param attributeName the name of the attribute like 'line-width'
+ * @param className the name of the CSS class like 'background' or some other arbitrary item
+ * @param entityName the name of the entity like 'rect' or 'polyline'
+ */
+-(nullable NSString*) attributeNamed:(NSString*)attributeName classNamed:(nullable NSString*)className entityName:(nullable NSString*)entityName;
+
 @end
 
 NS_ASSUME_NONNULL_END

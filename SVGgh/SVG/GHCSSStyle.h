@@ -1,9 +1,10 @@
 //
-//  AttributedObject.h
+//  GHCSSStyle.h
 //  SVGgh
+//
 // The MIT License (MIT)
 
-//  Copyright (c) 2013-2014 Glenn R. Howes
+//  Copyright (c) 2016 Glenn R. Howes
 
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -22,37 +23,37 @@
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
-//  Created by Glenn Howes on 2/3/13.
+//
+//
+//  Created by Glenn Howes on 3/19/16.
 
-
-#if defined(__has_feature) && __has_feature(modules)
-@import Foundation;
-#else
 #import <Foundation/Foundation.h>
-#endif
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef enum  StyleElementType
+{
+    kStyleTypeUnsupported,
+    kStyleTypeCSS // text/css
+}StyleElementType;
 
-/*! @brief basically just a wrapper around an NSDictionary. A convenient object when generating from XML
-*/
-@interface GHAttributedObject : NSObject
-@property (strong, nonatomic, readonly) NSDictionary*  	attributes;
-@property (readonly, nonatomic)  NSString* __nullable entityName;
+typedef NS_OPTIONS(NSUInteger, CSSPseudoClassFlags) {
+    kPseudoClassNone = 0,
+    kPseudoClassActive = (1 << 0),
+    kPseudoClassFocused   = (1 << 1),
+    kPseudoClassHovering  = (1 << 2)
+};
 
--(instancetype) initWithDictionary:(NSDictionary*)theAttributes;
--(instancetype) initWithAttributes:(NSDictionary*)theAttributes;
+@interface GHCSSStyle : NSObject
+@property(nonatomic, readonly) NSString* cssClass;
+@property(nonatomic, readonly) CSSPseudoClassFlags pseudoClassFlags;
+@property(nonatomic, readonly) NSDictionary<NSString*, NSString*>* __nullable   attributes;
+@property(nonatomic, readonly) NSDictionary<NSString*, GHCSSStyle*>* __nullable subClasses;
 
 
--(NSUInteger)calculatedHash; // attributed objects are immutable, I can calculate their hash once and be done with it.
++(NSDictionary<NSString*, GHCSSStyle*>*) stylesForString:(NSString*)css;
++(NSString*) attributeNamed:(NSString*)attributeName classNamed:(nullable NSString*)className entityName:(nullable NSString*)entityName pseudoClass:(CSSPseudoClassFlags)pseudoClassFlags forStyles:(NSDictionary<NSString*, GHCSSStyle*>*) cssStyles;
+
 @end
-// useful in parsing XML
-extern  NSString*  	const kAttributesElementName;
-extern  NSString*  	const kContentsElementName;
-extern  NSString*  	const kElementName;
-extern  NSString*  	const kElementText;
-extern  NSString*  	const kElementData;
-extern  NSString*  	const kLengthIntoParentsContents;
-
 
 NS_ASSUME_NONNULL_END

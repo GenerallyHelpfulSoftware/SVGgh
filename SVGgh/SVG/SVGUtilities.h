@@ -215,6 +215,15 @@ extern const CGColorRenderingIntent	kColoringRenderingIntent;
 */
 +(nullable NSString*) valueForStyleAttribute:(NSString*)attributeName fromDefinition:(NSDictionary*)elementAttributes;
 
+/*! @brief try to find the value for a style attribute inside a dictionary of attributes. Might be free-standing or in a 'style' attribute
+ * @param attributeName which style type attribute are we looking for?
+ * @param elementAttributes attributes to look inside
+ * @param entityTypeName name to look into the 'style' entity for CSS attributes
+ * @parm svgContext context to retrieve CSS based attributes
+ * @return the value if it is found
+ */
++(nullable NSString*) valueForStyleAttribute:(NSString*)attributeName fromDefinition:(NSDictionary*)elementAttributes forEnityName:(NSString* __nullable)entityTypeName withSVGContext:(id<SVGContext> __nullable)svgContext;
+
 /*! @brief given a composite style attribute, break it apart into individual attributes
 * @param styleString a string with potentially many attributes encoded into it.
 * @return a dictionary of the individual attributes

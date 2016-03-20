@@ -223,7 +223,7 @@
     }
 }
 
--(NSString*) valueForStyleAttribute:(NSString*)attributeName
+-(NSString*) valueForStyleAttribute:(NSString*)attributeName   withSVGContext:(id<SVGContext>)svgContext
 {
     NSString* result = [SVGToQuartz valueForStyleAttribute:attributeName fromDefinition:self.attributes];
     return result;
@@ -231,7 +231,7 @@
 
 -(NSString*) defaultFillColor
 {
-    NSString* result = [self valueForStyleAttribute:@"fill"];
+    NSString* result = [self valueForStyleAttribute:@"fill" withSVGContext:nil];
     if([result length] == 0)
     {
         result = kBlackInHex;
@@ -394,6 +394,11 @@
     CGRect result = CGRectMake(xLocation, yLocation, width, height);
     return result;
 }
+-(NSString*) entityName
+{
+    return @"image";
+}
+
 
 -(UIImage*) newNativeImageWithSVGContext:(id<SVGContext>)svgContext
 {
@@ -591,7 +596,7 @@
 @end
 
 @implementation GHShape
-@synthesize	isClosed, isFillable, strokeColor=_strokeColor,  quartzPath=_quartzPath;
+@synthesize	isClosed, isFillable,  quartzPath=_quartzPath;
 -(CGPathRef) quartzPath
 {
     if(_quartzPath == 0)
@@ -601,11 +606,6 @@
     return _quartzPath;
 }
 
--(NSString*) strokeColor
-{
-    NSString* result = [self valueForStyleAttribute:@"stroke"];
-    return result;
-}
 
 -(BOOL) isClosed
 {
@@ -664,7 +664,7 @@
     CGContextConcatCTM(quartzContext, self.transform);
     [self setupContext:quartzContext withAttributes:self.attributes withSVGContext:svgContext];
     UIColor* strokeColorUI = nil;
-    NSString* strokeColorString = self.strokeColor;
+    NSString* strokeColorString = [self valueForStyleAttribute:@"stroke" withSVGContext:svgContext];
     
     GHGradient* gradientToStroke = nil;
     
@@ -681,20 +681,20 @@
         }
     }
     
-    NSString* fillString = [self valueForStyleAttribute:@"fill"];
+    NSString* fillString = [self valueForStyleAttribute:@"fill" withSVGContext:svgContext];
     CGPathDrawingMode drawingMode = kCGPathStroke;
     
     
-    NSString* fillRuleString = [self valueForStyleAttribute:@"fill-rule"];
+    NSString* fillRuleString = [self valueForStyleAttribute:@"fill-rule" withSVGContext:svgContext];
     BOOL	evenOddFill = [fillRuleString isEqualToString:@"evenodd"];
     if(!evenOddFill)
     {// we might be in a clip path
-        fillRuleString = [self valueForStyleAttribute:@"clip-rule"];
+        fillRuleString = [self valueForStyleAttribute:@"clip-rule" withSVGContext:svgContext];
         evenOddFill = [fillRuleString isEqualToString:@"evenodd"];
     }
     
     
-    NSString* fillOpacityString = [self valueForStyleAttribute:@"fill-opacity"];
+    NSString* fillOpacityString = [self valueForStyleAttribute:@"fill-opacity" withSVGContext:svgContext];
     CGFloat	fillOpacity = 1.0;
     if([fillOpacityString length])
     {
@@ -702,7 +702,7 @@
         if(fillOpacity < 0.0) fillOpacity = 0.0;
         if(fillOpacity > 1.0) fillOpacity = 1.0;
     }
-    NSString* strokeOpacityString = [self valueForStyleAttribute:@"stroke-opacity"];
+    NSString* strokeOpacityString = [self valueForStyleAttribute:@"stroke-opacity" withSVGContext:svgContext];
     CGFloat strokeOpacity = 1.0;
     
     if([strokeOpacityString length])
@@ -775,9 +775,10 @@
     }
     if(strokeIt)
     {
-        if(strokeColorUI == nil && self.strokeColor != nil)
+        NSString* strokeColor = [self valueForStyleAttribute:@"stroke" withSVGContext:svgContext];
+        if(strokeColorUI == nil && strokeColor != nil)
         {
-            strokeColorUI = [svgContext colorForSVGColorString:self.strokeColor];
+            strokeColorUI = [svgContext colorForSVGColorString:strokeColor];
         }
         if(strokeColorUI != nil)
         {
@@ -861,7 +862,7 @@
     CGContextConcatCTM(quartzContext, self.transform);
     [self addPathToQuartzContext:quartzContext];
     CGContextRestoreGState(quartzContext);
-    NSString* fillRuleString = [self valueForStyleAttribute:@"clip-rule"];
+    NSString* fillRuleString = [self valueForStyleAttribute:@"clip-rule" withSVGContext:svgContext];
     BOOL	evenOddFill = [fillRuleString isEqualToString:@"evenodd"];
     if(evenOddFill)
     {
@@ -886,7 +887,7 @@
 {
     ClippingType result = kPathClippingType;
     
-    NSString* fillRuleString = [self valueForStyleAttribute:@"clip-rule"];
+    NSString* fillRuleString = [self valueForStyleAttribute:@"clip-rule" withSVGContext:svgContext];
     BOOL	evenOddFill = [fillRuleString isEqualToString:@"evenodd"];
     if(evenOddFill)
     {
@@ -918,6 +919,13 @@
     CGPathRelease(mutableResult);
     return result;
 }
+
+-(NSString*) entityName
+{
+    return @"circle";
+}
+
+
 @end
 
 @implementation GHLine
@@ -926,6 +934,11 @@
 {
     BOOL	result = NO;
     return result;
+}
+
+-(NSString*) entityName
+{
+    return @"line";
 }
 
 
@@ -969,6 +982,12 @@
     return result;
 }
 
+-(NSString*) entityName
+{
+    return @"polyline";
+}
+
+
 -(NSString*) renderingPath // Path will take our points and treat them like a M operation followed by a series of implied Line tos
 {
     NSString* result = [self.attributes objectForKey:@"points"];
@@ -996,6 +1015,11 @@
 {
     BOOL	result = YES;
     return result;
+}
+
+-(NSString*) entityName
+{
+    return @"polygon";
 }
 
 
@@ -1032,6 +1056,11 @@
 {
     BOOL	result = YES;
     return result;
+}
+
+-(NSString*) entityName
+{
+    return @"ellipse";
 }
 
 
@@ -1075,6 +1104,11 @@
     
     CGRect		result = CGRectMake(originX, originY, width, height);
     return result;
+}
+
+-(NSString*) entityName
+{
+    return @"rect";
 }
 
 
@@ -1232,6 +1266,12 @@
     return result;
 }
 
+-(NSString*) entityName
+{
+    return @"path";
+}
+
+
 @end
 
 @implementation GHSwitchGroup
@@ -1284,6 +1324,12 @@
     BOOL result = [super hidden];
     return result;
 }
+
+-(NSString*) entityName
+{
+    return @"g";
+}
+
 -(CGAffineTransform) calculateTransform
 {
     CGAffineTransform   result = CGAffineTransformIdentity;
@@ -1351,7 +1397,8 @@
                                  @"mask":[GHMask class],
                                  @"solidColor":[GHSolidColor class],
                                  @"linearGradient":[GHLinearGradient class],
-                                 @"radialGradient":[GHRadialGradient class]
+                                 @"radialGradient":[GHRadialGradient class],
+                                 @"style":[GHStyle class]
                                  };
         sResult = result;
     });
@@ -1832,6 +1879,35 @@
     
 }
 
+@end
+
+@interface GHStyle()
+@property(nonatomic, strong) NSDictionary<NSString*, GHCSSStyle*>* classes;
+
+@end
+
+@implementation GHStyle
+
+-(instancetype) initWithDictionary:(NSDictionary*)theDefinition
+{
+    if(nil != (self = [super initWithDictionary:theDefinition]))
+    {
+        NSString* contents = [theDefinition objectForKey:kContentsElementName];
+        _classes = [GHCSSStyle stylesForString:contents];
+    }
+    return self;
+}
+
+-(StyleElementType) styleType
+{
+    StyleElementType result = kStyleTypeCSS;
+    NSString* explicitType = [self.attributes valueForKey:@"type"];
+    if(explicitType.length > 0 && ![explicitType isEqualToString:@"text/css"])
+    {
+        result = kStyleTypeUnsupported;
+    }
+    return result;
+}
 @end
 
 @implementation GHClipGroup

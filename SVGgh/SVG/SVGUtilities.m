@@ -2368,6 +2368,24 @@ void AddSVGArcToPath(CGMutablePathRef thePath,
 	return result;
 }
 
++(NSString*) valueForStyleAttribute:(NSString*)attributeName fromDefinition:(NSDictionary*)elementAttributes forEnityName:(NSString*)entityTypeName withSVGContext:(id<SVGContext> __nullable)svgContext
+{
+    NSString* result = nil;
+    
+    if(svgContext.hasCSSAttributes)
+    {
+        NSString* className = [elementAttributes valueForKey:@"class"];
+        result = [svgContext attributeNamed:attributeName classNamed:className entityName:entityTypeName];
+    }
+    
+    if(result == nil)
+    {
+        result = [self valueForStyleAttribute:attributeName fromDefinition:elementAttributes];
+    }
+    
+    return result;
+}
+
 +(NSDictionary*)dictionaryForStyleAttributeString:(NSString*)styleString
 {
     NSArray* styleElements = [styleString componentsSeparatedByString:@";"];

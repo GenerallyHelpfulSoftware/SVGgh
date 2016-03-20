@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		210C30931C9E31B700B530EF /* GHCSSStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 210C30911C9E31B700B530EF /* GHCSSStyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		210C30941C9E31B700B530EF /* GHCSSStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 210C30921C9E31B700B530EF /* GHCSSStyle.m */; };
+		210C30961C9E479C00B530EF /* CSSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 210C30951C9E479C00B530EF /* CSSTests.m */; };
 		210DF4691B9132FE00D702D5 /* SVGgh.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F6BBE21B29A21E00DCEEC2 /* SVGgh.framework */; };
 		210DF46A1B9132FE00D702D5 /* SVGgh.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 21F6BBE21B29A21E00DCEEC2 /* SVGgh.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		211CB3D11BD4346F00121DB4 /* SVGgh.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F6BBE21B29A21E00DCEEC2 /* SVGgh.framework */; };
@@ -145,6 +148,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		210C30911C9E31B700B530EF /* GHCSSStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHCSSStyle.h; sourceTree = "<group>"; };
+		210C30921C9E31B700B530EF /* GHCSSStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHCSSStyle.m; sourceTree = "<group>"; };
+		210C30951C9E479C00B530EF /* CSSTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSSTests.m; sourceTree = "<group>"; };
 		211E709E1B2AEC1D00667BE9 /* SVGgh.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = SVGgh.podspec; sourceTree = "<group>"; };
 		212A8B761B63C4E6009B28C9 /* SVGghTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SVGghTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		212A8B771B63C4E8009B28C9 /* SVGPerformanceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVGPerformanceTests.swift; sourceTree = "<group>"; };
@@ -365,6 +371,7 @@
 			children = (
 				212A8B771B63C4E8009B28C9 /* SVGPerformanceTests.swift */,
 				21F6BBF41B29A21E00DCEEC2 /* SVGghTests.m */,
+				210C30951C9E479C00B530EF /* CSSTests.m */,
 				21F6BBF21B29A21E00DCEEC2 /* Supporting Files */,
 				212A8B761B63C4E6009B28C9 /* SVGghTests-Bridging-Header.h */,
 			);
@@ -449,6 +456,8 @@
 				21F6BC561B29A42800DCEEC2 /* GHPathUtilities.h */,
 				21F6BC571B29A42800DCEEC2 /* GHPathUtilities.m */,
 				21F6BC581B29A42800DCEEC2 /* GHText.h */,
+				210C30911C9E31B700B530EF /* GHCSSStyle.h */,
+				210C30921C9E31B700B530EF /* GHCSSStyle.m */,
 				21F6BC591B29A42800DCEEC2 /* GHText.m */,
 				21F6BC5A1B29A42800DCEEC2 /* GHTextLine.h */,
 				21F6BC5B1B29A42800DCEEC2 /* GHTextLine.m */,
@@ -531,6 +540,7 @@
 				21F6BC2B1B29A41C00DCEEC2 /* SVGPathGenerator.h in Headers */,
 				21F6BBE81B29A21E00DCEEC2 /* SVGgh.h in Headers */,
 				21F6BC6E1B29A42800DCEEC2 /* GHText.h in Headers */,
+				210C30931C9E31B700B530EF /* GHCSSStyle.h in Headers */,
 				2181F3A71B4F5D8F007617A7 /* SVGTabBarItem.h in Headers */,
 				21F6BC311B29A41C00DCEEC2 /* SVGRenderer.h in Headers */,
 				21F6BC3A1B29A41C00DCEEC2 /* NSData+Base64Additions.h in Headers */,
@@ -744,6 +754,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				21F6BC6C1B29A42800DCEEC2 /* GHPathUtilities.m in Sources */,
+				210C30941C9E31B700B530EF /* GHCSSStyle.m in Sources */,
 				21F6BC821B29A42800DCEEC2 /* SVGUtilities.m in Sources */,
 				21F6BC4D1B29A41C00DCEEC2 /* SVGDocumentView.m in Sources */,
 				21F6BC501B29A41C00DCEEC2 /* SVGRendererLayer.m in Sources */,
@@ -776,6 +787,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				210C30961C9E479C00B530EF /* CSSTests.m in Sources */,
 				21F6BBF51B29A21E00DCEEC2 /* SVGghTests.m in Sources */,
 				212A8B781B63C4E8009B28C9 /* SVGPerformanceTests.swift in Sources */,
 			);

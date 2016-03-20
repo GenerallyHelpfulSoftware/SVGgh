@@ -34,12 +34,19 @@
 #import "SVGParser.h"
 #import "GHRenderable.h"
 #import "SVGContext.h"
+#import "GHCSSStyle.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 /*! @brief a class capable of rendering itself into a core graphics context
 */
 @interface SVGRenderer : SVGParser<SVGContext, GHRenderable>
+
+/*! @property viewRect
+ * @brief a set of flags that allow the dynamic manipulation of rendering styles (for instance, a focused tvOS image could use kPseudoClassFocused)
+ */
+@property (assign, nonatomic)   CSSPseudoClassFlags cssPseudoClass;
+
 /*! @property viewRect
 * @brief the intrinsic rect declared in the SVG document being rendered
 */

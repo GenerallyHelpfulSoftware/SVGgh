@@ -96,5 +96,9 @@ NSString*	const kLengthIntoParentsContents = @"parentContentLocation"; // for ob
     return result;
 }
 
+-(NSString*) entityName
+{
+    return nil;
+}
 
 @end

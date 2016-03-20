@@ -35,6 +35,7 @@
 #import "SVGUtilities.h"
 #import "GHAttributedObject.h"
 #import "GHRenderable.h"
+#import "GHCSSStyle.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -115,7 +116,7 @@ NS_ASSUME_NONNULL_BEGIN
 * @param attributeName attribute to search for in this object's attributes
 * @return the value of the attribute if it exists
 */
--(nullable NSString*) valueForStyleAttribute:(NSString*)attributeName;
+-(nullable NSString*) valueForStyleAttribute:(NSString*)attributeName   withSVGContext:(nullable id<SVGContext> )svgContext;
 
 /*! @brief sometimes objects are referenced internally in a document by name, this adds them to a map to keep track of
 * @param namedObjectsMap a collection of objects to add
@@ -137,7 +138,6 @@ NS_ASSUME_NONNULL_BEGIN
 * @see CGPathRef
 */
 @interface GHShape : GHRenderableObject
-@property (strong, nonatomic, readonly)  NSString* __nullable 		strokeColor;
 @property (nonatomic, readonly)         BOOL			isClosed;
 @property (nonatomic, readonly)         BOOL            isFillable;
 @property (nonatomic, readonly)          CGPathRef	__nullable	quartzPath;
@@ -204,6 +204,13 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface GHDefinitionGroup : GHShapeGroup
 
+@end
+
+/*! @brief manifestation of an SVG 'style' entity which is a way to bridge with css formatting.
+ */
+@interface GHStyle : SVGAttributedObject
+@property (nonatomic, readonly)  StyleElementType styleType;
+@property(nonatomic, readonly) NSDictionary<NSString*, GHCSSStyle*>* classes;
 @end
 
 /*! @brief manifestation of an SVG 'clipPath' entity
