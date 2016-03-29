@@ -52,7 +52,7 @@ typedef NS_OPTIONS(NSUInteger, CSSPseudoClassFlags) {
 
 
 +(NSDictionary<NSString*, GHCSSStyle*>*) stylesForString:(NSString*)css;
-+(NSString*) attributeNamed:(NSString*)attributeName classNamed:(nullable NSString*)className entityName:(nullable NSString*)entityName pseudoClass:(CSSPseudoClassFlags)pseudoClassFlags forStyles:(NSDictionary<NSString*, GHCSSStyle*>*) cssStyles;
++(NSString*) attributeNamed:(NSString*)attributeName classes:(nullable NSArray<NSString*>*)listOfClasses entityName:(nullable NSString*)entityName pseudoClass:(CSSPseudoClassFlags)pseudoClassFlags forStyles:(NSDictionary<NSString*, GHCSSStyle*>*) cssStyles;
 
 @end
 

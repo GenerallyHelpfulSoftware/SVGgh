@@ -34,28 +34,39 @@
 {
     NSDictionary<NSString*, GHCSSStyle*>* result = nil;
     
+    
+    
     return result;
 }
-+(NSString*) attributeNamed:(NSString*)attributeName classNamed:(nullable NSString*)className entityName:(nullable NSString*)entityName pseudoClass:(CSSPseudoClassFlags)pseudoClassFlags forStyles:(NSDictionary<NSString*, GHCSSStyle*>*) cssStyles
++(NSString*) attributeNamed:(NSString*)attributeName classes:(nullable NSArray<NSString*>*)listOfClasses entityName:(nullable NSString*)entityName pseudoClass:(CSSPseudoClassFlags)pseudoClassFlags forStyles:(NSDictionary<NSString*, GHCSSStyle*>*) cssStyles
 {
     NSString* result = nil;
     GHCSSStyle* entityStyle = nil;
     if(entityName.length)
     {
         entityStyle = [cssStyles valueForKey:entityName];
-        if(entityStyle && className.length)
+        if(entityStyle)
         {
-            GHCSSStyle* classEntityStyle = [entityStyle.subClasses valueForKey:className];
-            result = [classEntityStyle.attributes valueForKey:attributeName];
+            for(NSString* aClass in listOfClasses)
+            {
+                GHCSSStyle* classEntityStyle = [entityStyle.subClasses valueForKey:aClass];
+                if(classEntityStyle != nil && classEntityStyle.pseudoClassFlags & pseudoClassFlags) // should this be & or == ?
+                {
+                    result = [classEntityStyle.attributes valueForKey:attributeName];
+                }
+            }
         }
     }
     
-    if(result == nil && className.length)
+    if(result == nil)
     {
-        GHCSSStyle* classStyle = [cssStyles valueForKey:className];
-        if(classStyle)
+        for(NSString* aClass in listOfClasses)
         {
-            result = [classStyle.attributes valueForKey:attributeName];
+            GHCSSStyle* classStyle = [cssStyles valueForKey:aClass];
+            if(classStyle && classStyle.pseudoClassFlags & pseudoClassFlags)  // should this be & or == ?
+            {
+                result = [classStyle.attributes valueForKey:attributeName];
+            }
         }
     }
     

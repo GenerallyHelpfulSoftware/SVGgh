@@ -92,7 +92,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @param className the name of the CSS class like 'background' or some other arbitrary item
  * @param entityName the name of the entity like 'rect' or 'polyline'
  */
--(nullable NSString*) attributeNamed:(NSString*)attributeName classNamed:(nullable NSString*)className entityName:(nullable NSString*)entityName;
+-(nullable NSString*) attributeNamed:(NSString*)attributeName classes:(nullable NSArray<NSString*>*)listOfClasses entityName:(nullable NSString*)entityName;
 
 @end
 

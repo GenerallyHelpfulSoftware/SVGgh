@@ -2374,8 +2374,8 @@ void AddSVGArcToPath(CGMutablePathRef thePath,
     
     if(svgContext.hasCSSAttributes)
     {
-        NSString* className = [elementAttributes valueForKey:@"class"];
-        result = [svgContext attributeNamed:attributeName classNamed:className entityName:entityTypeName];
+        NSArray* classes = [[elementAttributes valueForKey:@"class"] componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        result = [svgContext attributeNamed:attributeName classes:classes entityName:entityTypeName];
     }
     
     if(result == nil)

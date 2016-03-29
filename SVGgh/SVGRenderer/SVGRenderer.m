@@ -175,13 +175,13 @@
     return self.cssStyle.classes.count > 0;
 }
 
--(NSString*) attributeNamed:(NSString*)attributeName classNamed:(NSString*)className entityName:(NSString*)entityName
+-(NSString*) attributeNamed:(NSString*)attributeName classes:(nullable NSArray<NSString*>*)listOfClasses entityName:(NSString*)entityName
 {
     NSString* result = nil;
     NSDictionary<NSString*, GHCSSStyle*>* classes = self.cssStyle.classes;
     if(classes.count > 0)
     {
-        result = [GHCSSStyle attributeNamed:attributeName classNamed:className entityName:entityName  pseudoClass:self.cssPseudoClass forStyles:self.cssStyle.classes];
+        result = [GHCSSStyle attributeNamed:attributeName classes:listOfClasses entityName:entityName  pseudoClass:self.cssPseudoClass forStyles:self.cssStyle.classes];
     }
     return result;
 }
