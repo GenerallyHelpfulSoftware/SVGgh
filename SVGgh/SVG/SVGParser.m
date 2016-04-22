@@ -179,6 +179,23 @@
 	return self;
 }
 
+-(nullable  instancetype) initWithResourceName:(NSString*)resourceName inBundle:(nullable NSBundle*)mayBeNil
+{
+    NSBundle* bundleToUse = (mayBeNil == nil)? [NSBundle mainBundle] : mayBeNil;
+    NSURL* theURL = [bundleToUse URLForResource:resourceName withExtension:@"svg"];
+    if(theURL == NULL)
+    {
+        return NULL;
+    }
+    else
+    {
+        if(nil != (self = [self initWithContentsOfURL:theURL]))
+        {
+        }
+    }
+    return self;
+}
+
 -(nullable NSDictionary*) root
 {
     NSDictionary* result = _root;
