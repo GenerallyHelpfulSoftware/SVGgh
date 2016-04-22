@@ -22,6 +22,8 @@
 		21DEC8B71BAD89C90044BAD7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21DEC8B61BAD89C90044BAD7 /* Assets.xcassets */; };
 		21DEC9161BAD8DCF0044BAD7 /* Artwork in Resources */ = {isa = PBXBuildFile; fileRef = 21F6BCE71B29A8FE00DCEEC2 /* Artwork */; };
 		21DEC91A1BAE8D130044BAD7 /* SVGghDebuggingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F6BCE11B29A52600DCEEC2 /* SVGghDebuggingViewController.m */; };
+		21E3DBB21CC9A3C60076B332 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21F6BC971B29A48600DCEEC2 /* Images.xcassets */; };
+		21E3DBB51CC9A4360076B332 /* TVAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21E3DBB31CC9A4300076B332 /* TVAssets.xcassets */; };
 		21F6BBE81B29A21E00DCEEC2 /* SVGgh.h in Headers */ = {isa = PBXBuildFile; fileRef = 21F6BBE71B29A21E00DCEEC2 /* SVGgh.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		21F6BBEE1B29A21E00DCEEC2 /* SVGgh.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F6BBE21B29A21E00DCEEC2 /* SVGgh.framework */; };
 		21F6BBF51B29A21E00DCEEC2 /* SVGghTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F6BBF41B29A21E00DCEEC2 /* SVGghTests.m */; };
@@ -163,6 +165,7 @@
 		21DEC8D11BAD89E50044BAD7 /* SVGghtvTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SVGghtvTests.m; sourceTree = "<group>"; };
 		21DEC8D31BAD89E50044BAD7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		21DEC9171BAE8BB10044BAD7 /* SVGgh TV Debugging App-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SVGgh TV Debugging App-Bridging-Header.h"; sourceTree = "<group>"; };
+		21E3DBB31CC9A4300076B332 /* TVAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = TVAssets.xcassets; sourceTree = "<group>"; };
 		21F6BBE21B29A21E00DCEEC2 /* SVGgh.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SVGgh.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		21F6BBE61B29A21E00DCEEC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		21F6BBE71B29A21E00DCEEC2 /* SVGgh.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SVGgh.h; sourceTree = "<group>"; };
@@ -476,6 +479,7 @@
 				21F6BCE01B29A52600DCEEC2 /* SVGghDebuggingViewController.h */,
 				21F6BCE11B29A52600DCEEC2 /* SVGghDebuggingViewController.m */,
 				21F6BC971B29A48600DCEEC2 /* Images.xcassets */,
+				21E3DBB31CC9A4300076B332 /* TVAssets.xcassets */,
 				21F6BCE41B29A57C00DCEEC2 /* Main.storyboard */,
 				21F6BC991B29A48600DCEEC2 /* LaunchScreen.xib */,
 				21F6BC8A1B29A48600DCEEC2 /* Supporting Files */,
@@ -679,8 +683,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				21DEC9161BAD8DCF0044BAD7 /* Artwork in Resources */,
+				21E3DBB21CC9A3C60076B332 /* Images.xcassets in Resources */,
 				21DEC8B71BAD89C90044BAD7 /* Assets.xcassets in Resources */,
 				21DEC8B51BAD89C90044BAD7 /* Main.storyboard in Resources */,
+				21E3DBB51CC9A4360076B332 /* TVAssets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -842,7 +848,6 @@
 		21DEC8B91BAD89C90044BAD7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				INFOPLIST_FILE = "SVGgh TV Debugging App/Info.plist";
@@ -861,7 +866,6 @@
 		21DEC8BA1BAD89C90044BAD7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = "SVGgh TV Debugging App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1054,6 +1058,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "SVGgh Debugging App/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.genhelp.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1065,6 +1070,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "SVGgh Debugging App/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.genhelp.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
