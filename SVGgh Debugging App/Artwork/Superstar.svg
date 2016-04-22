@@ -916,8 +916,11 @@ iehp1OXpQ1AH/9k=" width="384.000000" clip-path="url(#clip_F4C745ED-E424-4951-95F
 <g stroke-width="3" stroke="none">
 <use xlink:href="#IMG_F4C745ED-E424-4951-95FE-630E468A7770.jpg" transform="matrix(3.05921 0 0 3.05921 105.092 107.992)"/>
 <use xlink:href="#Football Helmet Front" transform="matrix(3.23999 0.194152 -0.194152 3.23999 102.771 64.9279)" fill="url(#balltoblack_#FFA500)" color="#FFA500"/>
-<text x="0" font-family="Georgia" y="50" font-size="28" color="#ff69b4" fill="url(#uptoblack_#ff69b4)" transform="matrix(1.31961 0 0 1.31961 100.936 367.628)" stroke="none">✧SVGgh Test File✧</text>
+<text x="0" font-family="Georgia" y="50" font-size="28" color="#ff69b4" fill="url(#uptoblack_#ff69b4)" transform="matrix(1.31961 0 0 1.31961 100.936 367.628)"  text-decoration="none">✧SVGgh Test File✧</text>
 <use xlink:href="#Star 5" transform="matrix(0.5984 0 0 0.5984 230.432 132.832)" fill="url(#uptoblack_#B0E0E6)" color="#B0E0E6"/>
+
+<text font-family="Georgia" font-size="14" color="black" fill="orange" x="450" y="450" text-decoration="underline">Underline</text>
+<text font-family="system" font-size="14" color="black" fill="grey" x="450" y="480">System</text>
 
 
 <path stroke="blue" d="M 395 145 L 380 160 M 445 159 L 453 180"/>

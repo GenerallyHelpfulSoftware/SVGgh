@@ -571,7 +571,7 @@
 @interface GHShape(Private)
 -(CGPathRef) newQuartzPath;
 -(void) setupContext:(CGContextRef)quartzContext withAttributes:(NSDictionary*)attributes withSVGContext:(id<SVGContext>)svgContext;
--(void) addPathToQuartzContext:(CGContextRef) quartzContext;
+-(BOOL) addPathToQuartzContext:(CGContextRef) quartzContext;
 @end
 
 @implementation GHShape(Private)
@@ -586,10 +586,16 @@
     [super	setupContext:quartzContext withAttributes:self.attributes withSVGContext:svgContext];
 }
 
--(void) addPathToQuartzContext:(CGContextRef) quartzContext
+-(BOOL) addPathToQuartzContext:(CGContextRef) quartzContext
 {
     CGPathRef	myPath  = self.quartzPath;
-    CGContextAddPath(quartzContext, myPath);
+    BOOL result = myPath != 0;
+    if(result)
+    {
+        CGContextAddPath(quartzContext, myPath);
+    }
+    return result;
+    
 }
 
 
@@ -793,22 +799,24 @@
     if(gradientToFill != nil)
     {
         CGContextSaveGState(quartzContext);
-        [self addPathToQuartzContext:quartzContext];
-        CGContextRestoreGState(quartzContext);
-        CGRect myBox  =  CGPathGetPathBoundingBox(self.quartzPath);
-        
-        if(fillOpacity < 1.0)
-        {
-            CGContextSaveGState(quartzContext);
-            CGContextSetAlpha(quartzContext, fillOpacity);
-        }
-        if(!CGRectIsEmpty(myBox))
-        {
-            [gradientToFill fillPathToContext:quartzContext withSVGContext:svgContext objectBoundingBox:myBox];
-        }
-        if(fillOpacity < 1.0)
+        if([self addPathToQuartzContext:quartzContext])
         {
             CGContextRestoreGState(quartzContext);
+            CGRect myBox  =  CGPathGetPathBoundingBox(self.quartzPath);
+            
+            if(fillOpacity < 1.0)
+            {
+                CGContextSaveGState(quartzContext);
+                CGContextSetAlpha(quartzContext, fillOpacity);
+            }
+            if(!CGRectIsEmpty(myBox))
+            {
+                [gradientToFill fillPathToContext:quartzContext withSVGContext:svgContext objectBoundingBox:myBox];
+            }
+            if(fillOpacity < 1.0)
+            {
+                CGContextRestoreGState(quartzContext);
+            }
         }
         if(strokeIt)
         {
@@ -818,39 +826,48 @@
     }
     if(gradientToStroke)
     {
-        [self addPathToQuartzContext:quartzContext];
-        CGContextReplacePathWithStrokedPath(quartzContext);
-        CGRect myBox  =  CGPathGetPathBoundingBox(self.quartzPath);
-        myBox = CGRectApplyAffineTransform(myBox, self.transform);
-        if(!CGRectIsEmpty(myBox))
+        if([self addPathToQuartzContext:quartzContext])
         {
-            [gradientToStroke fillPathToContext:quartzContext withSVGContext:svgContext objectBoundingBox:myBox];
+            CGContextReplacePathWithStrokedPath(quartzContext);
+            CGRect myBox  =  CGPathGetPathBoundingBox(self.quartzPath);
+            myBox = CGRectApplyAffineTransform(myBox, self.transform);
+            if(!CGRectIsEmpty(myBox))
+            {
+                [gradientToStroke fillPathToContext:quartzContext withSVGContext:svgContext objectBoundingBox:myBox];
+            }
         }
         strokeIt = false;
         if(fillIt)
         {
-            [self addPathToQuartzContext:quartzContext];
-            switch(drawingMode)
+            if([self addPathToQuartzContext:quartzContext])
             {
-                case kCGPathFillStroke:
-                    drawingMode = kCGPathFill;
-                    break;
-                case kCGPathEOFillStroke:
-                    drawingMode = kCGPathEOFill;
-                    break;
-                default:
+                switch(drawingMode)
                 {
+                    case kCGPathFillStroke:
+                        drawingMode = kCGPathFill;
+                        break;
+                    case kCGPathEOFillStroke:
+                        drawingMode = kCGPathEOFill;
+                        break;
+                    default:
+                    {
+                    }
+                        break;
                 }
-                    break;
+            }
+            else
+            {
+                fillIt = strokeIt = false;
             }
         }
     }
     
     if(fillIt || strokeIt)
     {
-        [self addPathToQuartzContext:quartzContext];
-        
-        CGContextDrawPath(quartzContext, drawingMode);
+        if ([self addPathToQuartzContext:quartzContext])
+        {
+            CGContextDrawPath(quartzContext, drawingMode);
+        }
         
     }
     CGContextRestoreGState(quartzContext);

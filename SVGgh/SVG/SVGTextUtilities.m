@@ -78,6 +78,32 @@ BOOL IsFontFamilyAvailable(NSString* fontFamilyName);
 	return sResult;
 }
 
++(NSDictionary*) systemFontDescription
+{
+    static NSDictionary* sResult = nil;
+    static dispatch_once_t  done;
+    dispatch_once(&done, ^{
+        CTFontRef defaultFontRef = CTFontCreateUIFontForLanguage(kCTFontUIFontSystem, 0.0, 0);
+        if(defaultFontRef != 0)
+        {
+            CFStringRef postscriptNameCF = CTFontCopyPostScriptName(defaultFontRef);
+            NSString* postscriptName = [NSString stringWithString:(__bridge NSString*)postscriptNameCF];
+            CFDictionaryRef fontTraits = CTFontCopyTraits(defaultFontRef);
+            
+            NSMutableDictionary* mutableResult = [NSMutableDictionary dictionaryWithDictionary:(__bridge NSDictionary*)fontTraits];
+            mutableResult[(NSString*)kCTFontNameAttribute] = postscriptName;
+            
+            sResult = [mutableResult copy];
+            CFRelease(defaultFontRef);
+            CFRelease(postscriptNameCF);
+            CFRelease(fontTraits);
+        }
+
+    });
+    
+    return sResult;
+}
+
 +(NSString*) cleanXMLText:(NSString*)sourceText
 {
     NSString* result = sourceText;
@@ -121,7 +147,7 @@ BOOL IsFontFamilyAvailable(NSString* fontFamilyName);
 	for(NSString* aKeyName in svgAttributeKeys)
 	{
 		if([aKeyName hasPrefix:@"font"]
-		   || [aKeyName isEqualToString:@"text-anchor"])
+		   || [aKeyName hasPrefix:@"text-"])
 		{
 			[mutableFontAttributes setObject:[SVGattributes objectForKey:aKeyName] forKey:aKeyName];
 		}
@@ -310,6 +336,42 @@ BOOL IsFontFamilyAvailable(NSString* fontFamilyName);
 			[outAttributes setObject:characterSetToUse forKey:(NSString*)kCTFontCharacterSetAttribute];
 		}
 	}
+}
+
+
++(void) addTextDecorationFromSVGStyleAttributes:(NSDictionary*)svgStyle toCoreTextAttributes:(NSMutableDictionary*)outAttributes
+{
+    NSString* decoration = [svgStyle objectForKey:@"text-decoration"];
+    if([decoration isKindOfClass:[NSString class]] && decoration.length)
+    {
+        NSArray* decorations = [decoration componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        for(NSString* aDecoration in decorations)
+        {
+            if([aDecoration isEqualToString:@"underline"])
+            {
+                [outAttributes setObject:[NSNumber numberWithInteger:NSUnderlineStyleSingle]  forKey:NSUnderlineStyleAttributeName];
+            }
+            else if([aDecoration isEqualToString:@"overline"])
+            {
+                
+            }
+            else if([aDecoration isEqualToString:@"line-through"]) // This does not actually work, as Core Text does not support NSStrikethroughStyleAttributeName
+            {
+               // [outAttributes setObject:[NSNumber numberWithInteger:NSUnderlineStyleSingle | NSUnderlinePatternSolid ] forKey:NSStrikethroughStyleAttributeName];
+            }
+            else if([aDecoration isEqualToString:@"blink"]) // give me a break...
+            {
+                
+            }
+            else if([aDecoration isEqualToString:@"none"])
+            {
+                [outAttributes removeObjectForKey:NSUnderlineStyleAttributeName];
+                
+                [outAttributes removeObjectForKey:NSStrikethroughStyleAttributeName];
+                break;
+            }
+        }
+    }
 }
 
 +(void) addFontWidthFromSVGStyleAttributes:(NSDictionary*)svgStyle toCoreTextAttributes:(NSMutableDictionary*)outAttributes
@@ -508,7 +570,7 @@ BOOL IsFontFamilyAvailable(NSString* fontFamilyName);
         }
     }*/
     [mutableAttributes setObject:[NSNumber numberWithBool:useContextColor] forKey:(NSString*)kCTForegroundColorFromContextAttributeName];
-    
+    [SVGTextUtilities addTextDecorationFromSVGStyleAttributes:aDefinition toCoreTextAttributes:mutableAttributes];
     if(includeParagraphStyle)
     {
         CTTextAlignment lineAlignment = kCTTextAlignmentNatural;
@@ -877,10 +939,16 @@ BOOL IsFontFamilyAvailable(NSString* fontFamilyName);
 		else
 		{
 			NSString* unquotedString = UnquotedSVGString(aFontFamilyAttribute);
-			if([unquotedString length] && [mutableResult objectForKey:(NSString*)kCTFontFamilyNameAttribute] == nil)
+			if([unquotedString length] && [mutableResult objectForKey:(NSString*)kCTFontFamilyNameAttribute] == nil
+               && [mutableResult objectForKey:(NSString*)kCTFontNameAttribute] == nil)
 			{ // if I didn't set this before with a fontname that exists on this system.
                 
-				if(IsFontFamilyAvailable(unquotedString))
+                if([unquotedString isEqualToString:@"system"]) // this is as of yet not a W3C standard, could use -apple-system
+                {
+                    NSDictionary* systemFontAttributes = [self systemFontDescription];
+                    [mutableResult addEntriesFromDictionary:systemFontAttributes];
+                }
+				else if(IsFontFamilyAvailable(unquotedString))
 				{
 					[mutableResult setObject:unquotedString forKey:(NSString*)kCTFontFamilyNameAttribute];
 				}
@@ -950,7 +1018,6 @@ BOOL IsFontFamilyAvailable(NSString* fontFamilyName)
         if(boolResult == nil)
         {
             NSString* stringToTest = fontFamilyName;
-            
             CTFontRef	testFont = CTFontCreateWithName((__bridge CFStringRef)stringToTest, 0.0, NULL);
             if(testFont != 0)
             {
@@ -962,6 +1029,7 @@ BOOL IsFontFamilyAvailable(NSString* fontFamilyName)
                 }
                 CFRelease(testFont);
             }
+            
             [sCache setObject:[NSNumber numberWithBool:result] forKey:fontFamilyName];
         }
         else
