@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -254,6 +253,181 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fek-ns-cpw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="730" y="1007"/>
+        </scene>
+        <!--Segmented-->
+        <scene sceneID="n64-lG-w20">
+            <objects>
+                <viewController id="AMx-i8-6TZ" customClass="SegmentedDemoViewController" customModule="SVGgh_Debugging_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="siW-oY-hqc"/>
+                        <viewControllerLayoutGuide type="bottom" id="u0n-pI-cNP"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="CUq-3R-tk5">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="um6-8g-rbh">
+                                <rect key="frame" x="16" y="28" width="288" height="395"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SegmentCell" id="XXq-K3-qJi" customClass="SegmentedDemoTableCell" customModule="SVGgh_Debugging_App" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="288" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XXq-K3-qJi" id="Fo6-U8-qOO">
+                                            <rect key="frame" x="0.0" y="0.0" width="288" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BWe-Hh-CmN" customClass="GHSegmentedControl">
+                                                    <rect key="frame" x="8" y="0.0" width="240" height="35"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="textColorPressed">
+                                                            <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="BWe-Hh-CmN" secondAttribute="trailing" id="KWz-7g-lv3"/>
+                                                <constraint firstItem="BWe-Hh-CmN" firstAttribute="top" secondItem="Fo6-U8-qOO" secondAttribute="topMargin" id="i8M-dY-CFM"/>
+                                                <constraint firstItem="BWe-Hh-CmN" firstAttribute="bottom" secondItem="Fo6-U8-qOO" secondAttribute="bottomMargin" id="mrG-r9-jUA"/>
+                                                <constraint firstItem="BWe-Hh-CmN" firstAttribute="leading" secondItem="Fo6-U8-qOO" secondAttribute="leadingMargin" id="v7g-ZE-7lP"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="segmentedControl" destination="BWe-Hh-CmN" id="IhP-aa-tMD"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="um6-8g-rbh" firstAttribute="leading" secondItem="CUq-3R-tk5" secondAttribute="leadingMargin" id="HQK-SI-uc6"/>
+                            <constraint firstItem="um6-8g-rbh" firstAttribute="top" secondItem="siW-oY-hqc" secondAttribute="bottom" constant="8" symbolic="YES" id="lTY-sB-bPl"/>
+                            <constraint firstItem="u0n-pI-cNP" firstAttribute="top" secondItem="um6-8g-rbh" secondAttribute="bottom" constant="8" symbolic="YES" id="vbl-wc-y6o"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="um6-8g-rbh" secondAttribute="trailing" id="ybD-Ob-RnA"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Segmented" id="Afw-yb-Uab" customClass="SVGTabBarItem">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="artworkPath" value="Artwork/Eye"/>
+                            <userDefinedRuntimeAttribute type="color" keyPath="baseColor">
+                                <color key="value" red="0.71372549019999998" green="0.78039215689999997" blue="0.7843137255" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="selectedColor">
+                                <color key="value" red="0.0" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </tabBarItem>
+                    <connections>
+                        <outlet property="tableView" destination="um6-8g-rbh" id="GZl-l1-tzB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hPh-sI-YVO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="856" y="2270"/>
+        </scene>
+        <!--Buttons-->
+        <scene sceneID="kDx-nq-FXg">
+            <objects>
+                <viewController id="O7R-Ob-Wea" customClass="ButtonsDemoViewController" customModule="SVGgh_Debugging_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ev5-ga-8Mc"/>
+                        <viewControllerLayoutGuide type="bottom" id="w05-Ie-bhc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ryT-uM-hYN">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="esd-Xo-2sa">
+                                <rect key="frame" x="16" y="80" width="288" height="343"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="PXN-0O-G5b">
+                                    <size key="itemSize" width="60" height="60"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ButtonCell" id="c5x-kK-kBz" customClass="ButtonCell" customModule="SVGgh_Debugging_App" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view opaque="NO" contentMode="scaleAspectFit" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y9e-7H-JDt" customClass="GHButton">
+                                                    <rect key="frame" x="8" y="22" width="69" height="57"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="artworkPath" value="Artwork/ReloadButton"/>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="artInsetFraction">
+                                                            <real key="value" value="0.14999999999999999"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="Y9e-7H-JDt" firstAttribute="leading" secondItem="c5x-kK-kBz" secondAttribute="leadingMargin" id="NC4-3C-V8u"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="Y9e-7H-JDt" secondAttribute="bottom" id="Wth-V0-bJk"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="Y9e-7H-JDt" secondAttribute="trailing" id="j18-Zs-GXm"/>
+                                            <constraint firstItem="Y9e-7H-JDt" firstAttribute="top" secondItem="c5x-kK-kBz" secondAttribute="topMargin" id="kuM-1p-CGX"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="button" destination="Y9e-7H-JDt" id="wXI-RL-y6G"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="esd-Xo-2sa" secondAttribute="trailing" id="7Eo-L7-Jok"/>
+                            <constraint firstItem="esd-Xo-2sa" firstAttribute="leading" secondItem="ryT-uM-hYN" secondAttribute="leadingMargin" id="FSf-fe-EIk"/>
+                            <constraint firstItem="esd-Xo-2sa" firstAttribute="top" secondItem="Ev5-ga-8Mc" secondAttribute="bottom" constant="60" id="RYE-wr-RtM"/>
+                            <constraint firstItem="w05-Ie-bhc" firstAttribute="top" secondItem="esd-Xo-2sa" secondAttribute="bottom" constant="8" symbolic="YES" id="ybf-QU-0LA"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Buttons" id="RPq-2u-0DV" customClass="SVGTabBarItem">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="artworkPath" value="Artwork/Butterfly"/>
+                            <userDefinedRuntimeAttribute type="color" keyPath="baseColor">
+                                <color key="value" red="0.71372549019999998" green="0.78039215689999997" blue="0.7843137255" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="selectedColor">
+                                <color key="value" red="0.0" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </tabBarItem>
+                    <connections>
+                        <outlet property="collectionView" destination="esd-Xo-2sa" id="5q5-Ic-kBU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QD6-D2-HwB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="717" y="1666"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="9Z3-7R-MGa">
+            <objects>
+                <tabBarController storyboardIdentifier="widgets" useStoryboardIdentifierAsRestorationIdentifier="YES" id="2Le-PK-aPF" sceneMemberID="viewController">
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="vTp-aH-pf1">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="O7R-Ob-Wea" kind="relationship" relationship="viewControllers" id="7xi-ti-uoK"/>
+                        <segue destination="AMx-i8-6TZ" kind="relationship" relationship="viewControllers" id="m94-Fq-wyn"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rqq-Ve-IQ1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="36" y="1940"/>
         </scene>
     </scenes>
 </document>

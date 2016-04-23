@@ -56,14 +56,12 @@
     
     [self.segmentedControl insertSegmentWithRenderer:aRenderer accessibilityLabel:NSLocalizedString(@"Eye", @"") atIndex:1 animated:NO];
 	
-	aRenderer = [[SVGRenderer alloc] initWithResourceName:@"Artwork/Butterfly" inBundle:nil];
+	aRenderer = [[SVGRenderer alloc] initWithResourceName:@"Artwork/Widgets" inBundle:nil];
 	
-    [self.segmentedControl insertSegmentWithRenderer:aRenderer accessibilityLabel:NSLocalizedString(@"Butterfly", @"") atIndex:2 animated:NO];
+    [self.segmentedControl insertSegmentWithRenderer:aRenderer accessibilityLabel:NSLocalizedString(@"Widgets", @"") atIndex:2 animated:NO];
     [self.segmentedControl insertSegmentWithTitle:NSLocalizedString(@"Curvy", @"") atIndex:3 animated:NO];
     self.segmentedControl.selectedSegmentIndex = 0;
 
-    
-    
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -138,7 +136,7 @@
             controlIdentifier = @"eyes";
         break;
         case 2:
-            controlIdentifier = @"creatures";
+            controlIdentifier = @"widgets";
         break;
         case 3:
             controlIdentifier = @"textOnCurve";
