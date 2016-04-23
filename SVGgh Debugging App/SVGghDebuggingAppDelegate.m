@@ -35,7 +35,9 @@
 {
     [super initialize];
     [GHControlFactory setDefaultScheme:kColorSchemeClear];
-    [GHControlFactory setDefaultTextColor:UIColorFromSVGColorString(@"#FFCC66")]; // this will make the recyle button have a mustartd fill
+    [GHControlFactory setDefaultTextColor:UIColorFromSVGColorString(@"#FFCC66")]; // this will make the recyle button have a mustard fill
+    
+    [[UIBarButtonItem appearance] setTintColor:UIColorFromSVGColorString(@"navy")]; //  so that there is a default tinting
     
 }
 

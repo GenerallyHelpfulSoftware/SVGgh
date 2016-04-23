@@ -14,7 +14,7 @@
 
 @implementation SVGTabBarItem
 
--(void) updateImages
+-(void) updateImagesForcingImage:(BOOL)forceNewImage forcingSelectedImage:(BOOL) forceNewSelectedImage
 {
     CGFloat scale =  [[UIScreen mainScreen] scale];
 #if TARGET_OS_TV
@@ -24,7 +24,10 @@
 #endif
     CGSize  imageSize = CGSizeMake(baseDimension, baseDimension);
     
-    if(self.image == nil && self.artworkPath.length)
+    UIImage* startingSelectedImage = self.selectedImage;
+    UIImage* startingImage = self.image;
+    
+    if((startingImage == nil || forceNewImage) && self.artworkPath.length)
     {
         NSURL*  myArtwork = [GHControlFactory locateArtworkForObject:self atSubpath:self.artworkPath];
         
@@ -42,7 +45,7 @@
         }
     }
     
-    if(self.selectedImage == nil)
+    if(startingSelectedImage == nil || forceNewSelectedImage)
     {
         UIColor* selectedColor = self.nominalSelectedColor;
         NSString* artworkPathToUse = self.selectedArtworkPath;
@@ -74,7 +77,7 @@
     {
         _artworkPath = artworkPath;
         self.image = nil;
-        [self updateImages];
+        [self updateImagesForcingImage:YES forcingSelectedImage:self.selectedArtworkPath.length == 0];
     }
     
 }
@@ -85,7 +88,7 @@
     {
         _selectedArtworkPath = selectedArtworkPath;
         self.selectedImage = nil;
-        [self updateImages];
+        [self updateImagesForcingImage:NO forcingSelectedImage:YES];
     }
 }
 
@@ -115,14 +118,14 @@
 {
     _baseColor = baseColor;
     self.image = nil;
-    [self updateImages];
+    [self updateImagesForcingImage:YES forcingSelectedImage:NO];
 }
 
 -(void) setSelectedColor:(UIColor *)selectedColor
 {
     _selectedColor = selectedColor;
     self.selectedImage = nil;
-    [self updateImages];
+    [self updateImagesForcingImage:NO forcingSelectedImage:YES];
 }
 
 +(void)makeSureLoaded
