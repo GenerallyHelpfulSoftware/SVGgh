@@ -487,6 +487,27 @@ typedef enum GHSegmentType
     CGContextRestoreGState(quartzContext);
 }
 
+-(void) setSelected:(BOOL)selected
+{
+    if(selected != _selected)
+    {
+        _selected = selected;
+        [self.layer setNeedsLayout];
+        [self.layer setNeedsDisplay];
+    }
+}
+
+-(void) setIsHighlighted:(BOOL)isHighlighted
+{
+    if(isHighlighted != _isHighlighted)
+    {
+        _isHighlighted = isHighlighted;
+        [self.layer setNeedsLayout];
+        [self.layer setNeedsDisplay];
+        
+    }
+}
+
 @end
 
 
@@ -720,8 +741,44 @@ typedef enum GHSegmentType
 -(void) setSelectedSegmentIndex:(NSInteger)selectedSegmentIndex
 {
     _selectedSegmentIndex = selectedSegmentIndex;
+    _trackedSegmentIndex = NSNotFound;
     [self syncSelectedIndex];
     
+}
+
+-(void) setTrackedSegmentIndex:(NSUInteger)trackedSegmentIndex
+{
+    if(trackedSegmentIndex != _trackedSegmentIndex)
+    {
+        _trackedSegmentIndex = trackedSegmentIndex;
+        [self syncTrackedIndex];
+    }
+}
+
+-(void) syncTrackedIndex
+{
+    NSInteger index = 0;
+    for(UIView* aView in self.subviews)
+    {
+        if([aView isKindOfClass:[GHSegmentedControlSegmentView class]])
+        {
+            GHSegmentedControlSegmentView* segmentView = (GHSegmentedControlSegmentView*)aView;
+            UIColor* currentColor = nil;
+            if(self.trackedSegmentIndex == index)
+            {
+                currentColor = [self.control textColorPressed];
+                segmentView.isHighlighted = YES;
+            }
+            else
+            {
+                currentColor = [self.control textColor];
+                segmentView.isHighlighted = NO;
+            }
+            segmentView.currentColor = currentColor;
+            index++;
+        }
+    }
+
 }
 
 -(void) syncSelectedIndex
@@ -735,7 +792,7 @@ typedef enum GHSegmentType
             UIColor* currentColor = nil;
             if(self.selectedSegmentIndex == index)
             {
-                currentColor = [self.control textColorPressed];
+                currentColor = [self.control textColorSelected];
                 segmentView.selected = YES;
             }
             else
@@ -1290,6 +1347,10 @@ typedef enum GHSegmentType
     {
         self.selectedSegmentIndex = trackedSegmentIndex;
         [self sendActionsForControlEvents:UIControlEventValueChanged];
+    }
+    else if(trackedSegmentIndex == self.contentView.selectedSegmentIndex)
+    {
+        self.selectedSegmentIndex = trackedSegmentIndex;
     }
     self.contentView.trackedSegmentIndex = NSNotFound;
     [super endTrackingWithTouch:touch withEvent:event];
