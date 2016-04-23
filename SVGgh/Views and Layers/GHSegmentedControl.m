@@ -842,6 +842,7 @@ typedef enum GHSegmentType
 {
     [super setupForScheme:aScheme];
     [self setNeedsDisplay];
+    [self setNeedsLayout];
     self.layer.opaque = NO;
 }
 
