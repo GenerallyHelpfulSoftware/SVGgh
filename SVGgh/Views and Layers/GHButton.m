@@ -95,6 +95,21 @@
     return [GHButtonLayer class];
 }
 
+- (instancetype) initWithFrame:(CGRect)frame
+{
+    if(nil != (self = [super initWithFrame:frame]))
+    {
+    }
+    return self;
+}
+
+-(instancetype) initWithCoder:(NSCoder *)aDecoder
+{
+    if(nil != (self = [super initWithCoder:aDecoder]))
+    {
+    }
+    return self;
+}
 
 #if TARGET_OS_TV
 -(UIView*) preferredFocusView
