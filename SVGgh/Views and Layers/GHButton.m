@@ -416,9 +416,8 @@
     {
         baseColor = [GHControlFactory newPressedColorForColor:baseColor forScheme:self.scheme];
     }
-    [baseColor setFill];
-    
-    UIRectFill(bounds);
+    CGContextSetFillColorWithColor(quartzContext, baseColor.CGColor);
+    CGContextAddRect(quartzContext, bounds);
     
     CGContextRestoreGState(quartzContext);
 }
