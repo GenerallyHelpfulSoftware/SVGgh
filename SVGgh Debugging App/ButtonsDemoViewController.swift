@@ -28,7 +28,7 @@ class ButtonCell: UICollectionViewCell
 
 
 
-class ButtonsDemoViewController: UIViewController, UICollectionViewDataSource {
+class ButtonsDemoViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +46,7 @@ class ButtonsDemoViewController: UIViewController, UICollectionViewDataSource {
         didSet
         {
             collectionView.dataSource = self
+            collectionView.delegate = self
             collectionView.reloadData()
         }
     }
@@ -61,12 +62,11 @@ class ButtonsDemoViewController: UIViewController, UICollectionViewDataSource {
         return result
     }
     
-    
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let result = tableView.dequeueReusableCellWithIdentifier("ButtonCell", forIndexPath: indexPath) as! SegmentedDemoTableCell
-        result.colorScheme = ColorScheme(indexPath.row)
-        return result
+    func collectionView(collectionView : UICollectionView,layout collectionViewLayout:UICollectionViewLayout,sizeForItemAtIndexPath indexPath:NSIndexPath) -> CGSize
+    {
+        let baseSize = CGFloat(floor(fmin(self.view.bounds.width, self.view.bounds.height)/5.0))
+        return CGSize(width: baseSize, height: baseSize)
     }
-
+    
+    
 }

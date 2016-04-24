@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -270,18 +271,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="um6-8g-rbh">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="56" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="um6-8g-rbh">
                                 <rect key="frame" x="16" y="28" width="288" height="395"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SegmentCell" id="XXq-K3-qJi" customClass="SegmentedDemoTableCell" customModule="SVGgh_Debugging_App" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="288" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="288" height="56"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XXq-K3-qJi" id="Fo6-U8-qOO">
-                                            <rect key="frame" x="0.0" y="0.0" width="288" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="288" height="56"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BWe-Hh-CmN" customClass="GHSegmentedControl">
+                                                <view opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BWe-Hh-CmN" customClass="GHSegmentedControl">
                                                     <rect key="frame" x="8" y="8" width="272" height="28"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <userDefinedRuntimeAttributes>
@@ -406,7 +407,9 @@
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="esd-Xo-2sa" secondAttribute="trailing" id="7Eo-L7-Jok"/>
                             <constraint firstItem="esd-Xo-2sa" firstAttribute="leading" secondItem="ryT-uM-hYN" secondAttribute="leadingMargin" id="FSf-fe-EIk"/>
-                            <constraint firstItem="esd-Xo-2sa" firstAttribute="top" secondItem="Ev5-ga-8Mc" secondAttribute="bottom" constant="60" id="RYE-wr-RtM"/>
+                            <constraint firstItem="esd-Xo-2sa" firstAttribute="top" secondItem="Ev5-ga-8Mc" secondAttribute="bottom" constant="60" id="RYE-wr-RtM">
+                                <variation key="heightClass=regular-widthClass=regular" constant="250"/>
+                            </constraint>
                             <constraint firstItem="w05-Ie-bhc" firstAttribute="top" secondItem="esd-Xo-2sa" secondAttribute="bottom" constant="8" symbolic="YES" id="ybf-QU-0LA"/>
                         </constraints>
                     </view>
