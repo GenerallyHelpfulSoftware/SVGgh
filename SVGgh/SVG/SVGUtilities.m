@@ -1129,7 +1129,7 @@ NSDictionary<NSString*, NSString*>* WebNameMapping()
           @"honeydew":@"#f0fff0",
           @"hotpink":@"#ff69b4",
           @"indianred":@"#cd5c5c",
-          @"indigo ":@"#4b0082",
+          @"indigo":@"#4b0082",
           @"ivory":@"#fffff0",
           @"khaki":@"#f0e68c",
           @"lavender":@"#e6e6fa",
@@ -1249,7 +1249,7 @@ UIColor* UIColorFromSVGColorString (NSString * stringToConvert)
     UIColor* result = [sCache objectForKey:stringToConvert];
     if(result == nil)
     {
-        NSString *cString = [[stringToConvert stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] uppercaseString];
+        NSString *cString = [stringToConvert stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         // strip 0X if it appears
         unsigned int r = 0, g = 0, b = 0;
         CGFloat alpha = 1.0;
@@ -1307,7 +1307,7 @@ UIColor* UIColorFromSVGColorString (NSString * stringToConvert)
                 [[NSScanner scannerWithString:bString] scanHexInt:&b];
             }
         }
-        else if([stringToConvert hasPrefix:@"rgb"])
+        else if([stringToConvert hasPrefix:@"rgb"] || [stringToConvert hasPrefix:@"RGB"])
         {
             NSString*	trimmedString = [stringToConvert stringByTrimmingCharactersInSet:[[NSCharacterSet characterSetWithCharactersInString:@"()"] invertedSet]];
             if([trimmedString length])
@@ -1362,108 +1362,17 @@ UIColor* UIColorFromSVGColorString (NSString * stringToConvert)
         }
         else
         {
-            if([stringToConvert isEqualToString:@"blue"])
-            {
-                r = 0;
-                g = 0;
-                b = 255;
-            }
-            else if([stringToConvert isEqualToString:@"black"])
+            if([stringToConvert isEqualToString:@"black"])
             {
                 r = 0;
                 g = 0;
                 b = 0;
-            }
-            else if([stringToConvert isEqualToString:@"silver"])
-            {
-                r = 192;
-                g = 192;
-                b = 192;
-            }
-            else if([stringToConvert isEqualToString:@"gray"]
-                    || [stringToConvert isEqualToString:@"grey"])
-            {
-                r = 128;
-                g = 128;
-                b = 128;
             }
             else if([stringToConvert isEqualToString:@"white"])
             {
                 r = 255;
                 g = 255;
                 b = 255;
-            }
-            else if([stringToConvert isEqualToString:@"maroon"])
-            {
-                r = 128;
-                g = 0;
-                b = 0;
-            }
-            else if([stringToConvert isEqualToString:@"red"])
-            {
-                r = 255;
-                g = 0;
-                b = 0;
-            }
-            else if([stringToConvert isEqualToString:@"purple"])
-            {
-                r = 128;
-                g = 0;
-                b = 128;
-            }
-            else if([stringToConvert isEqualToString:@"fuchsia"] || [stringToConvert isEqualToString:@"magenta"])
-            {
-                r = 255;
-                g = 0;
-                b = 255;
-            }
-            else if([stringToConvert isEqualToString:@"green"])
-            {
-                r = 0;
-                g = 128;
-                b = 0;
-            }
-            else if([stringToConvert isEqualToString:@"lime"])
-            {
-                r = 0;
-                g = 255;
-                b = 0;
-            }
-            else if([stringToConvert isEqualToString:@"olive"])
-            {
-                r = 128;
-                g = 128;
-                b = 0;
-            }
-            else if([stringToConvert isEqualToString:@"yellow"])
-            {
-                r = 255;
-                g = 255;
-                b = 0;
-            }
-            else if([stringToConvert isEqualToString:@"navy"])
-            {
-                r = 0;
-                g = 0;
-                b = 128;
-            }
-            else if([stringToConvert isEqualToString:@"teal"])
-            {
-                r = 0;
-                g = 128;
-                b = 128;
-            }
-            else if([stringToConvert isEqualToString:@"aqua"] || [stringToConvert isEqualToString:@"cyan"])
-            {
-                r = 0;
-                g = 255;
-                b = 255;
-            }
-            else if([stringToConvert isEqualToString:@"pink"])
-            {
-                r=255;
-                g=192;
-                b=203;
             }
             else if([stringToConvert isEqualToString:@"none"] || [stringToConvert isEqualToString:@"transparent"])
             { // I've been told that sometimes web developers will use 'transparent' then the more proper color is 'none'
@@ -1565,7 +1474,8 @@ UIColor* UIColorFromSVGColorString (NSString * stringToConvert)
             }
             else
             {
-                result = UIColorFromWebName(stringToConvert);
+                NSString* lowerCaseStringToConvert = [stringToConvert lowercaseString];
+                result = UIColorFromWebName(lowerCaseStringToConvert);
                 if(result == nil)
                 {
                     [sCache setObject:[NSNull null] forKey:stringToConvert cost:4];
