@@ -33,7 +33,14 @@ const CGFloat kRingThickness = 2.0;
 const CGFloat kRoundButtonRadius = 8.0;
 const CGFloat kShadowInset = 3.0;
 @interface GHControl ()
+@property(nonatomic, strong) UIColor* explicitBaseColor;
+@property(nonatomic, strong) UIColor* explicitPressedColor;
+@property(nonatomic, strong) UIColor* explicitSelectedColor;
 
+
+@property(nonatomic, strong) UIColor* defaultBaseColor;
+@property(nonatomic, strong) UIColor* defaultPressedColor;
+@property(nonatomic, strong) UIColor* defaultSelectedColor;
 
 @end
 
@@ -114,8 +121,8 @@ const CGFloat kShadowInset = 3.0;
     CGGradientRelease(pressed);
     CGGradientRelease(selected);
     
-    self.textColor = [GHControlFactory newTextColorForScheme:aScheme];
-    self.textColorPressed = [GHControlFactory newTextColorPressedForScheme:aScheme];
+    self.defaultBaseColor = [GHControlFactory newTextColorForScheme:aScheme];
+    self.defaultPressedColor = [GHControlFactory newTextColorPressedForScheme:aScheme];
     self.ringColor = [GHControlFactory newRingColorForScheme:aScheme];
     self.textShadowColor = [GHControlFactory newLightBackgroundColorForScheme:aScheme];
     self.useRadialGradient = [GHControlFactory preferRadialGradientForScheme:aScheme];
@@ -143,14 +150,14 @@ const CGFloat kShadowInset = 3.0;
             
             if([GHControlFactory textColor] == nil)
             {
-                self.textColor = self.tintColor;
+                self.defaultBaseColor = self.tintColor;
             }
             if([GHControlFactory pressedTextColor] == nil)
             {
                 //self.
             }
             
-            self.textColorSelected = self.textColorPressed;
+            self.defaultSelectedColor = self.defaultPressedColor;
         }
         break;
         case kColorSchemeFlatAndBoxy:
@@ -162,6 +169,54 @@ const CGFloat kShadowInset = 3.0;
         break;
     }
 }
+
+-(void) setTextColor:(UIColor *)textColor
+{
+    self.explicitBaseColor = textColor;
+}
+
+-(UIColor*) textColor
+{
+    UIColor* result = self.explicitBaseColor;
+    if(result == nil)
+    {
+        result = self.defaultBaseColor;
+    }
+    return result;
+}
+
+-(void) setTextColorPressed:(UIColor *)textColorPressed
+{
+    self.explicitPressedColor = textColorPressed;
+}
+
+-(UIColor*) textColorPressed
+{
+    UIColor* result = self.explicitPressedColor;
+    if(result == nil)
+    {
+        result = self.defaultPressedColor;
+    }
+    return result;
+}
+
+
+-(void) setTextColorSelected:(UIColor *)textColorSelected
+{
+    self.explicitSelectedColor = textColorSelected;
+}
+
+-(UIColor*) textColorSelected
+{
+    UIColor* result = self.explicitSelectedColor;
+    if(result == nil)
+    {
+        result = self.defaultSelectedColor;
+    }
+    return result;
+
+}
+
 
 -(void) setEnabled:(BOOL)enabled
 {
