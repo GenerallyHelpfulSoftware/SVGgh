@@ -34,6 +34,7 @@
 @property (weak, nonatomic) IBOutlet GHSegmentedControl *segmentedControl;
 @property (weak, nonatomic) IBOutlet UIView *containerView;
 @property (assign, nonatomic) NSInteger lastSelectedSegment;
+@property (weak, nonatomic) IBOutlet GHButton* printButton;
 
 @end
 
@@ -143,7 +144,7 @@
         break;
     }
     
-    UIViewController* artworkController = [self.storyboard instantiateViewControllerWithIdentifier:controlIdentifier];
+    UIViewController* embeddedController = [self.storyboard instantiateViewControllerWithIdentifier:controlIdentifier];
     UIViewController* oldController = nil;
     CGRect endBounds = self.containerView.bounds;
     CGRect leftStartRect = CGRectMake(-endBounds.size.width, endBounds.origin.y, endBounds.size.width, endBounds.size.height);
@@ -152,12 +153,12 @@
     
     if(self.lastSelectedSegment > selectedSegment)
     {
-        artworkController.view.frame = leftStartRect;
+        embeddedController.view.frame = leftStartRect;
         terminalBounds = rightStartRect;
     }
     else
     {
-        artworkController.view.frame = rightStartRect;
+        embeddedController.view.frame = rightStartRect;
     }
     
     self.lastSelectedSegment = selectedSegment;
@@ -171,29 +172,38 @@
             break;
         }
     }
-    
-    self.svgView = (SVGDocumentView*)artworkController.view;
-    
+	
+	if ([embeddedController.view isKindOfClass:[SVGDocumentView class]])
+	{
+		self.svgView = (SVGDocumentView*)embeddedController.view;
+		self.printButton.enabled = YES;
+	}
+	else
+	{
+		self.svgView = nil;
+		self.printButton.enabled = NO;
+	}
+	
     if(oldController == nil)
     {
-        [self addChildViewController:artworkController];
-        artworkController.view.frame = endBounds;
-        [self.containerView addSubview:artworkController.view];
-        [artworkController didMoveToParentViewController:self];
+        [self addChildViewController:embeddedController];
+        embeddedController.view.frame = endBounds;
+        [self.containerView addSubview:embeddedController.view];
+        [embeddedController didMoveToParentViewController:self];
         
         UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, nil);
     }
     else
     {
         [oldController willMoveToParentViewController:nil];
-        [self addChildViewController:artworkController];
-        [self transitionFromViewController:oldController toViewController:artworkController duration:0.35 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-            artworkController.view.frame = endBounds;
+        [self addChildViewController:embeddedController];
+        [self transitionFromViewController:oldController toViewController:embeddedController duration:0.35 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            embeddedController.view.frame = endBounds;
             oldController.view.frame = terminalBounds;
             
         } completion:^(BOOL finished) {
             [oldController removeFromParentViewController];
-            [artworkController didMoveToParentViewController:self];
+            [embeddedController didMoveToParentViewController:self];
             
             UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, nil);
         }];
