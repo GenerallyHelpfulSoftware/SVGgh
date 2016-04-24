@@ -321,7 +321,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Segmented" id="Afw-yb-Uab" customClass="SVGTabBarItem">
                         <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="string" keyPath="artworkPath" value="Artwork/Eye"/>
+                            <userDefinedRuntimeAttribute type="string" keyPath="artworkPath" value="Artwork/Segment"/>
                             <userDefinedRuntimeAttribute type="color" keyPath="baseColor">
                                 <color key="value" red="0.71372549019999998" green="0.78039215689999997" blue="0.7843137255" alpha="1" colorSpace="calibratedRGB"/>
                             </userDefinedRuntimeAttribute>
@@ -412,7 +412,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Buttons" id="RPq-2u-0DV" customClass="SVGTabBarItem">
                         <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="string" keyPath="artworkPath" value="Artwork/Butterfly"/>
+                            <userDefinedRuntimeAttribute type="string" keyPath="artworkPath" value="Artwork/Button"/>
                             <userDefinedRuntimeAttribute type="color" keyPath="baseColor">
                                 <color key="value" red="0.71372549019999998" green="0.78039215689999997" blue="0.7843137255" alpha="1" colorSpace="calibratedRGB"/>
                             </userDefinedRuntimeAttribute>
