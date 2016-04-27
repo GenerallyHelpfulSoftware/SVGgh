@@ -115,10 +115,6 @@
         NSBundle* myBundle = originalBundle ?: [NSBundle mainBundle];
         
 #if TARGET_INTERFACE_BUILDER
-        if(myArtwork == nil)
-        {
-           // myArtwork = [GHControlFactory findInterfaceBuilderArtwork:artworkPath];
-        }
 #else
         renderer = [[SVGghLoaderManager loader] loadRenderForSVGIdentifier:artworkPath inBundle:myBundle];
 #endif
