@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg x="0px" height="1000" viewport-fill="white" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink" width="1000" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0, 0, 1000, 1000">
+<defs>
+<path d="M 500 100 A 400 400 0 1 1 500 900 A 400 400 0 1 1 500 100 Z" id="CIRCLE_TEXT_PATH" stroke="none" fill="none"/>
+<path d="M 100 400 500 400" id="LINE_TEXT_PATH" stroke="none" fill="none"/>
+
+<path d="M 100 800 Q 300 500 500 800 T 900 800" stroke="none" fill="none" id="WAVE_TEXT_PATH"/>
+
+</defs>
+
+
+
+<rect fill="none" stroke="blue" x="252" y="354" width="180" height="10"/>
+
+<text stroke="none" font-size="150" font-family="Georgia"  fill="green" color="#228B22"><textPath xlink:href="#LINE_TEXT_PATH">W–––</textPath>
+</text>
+
+
+<path d="M 500 100 A 400 400 0 1 1 500 900 " stroke="black" fill="none"/>
+<text stroke="none" font-size="150" font-family="Georgia"  x="24" y="120" fill="green" color="#228B22">G</text>
+<text stroke="none" font-size="150" font-family="Georgia"  fill="green" color="#228B22"><textPath xlink:href="#CIRCLE_TEXT_PATH">⊥––⊥</textPath>
+</text>
+
+
+<text stroke="none" font-size="25" font-family="Georgia"  fill="green" color="#228B22"><textPath xlink:href="#WAVE_TEXT_PATH">Wavy text oscilating up and down, and then back up. Relaxing really. But it all has to end.</textPath>
+</text>
+
+<rect fill="none" stroke="blue" x="29" y="12" width="104" height="111" />
+
+
+
+<circle fill="red" r="4" cx="560.5" cy="10" />
+<circle fill="red" r="4" cx="550" cy="99" />
+
+
+<circle fill="red" r="4" cx="620" cy="73" />
+<circle fill="red" r="4" cx="695" cy="102" />
+
+
+<circle fill="red" r="4" cx="870" cy="176" />
+<circle fill="red" r="4" cx="804" cy="234" />
+</svg>

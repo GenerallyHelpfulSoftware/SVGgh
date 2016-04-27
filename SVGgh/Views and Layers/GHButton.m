@@ -31,6 +31,7 @@
 #import "GHControlFactory.h"
 #import "SVGRenderer.h"
 
+#import "SVGgh.h"
 
 @interface KeyboardPressedPopup : UIView
 @property(nonatomic, weak) GHButton* parent;
@@ -605,11 +606,10 @@
 
 -(void)drawArtworkAtPath:(NSString*)theArtworkPath intoContext:(CGContextRef)quartzContext bounds:(CGRect)bounds
 {
-    NSURL*  myArtwork = [GHControlFactory locateArtworkForObject:self atSubpath:theArtworkPath];
+    SVGRenderer* renderer = [[SVGghLoaderManager loader] loadRenderForSVGIdentifier:theArtworkPath inBundle:nil];
     
-    if(myArtwork != nil)
-    {// draw my SVG
-        SVGRenderer* renderer = [[SVGRenderer alloc] initWithContentsOfURL:myArtwork];
+    if(renderer != nil)
+    {
         [self drawArtWithRenderer:renderer intoContext:quartzContext bounds:bounds];
     }
 }
@@ -913,12 +913,11 @@
 
 -(void)drawArtworkAtPath:(NSString*)theArtworkPath intoContext:(CGContextRef)quartzContext
 {
+    SVGRenderer* renderer = [[SVGghLoaderManager loader] loadRenderForSVGIdentifier:theArtworkPath inBundle:nil];
     
-    NSURL*  myArtwork = [GHControlFactory locateArtworkForObject:self atSubpath:theArtworkPath];;
-    if(myArtwork != nil)
+    if(renderer != nil)
     {
         CGContextSaveGState(quartzContext);
-        SVGRenderer* renderer = [[SVGRenderer alloc] initWithContentsOfURL:myArtwork];
         
         renderer.currentColor = self.parent.textColor;
         

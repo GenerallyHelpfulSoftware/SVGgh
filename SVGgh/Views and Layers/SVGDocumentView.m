@@ -29,6 +29,7 @@
 #import "SVGDocumentView.h"
 #import "SVGRendererLayer.h"
 #import "GHControlFactory.h" // for findInterfaceBuilderArtwork
+#import "SVGghLoader.h"
 
 @interface SVGDocumentView (Private)
 -(SVGRendererLayer*)renderingLayer;
@@ -109,18 +110,20 @@
     
     if(artworkPath.length)
     {
+        SVGRenderer* renderer = nil;
+        
         NSBundle* myBundle = originalBundle ?: [NSBundle mainBundle];
-        NSURL*  myArtwork = [myBundle URLForResource:self.artworkPath withExtension:@"svg"];
         
 #if TARGET_INTERFACE_BUILDER
         if(myArtwork == nil)
         {
            // myArtwork = [GHControlFactory findInterfaceBuilderArtwork:artworkPath];
         }
+#else
+        renderer = [[SVGghLoaderManager loader] loadRenderForSVGIdentifier:artworkPath inBundle:myBundle];
 #endif
-        if(myArtwork != nil)
+        if(renderer != nil)
         {
-            SVGRenderer* renderer = [[SVGRenderer alloc] initWithContentsOfURL:myArtwork];
             self.renderer = renderer;
         }
 #if TARGET_IPHONE_SIMULATOR

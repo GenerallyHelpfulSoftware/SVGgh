@@ -57,8 +57,11 @@ NS_ASSUME_NONNULL_BEGIN
 */
 -(instancetype)initWithString:(NSString*)utf8String;
 
-
-
+/*! @brief init method which takes an SVG document which already exists as a string
+ * @param assetName string which will be based to constructor of NSDataAsset
+ * @param bundle optional bundle, if nil, the main bundle will be used.
+ */
+-(nullable  instancetype) initWithDataAssetNamed:(NSString*)assetName withBundle:(nullable NSBundle*)bundle NS_AVAILABLE_IOS(9_0);
 
 
 /*! @brief not allowing a standard init method

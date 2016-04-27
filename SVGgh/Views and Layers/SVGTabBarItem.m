@@ -9,7 +9,7 @@
 #import "SVGTabBarItem.h"
 
 #import "SVGRenderer.h"
-#import "GHControlFactory.h"
+#import "SVGghLoader.h"
 
 
 @implementation SVGTabBarItem
@@ -29,11 +29,10 @@
     
     if((startingImage == nil || forceNewImage) && self.artworkPath.length)
     {
-        NSURL*  myArtwork = [GHControlFactory locateArtworkForObject:self atSubpath:self.artworkPath];
+        SVGRenderer* renderer = [[SVGghLoaderManager loader] loadRenderForSVGIdentifier:self.artworkPath inBundle:nil];
         
-        if(myArtwork != nil)
+        if(renderer != nil)
         {// draw my SVG
-            SVGRenderer* renderer = [[SVGRenderer alloc] initWithContentsOfURL:myArtwork];
             renderer.currentColor = self.nominalBaseColor;
             UIImage* image = [renderer asImageWithSize:imageSize andScale:scale];
             if(self.nominalBaseColor != nil)
@@ -55,10 +54,9 @@
         }
         if(artworkPathToUse.length)
         {
-            NSURL*  myArtwork = [GHControlFactory locateArtworkForObject:self atSubpath:artworkPathToUse];
-            if(myArtwork != nil)
+            SVGRenderer* renderer = renderer = [[SVGghLoaderManager loader] loadRenderForSVGIdentifier:artworkPathToUse inBundle:nil];
+            if(renderer != nil)
             {
-                SVGRenderer* renderer = [[SVGRenderer alloc] initWithContentsOfURL:myArtwork];
                 renderer.currentColor = selectedColor;
                 UIImage* image = [renderer asImageWithSize:imageSize andScale:scale];
                 if(selectedColor != nil)

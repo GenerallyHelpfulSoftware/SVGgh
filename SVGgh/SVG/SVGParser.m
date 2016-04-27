@@ -27,6 +27,7 @@
 //  Created by Glenn Howes on 2/2/11.
 //
 
+@import UIKit;
 #import "SVGParser.h"
 #import "GHAttributedObject.h"
 
@@ -196,6 +197,37 @@
     return self;
 }
 
+-(nullable instancetype) initWithDataAssetNamed:(NSString*)assetName withBundle:(nullable NSBundle*)bundle
+{
+    Class dataAssetClass = NSClassFromString(@"NSDataAsset");
+    if(dataAssetClass != nil)
+    {
+        NSDataAsset* asset = [(NSDataAsset*)[dataAssetClass alloc] initWithName:assetName bundle: bundle];
+        if(asset == nil || asset.data.length == 0)
+        {
+           return nil;
+        }
+        else  if(nil != (self = [super init]))
+        {
+            NSXMLParser* theParser = [[NSXMLParser alloc] initWithData:asset.data];
+            [theParser setDelegate:self];
+            [theParser parse];
+            self.parserError = [theParser parserError];
+            self.root = [self.mutableRoot copy];
+            if(self.parserError != nil)
+            {
+                self = nil;
+            }
+        }
+    }
+    else
+    {
+        return nil;
+    }
+    return self;
+    
+}
+
 -(nullable NSDictionary*) root
 {
     NSDictionary* result = _root;
@@ -208,8 +240,12 @@
 
 -(NSURL*)	relativeURL:(NSString*)subPath
 {
-	NSURL*	result = [self.svgURL URLByDeletingLastPathComponent];
-	result = [result URLByAppendingPathComponent:subPath];
+    NSURL*	result = nil;
+    if(self.svgURL != nil)
+    {
+        result = [self.svgURL URLByDeletingLastPathComponent];
+        result = [result URLByAppendingPathComponent:subPath];
+    }
 	return result;
 }
 

@@ -58,9 +58,14 @@
     [self.segmentedControl insertSegmentWithRenderer:aRenderer accessibilityLabel:NSLocalizedString(@"Eye", @"") atIndex:1 animated:NO];
 	
 	aRenderer = [[SVGRenderer alloc] initWithResourceName:@"Artwork/Widgets" inBundle:nil];
+#if TARGET_OS_TV
 	
-    [self.segmentedControl insertSegmentWithRenderer:aRenderer accessibilityLabel:NSLocalizedString(@"Widgets", @"") atIndex:2 animated:NO];
-    [self.segmentedControl insertSegmentWithTitle:NSLocalizedString(@"Curvy", @"") atIndex:3 animated:NO];
+	[self.segmentedControl insertSegmentWithTitle:NSLocalizedString(@"Curvy", @"") atIndex:2 animated:NO];
+#else
+	
+	[self.segmentedControl insertSegmentWithRenderer:aRenderer accessibilityLabel:NSLocalizedString(@"Widgets", @"") atIndex:2 animated:NO];
+	[self.segmentedControl insertSegmentWithTitle:NSLocalizedString(@"Curvy", @"") atIndex:3 animated:NO];
+#endif
     self.segmentedControl.selectedSegmentIndex = 0;
 
 	// Do any additional setup after loading the view, typically from a nib.

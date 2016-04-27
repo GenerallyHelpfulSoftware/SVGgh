@@ -34,10 +34,23 @@
 +(void) initialize
 {
     [super initialize];
+    
+    #if  __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_9_0 // otherwise, the asset files will not be properly created.
+        NSString* systemVersion = [UIDevice currentDevice].systemVersion;
+        
+        if(systemVersion.doubleValue >= 9.0) // normally you would not use this option unless your base target was iOS 9 or above
+        {
+            [SVGghLoaderManager setLoaderToType:SVGghLoaderTypeDataXCAsset];
+        }
+    #else
+    // just use default resource method
+    #endif
+    
     [GHControlFactory setDefaultScheme:kColorSchemeClear];
     [GHControlFactory setDefaultTextColor:UIColorFromSVGColorString(@"#FFCC66")]; // this will make the recyle button have a mustard fill
     
     [[UIBarButtonItem appearance] setTintColor:UIColorFromSVGColorString(@"navy")]; //  so that there is a default tinting
+    
     
 }
 

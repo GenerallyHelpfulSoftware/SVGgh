@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg x="0px" height="512" viewport-fill="cyan" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink" width="512" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0, 0, 512, 512">
+<defs xml:id="Defs">
+<g id="Iris">
+<circle cx="50" r="45" fill="currentColor" cy="50"/>
+<path d="M95 50 L50 50 M94.56 56.26 L50 50 M93.26 62.4 L50 50 M91.11 68.30 L50 50 M88.16 73.85 L50 50 M84.47 78.93 L50 50 M 80.11 83.44 L50 50 M75.16 87.31 L50 50 M69.73 90.45 L50 50 M63.91 92.80 L50 50 M57.814 94.316 L50 50M 51.57 94.97 L50 50 M45.3 94.75 L50 50 M39.11 93.66 L50 50 M33.14 91.72 L50 50 M27.5 88.97 L50 50  M22.3 85.46 L50 50M17.63 81.26 L50 50 M13.59 76.45 L50 50 M10.27 71.13 L50 50 M7.714 65.39 L50 50M5.983 59.36 L50 50 M5.11 53.14 L50 50 M5.11 46.86 L50 50M5.983 40.64L50 50M7.71 34.61L50 50 M10.27 28.87L50 50M13.59 23.55L50 50M17.63 18.74L50 50M22.3 14.54L50 50 M27.5 11.03 L50 50M33.14 8.28 L50 50M39.11 6.337L50 50M45.3 5.247L50 50M51.57 5.027L50 50M57.81 5.684L50 50M63.91 7.20 L50 50M69.73 9.554L50 50M75.16 12.69L50 50M80.11 16.56 L50 50M84.47 21.07L50 50M88.16 26.15L50 50M91.11 31.7L50 50M93.26 37.6L50 50M94.56 43.74L50 50" stroke-opacity=".7" stroke-width="1" stroke="white" fill="none" vector-effect="non-scaling-stroke"/>
+<path d="M75.16 12.69  A 45 45 0 0 1 95 50 L50 50Z" stroke="none" fill-opacity=".1" fill="black"/>
+<path d="M95 50 A 45 45 0 0 1 75.16 87.31 L50 50Z" stroke="none" fill-opacity=".15" fill="black"/>
+<path d="M13.59 76.45  A45 45 0 0 1 5.11 46.86 L50 50Z" stroke="none" fill-opacity=".15" fill="white"/>
+</g>
+<path d="M 40 100 A 60 60 0 1 1 40 100.1 Z" id="CIRCLE_TEXT_PATH" stroke="none" fill="none"/>
+<g id="Cartoon Eye">
+<circle cx="50" r="45" fill="currentColor" cy="50"/>
+<circle cx="50" r="28" fill="black" cy="50"/>
+<path d="M95 50 L78 50 M94.56 56.26 L77.73 53.9 M93.26 62.4 L76.92 57.72 M91.11 68.30 L75.58 61.39 M88.16 73.85 L73.75 64.84 M84.47 78.93 L71.45 68.0 M 80.11 83.44 68.74 70.81 M75.16 87.31 L65.66 73.21 M69.73 90.45 L 62.27 75.17 M63.91 92.80 L 58.65 76.63 M57.814 94.316 L54.86 77.575M 51.57 94.97 L 50.98 77.98 M45.3 94.75 L 47.07 77.85 M39.11 93.66 L43.23 77.17 M33.14 91.72 L39.51 75.96 M27.5 88.97 L36 74.25  M22.3 85.46 L32.76 72.06 M17.63 81.26 L 29.86 69.45 M13.59 76.45 27.35 66.46 M10.27 71.13 L25.28 63.15 M7.714 65.39 L23.69 59.58M5.983 59.36 L 22.61 55.82 M5.11 53.14 22.07 51.95 M5.11 46.86 L22.07 48.05 M5.983 40.64L22.61 44.18M7.71 34.61L23.69 40.42 M10.27 28.87L25.28 36.85M13.59 23.55L27.35 33.54M17.63 18.74L29.86 30.55M22.3 14.54L32.76 27.94 M27.5 11.03 L36 25.75M33.14 8.28 39.51 24.04M39.11 6.337 L43.23 22.83M45.3 5.247L47.07 22.15M51.57 5.027L50.98 22.02M57.81 5.684L54.86 22.42M63.91 7.20 L58.65 23.37M69.73 9.554L62.27 24.83M75.16 12.69L65.66 26.79M80.11 16.56 68.74 29.19M84.47 21.07L71.45 32M88.16 26.15L73.75 35.16M91.11 31.7L75.58 38.61M93.26 37.6L76.92 42.28M94.56 43.74L77.73 46.1" stroke-opacity=".7" stroke-width="1" stroke="white" fill="none" vector-effect="non-scaling-stroke"/>
+<path d="M75.16 12.69  A 45 45 0 0 1 95 50 L78 50 A 28 28 0 0 0 65.66 26.79Z" stroke="none" fill-opacity=".1" fill="black"/>
+<path d="M95 50 A 45 45 0 0 1 75.16 87.31 L65.66 73.21 A 28 28 0 0 0 78 50Z" stroke="none" fill-opacity=".15" fill="black"/>
+<path d="M13.59 76.45  A45 45 0 0 1 5.11 46.86 L22.07 48.05 A 28 28 0 0 0 27.35 66.46Z" stroke="none" fill-opacity=".15" fill="white"/>
+</g>
+<path id="Egg" d="M 50 5 Q 70 5 83 41 C 95 78 63 96 50 95 C 37 96 7 85 17 41 Q 30 5 50 5 Z"/>
+<linearGradient id="downupfade_#cf9b38" gradientTransform="rotate(90)" color="#cf9b38">
+<stop stop-opacity="0.65" stop-color="currentColor" offset="0"/>
+<stop stop-opacity="0.90" stop-color="currentColor" offset="0.5"/>
+<stop stop-color="currentColor" offset="1"/>
+</linearGradient>
+</defs>
+<g>
+<g>
+<rect width="512" fill="white" height="512"/>
+</g>
+<g color="#6495ed" fill="#6495ed" stroke="none">
+<text stroke="none" font-size="40" transform="matrix(1.68787 0 0 1.68787 -3.1081 27.1507)" fill="#777" font-family="Verdana" color="#777"><textPath xlink:href="#CIRCLE_TEXT_PATH">How to Draw Eyes</textPath>
+</text>
+<use xlink:href="#Cartoon Eye" transform="matrix(2.11223 -0.000506327 0.000506327 2.11223 58.6158 86.9664)" fill="url(#downupfade_#cf9b38)" color="#cf9b38"/>
+<use color="#f5f6dc" xlink:href="#Egg" transform="matrix(0.752463 0.0785956 -0.0785956 0.752463 81.4117 148.769)" fill-opacity="0.5" fill="#f5f6dc" opacity="0.80"/>
+<use xlink:href="#Iris" transform="matrix(0.797826 -0.0274525 0.0274525 0.797826 49.988 371.333)"/>
+<use xlink:href="#Cartoon Eye" transform="matrix(1.35315 0.0237988 -0.0237988 1.35315 342.985 343.005)" fill="#cf9b38" color="#cf9b38"/>
+<use xlink:href="#Iris" transform="matrix(1.10345 -0.0489174 0.0489174 1.10345 186.834 358.126)" fill="#cf9b38" color="#cf9b38"/>
+<use xlink:href="#Cartoon Eye" transform="matrix(1.591 0 0 1.591 331.202 141.902)" fill="#cf9b38" color="#cf9b38"/>
+<use color="#f5f6dc" xlink:href="#Egg" transform="matrix(0.520567 0 0 0.520567 344.749 197.126)" fill-opacity="1.0" fill="#f5f6dc" opacity="1.0"/>
+</g>
+</g>
+</svg>

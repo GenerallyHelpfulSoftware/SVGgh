@@ -34,7 +34,7 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="schemeNumber">
                                         <integer key="value" value="3"/>
                                     </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="artworkPath" value="Artwork/PrintButton"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="artworkPath" value="PrintButton"/>
                                     <userDefinedRuntimeAttribute type="color" keyPath="textColor">
                                         <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     </userDefinedRuntimeAttribute>
@@ -64,7 +64,7 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="schemeNumber">
                                         <integer key="value" value="3"/>
                                     </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="artworkPath" value="Artwork/ReloadButton"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="artworkPath" value="ReloadButton"/>
                                     <userDefinedRuntimeAttribute type="number" keyPath="artInsetFraction">
                                         <real key="value" value="0.14999999999999999"/>
                                     </userDefinedRuntimeAttribute>
@@ -163,8 +163,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <accessibility key="accessibilityConfiguration" identifier="Helmet Guy"/>
                         <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="string" keyPath="artworkPath" value="Artwork/Superstar"/>
-                            <userDefinedRuntimeAttribute type="boolean" keyPath="beTransparent" value="NO"/>
+                            <userDefinedRuntimeAttribute type="string" keyPath="artworkPath" value="Superstar"/>
                             <userDefinedRuntimeAttribute type="color" keyPath="defaultColor">
                                 <color key="value" red="0.72156862749999995" green="0.85098039219999999" blue="0.78823529410000004" alpha="1" colorSpace="calibratedRGB"/>
                             </userDefinedRuntimeAttribute>
@@ -192,7 +191,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <accessibility key="accessibilityConfiguration" identifier="Curvy Text"/>
                         <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="string" keyPath="artworkPath" value="Artwork/TextOnCurve"/>
+                            <userDefinedRuntimeAttribute type="string" keyPath="artworkPath" value="TextOnCurve"/>
                             <userDefinedRuntimeAttribute type="color" keyPath="defaultColor">
                                 <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </userDefinedRuntimeAttribute>
@@ -220,7 +219,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <accessibility key="accessibilityConfiguration" identifier="Drawing Eyes"/>
                         <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="string" keyPath="artworkPath" value="Artwork/Eyes"/>
+                            <userDefinedRuntimeAttribute type="string" keyPath="artworkPath" value="Eyes"/>
                         </userDefinedRuntimeAttributes>
                     </view>
                     <toolbarItems/>
@@ -245,7 +244,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <accessibility key="accessibilityConfiguration" identifier="Butterflies"/>
                         <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="string" keyPath="artworkPath" value="Artwork/Creatures"/>
+                            <userDefinedRuntimeAttribute type="string" keyPath="artworkPath" value="Creatures"/>
                             <userDefinedRuntimeAttribute type="color" keyPath="defaultColor">
                                 <color key="value" red="0.96470588239999999" green="0.90588235289999997" blue="0.76862745099999996" alpha="1" colorSpace="calibratedRGB"/>
                             </userDefinedRuntimeAttribute>
@@ -282,8 +281,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="288" height="56"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BWe-Hh-CmN" customClass="GHSegmentedControl">
-                                                    <rect key="frame" x="8" y="8" width="272" height="28"/>
+                                                <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BWe-Hh-CmN" customClass="GHSegmentedControl">
+                                                    <rect key="frame" x="8" y="8" width="272" height="40"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="textColorPressed">
@@ -322,7 +321,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Segmented" id="Afw-yb-Uab" customClass="SVGTabBarItem">
                         <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="string" keyPath="artworkPath" value="Artwork/Segment"/>
+                            <userDefinedRuntimeAttribute type="string" keyPath="artworkPath" value="Segment"/>
                             <userDefinedRuntimeAttribute type="color" keyPath="baseColor">
                                 <color key="value" red="0.71372549019999998" green="0.78039215689999997" blue="0.7843137255" alpha="1" colorSpace="calibratedRGB"/>
                             </userDefinedRuntimeAttribute>
@@ -337,7 +336,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hPh-sI-YVO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="856" y="2270"/>
+            <point key="canvasLocation" x="1952" y="360"/>
         </scene>
         <!--Buttons-->
         <scene sceneID="kDx-nq-FXg">
@@ -372,7 +371,7 @@
                                                     <rect key="frame" x="8" y="8" width="44" height="44"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="artworkPath" value="Artwork/PrintButton"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="artworkPath" value="PrintButton"/>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="artInsetFraction">
                                                             <real key="value" value="0.14999999999999999"/>
                                                         </userDefinedRuntimeAttribute>
@@ -415,7 +414,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Buttons" id="RPq-2u-0DV" customClass="SVGTabBarItem">
                         <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="string" keyPath="artworkPath" value="Artwork/Button"/>
+                            <userDefinedRuntimeAttribute type="string" keyPath="artworkPath" value="Button"/>
                             <userDefinedRuntimeAttribute type="color" keyPath="baseColor">
                                 <color key="value" red="0.71372549019999998" green="0.78039215689999997" blue="0.7843137255" alpha="1" colorSpace="calibratedRGB"/>
                             </userDefinedRuntimeAttribute>
@@ -430,7 +429,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QD6-D2-HwB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="717" y="1666"/>
+            <point key="canvasLocation" x="1575" y="349"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="9Z3-7R-MGa">
@@ -449,7 +448,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rqq-Ve-IQ1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="36" y="1940"/>
+            <point key="canvasLocation" x="1103" y="360"/>
         </scene>
     </scenes>
 </document>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+		viewBox = "0 0 100 100" height="100" width="100">
+		<g>
+			<path fill="none" stroke-width="1" stroke="currentColor" vector-effect="non-scaling-stroke" d="M26 52 H 5 V20 a 2 2 0 0 1 2 -2 H93 a2 2 0 0 1 2 2 V50a2 2 0 0 1 -2 2 H26Z M 20 18 V5 H80 V 18 " />
+			<rect fill="white" stroke-width="1" stroke="currentColor" x="20" y="35" width="60" height="40" />
+		</g>
+</svg>

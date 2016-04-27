@@ -14,11 +14,16 @@ class SegmentedDemoTableCell: UITableViewCell
     {
         didSet
         {
-            let helmetRenderer = SVGRenderer(resourceName: "Artwork/Helmet", inBundle: nil)!
-            self.segmentedControl.insertSegmentWithRenderer(helmetRenderer, atIndex: 0, animated: false)
             
-            let eyeRenderer = SVGRenderer(resourceName: "Artwork/Eye", inBundle: nil)!
-            self.segmentedControl.insertSegmentWithRenderer(eyeRenderer, atIndex: 1, animated: false)
+            if let helmetRenderer = SVGghLoaderManager.loader().loadRenderForSVGIdentifier("Helmet", inBundle: nil)
+            {
+                self.segmentedControl.insertSegmentWithRenderer(helmetRenderer, atIndex: 0, animated: false)
+            }
+            
+            if let eyeRenderer = SVGghLoaderManager.loader().loadRenderForSVGIdentifier("Eye", inBundle: nil)
+            {
+                self.segmentedControl.insertSegmentWithRenderer(eyeRenderer, atIndex: 1, animated: false)
+            }
             
             self.segmentedControl.insertSegmentWithTitle("Demo", atIndex: 2, animated: false)
             
