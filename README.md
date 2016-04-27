@@ -136,6 +136,15 @@ To add a static view to a .xib file or storyboard:
 
 * Note that the **.svg** extension is assumed
 * You should likely open the **Attributes Inspector** tab and set the **Mode** to **Aspect Fit** or possibly **Aspect Fill**.
+
+* If you are only deploying on iOS 9 and above and want to use the data XCAsset type of resource, you can add the following to your app delegate's initialize method:
+```
+SVGghLoaderManager.setLoaderToType(SVGghLoaderTypeDataXCAsset)
+```
+* If you want to customize loading SVG documents, you can install a custom loader via
+```
+SVGghLoaderManager.setLoader(myCustomLoaderInstance)
+```
 	
 #### Hints
 * I like adding an Artwork folder to my target added as a 'Folder Reference' so that I can just drop things in from the Finder and they'll be added. Folder references show up in Xcode as blue folders.
