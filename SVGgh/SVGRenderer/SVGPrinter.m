@@ -33,6 +33,13 @@
 @implementation SVGPrinter
 +(void) printRenderer:(SVGRenderer*)renderer  withJobName:(NSString*)jobName withCallback:(printingCallback_t)callback
 {
+    [self printRenderer:renderer withJobName:jobName withCallback:^(NSError * _Nullable error, PrintingResults printingResult) {
+        callback(error, printingResult);
+    }];
+}
+
++(void) printRenderer:(SVGRenderer*)renderer  withJobName:(NSString*)jobName fromAnchorView:(UIView*)anchorView withCallback:(printingCallback_t)callback
+{
 #if !TARGET_OS_TV
     [SVGtoPDFConverter createPDFFromRenderer:renderer intoCallback:^(NSData *pdfData)
     {
@@ -48,16 +55,35 @@
                     printerInfo.jobName = jobName;
                     printController.printInfo = printerInfo;
                     printController.printingItem = pdfData;
-                    [printController presentAnimated:YES completionHandler:^(UIPrintInteractionController *printInteractionController, BOOL completed, NSError *error) {
-                        if(completed && error != nil)
-                        {
-                            callback(error, kPrintingErrorResult);
-                        }
-                        else if(completed)
-                        {
-                            callback(nil, kSuccessfulPrintingResult);
-                        }
-                    }];
+                    
+                    if([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad && anchorView)
+                    {
+                        [printController presentFromRect:anchorView.bounds inView:anchorView animated:YES
+                                       completionHandler:^(UIPrintInteractionController *printInteractionController, BOOL completed, NSError *error) {
+                                           if(completed && error != nil)
+                                           {
+                                               callback(error, kPrintingErrorResult);
+                                           }
+                                           else if(completed)
+                                           {
+                                               callback(nil, kSuccessfulPrintingResult);
+                                           }
+                                       }];
+
+                    }
+                    else
+                    {
+                        [printController presentAnimated:YES completionHandler:^(UIPrintInteractionController *printInteractionController, BOOL completed, NSError *error) {
+                            if(completed && error != nil)
+                            {
+                                callback(error, kPrintingErrorResult);
+                            }
+                            else if(completed)
+                            {
+                                callback(nil, kSuccessfulPrintingResult);
+                            }
+                        }];
+                    }
                 }
                 else
                 {

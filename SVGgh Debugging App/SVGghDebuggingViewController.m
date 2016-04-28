@@ -77,7 +77,7 @@
     // Dispose of any resources that can be recreated.
 }
 
--(IBAction)print:(id)sender
+-(IBAction)print:(GHButton*)sender
 {
     UIAlertAction* okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", @"") style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
         
@@ -87,6 +87,7 @@
     self.svgView.renderer.currentColor = self.svgView.defaultColor;
     [SVGPrinter printRenderer:self.svgView.renderer
                 withJobName:NSLocalizedString(@"SVGgh Test Printing", @"")
+			   fromAnchorView:sender 
                  withCallback:^(NSError *error, PrintingResults printingResult) {
         if(error != nil)
         {

@@ -29,8 +29,10 @@
 
 #if defined(__has_feature) && __has_feature(modules)
 @import Foundation;
+@import UIKit;
 #else
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #endif
 
 @class SVGRenderer;
@@ -49,6 +51,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SVGPrinter :NSObject
 +(void) printRenderer:(SVGRenderer*)renderer  withJobName:(NSString*)jobName withCallback:(printingCallback_t)callback;
+
++(void) printRenderer:(SVGRenderer*)renderer  withJobName:(NSString*)jobName fromAnchorView:(nullable UIView*)anchorView withCallback:(printingCallback_t)callback;
+
 @end
 
 NS_ASSUME_NONNULL_END
