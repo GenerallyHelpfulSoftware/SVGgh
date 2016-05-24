@@ -100,7 +100,7 @@ NSDictionary* DefaultSVGDrawingAttributes()
                    @"miter", @"stroke-linejoin",
                    @"butt", @"stroke-linecap",
                    @"none",@"stroke-dasharray",
-                   nil];;
+                   nil];
     });
     return sResult;
 }

@@ -1481,7 +1481,7 @@ typedef enum GHSegmentType
     {
         GHSegmentedControl* myControl = self.accessibilityContainer;
         CGRect localFrame = [myControl.contentView frameForSegmentAtIndex:self.index];
-        result = UIAccessibilityConvertFrameToScreenCoordinates(localFrame, myControl);;
+        result = UIAccessibilityConvertFrameToScreenCoordinates(localFrame, myControl);
     }
     
     return result;
