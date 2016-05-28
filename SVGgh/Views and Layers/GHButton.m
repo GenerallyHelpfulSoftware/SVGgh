@@ -30,8 +30,8 @@
 #import "GHButton.h"
 #import "GHControlFactory.h"
 #import "SVGRenderer.h"
+#import "SVGghLoader.h"
 
-#import "SVGgh.h"
 
 @interface KeyboardPressedPopup : UIView
 @property(nonatomic, weak) GHButton* parent;
