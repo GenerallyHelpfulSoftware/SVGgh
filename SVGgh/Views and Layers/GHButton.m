@@ -629,9 +629,28 @@
     }
 }
 
+
++(NSString*) placeHolderSVG
+{
+    NSString* result = @"<?xml version=\"1.0\" encoding=\"UTF-8\"?><svg viewport-fill=\"none\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"  xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\" viewBox=\"0, 0, 512, 512\"><rect width=\"510\" fill=\"none\" height=\"510\" stroke=\"#66CDAA\" x=\"1\" y=\"1\" stroke-width=\"2\" vector-effect=\"non-scaling-stroke\" /><path  d=\"M 5 50 27.5 11.03 72.5 11.03 95 50 72.5 88.97 27.5 88.97 5 50z\" transform=\"matrix(2 1.18309 -1.18309 2.05521 86.4456 -29.0634)\" fill=\"#66CDAA\"/><path d=\"M 5 5 H 95 V 95 H 5 V 5 Z\" transform=\"matrix(2 0 0 2 294 286)\" fill=\"#66CDAA\" /><path d=\"M 50 5 L 95 95 L 5 95 50 5Z\" transform=\"matrix(2 0 0 2 26 288)\" fill=\"#ae3d2f\" /><path d=\"M50 95A45 45 0 1 1 50.1 95Z M50 85 A35 35 0 1 0 49 85Z\" transform=\"matrix(2 0.5 -0.5 2 313 4)\" fill=\"#ae3d2f\"/></svg>";
+    
+    return result;
+}
+
 -(void)drawArtworkAtPath:(NSString*)theArtworkPath intoContext:(CGContextRef)quartzContext bounds:(CGRect)bounds
 {
+#if TARGET_INTERFACE_BUILDER
+    static SVGRenderer* renderer = nil;
+    
+    static dispatch_once_t  done;
+    dispatch_once(&done, ^{
+        renderer = [[SVGRenderer alloc] initWithString:[GHButton placeHolderSVG]];
+    });
+    
+#else
     SVGRenderer* renderer = [[SVGghLoaderManager loader] loadRenderForSVGIdentifier:theArtworkPath inBundle:nil];
+#endif
+
     
     if(renderer != nil)
     {
