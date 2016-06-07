@@ -285,6 +285,19 @@
 }
 
 
+-(void) syncFontSize
+{
+    if(self.textLabel.text.length)
+    {
+        CGFloat textSize = self.textFontSize;
+        if(self.hasActiveArtwork)
+        {
+            textSize = floor(textSize*0.75);
+        }
+        self.textLabel.font = self.useBoldText?[UIFont boldSystemFontOfSize:self.textFontSize]:[UIFont systemFontOfSize:textSize];
+    }
+}
+
 -(void) syncTextColor
 {
     BOOL    inNormalMode = !(self.isSelected || self.isHighlighted);
@@ -387,12 +400,12 @@
     {// we use a regular UILabel to handle text (much simpler that way)
         UILabel* theTextLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         self.textLabel = theTextLabel;
-        self.textLabel.font = self.useBoldText?[UIFont boldSystemFontOfSize:self.textFontSize]:[UIFont systemFontOfSize:self.textFontSize];
         self.textLabel.backgroundColor = [UIColor clearColor];
         [self addSubview:theTextLabel];
         [self syncTextColor];
     }
     self.textLabel.text = localizedTitle;
+    [self syncFontSize];
     [self setNeedsLayout];
 }
 
@@ -565,7 +578,19 @@
             {
                 inset += 5;
             }
-            interiorRect = (self.useRadialGradient || !self.drawsChrome)?bounds:CGRectInset(bounds, inset, inset);
+            if(self.useRadialGradient || !self.drawsChrome)
+            {
+                interiorRect = bounds;
+            }
+            else if(self.textLabel.text)
+            {
+                interiorRect = CGRectMake(bounds.origin.x+inset, bounds.origin.y+inset, bounds.size.width-2*inset, bounds.size.height-inset);
+            }
+            else
+            {
+                interiorRect = CGRectInset(bounds, inset, inset);
+            }
+            
         }
         else
         {
@@ -635,26 +660,34 @@
     }
 }
 
--(void) drawRect:(CGRect)rect withContext:(CGContextRef)quartzContext
+-(void) drawRect:(CGRect)bounds withContext:(CGContextRef)quartzContext
 {
     if(self.drawsBackground)
     {
         if(self.drawsChrome)
         {
-            [self drawChromeBackgroundIntoContext:quartzContext bounds:rect];
+            [self drawChromeBackgroundIntoContext:quartzContext bounds:bounds];
         }
         else
         {
-            [self drawFlatBackgroundIntoContext:quartzContext  bounds:rect];
+            [self drawFlatBackgroundIntoContext:quartzContext  bounds:bounds];
         }
     }
+    
+    CGRect artworkRect = bounds;
+    
+    if(self.textLabel.text.length)
+    {
+        artworkRect.size.height = self.textLabel.frame.origin.y;
+    }
+    
     if(self.selected && self.selectedArtworkPath.length)
     {
-        [self drawArtworkAtPath:self.selectedArtworkPath intoContext:quartzContext  bounds:rect];
+        [self drawArtworkAtPath:self.selectedArtworkPath intoContext:quartzContext  bounds:artworkRect];
     }
     else if(self.artworkPath.length)
     {
-        [self drawArtworkAtPath:self.artworkPath intoContext:quartzContext bounds:rect];
+        [self drawArtworkAtPath:self.artworkPath intoContext:quartzContext bounds:artworkRect];
     }
 
 }
@@ -673,6 +706,18 @@
     {
         [self setContentMode:UIViewContentModeRedraw];
     }
+    [self syncFontSize];
+    if(self.textLabel.text.length)
+    {
+        [self setNeedsLayout];
+    }
+}
+
+
+-(BOOL) hasActiveArtwork
+{
+    BOOL result = ((self.selected && self.selectedArtworkPath.length) || (self.isHighlighted && self.pressedArtworkPath.length) || (self.artworkPath.length));
+    return result;
 }
 
 - (void)layoutSubviews
@@ -681,11 +726,38 @@
     CGRect myRectInsideRadius = CGRectInset(self.bounds, kRoundButtonRadius, kRoundButtonRadius);
     if(self.textLabel != nil)
     {
+        
         CGRect neededRect = [self.textLabel textRectForBounds:myRectInsideRadius limitedToNumberOfLines:1];
-        neededRect.origin = CGPointMake(kRoundButtonRadius+(myRectInsideRadius.size.width-neededRect.size.width)/2,
+        if(self.hasActiveArtwork)
+        {
+            neededRect.origin = CGPointMake(kRoundButtonRadius+(myRectInsideRadius.size.width-neededRect.size.width)/2,
+                                            (myRectInsideRadius.size.height-neededRect.size.height)+kRoundButtonRadius);
+        }
+        else
+        {
+            neededRect.origin = CGPointMake(kRoundButtonRadius+(myRectInsideRadius.size.width-neededRect.size.width)/2,
                                         kRoundButtonRadius+(myRectInsideRadius.size.height-neededRect.size.height)/2);
+        }
         self.textLabel.frame = neededRect;
     }
+}
+
+-(CGSize) intrinsicContentSize
+{
+    CGSize result = [super intrinsicContentSize];
+    
+    if(self.textLabel.text.length)
+    {
+        CGSize neededSize = self.textLabel.intrinsicContentSize;
+        if(self.artworkPath.length)
+        {
+            neededSize.height *= 3.0;
+        }
+        result.height = fmax(neededSize.height, result.height) + kRoundButtonRadius*2.0;
+        result.width = fmax(neededSize.width, result.width) + kRoundButtonRadius*2.0;
+    }
+    
+    return result;
 }
 
 @end
