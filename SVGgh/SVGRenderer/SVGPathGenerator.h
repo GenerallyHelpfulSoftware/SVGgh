@@ -86,7 +86,7 @@ NS_ASSUME_NONNULL_BEGIN
 * @param anSVGPath something like 'M33 11 H22 L 100 100 a 20 40 0 1 1 12 14 Z'
 * @param aTransform an affine transform to apply to the result at the time of creation
 */
-+(nullable CGPathRef) newCGPathFromSVGPath:(NSString*)anSVGPath whileApplyingTransform:(CGAffineTransform)aTransform;
++(nullable CGPathRef) newCGPathFromSVGPath:(NSString*)anSVGPath whileApplyingTransform:(CGAffineTransform)aTransform CF_RETURNS_RETAINED;
 
 /*! @brief given a SVG path in text form, return a bounding box (includes control points)
 * @param anSVGPath a string from a path entity's 'd' attribute

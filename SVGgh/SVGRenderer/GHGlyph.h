@@ -66,7 +66,7 @@ NS_ASSUME_NONNULL_BEGIN
 /*! @brief Render the glyphs into a path.
 * @return a path. Caller responsible for disposal.
 */
--(CGPathRef) newPath;
+-(CGPathRef) newPath CF_RETURNS_RETAINED;
 @end
 
 /*! @brief a class which wraps the CGGlyph object, and allows for individualy positioning glyphs

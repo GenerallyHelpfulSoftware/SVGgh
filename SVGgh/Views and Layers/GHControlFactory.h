@@ -121,21 +121,21 @@ typedef NSUInteger ColorScheme;
 * @return a CGGradientRef
 * @attention caller responsible for disposal
 */
-+(nullable CGGradientRef) newButtonBackgroundGradientForScheme:(ColorScheme)scheme;
++(nullable CGGradientRef) newButtonBackgroundGradientForScheme:(ColorScheme)scheme CF_RETURNS_RETAINED;
 
 /*! @brief a gradient appropriate for coloring a pressed button's background
  * @param scheme one of the enumerated list in the typedef ColorScheme
  * @return a CGGradientRef
  * @attention caller responsible for disposal
  */
-+(nullable CGGradientRef) newButtonBackgroundGradientPressedForScheme:(ColorScheme)scheme;
++(nullable CGGradientRef) newButtonBackgroundGradientPressedForScheme:(ColorScheme)scheme CF_RETURNS_RETAINED;
 
 /*! @brief a gradient appropriate for coloring a selected button's background
  * @param scheme one of the enumerated list in the typedef ColorScheme
  * @return a CGGradientRef
  * @attention caller responsible for disposal
  */
-+(nullable CGGradientRef) newButtonBackgroundGradientSelectedForScheme:(ColorScheme)scheme;
++(nullable CGGradientRef) newButtonBackgroundGradientSelectedForScheme:(ColorScheme)scheme CF_RETURNS_RETAINED;
 
 /*! @brief Does the given scheme prefer Radial gradients?
  * @param scheme one of the enumerated list in the typedef ColorScheme
@@ -192,7 +192,7 @@ typedef NSUInteger ColorScheme;
  * @param radius ideally less than half the width or height of the rect
  * @return a path user responsible for disposal
  */
-+(CGPathRef) newRoundRectPathForRect:(CGRect)aRect withRadius:(CGFloat) radius;
++(CGPathRef) newRoundRectPathForRect:(CGRect)aRect withRadius:(CGFloat) radius CF_RETURNS_RETAINED;
 
 /*! @brief utility routine to find the location of an SVG document relative to a provided bundle
  * @param an optional bundle containing the artwork
@@ -215,6 +215,6 @@ typedef NSUInteger ColorScheme;
 @end
 
 extern UIColor* __nullable  UIColorFromSVGColorString (NSString *  stringToConvert);
-extern __nullable CGPathRef CreatePathFromSVGPathString(NSString*  dAttribute, CGAffineTransform transformToApply);
+extern __nullable CGPathRef CreatePathFromSVGPathString(NSString*  dAttribute, CGAffineTransform transformToApply) CF_RETURNS_RETAINED;
 
 NS_ASSUME_NONNULL_END

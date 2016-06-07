@@ -1946,7 +1946,7 @@ int ParameterCountForOperator(unichar anOperator)
 }
 @end
 
-CGPathRef CreatePathFromSVGPathString(NSString* dAttribute, CGAffineTransform transformToApply)
+CGPathRef CreatePathFromSVGPathString(NSString* dAttribute, CGAffineTransform transformToApply) CF_RETURNS_RETAINED
 {
     CGPathRef result = [SVGPathGenerator newCGPathFromSVGPath:dAttribute whileApplyingTransform:transformToApply];
     return result;

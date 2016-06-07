@@ -309,7 +309,7 @@ UIColor* gDefaultSelectedTextColor = nil;
 }
 
 
-+(CGPathRef) newRoundRectPathForRect:(CGRect)aRect withRadius:(CGFloat) radius
++(CGPathRef) newRoundRectPathForRect:(CGRect)aRect withRadius:(CGFloat) radius CF_RETURNS_RETAINED
 {
     CGMutablePathRef mutableResult = CGPathCreateMutable();
     CGPathMoveToPoint(mutableResult, NULL, aRect.origin.x+radius+1, aRect.origin.y);
