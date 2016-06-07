@@ -100,8 +100,14 @@
 {
     if(self.renderer == nil)
     {
-        SVGRenderer* renderer = [[SVGRenderer alloc] initWithString:[SVGDocumentView placeHolderSVG]];
-        self.renderer = renderer;
+        static SVGRenderer* sRenderer = nil;
+        
+        static dispatch_once_t  done;
+        dispatch_once(&done, ^{
+            sRenderer = [[SVGRenderer alloc] initWithString:[SVGDocumentView placeHolderSVG]];
+        });
+        
+        self.renderer = sRenderer;
     }
 }
 
