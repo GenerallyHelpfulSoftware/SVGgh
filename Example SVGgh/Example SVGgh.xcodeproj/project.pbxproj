@@ -36,26 +36,12 @@
 			remoteGlobalIDString = 21F6BBE21B29A21E00DCEEC2;
 			remoteInfo = SVGgh;
 		};
-		21523C871C22E88D00435AAE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 21523C7C1C22E88C00435AAE /* SVGgh.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 21DEC8C11BAD89E50044BAD7;
-			remoteInfo = SVGghtv;
-		};
 		21523C891C22E88D00435AAE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 21523C7C1C22E88C00435AAE /* SVGgh.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 21F6BBED1B29A21E00DCEEC2;
 			remoteInfo = SVGghTests;
-		};
-		21523C8B1C22E88D00435AAE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 21523C7C1C22E88C00435AAE /* SVGgh.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 21DEC8CA1BAD89E50044BAD7;
-			remoteInfo = SVGghtvTests;
 		};
 		21523C8D1C22E88D00435AAE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -163,9 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				21523C861C22E88D00435AAE /* SVGgh.framework */,
-				21523C881C22E88D00435AAE /* SVGghtv.framework */,
 				21523C8A1C22E88D00435AAE /* SVGghTests.xctest */,
-				21523C8C1C22E88D00435AAE /* SVGghtvTests.xctest */,
 				21523C8E1C22E88D00435AAE /* SVGgh Debugging App.app */,
 				21523C901C22E88D00435AAE /* SVGgh TV Debugging App.app */,
 			);
@@ -336,25 +320,11 @@
 			remoteRef = 21523C851C22E88D00435AAE /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		21523C881C22E88D00435AAE /* SVGghtv.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = SVGghtv.framework;
-			remoteRef = 21523C871C22E88D00435AAE /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		21523C8A1C22E88D00435AAE /* SVGghTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = SVGghTests.xctest;
 			remoteRef = 21523C891C22E88D00435AAE /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		21523C8C1C22E88D00435AAE /* SVGghtvTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = SVGghtvTests.xctest;
-			remoteRef = 21523C8B1C22E88D00435AAE /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		21523C8E1C22E88D00435AAE /* SVGgh Debugging App.app */ = {
@@ -545,15 +515,9 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/SVGgh-fipskftzzrzncygptromwunomupn/Build/Products/Debug-iphoneos",
-					/Volumes/Faith/Users/glenn/Projects/SVGgh/Example,
 					SVGgh/Example,
 					SVGghTests,
-					/Volumes/Faith/Users/glenn/Projects/SVGgh/Example,
 					SVGgh,
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/SVGgh-fipskftzzrzncygptromwunomupn/Build/Products/Debug-iphonesimulator",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/SVGgh-abxhfwgpgjoknnefwrxunqyijhnl/Build/Products/Debug-iphoneos",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/SVGgh-abxhfwgpgjoknnefwrxunqyijhnl/Build/Products/Debug-iphonesimulator",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Example SVGgh/Example SVGgh-Prefix.pch";
@@ -573,15 +537,9 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/SVGgh-fipskftzzrzncygptromwunomupn/Build/Products/Debug-iphoneos",
-					/Volumes/Faith/Users/glenn/Projects/SVGgh/Example,
 					SVGgh/Example,
 					SVGghTests,
-					/Volumes/Faith/Users/glenn/Projects/SVGgh/Example,
 					SVGgh,
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/SVGgh-fipskftzzrzncygptromwunomupn/Build/Products/Debug-iphonesimulator",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/SVGgh-abxhfwgpgjoknnefwrxunqyijhnl/Build/Products/Debug-iphoneos",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/SVGgh-abxhfwgpgjoknnefwrxunqyijhnl/Build/Products/Debug-iphonesimulator",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Example SVGgh/Example SVGgh-Prefix.pch";
@@ -603,15 +561,9 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/SVGgh-fipskftzzrzncygptromwunomupn/Build/Products/Debug-iphoneos",
-					/Volumes/Faith/Users/glenn/Projects/SVGgh/Example,
 					SVGgh/Example,
 					SVGghTests,
-					/Volumes/Faith/Users/glenn/Projects/SVGgh/Example,
 					SVGgh,
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/SVGgh-fipskftzzrzncygptromwunomupn/Build/Products/Debug-iphonesimulator",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/SVGgh-abxhfwgpgjoknnefwrxunqyijhnl/Build/Products/Debug-iphoneos",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/SVGgh-abxhfwgpgjoknnefwrxunqyijhnl/Build/Products/Debug-iphonesimulator",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Example SVGgh/Example SVGgh-Prefix.pch";
@@ -636,15 +588,9 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/SVGgh-fipskftzzrzncygptromwunomupn/Build/Products/Debug-iphoneos",
-					/Volumes/Faith/Users/glenn/Projects/SVGgh/Example,
 					SVGgh/Example,
 					SVGghTests,
-					/Volumes/Faith/Users/glenn/Projects/SVGgh/Example,
 					SVGgh,
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/SVGgh-fipskftzzrzncygptromwunomupn/Build/Products/Debug-iphonesimulator",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/SVGgh-abxhfwgpgjoknnefwrxunqyijhnl/Build/Products/Debug-iphoneos",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/SVGgh-abxhfwgpgjoknnefwrxunqyijhnl/Build/Products/Debug-iphonesimulator",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Example SVGgh/Example SVGgh-Prefix.pch";
