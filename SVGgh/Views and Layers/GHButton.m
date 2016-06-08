@@ -267,6 +267,16 @@
     }
 }
 
+-(void) awakeFromNib
+{
+    [super awakeFromNib];
+    if(self.textLabel.text)
+    {
+        [self syncFontSize];
+        [self syncTextColor];
+        [self setNeedsLayout];
+    }
+}
 
 -(NSString*)title
 {
@@ -284,17 +294,23 @@
     }
 }
 
+-(UIFont*)labelFont
+{
+    CGFloat textSize = self.textFontSize;
+    if(textSize == 0.0) textSize = 16;
+    
+    if(self.hasActiveArtwork)
+    {
+        textSize = floor(textSize*0.75);
+    }
+    return self.useBoldText?[UIFont boldSystemFontOfSize:self.textFontSize]:[UIFont systemFontOfSize:textSize];
+}
 
 -(void) syncFontSize
 {
     if(self.textLabel.text.length)
     {
-        CGFloat textSize = self.textFontSize;
-        if(self.hasActiveArtwork)
-        {
-            textSize = floor(textSize*0.75);
-        }
-        self.textLabel.font = self.useBoldText?[UIFont boldSystemFontOfSize:self.textFontSize]:[UIFont systemFontOfSize:textSize];
+        self.textLabel.font = self.labelFont;
     }
 }
 
@@ -715,7 +731,6 @@
 {
     CGContextRef quartzContext = UIGraphicsGetCurrentContext();
     [self drawRect:self.bounds withContext:quartzContext];
-
 }
 
 -(void) setArtworkPath:(NSString *)artworkPath
@@ -732,7 +747,6 @@
     }
 }
 
-
 -(BOOL) hasActiveArtwork
 {
     BOOL result = ((self.selected && self.selectedArtworkPath.length) || (self.isHighlighted && self.pressedArtworkPath.length) || (self.artworkPath.length));
@@ -742,20 +756,23 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    CGRect myRectInsideRadius = CGRectInset(self.bounds, kRoundButtonRadius, kRoundButtonRadius);
     if(self.textLabel != nil)
     {
-        
-        CGRect neededRect = [self.textLabel textRectForBounds:myRectInsideRadius limitedToNumberOfLines:1];
+        CGFloat inset = (self.drawsChrome)?kRoundButtonRadius:0.0;
+        CGRect myRectInsideRadius = CGRectInset(self.bounds, inset, inset);
+        NSString* text = self.textLabel.text;
+        UIFont* font = self.textLabel.font;
+        NSDictionary* attributes = @{NSFontAttributeName:font};
+        CGRect neededRect = [text boundingRectWithSize:self.bounds.size options:0 attributes:attributes context:nil];
         if(self.hasActiveArtwork)
         {
-            neededRect.origin = CGPointMake(kRoundButtonRadius+(myRectInsideRadius.size.width-neededRect.size.width)/2,
-                                            (myRectInsideRadius.size.height-neededRect.size.height)+kRoundButtonRadius);
+            neededRect.origin = CGPointMake(inset+(myRectInsideRadius.size.width-neededRect.size.width)/2,
+                                            (myRectInsideRadius.size.height-neededRect.size.height)+inset);
         }
         else
         {
-            neededRect.origin = CGPointMake(kRoundButtonRadius+(myRectInsideRadius.size.width-neededRect.size.width)/2,
-                                        kRoundButtonRadius+(myRectInsideRadius.size.height-neededRect.size.height)/2);
+            neededRect.origin = CGPointMake(inset+(myRectInsideRadius.size.width-neededRect.size.width)/2,
+                                        inset+(myRectInsideRadius.size.height-neededRect.size.height)/2);
         }
         self.textLabel.frame = neededRect;
     }
@@ -767,13 +784,17 @@
     
     if(self.textLabel.text.length)
     {
-        CGSize neededSize = self.textLabel.intrinsicContentSize;
+        CGFloat inset = (self.drawsChrome)?kRoundButtonRadius:0.0;
+        UIFont* font = self.textLabel.font;
+        NSDictionary* attributes = @{NSFontAttributeName:font};
+        CGSize neededSize = [self.textLabel.text sizeWithAttributes:attributes];
+        
         if(self.artworkPath.length)
         {
             neededSize.height *= 3.0;
         }
-        result.height = fmax(neededSize.height, result.height) + kRoundButtonRadius*2.0;
-        result.width = fmax(neededSize.width, result.width) + kRoundButtonRadius*2.0;
+        result.height = fmax(neededSize.height, result.height) + inset*2.0;
+        result.width = fmax(neededSize.width, result.width) + inset*2.0;
     }
     
     return result;
