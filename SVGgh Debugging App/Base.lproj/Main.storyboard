@@ -168,13 +168,13 @@
                     <view key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" id="ReT-X9-Ls1" customClass="SVGDocumentView">
                         <rect key="frame" x="0.0" y="0.0" width="280" height="280"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <accessibility key="accessibilityConfiguration" identifier="Helmet Guy"/>
                         <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="string" keyPath="artworkPath" value="Superstar"/>
                             <userDefinedRuntimeAttribute type="color" keyPath="defaultColor">
-                                <color key="value" red="0.72156862749999995" green="0.85098039219999999" blue="0.78823529410000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="value" red="0.97254901959999995" green="0.5568627451" blue="0.1215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="string" keyPath="artworkPath" value="Superstar"/>
                         </userDefinedRuntimeAttributes>
                     </view>
                     <toolbarItems/>
@@ -196,7 +196,7 @@
                     <view key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" id="sgT-Qe-1RX" customClass="SVGDocumentView">
                         <rect key="frame" x="0.0" y="0.0" width="280" height="280"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <accessibility key="accessibilityConfiguration" identifier="Curvy Text"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="string" keyPath="artworkPath" value="TextOnCurve"/>
@@ -224,7 +224,7 @@
                     <view key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" id="KjG-Ga-EeG" customClass="SVGDocumentView">
                         <rect key="frame" x="0.0" y="0.0" width="280" height="280"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <accessibility key="accessibilityConfiguration" identifier="Drawing Eyes"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="string" keyPath="artworkPath" value="Eyes"/>
@@ -249,7 +249,7 @@
                     <view key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" id="R7X-dN-x6z" customClass="SVGDocumentView">
                         <rect key="frame" x="0.0" y="0.0" width="280" height="280"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <accessibility key="accessibilityConfiguration" identifier="Butterflies"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="string" keyPath="artworkPath" value="Creatures"/>

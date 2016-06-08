@@ -91,6 +91,13 @@
 
 +(NSString*) placeHolderSVG
 {
+    NSString* result = @"<?xml version=\"1.0\" encoding=\"UTF-8\"?><svg viewport-fill=\"none\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"  xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\" viewBox=\"0, 0, 512, 512\"><rect width=\"510\" fill=\"none\" height=\"510\" stroke=\"#66CDAA\" x=\"1\" y=\"1\" stroke-width=\"2\" vector-effect=\"non-scaling-stroke\" /><path  d=\"M 5 50 27.5 11.03 72.5 11.03 95 50 72.5 88.97 27.5 88.97 5 50z\" transform=\"matrix(2 1.18309 -1.18309 2.05521 86.4456 -29.0634)\" stroke=\"currentColor\" vector-effect=\"non-scaling-stroke\" stroke-width=\"2\"  fill=\"#66CDAA\"/><path d=\"M 5 5 H 95 V 95 H 5 V 5 Z\" transform=\"matrix(2 0 0 2 294 286)\" fill=\"#66CDAA\" stroke=\"currentColor\" vector-effect=\"non-scaling-stroke\" stroke-width=\"2\"  /><path d=\"M 50 5 L 95 95 L 5 95 50 5Z\" transform=\"matrix(2 0 0 2 26 288)\" fill=\"currentColor\" /><path d=\"M50 95A45 45 0 1 1 50.1 95Z M50 85 A35 35 0 1 0 49 85Z\" transform=\"matrix(2 0.5 -0.5 2 313 4)\" fill=\"currentColor\"/></svg>";
+    
+    return result;
+}
+
++(NSString*) missingArtworkplaceHolderSVG
+{
     NSString* result = @"<?xml version=\"1.0\" encoding=\"UTF-8\"?> <svg xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns=\"http://www.w3.org/2000/svg\" x=\"0px\" height=\"100\" viewport-fill=\"white\" y=\"0px\" width=\"100\" version=\"1.1\" viewBox=\"0 , 0, 100, 100\"> <defs><path d=\"M20 50 A30 30 0 1 1 80 50 A 30 30 0 1 1 20 50Z\" id=\"CIRCLE_TEXT_PATH\" fill=\"none\" stroke=\"none\"/> </defs><g/><g stroke=\"green\" stroke-width=\"1\" vector-effect=\"non-scaling-stroke\" fill=\"#cfdcdd\" stroke-linecap=\"round\"> <path d=\"M0 0H100V100H0ZM50 0A50 50 0 1 0 50 100 50 50 0 1 0 50 0ZM50 25A25 25 0 1 1 50 75 25 25 0 1 1 50 25Z\"/> </g> <text stroke=\"none\" font-size=\"17\" font-family=\"Georgia\" fill=\"#5BB\" color=\"#228B22\"> <textPath xlink:href=\"#CIRCLE_TEXT_PATH\">Enter artworkPath</textPath> </text> <text x=\"50\" y=\"65\" text-anchor=\"middle\" font-family=\"Helvetica\" font-size=\"44\" fill=\"#5BB\">?</text> </svg>";
     
     return result;
@@ -100,30 +107,45 @@
 {
     if(self.renderer == nil)
     {
-        static SVGRenderer* sRenderer = nil;
-        
-        static dispatch_once_t  done;
-        dispatch_once(&done, ^{
-            sRenderer = [[SVGRenderer alloc] initWithString:[SVGDocumentView placeHolderSVG]];
-        });
-        
-        self.renderer = sRenderer;
+        if(self.artworkPath.length)
+        {
+            static SVGRenderer* sRenderer = nil;
+            
+            static dispatch_once_t  done;
+            dispatch_once(&done, ^{
+                sRenderer = [[SVGRenderer alloc] initWithString:[SVGDocumentView placeHolderSVG]];
+            });
+            
+            self.renderer = sRenderer;
+        }
+        else
+        {
+            
+            static SVGRenderer* sRenderer = nil;
+            
+            static dispatch_once_t  done;
+            dispatch_once(&done, ^{
+                sRenderer = [[SVGRenderer alloc] initWithString:[SVGDocumentView missingArtworkplaceHolderSVG]];
+            });
+            
+            self.renderer = sRenderer;
+        }
     }
 }
 
 -(void) setArtworkPath:(NSString *)artworkPath fromBundle:(NSBundle *)originalBundle {
     _artworkPath = artworkPath;
     
+#if TARGET_INTERFACE_BUILDER
+    
+#else
+    
     if(artworkPath.length)
     {
         SVGRenderer* renderer = nil;
         
         NSBundle* myBundle = originalBundle ?: [NSBundle mainBundle];
-        
-#if TARGET_INTERFACE_BUILDER
-#else
         renderer = [[SVGghLoaderManager loader] loadRenderForSVGIdentifier:artworkPath inBundle:myBundle];
-#endif
         if(renderer != nil)
         {
             self.renderer = renderer;
@@ -135,6 +157,7 @@
         }
 #endif
     }
+#endif
 }
 
 
