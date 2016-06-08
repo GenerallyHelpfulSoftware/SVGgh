@@ -793,8 +793,8 @@
         {
             neededSize.height *= 3.0;
         }
-        result.height = fmax(neededSize.height, result.height) + inset*2.0;
-        result.width = fmax(neededSize.width, result.width) + inset*2.0;
+        result.height = ceil(fmax(neededSize.height, result.height) + inset*2.0);
+        result.width = ceil(fmax(neededSize.width, result.width) + inset*2.0);
     }
     
     return result;
