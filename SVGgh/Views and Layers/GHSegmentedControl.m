@@ -700,6 +700,7 @@ typedef enum GHSegmentType
             UIView* viewToRemove = [subViews objectAtIndex:segment];
             [viewToRemove removeFromSuperview];
         }
+        self.definitions = [newDefinitions copy];
         [self setNeedsLayout];
     }
 }
@@ -710,6 +711,7 @@ typedef enum GHSegmentType
     if(segment < newDefinitions.count)
     {
         [newDefinitions replaceObjectAtIndex:segment withObject:newDefinition];
+        self.definitions = [newDefinitions copy];
     }
     [self setNeedsLayout];
 }
@@ -748,16 +750,21 @@ typedef enum GHSegmentType
 
 -(void) setTrackedSegmentIndex:(NSUInteger)trackedSegmentIndex
 {
-    if(trackedSegmentIndex != _trackedSegmentIndex)
+    if(trackedSegmentIndex != _trackedSegmentIndex && self.definitions.count > trackedSegmentIndex)
     {
-        _trackedSegmentIndex = trackedSegmentIndex;
-        [self syncTrackedIndex];
+        GHSegmentDefinition* theDefinition = self.definitions[trackedSegmentIndex];
+        if(theDefinition.enabled)
+        {
+            _trackedSegmentIndex = trackedSegmentIndex;
+            [self syncTrackedIndex];
+        }
     }
 }
 
 -(void) syncTrackedIndex
 {
     NSInteger index = 0;
+    BOOL enabled = self.control.isEnabled;
     for(UIView* aView in self.subviews)
     {
         if([aView isKindOfClass:[GHSegmentedControlSegmentView class]])
@@ -774,6 +781,12 @@ typedef enum GHSegmentType
                 currentColor = [self.control textColor];
                 segmentView.isHighlighted = NO;
             }
+            
+            if(!segmentView.segmentDefinition.enabled || !enabled)
+            {
+                currentColor = [self.control textColorDisabled];
+            }
+    
             segmentView.currentColor = currentColor;
             index++;
         }
@@ -784,6 +797,7 @@ typedef enum GHSegmentType
 -(void) syncSelectedIndex
 {
     NSInteger index = 0;
+    BOOL enabled = self.control.isEnabled;
     for(UIView* aView in self.subviews)
     {
         if([aView isKindOfClass:[GHSegmentedControlSegmentView class]])
@@ -799,6 +813,10 @@ typedef enum GHSegmentType
             {
                 currentColor = [self.control textColor];
                 segmentView.selected = NO;
+            }
+            if(!enabled || !segmentView.segmentDefinition.enabled)
+            {
+                currentColor = self.control.textColorDisabled;
             }
             segmentView.currentColor = currentColor;
             index++;
@@ -961,7 +979,7 @@ typedef enum GHSegmentType
 
 - (void)prepareForInterfaceBuilder
 {
-    
+    [super prepareForInterfaceBuilder];
     GHSegmentDefinition* definition0 = [GHSegmentDefinition new];
     definition0.enabled = YES;
     definition0.title = NSLocalizedString(@"Add Segments", @"");

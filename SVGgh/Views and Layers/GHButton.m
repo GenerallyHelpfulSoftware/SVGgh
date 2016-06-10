@@ -112,6 +112,17 @@
     return self;
 }
 
+
+-(void) setEnabled:(BOOL)enabled
+{
+    BOOL isChange = enabled != self.isEnabled;
+    [super setEnabled:enabled];
+    if(isChange)
+    {
+        [self syncTextColor];
+    }
+}
+
 #if TARGET_OS_TV
 -(UIView*) preferredFocusView
 {
@@ -318,6 +329,10 @@
 {
     BOOL    inNormalMode = !(self.isSelected || self.isHighlighted);
     UIColor*        textColorToUse = inNormalMode?self.textColor:self.textColorPressed;
+    if(!self.isEnabled)
+    {
+        textColorToUse = self.textColorDisabled;
+    }
     self.textLabel.textColor = textColorToUse;
     self.textLabel.shadowOffset = CGSizeMake(0, 1);
     self.textLabel.shadowColor = self.textShadowColor;
@@ -580,7 +595,7 @@
         
         if(!self.enabled)
         {
-            currentColor = [UIColor lightGrayColor];
+            currentColor = self.textColorDisabled;
         }
         
         renderer.currentColor = currentColor;
@@ -653,15 +668,18 @@
     return result;
 }
 
+- (void)prepareForInterfaceBuilder // show a placeholder in Interface Builder
+{
+    [super prepareForInterfaceBuilder];
+    [self syncFontSize];
+    [self syncTextColor];
+    [self setNeedsLayout];
+}
+
 -(void)drawArtworkAtPath:(NSString*)theArtworkPath intoContext:(CGContextRef)quartzContext bounds:(CGRect)bounds
 {
 #if TARGET_INTERFACE_BUILDER
-    static SVGRenderer* renderer = nil;
-    
-    static dispatch_once_t  done;
-    dispatch_once(&done, ^{
-        renderer = [[SVGRenderer alloc] initWithString:[GHButton placeHolderSVG]];
-    });
+    SVGRenderer* renderer = [[SVGRenderer alloc] initWithString:[GHButton placeHolderSVG]];;
     
 #else
     SVGRenderer* renderer = [[SVGghLoaderManager loader] loadRenderForSVGIdentifier:theArtworkPath inBundle:nil];

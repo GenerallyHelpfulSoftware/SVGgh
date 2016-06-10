@@ -36,11 +36,13 @@ const CGFloat kShadowInset = 3.0;
 @property(nonatomic, strong) UIColor* explicitBaseColor;
 @property(nonatomic, strong) UIColor* explicitPressedColor;
 @property(nonatomic, strong) UIColor* explicitSelectedColor;
+@property(nonatomic, strong) UIColor* explicitDisabledColor;
 
 
 @property(nonatomic, strong) UIColor* defaultBaseColor;
 @property(nonatomic, strong) UIColor* defaultPressedColor;
 @property(nonatomic, strong) UIColor* defaultSelectedColor;
+@property(nonatomic, strong) UIColor* defaultDisabledColor;
 
 @end
 
@@ -123,6 +125,7 @@ const CGFloat kShadowInset = 3.0;
     
     self.defaultBaseColor = [GHControlFactory newTextColorForScheme:aScheme];
     self.defaultPressedColor = [GHControlFactory newTextColorPressedForScheme:aScheme];
+    self.defaultDisabledColor = [UIColor lightGrayColor];
     self.ringColor = [GHControlFactory newRingColorForScheme:aScheme];
     self.textShadowColor = [GHControlFactory newLightBackgroundColorForScheme:aScheme];
     self.useRadialGradient = [GHControlFactory preferRadialGradientForScheme:aScheme];
@@ -200,10 +203,28 @@ const CGFloat kShadowInset = 3.0;
     return result;
 }
 
-
 -(void) setTextColorSelected:(UIColor *)textColorSelected
 {
     self.explicitSelectedColor = textColorSelected;
+}
+
+-(void) setTextColorDisabled:(UIColor *)textColorDisabled
+{
+    self.explicitDisabledColor  = textColorDisabled;
+}
+
+-(UIColor*) textColorDisabled
+{
+    UIColor* result = self.explicitDisabledColor;
+    if(result == nil)
+    {
+        result = self.defaultDisabledColor;
+    }
+    if(result == nil)
+    {
+        result = [UIColor lightGrayColor];
+    }
+    return result;
 }
 
 -(UIColor*) textColorSelected
@@ -216,7 +237,6 @@ const CGFloat kShadowInset = 3.0;
     return result;
 
 }
-
 
 -(void) setEnabled:(BOOL)enabled
 {
@@ -232,7 +252,6 @@ const CGFloat kShadowInset = 3.0;
 {
     return  self.scheme;
 }
-
 
 -(void) setFaceGradient:(CGGradientRef)faceGradient
 {

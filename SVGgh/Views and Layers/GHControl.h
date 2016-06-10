@@ -71,6 +71,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong) IBInspectable UIColor*          textColor;
 @property(nonatomic, strong) IBInspectable UIColor*        textColorPressed;
 @property(nonatomic, strong) IBInspectable UIColor*        textColorSelected;
+@property(nonatomic, strong) IBInspectable UIColor*        textColorDisabled;
 @property(nonatomic, assign) BOOL                   drawsChrome;
 @property(nonatomic, assign) BOOL                   drawsBackground;
 @property(nonatomic, strong) UIColor*       __nullable      ringColor;
