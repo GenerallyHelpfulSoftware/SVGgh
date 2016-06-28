@@ -679,7 +679,7 @@
 -(void)drawArtworkAtPath:(NSString*)theArtworkPath intoContext:(CGContextRef)quartzContext bounds:(CGRect)bounds
 {
 #if TARGET_INTERFACE_BUILDER
-    SVGRenderer* renderer = [[SVGRenderer alloc] initWithString:[GHButton placeHolderSVG]];;
+    SVGRenderer* renderer = [[SVGRenderer alloc] initWithString:[GHButton placeHolderSVG]];
     
 #else
     SVGRenderer* renderer = [[SVGghLoaderManager loader] loadRenderForSVGIdentifier:theArtworkPath inBundle:nil];

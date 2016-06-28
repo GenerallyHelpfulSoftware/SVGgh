@@ -105,30 +105,17 @@
 
 - (void)prepareForInterfaceBuilder // show a placeholder in Interface Builder
 {
+    [super prepareForInterfaceBuilder];
     if(self.renderer == nil)
     {
         if(self.artworkPath.length)
         {
-            static SVGRenderer* sRenderer = nil;
-            
-            static dispatch_once_t  done;
-            dispatch_once(&done, ^{
-                sRenderer = [[SVGRenderer alloc] initWithString:[SVGDocumentView placeHolderSVG]];
-            });
-            
-            self.renderer = sRenderer;
+            self.renderer = [[SVGRenderer alloc] initWithString:[SVGDocumentView placeHolderSVG]];
+
         }
         else
         {
-            
-            static SVGRenderer* sRenderer = nil;
-            
-            static dispatch_once_t  done;
-            dispatch_once(&done, ^{
-                sRenderer = [[SVGRenderer alloc] initWithString:[SVGDocumentView missingArtworkplaceHolderSVG]];
-            });
-            
-            self.renderer = sRenderer;
+            self.renderer = [[SVGRenderer alloc] initWithString:[SVGDocumentView missingArtworkplaceHolderSVG]];
         }
     }
 }
@@ -155,7 +142,7 @@
         {
             [self prepareForInterfaceBuilder];
         }
-#endif
+#endif;
     }
 #endif
 }
