@@ -142,7 +142,7 @@
         {
             [self prepareForInterfaceBuilder];
         }
-#endif;
+#endif
     }
 #endif
 }

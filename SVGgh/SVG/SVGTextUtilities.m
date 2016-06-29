@@ -203,11 +203,15 @@ BOOL IsFontFamilyAvailable(NSString* fontFamilyName);
 		else
 		{
 			CTFontRef defaultFontRef = CTFontCreateUIFontForLanguage(kCTFontUIFontUser, 0.0, 0);
-			if(defaultFontRef != 0)
-			{
-				result =  CTFontCopyFontDescriptor(defaultFontRef);
-				CFRelease(defaultFontRef);
-			}
+            if(defaultFontRef == 0)
+            {
+                NSString* fontName = @"Helvetica";
+                CFStringRef fontNameCF = (__bridge CFStringRef)(fontName);
+                defaultFontRef = CTFontCreateWithName(fontNameCF,12.0, NULL );
+            }
+            result =  CTFontCopyFontDescriptor(defaultFontRef);
+            CFRelease(defaultFontRef);
+			
 		}
 	}
 	else
@@ -611,7 +615,7 @@ BOOL IsFontFamilyAvailable(NSString* fontFamilyName);
             (CTParagraphStyleSetting){ kCTParagraphStyleSpecifierLineHeightMultiple, sizeof(float_t), (float_t[]){ 0.01f } },
             (CTParagraphStyleSetting){ kCTParagraphStyleSpecifierMinimumLineHeight, sizeof(float_t), (float_t[]){ lineHeight } },
             (CTParagraphStyleSetting){ kCTParagraphStyleSpecifierMaximumLineHeight, sizeof(float_t), (float_t[]){ lineHeight } },
-            (CTParagraphStyleSetting){ kCTParagraphStyleSpecifierLineSpacing, sizeof(float_t), (float_t[]){ lineSpacing } },
+            (CTParagraphStyleSetting){ kCTParagraphStyleSpecifierLineSpacingAdjustment, sizeof(float_t), (float_t[]){ lineSpacing } },
             (CTParagraphStyleSetting){ kCTParagraphStyleSpecifierMinimumLineSpacing, sizeof(float_t), (float_t[]){ lineSpacing } },
             (CTParagraphStyleSetting){ kCTParagraphStyleSpecifierMaximumLineSpacing, sizeof(float_t), (float_t[]){ lineSpacing } },
             {kCTParagraphStyleSpecifierLineBreakMode, sizeof(CTLineBreakMode), &lineBreakMode},

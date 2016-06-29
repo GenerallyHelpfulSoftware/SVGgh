@@ -42,8 +42,8 @@ NS_ASSUME_NONNULL_BEGIN
 +(__nullable id)decodeBase64ForString:(NSString * )decodeString;
 +(__nullable id)decodeWebSafeBase64ForString:( NSString * )decodeString;
 
--( NSString * )encodeBase64ForData;
--( NSString * )encodeWebSafeBase64ForData;
+-(NSString * _Nullable  )encodeBase64ForData;
+-(NSString * _Nullable  )encodeWebSafeBase64ForData;
 -( NSString * )encodeWrappedBase64ForData;
 
 @end

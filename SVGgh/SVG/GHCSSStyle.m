@@ -32,7 +32,7 @@
 @implementation GHCSSStyle
 +(NSDictionary<NSString*, GHCSSStyle*>*) stylesForString:(NSString*)css
 {
-    NSDictionary<NSString*, GHCSSStyle*>* result = nil;
+    NSDictionary<NSString*, GHCSSStyle*>* result = [NSDictionary  new];
     
     
     
