@@ -66,7 +66,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /*! @brief not allowing a standard init method
  */
--(nullable instancetype) init __attribute__((unavailable("init not available")));
+-(instancetype) init __attribute__((unavailable("init not available")));
 
 /*! @brief method to create a URL relative to the URL used to create this object (assuming use of a URL to create it)
 * @param subPath relative path to this parser's svgURL
