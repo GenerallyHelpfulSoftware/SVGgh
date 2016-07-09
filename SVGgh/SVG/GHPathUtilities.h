@@ -108,8 +108,8 @@ __attribute__((deprecated)) CGPoint CalculateForward(CGPoint startPoint, CGPoint
 
 
 /*! @brief given the start and end of a line segment, calculate the perpendicular normal to them
- * @param startPoint
- * @param endPoint
+ * @param startPoint base of the vector
+ * @param endPoint tip of the vector
  */
 CGPoint CalculateNormal(CGPoint startPoint, CGPoint endPoint);
 

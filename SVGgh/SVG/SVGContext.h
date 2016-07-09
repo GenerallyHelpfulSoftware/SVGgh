@@ -89,7 +89,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /*! @brief  Look through the CSS attributes for a given styling attribute.
  * @param attributeName the name of the attribute like 'line-width'
- * @param className the name of the CSS class like 'background' or some other arbitrary item
+ * @param listOfClasses the name of the CSS class like 'background' or some other arbitrary item
  * @param entityName the name of the entity like 'rect' or 'polyline'
  */
 -(nullable NSString*) attributeNamed:(NSString*)attributeName classes:(nullable NSArray<NSString*>*)listOfClasses entityName:(nullable NSString*)entityName;

@@ -47,7 +47,8 @@ NS_ASSUME_NONNULL_BEGIN
 -(instancetype)initWithContentsOfURL:(NSURL *)url;
 
 /*! @brief init method which the name of a resource based SVG
- * @param a string giving the name of the resource
+ * @param resourceName string giving the name of the resource
+ * @param bundle optional bundle to look in
  * @commment might be from XCAsset data
  */
 -(nullable  instancetype) initWithResourceName:(NSString*)resourceName inBundle:(nullable NSBundle*)bundle;
