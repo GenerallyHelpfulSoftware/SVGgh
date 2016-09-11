@@ -21,27 +21,28 @@ class SVGPerformanceTests: XCTestCase {
         super.tearDown()
     }
     
-    func newURLAtSubpath(subpath:String)->NSURL
+    func newURLAtSubpath(_ subpath:String)->NSURL
     {
-        let myBundle = NSBundle(forClass: self.dynamicType)
-        return myBundle.URLForResource(subpath, withExtension:"svg")!
+        let myBundle = Bundle(for: type(of: self))
+        return myBundle.url(forResource: subpath, withExtension: "svg")! as NSURL
     }
     
     func testLoadPerformance() {
         // This is an example of a performance test case.
         let myArtwork = newURLAtSubpath("Artwork/Eyes")
-        self.measureBlock {
+        
+        self.measure {
             // Put the code you want to measure the time of here.
-            let renderer = SVGRenderer(contentsOfURL:myArtwork)
+            let renderer = SVGRenderer(contentsOf:myArtwork as URL)
             XCTAssertNotNil(renderer, "Render was nil")
         }
     }
     
-    func fileTest(fileAtPath:String)
+    func fileTest(_ fileAtPath:String)
     {
-        let maximumSize = CGSizeMake(1024, 1024)
+        let maximumSize = CGSize(width: 1024, height: 1024)
         let myArtwork = newURLAtSubpath(fileAtPath)
-        let renderer = SVGRenderer(contentsOfURL:myArtwork)
+        let renderer = SVGRenderer(contentsOf:myArtwork as URL)
         let documentSize = renderer.viewRect.size
         let interiorAspectRatio = maximumSize.width/maximumSize.height
         let rendererAspectRatio = documentSize.width/documentSize.height
@@ -59,17 +60,21 @@ class SVGPerformanceTests: XCTestCase {
         let scaledWidth = floor(documentSize.width*fittedScaling) as CGFloat
         let scaleHeight = floor(documentSize.height*fittedScaling) as CGFloat
         
-        UIGraphicsBeginImageContextWithOptions(CGSizeMake(scaledWidth, scaleHeight), false, 1.0);
-        let quartzContext = UIGraphicsGetCurrentContext();
-        CGContextClearRect(quartzContext, CGRectMake(0, 0, scaledWidth, scaleHeight));
-        CGContextSaveGState(quartzContext);
-        CGContextTranslateCTM(quartzContext, (maximumSize.width-scaledWidth)/2.0, (maximumSize.height-scaleHeight)/2.0);
-        CGContextScaleCTM(quartzContext, fittedScaling, fittedScaling);
-
-        self.measureBlock
+        UIGraphicsBeginImageContextWithOptions(CGSize(width: scaledWidth, height: scaleHeight), false, 1.0)
+        if let quartzContext = UIGraphicsGetCurrentContext()
         {
-            renderer.renderIntoContext(quartzContext!)
-            UIGraphicsEndImageContext();
+            quartzContext.clear(CGRect(x: 0, y: 0, width: scaledWidth, height: scaleHeight))
+            quartzContext.saveGState()
+            
+            quartzContext.translateBy(x: (maximumSize.width-scaledWidth)/2.0, y: (maximumSize.height-scaleHeight)/2.0)
+            
+            quartzContext.scaleBy(x: fittedScaling, y: fittedScaling)
+
+            self.measure
+            {
+                renderer.render(into: quartzContext)
+                UIGraphicsEndImageContext()
+            }
         }
     }
     

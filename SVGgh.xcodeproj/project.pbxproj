@@ -14,6 +14,9 @@
 		210DF46A1B9132FE00D702D5 /* SVGgh.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 21F6BBE21B29A21E00DCEEC2 /* SVGgh.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		211CB3D11BD4346F00121DB4 /* SVGgh.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F6BBE21B29A21E00DCEEC2 /* SVGgh.framework */; };
 		211CB3D21BD4346F00121DB4 /* SVGgh.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 21F6BBE21B29A21E00DCEEC2 /* SVGgh.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2124967A1D60E51A00F486B7 /* SVGPathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212496791D60E51A00F486B7 /* SVGPathTests.swift */; };
+		2124967C1D60E57E00F486B7 /* CGPath+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2124967B1D60E57E00F486B7 /* CGPath+Test.swift */; };
+		2124967E1D60E5A800F486B7 /* CGPath+Iterate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2124967D1D60E5A800F486B7 /* CGPath+Iterate.swift */; };
 		212A8B781B63C4E8009B28C9 /* SVGPerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212A8B771B63C4E8009B28C9 /* SVGPerformanceTests.swift */; };
 		212A8B791B63C542009B28C9 /* Artwork in Resources */ = {isa = PBXBuildFile; fileRef = 21F6BCE71B29A8FE00DCEEC2 /* Artwork */; };
 		2151A7B61CD059AC00D16C89 /* Artwork.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2151A7B51CD059AC00D16C89 /* Artwork.xcassets */; };
@@ -160,6 +163,9 @@
 		210C30921C9E31B700B530EF /* GHCSSStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHCSSStyle.m; sourceTree = "<group>"; };
 		210C30951C9E479C00B530EF /* CSSTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSSTests.m; sourceTree = "<group>"; };
 		211E709E1B2AEC1D00667BE9 /* SVGgh.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = SVGgh.podspec; sourceTree = "<group>"; };
+		212496791D60E51A00F486B7 /* SVGPathTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVGPathTests.swift; sourceTree = "<group>"; };
+		2124967B1D60E57E00F486B7 /* CGPath+Test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPath+Test.swift"; sourceTree = "<group>"; };
+		2124967D1D60E5A800F486B7 /* CGPath+Iterate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPath+Iterate.swift"; sourceTree = "<group>"; };
 		212A8B761B63C4E6009B28C9 /* SVGghTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SVGghTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		212A8B771B63C4E8009B28C9 /* SVGPerformanceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVGPerformanceTests.swift; sourceTree = "<group>"; };
 		2151A7B51CD059AC00D16C89 /* Artwork.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Artwork.xcassets; sourceTree = "<group>"; };
@@ -384,7 +390,10 @@
 		21F6BBF11B29A21E00DCEEC2 /* SVGghTests */ = {
 			isa = PBXGroup;
 			children = (
+				2124967D1D60E5A800F486B7 /* CGPath+Iterate.swift */,
+				2124967B1D60E57E00F486B7 /* CGPath+Test.swift */,
 				212A8B771B63C4E8009B28C9 /* SVGPerformanceTests.swift */,
+				212496791D60E51A00F486B7 /* SVGPathTests.swift */,
 				21F6BBF41B29A21E00DCEEC2 /* SVGghTests.m */,
 				210C30951C9E479C00B530EF /* CSSTests.m */,
 				21F6BBF21B29A21E00DCEEC2 /* Supporting Files */,
@@ -676,9 +685,11 @@
 					};
 					21F6BBE11B29A21E00DCEEC2 = {
 						CreatedOnToolsVersion = 6.3.2;
+						LastSwiftMigration = 0800;
 					};
 					21F6BBEC1B29A21E00DCEEC2 = {
 						CreatedOnToolsVersion = 6.3.2;
+						LastSwiftMigration = 0800;
 					};
 					21F6BC871B29A48600DCEEC2 = {
 						CreatedOnToolsVersion = 6.3.2;
@@ -816,7 +827,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				210C30961C9E479C00B530EF /* CSSTests.m in Sources */,
+				2124967E1D60E5A800F486B7 /* CGPath+Iterate.swift in Sources */,
+				2124967A1D60E51A00F486B7 /* SVGPathTests.swift in Sources */,
 				21F6BBF51B29A21E00DCEEC2 /* SVGghTests.m in Sources */,
+				2124967C1D60E57E00F486B7 /* CGPath+Test.swift in Sources */,
 				212A8B781B63C4E8009B28C9 /* SVGPerformanceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -958,6 +972,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos appletvsimulator appletvos";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "arm64 armv7 armv7s";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1002,6 +1017,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos appletvsimulator appletvos";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "arm64 armv7 armv7s";
@@ -1024,6 +1040,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.genhelp.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -1041,6 +1058,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.genhelp.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -1064,6 +1082,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "SVGghTests/SVGghTests-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
@@ -1083,6 +1102,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.genhelp.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "SVGghTests/SVGghTests-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;
