@@ -718,6 +718,20 @@
         if(strokeOpacity > 1.0) strokeOpacity = 1.0;
     }
     
+    
+    NSString* opacityString = [self valueForStyleAttribute:@"opacity" withSVGContext:svgContext];
+    CGFloat opacity = 1.0;
+    if([opacityString length])
+    {
+        opacity = [opacityString floatValue];
+        if(opacity < 0.0) opacity = 0.0;
+        if(opacity > 1.0) opacity = 1.0;
+    }
+    
+    if (opacity != 1.0) {
+        CGContextSetAlpha(quartzContext, opacity);
+    }
+    
     BOOL	fillIt = (fillOpacity > 0.0 && ![fillString isEqualToString:@"none"]);
     
     if(fillIt && self.isFillable)
