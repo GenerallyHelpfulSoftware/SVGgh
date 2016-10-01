@@ -1336,7 +1336,7 @@ UIColor* UIColorFromSVGColorString (NSString * stringToConvert)
                 
                 if([redString hasSuffix:@"%"])
                 {
-                    r = (unsigned int)(2.55001*[redString doubleValue]);
+                    r = (unsigned int)(2.55*[redString doubleValue]);
                 }
                 else
                 {
@@ -2375,6 +2375,21 @@ void AddSVGArcToPath(CGMutablePathRef thePath,
     }
 }
 
+
++(CGFloat) setupOpacityForQuartzContext:(CGContextRef)quartzContext withSVGOpacity:(NSString*)opacityString withStartOpacity:(CGFloat)startOpacity
+{
+    CGFloat result = startOpacity;
+    if(opacityString.length)
+    {
+        CGFloat	opacity = [opacityString floatValue]*startOpacity;
+        if(opacity >= 0 && opacity <= 1.0)
+        {
+            CGContextSetAlpha(quartzContext, opacity);
+        }
+        result = opacity;
+    }
+    return result;
+}
 
 +(void) setupOpacityForQuartzContext:(CGContextRef)quartzContext withSVGOpacity:(NSString*)opacityString
 {
