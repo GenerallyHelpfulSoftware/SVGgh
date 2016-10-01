@@ -152,7 +152,7 @@
     NSString* colorString = [attributes objectForKey:@"color"];
     [SVGToQuartz setupColorForQuartzContext:quartzContext withColorString:colorString withSVGContext:svgContext];
     
-    NSString* opacityString = [attributes objectForKey:@"opacity"];
+    NSString* opacityString = [SVGToQuartz valueForStyleAttribute:@"opacity" fromDefinition:attributes];
     if(opacityString.length)
     {
         CGFloat newOpacity = [SVGToQuartz setupOpacityForQuartzContext:quartzContext withSVGOpacity:opacityString withStartOpacity: svgContext.opacity];
