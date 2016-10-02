@@ -1652,6 +1652,12 @@
     CGContextConcatCTM(quartzContext, myTransform);
     [GHRenderableObject	setupContext:quartzContext withAttributes:self.attributes  withSVGContext:svgContext];
     CGFloat myOpacity = svgContext.opacity;
+    if(myOpacity != 1.0)
+    {
+        CGContextBeginTransparencyLayer(quartzContext, NULL);
+        svgContext.opacity = 1.0;
+        CGContextSetAlpha(quartzContext, 1.0);
+    }
     id clippingObject = [GHClipGroup clipObjectForAttributes:self.attributes withSVGContext:svgContext];
     if(clippingObject)
     {
@@ -1677,14 +1683,18 @@
         {
             [svgContext setCurrentColor:colorToDefaultTo];
             [aChild renderIntoContext:quartzContext withSVGContext:svgContext];
-            if(myOpacity != svgContext.opacity)
+            if(1.0 != svgContext.opacity)
             {
-                CGContextSetAlpha(quartzContext, myOpacity);
-                [svgContext setOpacity:myOpacity];
+                CGContextSetAlpha(quartzContext, 1.0);
+                [svgContext setOpacity:1.0];
             }
         }
     }
     [svgContext setCurrentColor:savedColor];
+    if(myOpacity != 1.0)
+    {
+        CGContextEndTransparencyLayer(quartzContext);
+    }
     CGContextRestoreGState(quartzContext);
 }
 

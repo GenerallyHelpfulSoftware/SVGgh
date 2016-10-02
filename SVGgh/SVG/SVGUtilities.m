@@ -2381,12 +2381,16 @@ void AddSVGArcToPath(CGMutablePathRef thePath,
     CGFloat result = startOpacity;
     if(opacityString.length)
     {
-        CGFloat	opacity = [opacityString floatValue]*startOpacity;
-        if(opacity >= 0 && opacity <= 1.0)
+        CGFloat	opacity = [opacityString floatValue];
+        if(opacity < 1.0)
         {
-            CGContextSetAlpha(quartzContext, opacity);
+            opacity*=startOpacity;
+            if(opacity >= 0 && opacity <= 1.0)
+            {
+                CGContextSetAlpha(quartzContext, opacity);
+            }
+            result = opacity;
         }
-        result = opacity;
     }
     return result;
 }
