@@ -39,8 +39,9 @@
 @property (strong, nonatomic)	NSMutableDictionary*	colorMap;
 @property (strong, nonatomic)   NSDictionary*   namedObjects;
 @property (strong, nonatomic)   GHStyle*        cssStyle;
-@property (assign)                      BOOL styleChecked;
+@property (assign)              BOOL            styleChecked;
 @property (strong, nonatomic)   UIColor* currentColor;
+@property (assign, nonatomic)   CGFloat opacity;
 @property (strong, nonatomic)   NSString* isoLanguage;
 @property (strong, nonatomic, readonly) GHShapeGroup*		contents;
 +(NSDictionary*) defaultAttributes;
@@ -78,6 +79,7 @@
         CFStringRef langCode = CFArrayGetValueAtIndex (langs, 0);
         _isoLanguage = [[NSString stringWithString:(__bridge NSString*)langCode] substringToIndex:2];
         CFRelease(langs);
+        self.opacity = 1.0;
 	}
 	return self;
 }
@@ -92,6 +94,7 @@
         CFStringRef langCode = CFArrayGetValueAtIndex (langs, 0);
         _isoLanguage = [[NSString stringWithString:(__bridge NSString*)langCode] substringToIndex:2];
         CFRelease(langs);
+        self.opacity = 1.0;
 	}
 	return self;
 }
