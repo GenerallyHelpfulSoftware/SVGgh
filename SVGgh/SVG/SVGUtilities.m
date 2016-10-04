@@ -2376,23 +2376,25 @@ void AddSVGArcToPath(CGMutablePathRef thePath,
 }
 
 
-+(CGFloat) setupOpacityForQuartzContext:(CGContextRef)quartzContext withSVGOpacity:(NSString*)opacityString withStartOpacity:(CGFloat)startOpacity
++(void) setupOpacityForQuartzContext:(CGContextRef)quartzContext withSVGOpacity:(NSString*)opacityString withSVGContext:(id<SVGContext>)svgContext
 {
-    CGFloat result = startOpacity;
-    if(opacityString.length)
+    if(opacityString.length && ![opacityString isEqualToString:@"none"])
     {
-        CGFloat	opacity = [opacityString floatValue];
-        if(opacity < 1.0)
+        CGFloat	opacity = 1.0;
+        if([opacityString isEqualToString:@"inherit"])
         {
-            opacity*=startOpacity;
-            if(opacity >= 0 && opacity <= 1.0)
-            {
-                CGContextSetAlpha(quartzContext, opacity);
-            }
-            result = opacity;
+            opacity = svgContext.opacity;
+        }
+        else
+        {
+            opacity = [opacityString floatValue];
+        }
+        if(opacity >= 0 && opacity < 1.0)
+        {
+            CGContextSetAlpha(quartzContext, opacity);
+            svgContext.opacity = opacity;
         }
     }
-    return result;
 }
 
 +(void) setupOpacityForQuartzContext:(CGContextRef)quartzContext withSVGOpacity:(NSString*)opacityString
