@@ -15,17 +15,17 @@ class SegmentedDemoTableCell: UITableViewCell
         didSet
         {
             
-            if let helmetRenderer = SVGghLoaderManager.loader().loadRenderForSVGIdentifier("Helmet", inBundle: nil)
+            if let helmetRenderer = SVGghLoaderManager.loader().loadRender(forSVGIdentifier: "Helmet", in: nil)
             {
-                self.segmentedControl.insertSegmentWithRenderer(helmetRenderer, atIndex: 0, animated: false)
+                self.segmentedControl.insertSegment(with: helmetRenderer, at: 0, animated: false)
             }
             
-            if let eyeRenderer = SVGghLoaderManager.loader().loadRenderForSVGIdentifier("Eye", inBundle: nil)
+            if let eyeRenderer = SVGghLoaderManager.loader().loadRender(forSVGIdentifier: "Eye", in: nil)
             {
-                self.segmentedControl.insertSegmentWithRenderer(eyeRenderer, atIndex: 1, animated: false)
+                self.segmentedControl.insertSegment(with: eyeRenderer, at: 1, animated: false)
             }
             
-            self.segmentedControl.insertSegmentWithTitle("Demo", atIndex: 2, animated: false)
+            self.segmentedControl.insertSegment(withTitle: "Demo", at: 2, animated: false)
             
             self.segmentedControl.selectedSegmentIndex = 1;
             
@@ -72,12 +72,13 @@ class SegmentedDemoViewController: UIViewController, UITableViewDataSource {
         // Dispose of any resources that can be recreated.
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
         return kLastColorScheme
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let result = tableView.dequeueReusableCellWithIdentifier("SegmentCell", forIndexPath: indexPath) as! SegmentedDemoTableCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let result = tableView.dequeueReusableCell(withIdentifier: "SegmentCell", for: indexPath as IndexPath) as! SegmentedDemoTableCell
         result.colorScheme = ColorScheme(indexPath.row)
         return result
     }

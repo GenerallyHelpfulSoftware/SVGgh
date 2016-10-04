@@ -75,6 +75,17 @@ NS_ASSUME_NONNULL_BEGIN
 /*! @brief the value for 'currentColor' at this moment in the process of visiting a document
  */
 -(nullable UIColor*) currentColor;
+
+/*! @brief the value for 'opacity' at this moment in the process of visiting a document
+ */
+-(CGFloat) opacity;
+
+/*! @brief opacity is dependent (via inheritence) as you descend an SVG Document. This opacity is the place to keep track of updated opacity.
+ * @param the current opacity (defaults to 1.0)
+ */
+-(void) setOpacity:(CGFloat)opacity;
+
+
 /*! @brief the active language expected by the user like 'en' or 'sp' or 'zh'
  */
 -(nullable NSString*) isoLanguage;

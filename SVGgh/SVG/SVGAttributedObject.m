@@ -152,8 +152,11 @@
     NSString* colorString = [attributes objectForKey:@"color"];
     [SVGToQuartz setupColorForQuartzContext:quartzContext withColorString:colorString withSVGContext:svgContext];
     
-    NSString* opacityString = [attributes objectForKey:@"opacity"];
-    [SVGToQuartz setupOpacityForQuartzContext:quartzContext withSVGOpacity:opacityString];
+    NSString* opacityString = [SVGToQuartz valueForStyleAttribute:@"opacity" fromDefinition:attributes];
+    if(opacityString.length)
+    {
+        [SVGToQuartz setupOpacityForQuartzContext:quartzContext withSVGOpacity:opacityString withSVGContext:svgContext];
+    }
 }
 
 
@@ -177,6 +180,7 @@
 -(void) setupContext:(CGContextRef)quartzContext withAttributes:(NSDictionary*)attributes withSVGContext:(id<SVGContext>)svgContext
 {
     id newDefaultColor = [attributes objectForKey:@"color"];
+    
     if([newDefaultColor isKindOfClass:[NSString class]])
     {
         UIColor* newCurrentColor = [svgContext colorForSVGColorString:newDefaultColor];
@@ -495,16 +499,26 @@
                 {
                     
                     NSString*   opacityString = [self.attributes objectForKey:@"opacity"];
-                    CGFloat     alpha = 1.0;
                     if(opacityString.length)
                     {
-                        if([opacityString isEqualToString:@"none"] || [opacityString isEqualToString:@"inherit"])
+                        if([opacityString isEqualToString:@"none"])
                         {
                         }
                         else
                         {
-                            alpha = [opacityString floatValue];
-                            CGContextSetAlpha(quartzContext, alpha);
+                            CGFloat     alpha = 1.0;
+                            if([opacityString isEqualToString:@"inherit"])
+                            {
+                                alpha = svgContext.opacity;
+                            }
+                            else
+                            {
+                                alpha = [opacityString floatValue];
+                            }
+                            if(alpha >= 0 && alpha < 1.0)
+                            {
+                                CGContextSetAlpha(quartzContext, alpha);
+                            }
                         }
                     }
                     CGContextDrawImage(quartzContext, drawRect, quartzImage);
@@ -807,7 +821,7 @@
             if(fillOpacity < 1.0)
             {
                 CGContextSaveGState(quartzContext);
-                CGContextSetAlpha(quartzContext, fillOpacity);
+                CGContextSetAlpha(quartzContext, fillOpacity*svgContext.opacity);
             }
             if(!CGRectIsEmpty(myBox))
             {
@@ -1646,6 +1660,12 @@
     CGAffineTransform   myTransform = self.transform;
     CGContextConcatCTM(quartzContext, myTransform);
     [GHRenderableObject	setupContext:quartzContext withAttributes:self.attributes  withSVGContext:svgContext];
+    CGFloat myOpacity = svgContext.opacity;
+    if(myOpacity != 1.0)
+    {
+        CGContextBeginTransparencyLayer(quartzContext, NULL);
+        CGContextSetAlpha(quartzContext, 1.0);
+    }
     id clippingObject = [GHClipGroup clipObjectForAttributes:self.attributes withSVGContext:svgContext];
     if(clippingObject)
     {
@@ -1671,9 +1691,14 @@
         {
             [svgContext setCurrentColor:colorToDefaultTo];
             [aChild renderIntoContext:quartzContext withSVGContext:svgContext];
+            svgContext.opacity = myOpacity;
         }
     }
     [svgContext setCurrentColor:savedColor];
+    if(myOpacity != 1.0)
+    {
+        CGContextEndTransparencyLayer(quartzContext);
+    }
     CGContextRestoreGState(quartzContext);
 }
 

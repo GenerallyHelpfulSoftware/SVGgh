@@ -914,10 +914,25 @@ iehp1OXpQ1AH/9k=" width="384.000000" clip-path="url(#clip_F4C745ED-E424-4951-95F
 <path d="M 0 85 H18 m24 0 H512 m0 20 H0m0 20H512 m0 20 H0m0 20H512 m0 20 H0m0 20H512 m0 20 H0m0 20H512 m0 20 H42m-24 0 H0m0 20H512 m0 20 H0m0 20H512 m0 20 H0m0 20H512 m0 20 H0m0 20H512 m0 20 H0m0 20H18 m24 0 H512 m0 20 H0m0 20H512" stroke-width="1" vector-effect="non-scaling-stroke" stroke="#2288F0"/>
 </g>
 <g stroke-width="3" stroke="none">
+<g transform="translate(200, 10) scale(.3)">
 <use xlink:href="#IMG_F4C745ED-E424-4951-95FE-630E468A7770.jpg" transform="matrix(3.05921 0 0 3.05921 105.092 107.992)"/>
 <use xlink:href="#Football Helmet Front" transform="matrix(3.23999 0.194152 -0.194152 3.23999 102.771 64.9279)" fill="url(#balltoblack_#FFA500)" color="#FFA500"/>
-<text x="0" font-family="Georgia" y="50" font-size="28" color="#ff69b4" fill="url(#uptoblack_#ff69b4)" transform="matrix(1.31961 0 0 1.31961 100.936 367.628)"  text-decoration="none">✧SVGgh Test File✧</text>
 <use xlink:href="#Star 5" transform="matrix(0.5984 0 0 0.5984 230.432 132.832)" fill="url(#uptoblack_#B0E0E6)" color="#B0E0E6"/>
+</g>
+
+<g transform="translate(130, 10) scale(.3)" opacity=".75">
+<use xlink:href="#IMG_F4C745ED-E424-4951-95FE-630E468A7770.jpg" transform="matrix(3.05921 0 0 3.05921 105.092 107.992)"/>
+<use xlink:href="#Football Helmet Front" transform="matrix(3.23999 0.194152 -0.194152 3.23999 102.771 64.9279)" fill="url(#balltoblack_#FFA500)" color="#FFA500"/>
+<use xlink:href="#Star 5" transform="matrix(0.5984 0 0 0.5984 230.432 132.832)" fill="url(#uptoblack_#B0E0E6)" color="#B0E0E6"/>
+</g>
+
+<g transform="translate(165, 90) scale(.3)" opacity=".75">
+<use xlink:href="#IMG_F4C745ED-E424-4951-95FE-630E468A7770.jpg" transform="matrix(3.05921 0 0 3.05921 105.092 107.992)" opacity="inherit"/>
+<use xlink:href="#Football Helmet Front" transform="matrix(3.23999 0.194152 -0.194152 3.23999 102.771 64.9279)" fill="url(#balltoblack_#FFA500)" color="#FFA500"/>
+<use xlink:href="#Star 5" transform="matrix(0.5984 0 0 0.5984 230.432 132.832)" fill="url(#uptoblack_#B0E0E6)" color="#B0E0E6"/>
+</g>
+
+<text x="0" font-family="Georgia" y="50" font-size="28" color="#ff69b4" fill="url(#uptoblack_#ff69b4)" transform="matrix(1.31961 0 0 1.31961 100.936 367.628)"  text-decoration="none">✧SVGgh Test File✧</text>
 
 <text font-family="Georgia" font-size="14" color="black" fill="orange" x="450" y="450" text-decoration="underline">Underline</text>
 <text font-family="system" font-size="14" color="black" fill="grey" x="450" y="480">System</text>
@@ -942,4 +957,11 @@ iehp1OXpQ1AH/9k=" width="384.000000" clip-path="url(#clip_F4C745ED-E424-4951-95F
 </g>
 <polygon fill="green" points="143.24,30.955 , 124.594,30.955 124.594,66.027 118.378,66.027 118.378,30.955
 		99.325,30.955 99.325,24.742 143.24,24.742"/>
+
+<g opacity="0.5">
+	<circle cx="420" cy="280" r="30" opacity="inherit" fill="red" stroke="green" stroke-width="6"/>
+	<circle cx="450" cy="280" r="30"  fill="green"  stroke="blue" stroke-width="6" stroke-opacity="0.5"/>
+	<circle cx="435" cy="310" r="30"  fill="blue" fill-opacity=".50"  stroke="red" stroke-width="6"/>
+</g>
+
 </svg>

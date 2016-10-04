@@ -114,7 +114,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /*! @brief not allowing a standard init method
 */
--(nullable instancetype) init __attribute__((unavailable("init not available")));
+-(instancetype) init __attribute__((unavailable("init not available")));
 
 /*! @brief Asks the question for hit testing.
 * @param aPoint a point in the same coordinate system as this glyph

@@ -51,18 +51,22 @@ class ButtonsDemoViewController: UIViewController, UICollectionViewDataSource, U
         }
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         return kLastColorScheme
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let result = collectionView.dequeueReusableCellWithReuseIdentifier("ButtonCell", forIndexPath: indexPath) as! ButtonCell
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let result = collectionView.dequeueReusableCell(withReuseIdentifier: "ButtonCell", for: indexPath as IndexPath) as! ButtonCell
         result.colorScheme = ColorScheme(indexPath.item)
         return result
     }
     
-    func collectionView(collectionView : UICollectionView,layout collectionViewLayout:UICollectionViewLayout,sizeForItemAtIndexPath indexPath:NSIndexPath) -> CGSize
+    
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize
     {
         let baseSize = CGFloat(floor(fmin(self.view.bounds.width, self.view.bounds.height)/5.0))
         return CGSize(width: baseSize, height: baseSize)

@@ -269,7 +269,9 @@ extern const CGColorRenderingIntent	kColoringRenderingIntent;
 * @param opacityString a number as a string between 0 and 1
 * @see CGContextSetAlpha
 */
-+(void) setupOpacityForQuartzContext:(CGContextRef)quartzContext withSVGOpacity:(NSString*)opacityString;
++(void) setupOpacityForQuartzContext:(CGContextRef)quartzContext withSVGOpacity:(NSString*)opacityString __attribute__((deprecated));; 
+
++(void) setupOpacityForQuartzContext:(CGContextRef)quartzContext withSVGOpacity:(NSString*)opacityString withSVGContext:(id<SVGContext>)svgContext;
 
 /*! @brief setup the line width for stroking lines. May have a vector effect which results in scale ignoring drawing
 * @param quartzContext a Core Graphics context
