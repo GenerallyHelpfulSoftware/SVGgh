@@ -30,6 +30,7 @@
 @import UIKit;
 #import "SVGParser.h"
 #import "GHAttributedObject.h"
+#import "GzipInputStream.h"
 
 @interface SVGParser ()
 @property(nonatomic, strong) NSError* __nullable 	parserError;
@@ -168,22 +169,49 @@
 
 - (instancetype)initWithContentsOfURL:(NSURL *)url
 {
-	if(nil != (self = [super init]))
-	{
-		NSXMLParser* theParser = [[NSXMLParser alloc] initWithContentsOfURL:url];
-		[theParser setDelegate:self];
-		_svgURL = url;
-		[theParser parse];
-		self.parserError = [theParser parserError];
+    if ([url.pathExtension isEqualToString:@"svgz"]) {
+        NSInputStream* inputStream = [[GzipInputStream alloc] initWithURL:url];
+        
+        self = [self initWithInputStream:inputStream];
+    } else if(nil != (self = [super init]))
+    {
+        NSXMLParser* theParser = [[NSXMLParser alloc] initWithContentsOfURL:url];
+        [theParser setDelegate:self];
+        _svgURL = url;
+        [theParser parse];
+        self.parserError = [theParser parserError];
         self.root = [self.mutableRoot copy];
-	}
+    }
+    
 	return self;
+}
+
+-(instancetype)initWithInputStream:(NSInputStream *)inputStream
+{
+    if(nil != (self = [super init]))
+    {
+        NSXMLParser* theParser = [[NSXMLParser alloc] initWithStream:inputStream];
+        [theParser setDelegate:self];
+        [theParser parse];
+        self.parserError = [theParser parserError];
+        self.root = [self.mutableRoot copy];
+    }
+    return self;
 }
 
 -(nullable  instancetype) initWithResourceName:(NSString*)resourceName inBundle:(nullable NSBundle*)mayBeNil
 {
     NSBundle* bundleToUse = (mayBeNil == nil)? [NSBundle mainBundle] : mayBeNil;
-    NSURL* theURL = [bundleToUse URLForResource:resourceName withExtension:@"svg"];
+    
+    NSString* fileExtension = resourceName.pathExtension;
+    
+    if (fileExtension.length) {
+        resourceName = resourceName.stringByDeletingPathExtension;
+    } else {
+        fileExtension = @"svg";
+    }
+    
+    NSURL* theURL = [bundleToUse URLForResource:resourceName withExtension:fileExtension];
     if(theURL == NULL)
     {
         return NULL;

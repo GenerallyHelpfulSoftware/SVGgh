@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -211,7 +211,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OWg-Zo-HNF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1066" y="1007"/>
+            <point key="canvasLocation" x="1516" y="1001"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="yPk-PH-UrJ">
@@ -239,6 +239,31 @@
             <point key="canvasLocation" x="399" y="1015"/>
         </scene>
         <!--View Controller-->
+        <scene sceneID="fYC-VS-rJE">
+            <objects>
+                <viewController storyboardIdentifier="eyesGzip" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="DjJ-sU-hdJ" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hIr-Ti-vAg"/>
+                        <viewControllerLayoutGuide type="bottom" id="WPu-TZ-3iP"/>
+                    </layoutGuides>
+                    <view key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" id="NSY-RZ-iLz" customClass="SVGDocumentView">
+                        <rect key="frame" x="0.0" y="0.0" width="280" height="280"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <accessibility key="accessibilityConfiguration" identifier="Drawing Eyes"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="artworkPath" value="EyesZipped.svgz"/>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <toolbarItems/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="280" height="280"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iGc-bz-N8B" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="756" y="1015"/>
+        </scene>
+        <!--View Controller-->
         <scene sceneID="qIn-mL-ctY">
             <objects>
                 <viewController storyboardIdentifier="creatures" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="sNe-lw-Tq4" sceneMemberID="viewController">
@@ -264,7 +289,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fek-ns-cpw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="730" y="1007"/>
+            <point key="canvasLocation" x="1186" y="1015"/>
         </scene>
         <!--Segmented-->
         <scene sceneID="n64-lG-w20">

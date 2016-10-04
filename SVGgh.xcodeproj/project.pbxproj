@@ -94,6 +94,9 @@
 		21F6BCE21B29A52600DCEEC2 /* SVGghDebuggingAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F6BCDF1B29A52600DCEEC2 /* SVGghDebuggingAppDelegate.m */; };
 		21F6BCE31B29A52600DCEEC2 /* SVGghDebuggingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F6BCE11B29A52600DCEEC2 /* SVGghDebuggingViewController.m */; };
 		21F6BCE61B29A57C00DCEEC2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21F6BCE41B29A57C00DCEEC2 /* Main.storyboard */; };
+		37D39BA11DA2FE78002E8695 /* GzipInputStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 37D39B9F1DA2FE78002E8695 /* GzipInputStream.h */; };
+		37D39BA21DA2FE78002E8695 /* GzipInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 37D39BA01DA2FE78002E8695 /* GzipInputStream.m */; };
+		37D39BA91DA30481002E8695 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 37D39BA61DA302E5002E8695 /* libz.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -255,6 +258,9 @@
 		21F6BCE11B29A52600DCEEC2 /* SVGghDebuggingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVGghDebuggingViewController.m; sourceTree = "<group>"; usesTabs = 1; };
 		21F6BCE51B29A57C00DCEEC2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		21F6BCE71B29A8FE00DCEEC2 /* Artwork */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Artwork; sourceTree = "<group>"; };
+		37D39B9F1DA2FE78002E8695 /* GzipInputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GzipInputStream.h; sourceTree = "<group>"; };
+		37D39BA01DA2FE78002E8695 /* GzipInputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GzipInputStream.m; sourceTree = "<group>"; };
+		37D39BA61DA302E5002E8695 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -270,6 +276,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37D39BA91DA30481002E8695 /* libz.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -335,6 +342,7 @@
 		21F6BBD81B29A21E00DCEEC2 = {
 			isa = PBXGroup;
 			children = (
+				37D39BA61DA302E5002E8695 /* libz.tbd */,
 				211E709E1B2AEC1D00667BE9 /* SVGgh.podspec */,
 				21F6BBE41B29A21E00DCEEC2 /* SVGgh */,
 				21F6BBF11B29A21E00DCEEC2 /* SVGghTests */,
@@ -428,6 +436,8 @@
 				21F6BC111B29A41C00DCEEC2 /* Base64Transcoder.m */,
 				21F6BC121B29A41C00DCEEC2 /* NSData+Base64Additions.h */,
 				21F6BC131B29A41C00DCEEC2 /* NSData+Base64Additions.m */,
+				37D39B9F1DA2FE78002E8695 /* GzipInputStream.h */,
+				37D39BA01DA2FE78002E8695 /* GzipInputStream.m */,
 			);
 			path = "Third Party";
 			sourceTree = "<group>";
@@ -577,6 +587,7 @@
 				21F6BC6A1B29A42800DCEEC2 /* GHPathDescription.h in Headers */,
 				21F6BC371B29A41C00DCEEC2 /* Base64Transcoder.h in Headers */,
 				21F6BC671B29A42800DCEEC2 /* GHAttributedObject.h in Headers */,
+				37D39BA11DA2FE78002E8695 /* GzipInputStream.h in Headers */,
 				21F6BC401B29A41C00DCEEC2 /* GHButton.h in Headers */,
 				2151A7BA1CD0AE3800D16C89 /* SVGghLoader.h in Headers */,
 			);
@@ -807,6 +818,7 @@
 				21F6BC381B29A41C00DCEEC2 /* Base64Transcoder.m in Sources */,
 				2181F3A81B4F5D8F007617A7 /* SVGTabBarItem.m in Sources */,
 				21F6BC7F1B29A42800DCEEC2 /* SVGTextUtilities.m in Sources */,
+				37D39BA21DA2FE78002E8695 /* GzipInputStream.m in Sources */,
 				21F6BC681B29A42800DCEEC2 /* GHAttributedObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

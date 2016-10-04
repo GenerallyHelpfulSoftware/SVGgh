@@ -96,6 +96,20 @@
 	return self;
 }
 
+- (instancetype)initWithInputStream:(NSInputStream *)inputStream
+{
+    if(nil != (self = [super initWithInputStream:inputStream]))
+    {
+        _colorMap = [[NSMutableDictionary alloc] init];
+        
+        CFArrayRef langs = CFLocaleCopyPreferredLanguages();
+        CFStringRef langCode = CFArrayGetValueAtIndex (langs, 0);
+        _isoLanguage = [[NSString stringWithString:(__bridge NSString*)langCode] substringToIndex:2];
+        CFRelease(langs);
+    }
+    return self;
+}
+
 -(BOOL) hidden
 {
     BOOL result = self.contents.hidden;
