@@ -97,6 +97,9 @@
 		21F6BCE21B29A52600DCEEC2 /* SVGghDebuggingAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F6BCDF1B29A52600DCEEC2 /* SVGghDebuggingAppDelegate.m */; };
 		21F6BCE31B29A52600DCEEC2 /* SVGghDebuggingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F6BCE11B29A52600DCEEC2 /* SVGghDebuggingViewController.m */; };
 		21F6BCE61B29A57C00DCEEC2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21F6BCE41B29A57C00DCEEC2 /* Main.storyboard */; };
+		37952A771DA55FD400874BE7 /* NSData+IDZGunzip.h in Headers */ = {isa = PBXBuildFile; fileRef = 37952A751DA55FD400874BE7 /* NSData+IDZGunzip.h */; };
+		37952A781DA55FD400874BE7 /* NSData+IDZGunzip.m in Sources */ = {isa = PBXBuildFile; fileRef = 37952A761DA55FD400874BE7 /* NSData+IDZGunzip.m */; };
+		37952AAC1DA57ADD00874BE7 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37952AAB1DA57ADD00874BE7 /* MobileCoreServices.framework */; };
 		37D39BA11DA2FE78002E8695 /* GzipInputStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 37D39B9F1DA2FE78002E8695 /* GzipInputStream.h */; };
 		37D39BA21DA2FE78002E8695 /* GzipInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 37D39BA01DA2FE78002E8695 /* GzipInputStream.m */; };
 		37D39BA91DA30481002E8695 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 37D39BA61DA302E5002E8695 /* libz.tbd */; };
@@ -264,6 +267,9 @@
 		21F6BCE11B29A52600DCEEC2 /* SVGghDebuggingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVGghDebuggingViewController.m; sourceTree = "<group>"; usesTabs = 1; };
 		21F6BCE51B29A57C00DCEEC2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		21F6BCE71B29A8FE00DCEEC2 /* Artwork */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Artwork; sourceTree = "<group>"; };
+		37952A751DA55FD400874BE7 /* NSData+IDZGunzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+IDZGunzip.h"; sourceTree = "<group>"; };
+		37952A761DA55FD400874BE7 /* NSData+IDZGunzip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+IDZGunzip.m"; sourceTree = "<group>"; };
+		37952AAB1DA57ADD00874BE7 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		37D39B9F1DA2FE78002E8695 /* GzipInputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GzipInputStream.h; sourceTree = "<group>"; };
 		37D39BA01DA2FE78002E8695 /* GzipInputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GzipInputStream.m; sourceTree = "<group>"; };
 		37D39BA61DA302E5002E8695 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
@@ -282,6 +288,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37952AAC1DA57ADD00874BE7 /* MobileCoreServices.framework in Frameworks */,
 				37D39BA91DA30481002E8695 /* libz.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -348,6 +355,7 @@
 		21F6BBD81B29A21E00DCEEC2 = {
 			isa = PBXGroup;
 			children = (
+				37952AAB1DA57ADD00874BE7 /* MobileCoreServices.framework */,
 				37D39BA61DA302E5002E8695 /* libz.tbd */,
 				211E709E1B2AEC1D00667BE9 /* SVGgh.podspec */,
 				21F6BBE41B29A21E00DCEEC2 /* SVGgh */,
@@ -447,6 +455,8 @@
 				21F6BC131B29A41C00DCEEC2 /* NSData+Base64Additions.m */,
 				37D39B9F1DA2FE78002E8695 /* GzipInputStream.h */,
 				37D39BA01DA2FE78002E8695 /* GzipInputStream.m */,
+				37952A751DA55FD400874BE7 /* NSData+IDZGunzip.h */,
+				37952A761DA55FD400874BE7 /* NSData+IDZGunzip.m */,
 			);
 			path = "Third Party";
 			sourceTree = "<group>";
@@ -588,6 +598,7 @@
 				21F6BC711B29A42800DCEEC2 /* GHTextLine.h in Headers */,
 				21F6BC771B29A42800DCEEC2 /* SVGContext.h in Headers */,
 				21F6BC781B29A42800DCEEC2 /* SVGGradientUtilities.h in Headers */,
+				37952A771DA55FD400874BE7 /* NSData+IDZGunzip.h in Headers */,
 				21F6BC741B29A42800DCEEC2 /* SVGAttributedObject.h in Headers */,
 				21F6BC7B1B29A42800DCEEC2 /* SVGParser.h in Headers */,
 				21F6BC341B29A41C00DCEEC2 /* SVGtoPDFConverter.h in Headers */,
@@ -827,6 +838,7 @@
 				21F6BC751B29A42800DCEEC2 /* SVGAttributedObject.m in Sources */,
 				21F6BC281B29A41C00DCEEC2 /* GHGradient.m in Sources */,
 				21F6BC381B29A41C00DCEEC2 /* Base64Transcoder.m in Sources */,
+				37952A781DA55FD400874BE7 /* NSData+IDZGunzip.m in Sources */,
 				2181F3A81B4F5D8F007617A7 /* SVGTabBarItem.m in Sources */,
 				21F6BC7F1B29A42800DCEEC2 /* SVGTextUtilities.m in Sources */,
 				37D39BA21DA2FE78002E8695 /* GzipInputStream.m in Sources */,

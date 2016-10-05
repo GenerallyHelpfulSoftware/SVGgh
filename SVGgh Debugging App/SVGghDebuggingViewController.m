@@ -150,7 +150,11 @@
 			controlIdentifier = @"eyesGzip";
 		break;
         case 3:
-            controlIdentifier = @"widgets";
+			#if TARGET_OS_TV
+            controlIdentifier = @"textOnCurve";
+			# else
+			controlIdentifier = @"widgets";
+			#endif
         break;
         case 4:
             controlIdentifier = @"textOnCurve";
