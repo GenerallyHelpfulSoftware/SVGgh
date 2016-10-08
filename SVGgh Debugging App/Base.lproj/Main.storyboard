@@ -20,13 +20,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="1000" misplaced="YES" text="Refresh Button just redraws the view." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8K3-3e-JYk">
-                                <frame key="frameInset" minX="20" minY="575" width="560" height="17"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="1000" text="Refresh Button just redraws the view." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8K3-3e-JYk">
                                 <fontDescription key="fontDescription" type="italicSystem" pointSize="14"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dcx-QT-sUV" customClass="GHButton">
-                                <frame key="frameInset" minX="316" minY="501" width="66" height="66"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dcx-QT-sUV" customClass="GHButton">
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <accessibility key="accessibilityConfiguration" hint="Print the current view" identifier="Print Button" label="Print">
                                     <accessibilityTraits key="traits" button="YES"/>
@@ -51,8 +49,7 @@
                                     <action selector="print:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="rV5-s6-CHK"/>
                                 </connections>
                             </view>
-                            <view opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="1000" misplaced="YES" placeholderIntrinsicWidth="280" placeholderIntrinsicHeight="30" translatesAutoresizingMaskIntoConstraints="NO" id="uoD-rr-R4J" customClass="GHSegmentedControl">
-                                <frame key="frameInset" minX="150" minY="28" width="300" height="44"/>
+                            <view opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="1000" placeholderIntrinsicWidth="280" placeholderIntrinsicHeight="30" translatesAutoresizingMaskIntoConstraints="NO" id="uoD-rr-R4J" customClass="GHSegmentedControl">
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="tintColor" red="0.098100321044329669" green="0.67385912698412698" blue="0.14746175900577321" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <accessibility key="accessibilityConfiguration" hint="Choose a View" identifier="View  Selector" label="Chooser"/>
@@ -81,15 +78,13 @@
                                     <action selector="toggleView:" destination="vXZ-lx-hvc" eventType="valueChanged" id="fGz-qk-rXY"/>
                                 </connections>
                             </view>
-                            <containerView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LDH-8f-BQz">
-                                <frame key="frameInset" minX="20" minY="80" width="560" height="413"/>
+                            <containerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LDH-8f-BQz">
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <segue destination="Ux3-B9-VgV" kind="embed" identifier="initialEmbed" id="JTJ-Ke-eWm"/>
                                 </connections>
                             </containerView>
-                            <view contentMode="scaleAspectFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M1t-pk-vRl" customClass="GHButton">
-                                <frame key="frameInset" minX="218" minY="501" width="66" height="66"/>
+                            <view contentMode="scaleAspectFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="M1t-pk-vRl" customClass="GHButton">
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="tintColor" red="0.95613634586334229" green="0.47907036542892456" blue="0.099335446953773499" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <accessibility key="accessibilityConfiguration" hint="Refresh the View" identifier="Refresh Button" label="Refresh">
@@ -279,15 +274,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="56" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="um6-8g-rbh">
-                                <frame key="frameInset" minX="16" minY="28" width="288" height="395"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="56" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="um6-8g-rbh">
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SegmentCell" id="XXq-K3-qJi" customClass="SegmentedDemoTableCell" customModule="SVGgh_Debugging_App" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="288" height="56"/>
+                                        <rect key="frame" x="0.0" y="28" width="343" height="56"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XXq-K3-qJi" id="Fo6-U8-qOO">
-                                            <frame key="frameInset" width="288" height="56"/>
+                                            <frame key="frameInset" width="343" height="56"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BWe-Hh-CmN" customClass="GHSegmentedControl">
@@ -358,8 +352,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="esd-Xo-2sa">
-                                <frame key="frameInset" minX="16" minY="80" width="288" height="343"/>
+                            <collectionView multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="esd-Xo-2sa">
                                 <color key="backgroundColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="PXN-0O-G5b">
                                     <size key="itemSize" width="60" height="60"/>
