@@ -134,7 +134,7 @@ To add a static view to a .xib file or storyboard:
 | -------- | ---- | ----- |
 | Artwork Path | String | Artwork/MyBackground |
 
-* Note that the **.svg** extension is assumed
+* Note that the **.svg** extension is assumed. You may specify a custom file extension, if needed. For example, if you are using **.svgz** files you will need to include the file extension in the the **Artwork Path**.
 * You should likely open the **Attributes Inspector** tab and set the **Mode** to **Aspect Fit** or possibly **Aspect Fill**.
 
 * If you are only deploying on iOS 9 and above and want to use the data XCAsset type of resource, you can add the following to your app delegate's initialize method:

@@ -28,8 +28,11 @@
 //
 
 @import UIKit;
+@import MobileCoreServices;
 #import "SVGParser.h"
 #import "GHAttributedObject.h"
+#import "GzipInputStream.h"
+#import "NSData+IDZGunzip.h"
 
 @interface SVGParser ()
 @property(nonatomic, strong) NSError* __nullable 	parserError;
@@ -168,22 +171,49 @@
 
 - (instancetype)initWithContentsOfURL:(NSURL *)url
 {
-	if(nil != (self = [super init]))
-	{
-		NSXMLParser* theParser = [[NSXMLParser alloc] initWithContentsOfURL:url];
-		[theParser setDelegate:self];
-		_svgURL = url;
-		[theParser parse];
-		self.parserError = [theParser parserError];
+    if ([url.pathExtension isEqualToString:@"svgz"]) {
+        NSInputStream* inputStream = [[GzipInputStream alloc] initWithURL:url];
+        
+        self = [self initWithInputStream:inputStream];
+    } else if(nil != (self = [super init]))
+    {
+        NSXMLParser* theParser = [[NSXMLParser alloc] initWithContentsOfURL:url];
+        [theParser setDelegate:self];
+        _svgURL = url;
+        [theParser parse];
+        self.parserError = [theParser parserError];
         self.root = [self.mutableRoot copy];
-	}
+    }
+    
 	return self;
+}
+
+-(instancetype)initWithInputStream:(NSInputStream *)inputStream
+{
+    if(nil != (self = [super init]))
+    {
+        NSXMLParser* theParser = [[NSXMLParser alloc] initWithStream:inputStream];
+        [theParser setDelegate:self];
+        [theParser parse];
+        self.parserError = [theParser parserError];
+        self.root = [self.mutableRoot copy];
+    }
+    return self;
 }
 
 -(nullable  instancetype) initWithResourceName:(NSString*)resourceName inBundle:(nullable NSBundle*)mayBeNil
 {
     NSBundle* bundleToUse = (mayBeNil == nil)? [NSBundle mainBundle] : mayBeNil;
-    NSURL* theURL = [bundleToUse URLForResource:resourceName withExtension:@"svg"];
+    
+    NSString* fileExtension = resourceName.pathExtension;
+    
+    if (fileExtension.length) {
+        resourceName = resourceName.stringByDeletingPathExtension;
+    } else {
+        fileExtension = @"svg";
+    }
+    
+    NSURL* theURL = [bundleToUse URLForResource:resourceName withExtension:fileExtension];
     if(theURL == NULL)
     {
         return NULL;
@@ -202,6 +232,13 @@
     Class dataAssetClass = NSClassFromString(@"NSDataAsset");
     if(dataAssetClass != nil)
     {
+        NSString* fileExtension = assetName.pathExtension;
+        
+        // Since the file extension is needed for initWithResourceName if using `.svgz` we will manually remove the extension here for API consistency.
+        if (fileExtension.length && [fileExtension isEqualToString:@"svgz"]) {
+            assetName = assetName.stringByDeletingPathExtension;
+        }
+        
         NSDataAsset* asset = [(NSDataAsset*)[dataAssetClass alloc] initWithName:assetName bundle: bundle];
         if(asset == nil || asset.data.length == 0)
         {
@@ -209,13 +246,29 @@
         }
         else  if(nil != (self = [super init]))
         {
-            NSXMLParser* theParser = [[NSXMLParser alloc] initWithData:asset.data];
-            [theParser setDelegate:self];
-            [theParser parse];
-            self.parserError = [theParser parserError];
-            self.root = [self.mutableRoot copy];
-            if(self.parserError != nil)
-            {
+            NSXMLParser* theParser;
+            
+            if ([asset.typeIdentifier isEqualToString:(NSString *)kUTTypeScalableVectorGraphics]) {// Uncompressed SVG data
+                theParser = [[NSXMLParser alloc] initWithData:asset.data];
+            } else {
+                NSError *error;
+                NSData *decompressed = [asset.data gunzip:&error];
+                
+                if (error == nil) {
+                    theParser = [[NSXMLParser alloc] initWithData:decompressed];
+                }
+            }
+            
+            if (theParser != nil) {
+                [theParser setDelegate:self];
+                [theParser parse];
+                self.parserError = [theParser parserError];
+                self.root = [self.mutableRoot copy];
+                if(self.parserError != nil)
+                {
+                    self = nil;
+                }
+            } else {
                 self = nil;
             }
         }
