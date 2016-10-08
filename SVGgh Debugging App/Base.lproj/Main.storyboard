@@ -215,31 +215,6 @@
             <point key="canvasLocation" x="1516" y="1001"/>
         </scene>
         <!--View Controller-->
-        <scene sceneID="yPk-PH-UrJ">
-            <objects>
-                <viewController storyboardIdentifier="eyes" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="OcD-OG-qHx" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="eNr-aw-MBM"/>
-                        <viewControllerLayoutGuide type="bottom" id="CDN-u5-mtn"/>
-                    </layoutGuides>
-                    <view key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" id="KjG-Ga-EeG" customClass="SVGDocumentView">
-                        <rect key="frame" x="0.0" y="0.0" width="280" height="280"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                        <accessibility key="accessibilityConfiguration" identifier="Drawing Eyes"/>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="string" keyPath="artworkPath" value="Eyes"/>
-                        </userDefinedRuntimeAttributes>
-                    </view>
-                    <toolbarItems/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="280" height="280"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="6NY-RA-APp" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="399" y="1015"/>
-        </scene>
-        <!--View Controller-->
         <scene sceneID="fYC-VS-rJE">
             <objects>
                 <viewController storyboardIdentifier="eyesGzip" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="DjJ-sU-hdJ" sceneMemberID="viewController">
@@ -262,7 +237,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iGc-bz-N8B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="756" y="1015"/>
+            <point key="canvasLocation" x="587" y="1007"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="qIn-mL-ctY">
@@ -290,7 +265,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fek-ns-cpw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1186" y="1015"/>
+            <point key="canvasLocation" x="1051" y="1000"/>
         </scene>
         <!--Segmented-->
         <scene sceneID="n64-lG-w20">
