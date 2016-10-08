@@ -109,6 +109,10 @@ NSData* DecodeBase64FromStringToData(NSString* decodeString)
         
         free(outBuffer);
     }
+    if(encodedString == nil) // just making the static anaylyzer happy.
+    {
+        encodedString = [NSString string];
+    }
     return encodedString;
 }
                                     
