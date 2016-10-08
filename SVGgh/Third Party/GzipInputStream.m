@@ -21,7 +21,7 @@
 
 @interface GzipInputStream()
 {
-    gzFile* gzfile;
+    gzFile gzfile;
     NSString *filepath;
     NSMutableData *residualData;
     NSStreamStatus streamStatus;
