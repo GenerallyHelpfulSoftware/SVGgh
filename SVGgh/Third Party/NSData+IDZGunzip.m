@@ -62,9 +62,9 @@ NSString* const IDZGunzipErrorDomain = @"com.iosdeveloperzone.IDZGunzip";
     NSMutableData* gunzippedData = [NSMutableData dataWithLength:nUncompressedBytes];
     
     zStream.next_in = (Bytef*)self.bytes;
-    zStream.avail_in = self.length;
+    zStream.avail_in = (uInt)self.length;
     zStream.next_out = (Bytef*)gunzippedData.bytes;
-    zStream.avail_out = gunzippedData.length;
+    zStream.avail_out = (uInt)gunzippedData.length;
     
     iResult = inflate(&zStream, Z_FINISH);
     if(iResult != Z_STREAM_END)

@@ -21,7 +21,7 @@
 
 @interface GzipInputStream()
 {
-    gzFile* gzfile;
+    gzFile gzfile;
     NSString *filepath;
     NSMutableData *residualData;
     NSStreamStatus streamStatus;
@@ -177,9 +177,8 @@
 
 - (NSError *)streamError
 {
-    const char * error_string;
     int err;
-    error_string = gzerror(gzfile, &err);
+    (void) gzerror(gzfile, &err);
     return [NSError errorWithDomain:NSCocoaErrorDomain code:err userInfo:nil];
 }
 
