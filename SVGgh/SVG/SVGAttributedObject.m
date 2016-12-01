@@ -277,7 +277,7 @@
 }
 -(CGRect) getBoundingBoxWithSVGContext:(id<SVGContext>)svgContext
 {// base class doesn't know how to do this.
-    CGRect result = CGRectZero;
+    CGRect result = CGRectNull;
     return result;
 }
 
@@ -659,7 +659,7 @@
 
 -(CGRect) getBoundingBoxWithSVGContext:(id<SVGContext>)svgContext
 {
-    CGRect result = CGRectZero;
+    CGRect result = CGRectNull;
     CGPathRef basePath = self.quartzPath;
     if(basePath)
     {
@@ -1634,13 +1634,19 @@
 
 -(CGRect) getBoundingBoxWithSVGContext:(id<SVGContext>)svgContext
 {
-    CGRect result = CGRectZero;
+    CGRect result = CGRectNull;
     NSArray* myChildren = self.children;
     for(id aChild in myChildren)
     {
         if([aChild environmentOKWithSVGContext:svgContext])
         {
             CGRect childRect = [aChild getBoundingBoxWithSVGContext:svgContext];
+            if (CGPointEqualToPoint(childRect.origin, CGPointZero)){
+                [aChild getBoundingBoxWithSVGContext:svgContext];
+                NSLog(@"T: %@", NSStringFromCGRect(childRect));
+                NSLog(@"c: %@", aChild);
+                continue;
+            }
             if(!CGRectIsNull(result) && !CGRectIsNull(childRect))
             {
                 result = CGRectUnion(result, childRect);
@@ -2210,7 +2216,7 @@
 
 -(CGRect) getBoundingBoxWithSVGContext:(id<SVGContext>)svgContext
 {// base class doesn't know how to do this.
-    CGRect result = CGRectZero;
+    CGRect result = CGRectNull;
     NSMutableSet*   exclusionSet = nil;
     id<GHRenderable> myConcrete = [self concreteObjectForSVGContext:svgContext excludingPrevious:exclusionSet];
     if(myConcrete != self)
