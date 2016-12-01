@@ -1641,12 +1641,6 @@
         if([aChild environmentOKWithSVGContext:svgContext])
         {
             CGRect childRect = [aChild getBoundingBoxWithSVGContext:svgContext];
-            if (CGPointEqualToPoint(childRect.origin, CGPointZero)){
-                [aChild getBoundingBoxWithSVGContext:svgContext];
-                NSLog(@"T: %@", NSStringFromCGRect(childRect));
-                NSLog(@"c: %@", aChild);
-                continue;
-            }
             if(!CGRectIsNull(result) && !CGRectIsNull(childRect))
             {
                 result = CGRectUnion(result, childRect);
