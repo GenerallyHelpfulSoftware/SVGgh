@@ -109,6 +109,7 @@
         CFStringRef langCode = CFArrayGetValueAtIndex (langs, 0);
         _isoLanguage = [[NSString stringWithString:(__bridge NSString*)langCode] substringToIndex:2];
         CFRelease(langs);
+        self.opacity = 1.0;
     }
     return self;
 }
