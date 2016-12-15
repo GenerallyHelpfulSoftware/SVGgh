@@ -49,6 +49,7 @@
 @end
 
 @implementation GHAttributedObject(SVGRenderer)
+
 +(NSDictionary*) overideObjectsForPrototype:(id)prototype withDictionary:(NSDictionary*)deltaDictionary
 {
     NSDictionary* result = nil;
@@ -157,6 +158,9 @@
     {
         [SVGToQuartz setupOpacityForQuartzContext:quartzContext withSVGOpacity:opacityString withSVGContext:svgContext];
     }
+
+    NSString* blendString = [SVGToQuartz valueForStyleAttribute:@"mix-blend-mode" fromDefinition:attributes];
+    [SVGToQuartz setupBlendModeForQuartzContext:quartzContext withBlendModeString:blendString];
 }
 
 
