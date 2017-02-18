@@ -102,7 +102,7 @@ CGAffineTransform SVGTransformToCGAffineTransformSlow( NSString*  transformAttri
 * \param pixelsHigh height of the bitmap
 * \return a Core Graphics context to draw into caller responsible for deallocation
 */
-__nullable CGContextRef BitmapContextCreate (size_t pixelsWide, size_t pixelsHigh);
+__nullable CGContextRef BitmapContextCreate (size_t pixelsWide, size_t pixelsHigh) CF_RETURNS_RETAINED;
 
 /*! \brief some SVG attribues are of the form of a list, such as the fallback list of fonts as in 'Times, Georgia, san-serif'
 * \param svgAttributes dictionary to search for the key
