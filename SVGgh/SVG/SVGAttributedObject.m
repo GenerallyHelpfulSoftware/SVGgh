@@ -49,6 +49,7 @@
 @end
 
 @implementation GHAttributedObject(SVGRenderer)
+
 +(NSDictionary*) overideObjectsForPrototype:(id)prototype withDictionary:(NSDictionary*)deltaDictionary
 {
     NSDictionary* result = nil;
@@ -157,6 +158,9 @@
     {
         [SVGToQuartz setupOpacityForQuartzContext:quartzContext withSVGOpacity:opacityString withSVGContext:svgContext];
     }
+
+    NSString* blendString = [SVGToQuartz valueForStyleAttribute:@"mix-blend-mode" fromDefinition:attributes];
+    [SVGToQuartz setupBlendModeForQuartzContext:quartzContext withBlendModeString:blendString];
 }
 
 
@@ -277,7 +281,7 @@
 }
 -(CGRect) getBoundingBoxWithSVGContext:(id<SVGContext>)svgContext
 {// base class doesn't know how to do this.
-    CGRect result = CGRectZero;
+    CGRect result = CGRectNull;
     return result;
 }
 
@@ -659,7 +663,7 @@
 
 -(CGRect) getBoundingBoxWithSVGContext:(id<SVGContext>)svgContext
 {
-    CGRect result = CGRectZero;
+    CGRect result = CGRectNull;
     CGPathRef basePath = self.quartzPath;
     if(basePath)
     {
@@ -1634,7 +1638,7 @@
 
 -(CGRect) getBoundingBoxWithSVGContext:(id<SVGContext>)svgContext
 {
-    CGRect result = CGRectZero;
+    CGRect result = CGRectNull;
     NSArray* myChildren = self.children;
     for(id aChild in myChildren)
     {
@@ -2210,7 +2214,7 @@
 
 -(CGRect) getBoundingBoxWithSVGContext:(id<SVGContext>)svgContext
 {// base class doesn't know how to do this.
-    CGRect result = CGRectZero;
+    CGRect result = CGRectNull;
     NSMutableSet*   exclusionSet = nil;
     id<GHRenderable> myConcrete = [self concreteObjectForSVGContext:svgContext excludingPrevious:exclusionSet];
     if(myConcrete != self)

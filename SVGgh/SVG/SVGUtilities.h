@@ -256,6 +256,13 @@ extern const CGColorRenderingIntent	kColoringRenderingIntent;
 */
 +(void) setupMiterLimitForQuartzContext:(CGContextRef)quartzContext withSVGMiterLimitString:(nullable NSString*)miterLimitString;
 
+/*! @brief given a 'mix-blend-mode' SVG attribute setup the context for drawing with that blend mode
+* @param quartzContext a Core Graphics context
+* @param blendModeString a valid svg mix-blend-mode value string (eg. 'normal', 'overlay')
+* @see CGContextSetBlendMode
+*/
++(void)setupBlendModeForQuartzContext:(CGContextRef)quartzContext withBlendModeString:(nullable NSString*)blendModeString;
+
 /*! @brief setup line drawing to use a given dash pattern and phase into that dash pattern
 * @param quartzContext a Core Graphics context
 * @param strokeDashString a string which can be broken into a series of numbers indicating the alternating black white dash lengths (or 'none')

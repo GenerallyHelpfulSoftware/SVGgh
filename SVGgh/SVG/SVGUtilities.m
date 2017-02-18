@@ -1950,6 +1950,33 @@ void AddSVGArcToPath(CGMutablePathRef thePath,
 	}
 }
 
+NSDictionary<NSString*, NSNumber*>* stringToBlendMode()
+{
+  static NSDictionary<NSString*, NSNumber*>* sDict = nil;
+  static dispatch_once_t done;
+  dispatch_once(&done, ^{
+  sDict = @{
+      @"normal": @(kCGBlendModeNormal),
+      @"multiply": @(kCGBlendModeMultiply),
+      @"screen": @(kCGBlendModeScreen),
+      @"overlay": @(kCGBlendModeOverlay),
+      @"darken": @(kCGBlendModeDarken),
+      @"lighten": @(kCGBlendModeLighten),
+      @"color-dodge": @(kCGBlendModeColorDodge),
+      @"color-burn": @(kCGBlendModeColorBurn),
+      @"hard-light": @(kCGBlendModeHardLight),
+      @"soft-light": @(kCGBlendModeSoftLight),
+      @"difference": @(kCGBlendModeDifference),
+      @"exclusion": @(kCGBlendModeExclusion),
+      @"hue": @(kCGBlendModeHue),
+      @"saturation": @(kCGBlendModeSaturation),
+      @"color": @(kCGBlendModeColor),
+      @"luminosity": @(kCGBlendModeLuminosity),
+    };
+  });
+  return sDict;
+}
+
 @implementation SVGToQuartz
 
 +(void) LogQuartzContextState:(CGContextRef)quartzContext
@@ -2484,5 +2511,18 @@ void AddSVGArcToPath(CGMutablePathRef thePath,
         CGContextSetLineJoin(quartzContext, lineJoinType);
     }
 }
+
++(void)setupBlendModeForQuartzContext:(CGContextRef)quartzContext withBlendModeString:(NSString*)blendModeString
+{
+    if(blendModeString != nil)
+    {
+        NSNumber* blendModeNumber = stringToBlendMode()[blendModeString];
+        if (blendModeNumber != nil) {
+            CGBlendMode blendMode = blendModeNumber.intValue;
+            CGContextSetBlendMode(quartzContext, blendMode);
+        }
+    }
+}
+
 
 @end
