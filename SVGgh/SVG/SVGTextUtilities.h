@@ -56,13 +56,13 @@ NS_ASSUME_NONNULL_BEGIN
 * @param baseDescriptor a descriptor to act ast the starting point for the font descriptor being created
 * @return a configured font descriptor. Caller responsible for disposal.
 */
-+(CTFontDescriptorRef)	newFontDescriptorFromAttributes:(NSDictionary*) attributes baseDescriptor:(nullable CTFontDescriptorRef)baseDescriptor;
++(CTFontDescriptorRef)	newFontDescriptorFromAttributes:(NSDictionary*) attributes baseDescriptor:(nullable CTFontDescriptorRef)baseDescriptor CF_RETURNS_RETAINED;
 
 /*! @brief create a font from a Core Text font descriptor
 * @param fontDescriptor a description of what Font we want
 * @return a Core Text Font. Caller responsible for disposal.
 */
-+(CTFontRef) newFontRefFromFontDescriptor:(CTFontDescriptorRef)fontDescriptor;
++(CTFontRef) newFontRefFromFontDescriptor:(CTFontDescriptorRef)fontDescriptor CF_RETURNS_RETAINED;
 
 /*! @brief convert SVG style text attributes to Core Text style attributes
 * @param svgStyle collection of text attributes
