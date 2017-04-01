@@ -40,11 +40,6 @@
 
 const double kStandardSVGFontScale = 1.2;
 
-
-
-BOOL IsFontFamilyAvailable(NSString* fontFamilyName);
-
-
 @interface SVGTextUtilities ()
 
 
@@ -57,7 +52,7 @@ BOOL IsFontFamilyAvailable(NSString* fontFamilyName);
 +(void) determinePointSizeFromCoreTextAttributes:(NSMutableDictionary*)outAttributes givenPixelSize:(double)pixelSizeToUse;
 +(void) limitCharacterSetFromSVGStyleAttributes:(NSDictionary*)svgStyle toCoreTextAttributes:(NSMutableDictionary*)outAttributes;
 
-
++(void) addBasicFontStyling: (NSString*) fontFamilyName toCoreTextAttributes:(NSMutableDictionary*)outAttributes;
 @end
 
 @implementation SVGTextUtilities
@@ -952,9 +947,9 @@ BOOL IsFontFamilyAvailable(NSString* fontFamilyName);
                     NSDictionary* systemFontAttributes = [self systemFontDescription];
                     [mutableResult addEntriesFromDictionary:systemFontAttributes];
                 }
-				else if(IsFontFamilyAvailable(unquotedString))
+				else
 				{
-					[mutableResult setObject:unquotedString forKey:(NSString*)kCTFontFamilyNameAttribute];
+                    [SVGTextUtilities addBasicFontStyling:unquotedString toCoreTextAttributes:mutableResult];
 				}
 			}
 		}
@@ -979,15 +974,35 @@ BOOL IsFontFamilyAvailable(NSString* fontFamilyName);
 	NSDictionary* fontFamilyDescription = nil;
 	
 	NSArray* listOfFontFamilies =  ArrayForSVGAttribute(svgStyle, @"font-family");
+    
+    CFMutableArrayRef fallbacks = nil;
 	
 	for(id aFontFamilyName in listOfFontFamilies)
 	{
-		fontFamilyDescription = [SVGTextUtilities fontFamilyAttributesFromSVGAttribute:aFontFamilyName higherPriorityAttributes:fontFamilyDescription];
-        if([fontFamilyDescription objectForKey:(NSString*)kCTFontFamilyNameAttribute] != nil)
+		NSDictionary* aFontFamilyDescription = [SVGTextUtilities fontFamilyAttributesFromSVGAttribute:aFontFamilyName higherPriorityAttributes:nil];
+        if([aFontFamilyDescription objectForKey:(NSString*)kCTFontFamilyNameAttribute] != nil
+           || [aFontFamilyDescription objectForKey:(NSString*)kCTFontNameAttribute] != nil)
         {
-            break;
+            if(fontFamilyDescription == nil)
+            {
+                fontFamilyDescription = aFontFamilyDescription;
+            }
+            else
+            {
+                CTFontDescriptorRef aFallback = CTFontDescriptorCreateWithAttributes((__bridge CFDictionaryRef)aFontFamilyDescription);
+                if(fallbacks == nil)
+                {
+                    CFArrayCallBacks callBacks = kCFTypeArrayCallBacks;
+                    fallbacks = CFArrayCreateMutable(kCFAllocatorDefault, listOfFontFamilies.count, &callBacks);
+                }
+                CFArrayAppendValue(fallbacks, aFallback);
+            }
         }
 	}
+    if(fallbacks != nil)
+    {
+        [outAttributes setObject:(__bridge id _Nonnull)(fallbacks) forKey:UIFontDescriptorCascadeListAttribute];
+    }
 	
 	if([fontFamilyDescription count])
 	{
@@ -1001,45 +1016,75 @@ BOOL IsFontFamilyAvailable(NSString* fontFamilyName);
     
 }
 
++(NSDictionary*) fontAttributes:(NSString*)fontFamilyName withNameMappings: (NSDictionary*)fontNameMap
+{
+    NSDictionary* result = nil;
+    NSString* fontNameToUse = fontFamilyName;
+    NSString* performantFontName = fontNameMap[fontFamilyName];
+    if(performantFontName.length)
+    {
+        fontNameToUse = performantFontName;
+    }
+    
+    CTFontRef	testFont = CTFontCreateWithName((__bridge CFStringRef)fontNameToUse, 0.0, NULL);
+    if(testFont != 0)
+    {
+        CTFontDescriptorRef descriptor = CTFontCopyFontDescriptor(testFont);
+        if(descriptor != 0)
+        {
+            NSDictionary* fontAttributes = [(__bridge id)descriptor fontAttributes]; // CTFontDescriptors are bridgeless to UIFontDescriptor or NSFontDescriptor, both of which have fontAttributes properties
+            if(fontAttributes.count > 0)
+            {
+                NSMutableDictionary* fontDictionary = [fontAttributes mutableCopy];
+                [fontDictionary removeObjectForKey:(NSString*)kCTFontSizeAttribute]; // remove the explicit size
+                result = [fontDictionary copy];
+            }
+            CFRelease(descriptor);
+            
+        }
+        CFRelease(testFont);
+    }
+    return result;
+}
+
++(void) addBasicFontStyling: (NSString*) fontFamilyName toCoreTextAttributes:(NSMutableDictionary*)outAttributes
+{
+    if(fontFamilyName.length > 0)
+    {
+        static NSCache* sCache = nil;
+        static NSDictionary* sFontNameMap = nil;
+        static NSDictionary* sNoSuchFontDictonary = nil;
+        
+        static dispatch_once_t  done;
+        dispatch_once(&done, ^{
+            sFontNameMap = @{@"Arial": @"ArialMT", @"Times New Roman" : @"TimesNewRomanPSMT", @"Times" : @"TimesNewRomanPSMT", @"Courier New" : @"CourierNewPSMT", @"Palatino": @"Palatino-Roman"};
+            sCache = [[NSCache alloc] init];
+            sCache.name = @"Font Attributes Available Cache";
+            sNoSuchFontDictonary = [self fontAttributes:@"" withNameMappings:sFontNameMap];
+        });
+        
+        NSDictionary* savedAttributes = [sCache objectForKey:fontFamilyName];
+        if([savedAttributes isKindOfClass:[NSDictionary class]])
+        {
+            [outAttributes addEntriesFromDictionary:savedAttributes];
+        }
+        else if(savedAttributes == nil) // not NSNull
+        {
+            NSDictionary* fontAttributes = [self fontAttributes:fontFamilyName withNameMappings:sFontNameMap];
+            NSString* returnedFontName = [fontAttributes objectForKey:(NSString*)kCTFontNameAttribute];
+            if(fontAttributes != nil && (![fontAttributes isEqualToDictionary:sNoSuchFontDictonary] || [returnedFontName isEqual:fontFamilyName]))
+            {
+                savedAttributes = fontAttributes;
+                [sCache setObject:savedAttributes forKey:fontFamilyName cost:100];
+                [outAttributes addEntriesFromDictionary:savedAttributes];
+            }
+            else
+            {
+                [sCache setObject:[NSNull new] forKey:fontFamilyName cost: 10];
+            }
+        }
+    }
+}
 
 @end
 
-
-
-BOOL IsFontFamilyAvailable(NSString* fontFamilyName)
-{
-	BOOL result = NO;
-    if(fontFamilyName.length)
-    { // turns out that the call CTFontCreateWithName is fairly slow, so I'm caching the availability results.
-        static NSCache* sCache = nil;
-        static dispatch_once_t  done;
-        dispatch_once(&done, ^{
-            sCache = [[NSCache alloc] init];
-            sCache.name = @"Font Available Cache";
-        });
-        
-        NSNumber* boolResult = [sCache objectForKey:fontFamilyName];
-        if(boolResult == nil)
-        {
-            NSString* stringToTest = fontFamilyName;
-            CTFontRef	testFont = CTFontCreateWithName((__bridge CFStringRef)stringToTest, 0.0, NULL);
-            if(testFont != 0)
-            {
-                CFStringRef testName = CTFontCopyFamilyName(testFont);
-                if(testName != 0)
-                {
-                    result = [stringToTest isEqualToString:(__bridge NSString*)testName];
-                    CFRelease(testName);
-                }
-                CFRelease(testFont);
-            }
-            
-            [sCache setObject:[NSNumber numberWithBool:result] forKey:fontFamilyName];
-        }
-        else
-        {
-            result = boolResult.boolValue;
-        }
-    }
-	return result;
-}
