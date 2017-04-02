@@ -170,7 +170,8 @@ const double kStandardSVGFontScale = 1.2;
 		if([coreTextAttributes count])
 		{
 			CTFontDescriptorRef unMatchedResult = CTFontDescriptorCreateWithAttributes((__bridge CFDictionaryRef)coreTextAttributes);
-            NSSet* specifiedAttributes = [NSSet setWithArray:[coreTextAttributes allKeys]];
+            NSMutableSet* specifiedAttributes = [NSMutableSet setWithArray:[coreTextAttributes allKeys]];
+            [specifiedAttributes removeObject:(NSString*)kCTFontNameAttribute];
             CTFontDescriptorRef missSizedResult = CTFontDescriptorCreateMatchingFontDescriptor (unMatchedResult,
                                                                                                 (__bridge CFSetRef)specifiedAttributes
                                                                                                 );
@@ -996,12 +997,14 @@ const double kStandardSVGFontScale = 1.2;
                     fallbacks = CFArrayCreateMutable(kCFAllocatorDefault, listOfFontFamilies.count, &callBacks);
                 }
                 CFArrayAppendValue(fallbacks, aFallback);
+                CFRelease(aFallback);
             }
         }
 	}
     if(fallbacks != nil)
     {
         [outAttributes setObject:(__bridge id _Nonnull)(fallbacks) forKey:UIFontDescriptorCascadeListAttribute];
+        CFRelease(fallbacks);
     }
 	
 	if([fontFamilyDescription count])
