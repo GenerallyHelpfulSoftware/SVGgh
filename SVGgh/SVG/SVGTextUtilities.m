@@ -171,7 +171,9 @@ const double kStandardSVGFontScale = 1.2;
 		{
 			CTFontDescriptorRef unMatchedResult = CTFontDescriptorCreateWithAttributes((__bridge CFDictionaryRef)coreTextAttributes);
             NSMutableSet* specifiedAttributes = [NSMutableSet setWithArray:[coreTextAttributes allKeys]];
-            [specifiedAttributes removeObject:(NSString*)kCTFontNameAttribute];
+            
+
+            
             CTFontDescriptorRef missSizedResult = CTFontDescriptorCreateMatchingFontDescriptor (unMatchedResult,
                                                                                                 (__bridge CFSetRef)specifiedAttributes
                                                                                                 );
@@ -194,6 +196,19 @@ const double kStandardSVGFontScale = 1.2;
             else
             {
                 result = unMatchedResult;
+            }
+            
+            // work around becuase kCTFontSymbolicTrait wasn't being honored by matching
+            NSDictionary* fontTraitsDictionary = [coreTextAttributes objectForKey:(NSString*)kCTFontTraitsAttribute];
+            uint32_t	fontTraitMask = [[fontTraitsDictionary objectForKey:(NSString*)kCTFontSymbolicTrait] unsignedIntValue];
+            if(fontTraitMask)
+            {
+                CTFontDescriptorRef traitDescriptor = CTFontDescriptorCreateCopyWithSymbolicTraits(result, fontTraitMask, fontTraitMask);
+                if(traitDescriptor != 0)
+                {
+                    CFRelease(result);
+                    result = traitDescriptor;
+                }
             }
 		}
 		else

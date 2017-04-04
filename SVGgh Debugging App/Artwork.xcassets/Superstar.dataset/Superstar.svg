@@ -932,6 +932,15 @@ iehp1OXpQ1AH/9k=" width="384.000000" clip-path="url(#clip_F4C745ED-E424-4951-95F
 <use xlink:href="#Star 5" transform="matrix(0.5984 0 0 0.5984 230.432 132.832)" fill="url(#uptoblack_#B0E0E6)" color="#B0E0E6"/>
 </g>
 
+<text font-family="HelveticaNeue" font-size="20" fill="black" x="10" y="423" font-weight="bold">Helvetica Neue Bold</text>
+<text font-family="Arial" font-size="20" fill="black" x="10" y="303" >Arial</text>
+<text font-family="Times" font-size="20" fill="black" x="10" y="323" >Times New Roman</text>
+<text font-family="Courier New" font-size="20" fill="black" x="10" y="343" >Courier New</text>
+<text font-family="Palatino" font-size="20" fill="black" x="10" y="363" >Palatino</text>
+<text font-family="Verdana-Italic" font-size="20" fill="black" x="10" y="383" >Verdana Italic</text>
+<text font-family="Helvetica" font-size="20" fill="black" x="10" y="403" >Helvetica</text>
+<text font-family="Blah, IowanOldStyle-Roman" font-size="20" fill="black" x="10" y="483" >Fallback</text>
+
 <text font-family="Georgia" font-size="28" color="#ff69b4" fill="url(#uptoblack_#ff69b4)" transform="matrix(1.31961 0 0 1.31961 100.936 260)"  text-decoration="none">✧SVGgh Test File✧</text>
 
 <text font-family="Georgia" font-size="14" color="black" fill="orange" x="450" y="450" text-decoration="underline">Underline</text>
@@ -939,14 +948,7 @@ iehp1OXpQ1AH/9k=" width="384.000000" clip-path="url(#clip_F4C745ED-E424-4951-95F
 
 <text font-family="Palatino-Bold, HiraMinProN-W6,  AppleColorEmoji, system" font-size="48" fill="magenta" x="256" y="510"  text-anchor="middle" >Glenn 💖 梅</text>
 
-<text font-family="Arial" font-size="20" fill="black" x="10" y="303" >Arial</text>
-<text font-family="Times" font-size="20" fill="black" x="10" y="323" >Times New Roman</text>
-<text font-family="Courier New" font-size="20" fill="black" x="10" y="343" >Courier New</text>
-<text font-family="Palatino" font-size="20" fill="black" x="10" y="363" >Palatino</text>
-<text font-family="Verdana-Italic" font-size="20" fill="black" x="10" y="383" >Verdana Italic</text>
-<text font-family="Helvetica" font-size="20" fill="black" x="10" y="403" >Helvetica</text>
-<text font-family="HelveticaNeue" font-size="20" fill="black" x="10" y="423" font-weight="800">Helvetica Neue Bold</text>
-<text font-family="Blah, IowanOldStyle-Roman" font-size="20" fill="black" x="10" y="483" >Fallback</text>
+
 
 
 
@@ -971,9 +973,9 @@ iehp1OXpQ1AH/9k=" width="384.000000" clip-path="url(#clip_F4C745ED-E424-4951-95F
 		99.325,30.955 99.325,24.742 143.24,24.742"/>
 
 <g opacity="0.5">
-	<circle cx="420" cy="280" r="30" opacity="inherit" fill="red" stroke="green" stroke-width="6"/>
-	<circle cx="450" cy="280" r="30"  fill="green"  stroke="blue" stroke-width="6" stroke-opacity="0.5"/>
-	<circle cx="435" cy="310" r="30"  fill="blue" fill-opacity=".50"  stroke="red" stroke-width="6"/>
+	<circle cx="420" cy="250" r="30" opacity="inherit" fill="red" stroke="green" stroke-width="6"/>
+	<circle cx="450" cy="250" r="30"  fill="green"  stroke="blue" stroke-width="6" stroke-opacity="0.5"/>
+	<circle cx="435" cy="280" r="30"  fill="blue" fill-opacity=".50"  stroke="red" stroke-width="6"/>
 </g>
 
 </svg>
