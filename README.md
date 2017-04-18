@@ -37,7 +37,7 @@ If you just want to use the code in your app and are uninterested in the underly
 * SVGToPDFConverter.h A class to convert the renderer's contents to a PDF.
 * SVGPrinter.h A class to send a renderer's contents to a printer.
 
-####If you are familiar with using CocoaPods and using it in your project
+#### If you are familiar with using CocoaPods and using it in your project
 * Insert ````pod 'SVGgh'```` into your PodFile
 • If you set your deployment target to iOS 8 or above, you should insert 
 ````use_frameworks!```` in your Podfile. 
@@ -62,7 +62,7 @@ To use, you'll want to follow the following steps:
 **MakeSureSVGghLinks();** in order to link classes only referenced in storyboards or nibs. As in:
 
 ````
-#import <SVGgh/SVGgh.h>
+# import <SVGgh/SVGgh.h>
 
 @implementation YourAppDelegate
 
