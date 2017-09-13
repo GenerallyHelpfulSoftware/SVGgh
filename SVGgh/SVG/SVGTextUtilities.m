@@ -314,6 +314,10 @@ const double kStandardSVGFontScale = 1.2;
 					lowString = [subRange objectAtIndex:0];
 					highString = [subRange objectAtIndex:1];
 				}
+                else
+                {
+                    continue;
+                }
 				NSScanner* lowScanner = [NSScanner scannerWithString:lowString];
 				NSScanner* highScanner = [NSScanner  scannerWithString:highString];
 				long long	lowValue, highValue;

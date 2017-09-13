@@ -186,7 +186,13 @@ NSString* const kFacesURLsAddedKey = @"urls";
 +(void) saveImageData:(NSData*)imageData withName:(NSString*)preferredName withCallback:(handleRetrievedImage_t)callback
 {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
+    if(paths.count <= 0)
+    {
+        callback(nil, nil);
+        return;
+    }
+    
+    NSString *basePath = [paths objectAtIndex:0];
     NSFileManager* localFileManager = [[NSFileManager alloc] init];
     NSString* pathToImages = [basePath stringByAppendingPathComponent:@"Photos"];
     NSError* fileError = nil;
@@ -265,7 +271,11 @@ NSString* const kFacesURLsAddedKey = @"urls";
             imageData = UIImageJPEGRepresentation(anImage, 0.5);
         }
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        NSString *basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
+        if(paths.count == 0)
+        {
+            return; // should never happen
+        }
+        NSString *basePath = [paths objectAtIndex:0];
         NSFileManager* localFileManager = [[NSFileManager alloc] init];
         NSString* pathToImages = [basePath stringByAppendingPathComponent:@"Photos"];
         NSError* fileError = nil;

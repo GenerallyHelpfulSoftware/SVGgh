@@ -305,7 +305,11 @@
 -(NSURL*)   absoluteURL:(NSString*)absolutePath
 {// keeping things within the ios sandbox
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
+    if(paths.count == 0)
+    {
+        return NULL;
+    }
+    NSString *basePath = [paths objectAtIndex:0];
     basePath = [basePath stringByDeletingLastPathComponent];
     NSString* fullPath = [basePath stringByAppendingString:absolutePath];
     return [NSURL fileURLWithPath:fullPath];

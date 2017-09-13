@@ -64,7 +64,7 @@ class ButtonsDemoViewController: UIViewController, UICollectionViewDataSource, U
     
     
     
-    func collectionView(_ collectionView: UICollectionView,
+    @objc func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize
     {
