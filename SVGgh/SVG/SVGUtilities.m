@@ -88,7 +88,7 @@ CGFloat CalculateVectorAngle(CGPoint	vector1, CGPoint vector2)
 	return result;
 }
 
-NSDictionary* DefaultSVGDrawingAttributes()
+NSDictionary* DefaultSVGDrawingAttributes(void)
 {
     static NSDictionary* sResult = nil;
     static dispatch_once_t  done;
@@ -105,7 +105,7 @@ NSDictionary* DefaultSVGDrawingAttributes()
     return sResult;
 }
 
-NSSet* StandardPathAttributes()
+NSSet* StandardPathAttributes(void)
 {
     static NSSet* sResult = nil;
     static dispatch_once_t  done;

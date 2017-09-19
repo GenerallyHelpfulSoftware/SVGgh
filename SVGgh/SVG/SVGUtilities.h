@@ -114,12 +114,12 @@ __nullable CGContextRef BitmapContextCreate (size_t pixelsWide, size_t pixelsHig
 /*! \brief the root element of an SVG document assumes certain default attributes it doesn't have to explicitly provide. This provides them
 * \return a dictionary of attributes to be used if not provided by the root svg entity
 */
- NSDictionary*  DefaultSVGDrawingAttributes();
+ NSDictionary*  DefaultSVGDrawingAttributes(void);
 
 /*! an SVG path entity has a set of attributes it accepts. This returns them
 * \return a set of attributes like 'stroke-dashoffset' or 'fill'
 */
- NSSet*  StandardPathAttributes();
+ NSSet*  StandardPathAttributes(void);
 
 /*! \brief given a set of attributes, build a new set by selectiving merging in attributes from a superceding set
 * \param parentAttributes the starting attributes from higher up in the document
