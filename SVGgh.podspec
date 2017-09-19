@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
 s.name        = 'SVGgh'
-s.version     = '1.9.1'
+s.version     = '1.9.2'
 s.license     = 'MIT'
 s.tvos.deployment_target = '9.0'
 s.ios.deployment_target = '8.0'
