@@ -1700,7 +1700,7 @@ CGFloat	GetNextCoordinate(const char* buffer, NSUInteger* indexPtr, NSUInteger b
             stringBuffer[stringBufferIndex++] = theChar;
             numberSeen = (theChar >= '0' && theChar <= '9');
         }
-        BOOL periodSeen = NO, expSeen = NO;
+        BOOL periodSeen = theChar == '.', expSeen = NO;
         while(srcBufferIndex < bufferLength)
         {
             theChar = buffer[srcBufferIndex];
