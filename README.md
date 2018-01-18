@@ -1,5 +1,7 @@
-**SVGgh** *an SVG Rendering Framework for iOS*
--
+# **SVGgh** *an SVG Rendering Framework for iOS*
+
+[![CocoaPods](https://img.shields.io/cocoapods/v/SVGgh.svg)](https://cocoapods.org/?q=SVGgh) [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+
 Author [Glenn R. Howes](mailto:glenn@genhelp.com), *owner [Generally Helpful Software](http://genhelp.com)*
 
 ### Introduction
@@ -44,7 +46,14 @@ If you just want to use the code in your app and are uninterested in the underly
 
 * Go through the standard procedures for updating your Xcode workspace via CocoaPods. ````pod update````, ````pod install````, etc.
 
-####If you are not using CocoaPods
+#### If you arefamiliar with using Carthage and usin it in your project
+* Insert **GenerallyHelpfulSoftware/SVGgh** to your Cartfile
+* Execute `carthage update` command
+* Drag the framework into your own Xcode project
+
+For more information follow https://github.com/Carthage/Carthage
+
+#### If you are not using CocoaPods
 To compile the framework. 
 * Load the included **SVGgh.xcodeproj** project in Xcode 6.3 or above 
 * **Build** the **Framework** target.
@@ -55,7 +64,7 @@ To use, you'll want to follow the following steps:
 * Add the **SVGgh** library to your Xcode project.
 * ````#include <SVGgh/SVGgh.h>;````
 
-####Once you have installed the library
+#### Once you have installed the library
 * early in the launch of your app call 
     **[GHControlFactory setDefaultScheme:kColorSchemeClear];**
 * early in the launch of your app call
