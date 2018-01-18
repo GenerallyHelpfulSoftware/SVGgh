@@ -46,7 +46,7 @@ If you just want to use the code in your app and are uninterested in the underly
 
 * Go through the standard procedures for updating your Xcode workspace via CocoaPods. ````pod update````, ````pod install````, etc.
 
-#### If you arefamiliar with using Carthage and usin it in your project
+#### If you are familiar with using Carthage and usin it in your project
 * Insert **GenerallyHelpfulSoftware/SVGgh** to your Cartfile
 * Execute `carthage update` command
 * Drag the framework into your own Xcode project
