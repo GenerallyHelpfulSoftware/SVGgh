@@ -937,8 +937,11 @@ iehp1OXpQ1AH/9k=" width="384.000000" clip-path="url(#clip_F4C745ED-E424-4951-95F
 <text font-family="Times" font-size="20" fill="black" x="10" y="323" >Times New Roman</text>
 <text font-family="Courier New" font-size="20" fill="black" x="10" y="343" >Courier New</text>
 <text font-family="Palatino" font-size="20" fill="black" x="10" y="363" >Palatino</text>
+<text font-family="Palatino" font-size="20" fill="black" x="150" y="363" font-stretch="extra-expanded" >Palatino Expanded</text>
 <text font-family="Verdana-Italic" font-size="20" fill="black" x="10" y="383" >Verdana Italic</text>
+<text font-family="Verdana" font-size="20" fill="black" x="200" y="383" font-style="italic">Verdana Italicized</text>
 <text font-family="Helvetica" font-size="20" fill="black" x="10" y="403" >Helvetica</text>
+<text font-family="HoeflerText-Regular" font-size="20" font-variant="small-caps" fill="green" x="75" y="463" >small caps</text>
 <text font-family="Blah, IowanOldStyle-Roman" font-size="20" fill="black" x="10" y="483" >Fallback</text>
 
 <text font-family="Georgia" font-size="28" color="#ff69b4" fill="url(#uptoblack_#ff69b4)" transform="matrix(1.31961 0 0 1.31961 100.936 260)"  text-decoration="none">✧SVGgh Test File✧</text>
