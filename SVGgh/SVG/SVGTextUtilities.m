@@ -199,8 +199,10 @@ const double kStandardSVGFontScale = 1.2;
                 result = unmatchedResult;
             }
             
+            CTFontDescriptorRef entryResult = result;
+            result = [SVGTextUtilities coreTextDescriptor: entryResult addingAttributes: SVGattributes];
             
-            result = [SVGTextUtilities coreTextDescriptor: result addingAttributes: SVGattributes];
+            CFRelease(entryResult);
             
             // work around becuase kCTFontSymbolicTrait wasn't being honored by matching
             NSDictionary* fontTraitsDictionary = [coreTextAttributes objectForKey:(NSString*)kCTFontTraitsAttribute];
@@ -263,16 +265,19 @@ const double kStandardSVGFontScale = 1.2;
     return result;
 }
 
-+(CTFontDescriptorRef) coreTextDescriptor:(CTFontDescriptorRef) baseFontDescriptor addingAttributes:(NSDictionary*) svgStyle
++(CTFontDescriptorRef) coreTextDescriptor:(CTFontDescriptorRef) baseFontDescriptor addingAttributes:(NSDictionary*) svgStyle CF_RETURNS_RETAINED
 {
     CTFontDescriptorRef result = baseFontDescriptor;
+    CFRetain(baseFontDescriptor);
     
     NSArray* listOfFontVariants = ArrayForSVGAttribute(svgStyle, @"font-variant");
     for(id aFontVariant in listOfFontVariants)
     {
         if([aFontVariant isEqualToString:@"small-caps"])
         {
-            result = CTFontDescriptorCreateCopyWithFeature(result, (__bridge CFNumberRef)@3, (__bridge CFNumberRef)@3);
+            CTFontDescriptorRef smallCapResult = CTFontDescriptorCreateCopyWithFeature(result, (__bridge CFNumberRef)@3, (__bridge CFNumberRef)@3);
+            CFRelease(result);
+            result = smallCapResult;
         }
     }
     
