@@ -181,8 +181,6 @@ The starting point is the **SVGRenderer**, which as a subclass of **SVGParser** 
 I've gone through and added Doxygen style comments to all the header files, so there is some hope of finding your way. 
 
 ### Attribution
-While the vast majority of the code in this release was written by me. There are a couple of classes or categories that were found online but have a flexible enough license for me to include here.
-* Jonathan Wight wrote a Base64 Transcoder which I found quite useful for handling embedded images.
-* Ian Baird wrote a category for NSData for Base64 which I also found very easy to use. 
+While the vast majority of the code in this release was written by me. There are a couple of classes or categories that were found online but have a flexible enough license for me to include here. 
 * [Ryan Hornberger] (http://www.ryanhornberger.com) was thoughtful enough to do something I had been too slammed to do: create a CocoaPod Spec for this library making it much more useful.
 * I think a snippet from [Erica Sadun] (https://github.com/erica) was the basis of my UIColorFromSVGColorString, although it's grown quite a bit since then. 

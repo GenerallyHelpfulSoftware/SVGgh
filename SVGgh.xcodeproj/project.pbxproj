@@ -53,10 +53,6 @@
 		21F6BC321B29A41C00DCEEC2 /* SVGRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F6BC0C1B29A41C00DCEEC2 /* SVGRenderer.m */; };
 		21F6BC341B29A41C00DCEEC2 /* SVGtoPDFConverter.h in Headers */ = {isa = PBXBuildFile; fileRef = 21F6BC0D1B29A41C00DCEEC2 /* SVGtoPDFConverter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		21F6BC351B29A41C00DCEEC2 /* SVGtoPDFConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F6BC0E1B29A41C00DCEEC2 /* SVGtoPDFConverter.m */; };
-		21F6BC371B29A41C00DCEEC2 /* Base64Transcoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 21F6BC101B29A41C00DCEEC2 /* Base64Transcoder.h */; };
-		21F6BC381B29A41C00DCEEC2 /* Base64Transcoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F6BC111B29A41C00DCEEC2 /* Base64Transcoder.m */; };
-		21F6BC3A1B29A41C00DCEEC2 /* NSData+Base64Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 21F6BC121B29A41C00DCEEC2 /* NSData+Base64Additions.h */; };
-		21F6BC3B1B29A41C00DCEEC2 /* NSData+Base64Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F6BC131B29A41C00DCEEC2 /* NSData+Base64Additions.m */; };
 		21F6BC3D1B29A41C00DCEEC2 /* GHImageCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 21F6BC151B29A41C00DCEEC2 /* GHImageCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		21F6BC3E1B29A41C00DCEEC2 /* GHImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F6BC161B29A41C00DCEEC2 /* GHImageCache.m */; };
 		21F6BC401B29A41C00DCEEC2 /* GHButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 21F6BC181B29A41C00DCEEC2 /* GHButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -216,10 +212,6 @@
 		21F6BC0C1B29A41C00DCEEC2 /* SVGRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVGRenderer.m; sourceTree = "<group>"; };
 		21F6BC0D1B29A41C00DCEEC2 /* SVGtoPDFConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVGtoPDFConverter.h; sourceTree = "<group>"; };
 		21F6BC0E1B29A41C00DCEEC2 /* SVGtoPDFConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVGtoPDFConverter.m; sourceTree = "<group>"; };
-		21F6BC101B29A41C00DCEEC2 /* Base64Transcoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64Transcoder.h; sourceTree = "<group>"; };
-		21F6BC111B29A41C00DCEEC2 /* Base64Transcoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64Transcoder.m; sourceTree = "<group>"; };
-		21F6BC121B29A41C00DCEEC2 /* NSData+Base64Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64Additions.h"; sourceTree = "<group>"; };
-		21F6BC131B29A41C00DCEEC2 /* NSData+Base64Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64Additions.m"; sourceTree = "<group>"; };
 		21F6BC151B29A41C00DCEEC2 /* GHImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHImageCache.h; sourceTree = "<group>"; };
 		21F6BC161B29A41C00DCEEC2 /* GHImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHImageCache.m; sourceTree = "<group>"; };
 		21F6BC181B29A41C00DCEEC2 /* GHButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHButton.h; sourceTree = "<group>"; };
@@ -449,10 +441,6 @@
 		21F6BC0F1B29A41C00DCEEC2 /* Third Party */ = {
 			isa = PBXGroup;
 			children = (
-				21F6BC101B29A41C00DCEEC2 /* Base64Transcoder.h */,
-				21F6BC111B29A41C00DCEEC2 /* Base64Transcoder.m */,
-				21F6BC121B29A41C00DCEEC2 /* NSData+Base64Additions.h */,
-				21F6BC131B29A41C00DCEEC2 /* NSData+Base64Additions.m */,
 				37D39B9F1DA2FE78002E8695 /* GzipInputStream.h */,
 				37D39BA01DA2FE78002E8695 /* GzipInputStream.m */,
 				37952A751DA55FD400874BE7 /* NSData+IDZGunzip.h */,
@@ -594,7 +582,6 @@
 				210C30931C9E31B700B530EF /* GHCSSStyle.h in Headers */,
 				2181F3A71B4F5D8F007617A7 /* SVGTabBarItem.h in Headers */,
 				21F6BC311B29A41C00DCEEC2 /* SVGRenderer.h in Headers */,
-				21F6BC3A1B29A41C00DCEEC2 /* NSData+Base64Additions.h in Headers */,
 				21F6BC711B29A42800DCEEC2 /* GHTextLine.h in Headers */,
 				21F6BC771B29A42800DCEEC2 /* SVGContext.h in Headers */,
 				21F6BC781B29A42800DCEEC2 /* SVGGradientUtilities.h in Headers */,
@@ -605,7 +592,6 @@
 				21F6BC2A1B29A41C00DCEEC2 /* GHRenderable.h in Headers */,
 				21F6BC431B29A41C00DCEEC2 /* GHControl.h in Headers */,
 				21F6BC6A1B29A42800DCEEC2 /* GHPathDescription.h in Headers */,
-				21F6BC371B29A41C00DCEEC2 /* Base64Transcoder.h in Headers */,
 				21F6BC671B29A42800DCEEC2 /* GHAttributedObject.h in Headers */,
 				37D39BA11DA2FE78002E8695 /* GzipInputStream.h in Headers */,
 				21F6BC401B29A41C00DCEEC2 /* GHButton.h in Headers */,
@@ -699,7 +685,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = "Generally Helpful";
 				TargetAttributes = {
 					21DEC8A71BAD89C90044BAD7 = {
@@ -832,13 +818,11 @@
 				21F6BC251B29A41C00DCEEC2 /* GHGlyph.m in Sources */,
 				21F6BC441B29A41C00DCEEC2 /* GHControl.m in Sources */,
 				21F6BC351B29A41C00DCEEC2 /* SVGtoPDFConverter.m in Sources */,
-				21F6BC3B1B29A41C00DCEEC2 /* NSData+Base64Additions.m in Sources */,
 				21F6BC3E1B29A41C00DCEEC2 /* GHImageCache.m in Sources */,
 				21F6BC6F1B29A42800DCEEC2 /* GHText.m in Sources */,
 				21F6BC4A1B29A41C00DCEEC2 /* GHSegmentedControl.m in Sources */,
 				21F6BC751B29A42800DCEEC2 /* SVGAttributedObject.m in Sources */,
 				21F6BC281B29A41C00DCEEC2 /* GHGradient.m in Sources */,
-				21F6BC381B29A41C00DCEEC2 /* Base64Transcoder.m in Sources */,
 				37952A781DA55FD400874BE7 /* NSData+IDZGunzip.m in Sources */,
 				2181F3A81B4F5D8F007617A7 /* SVGTabBarItem.m in Sources */,
 				21F6BC7F1B29A42800DCEEC2 /* SVGTextUtilities.m in Sources */,
@@ -968,12 +952,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -1028,12 +1014,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;

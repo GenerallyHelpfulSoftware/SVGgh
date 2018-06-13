@@ -25,7 +25,6 @@
 
 
 #import "SVGgh.h"
-#import "NSData+Base64Additions.h"
 
 void MakeSureSVGghLinks()
 {

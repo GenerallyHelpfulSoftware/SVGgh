@@ -28,7 +28,6 @@
 //
 
 #import "SVGUtilities.h"
-#import "NSData+Base64Additions.h"
 #import "SVGAttributedObject.h"
 #import "GHImageCache.h"
 #import "SVGUtilities.h"
@@ -2203,7 +2202,7 @@ NSDictionary<NSString*, NSNumber*>* stringToBlendMode()
 			{
 				CGImageRef imageRef = 0;
 				NSString*	dataString = [metaDataString substringFromIndex:rangeOfComma.location+1];
-				NSData*	decodedData = DecodeBase64FromStringToData(dataString);
+				NSData*    decodedData = [[NSData alloc] initWithBase64EncodedString:dataString options:NSDataBase64DecodingIgnoreUnknownCharacters];
 				CGDataProviderRef provider = CGDataProviderCreateWithCFData((__bridge CFDataRef) decodedData);
 				if(provider != 0)
 				{
