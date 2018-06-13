@@ -147,7 +147,7 @@ int ParameterCountForOperator(unichar anOperator)
 @property(nonatomic, assign) SVGPathValidationError errorCode;
 @property(nonatomic, assign) unsigned char  operatorAtError;
 @property(nonatomic, assign) BOOL   errorInLastOperation;
-@property(nonatomic, strong) NSString* __nullable  unexpectedCharacters;
+@property(nonatomic, copy) NSString* __nullable  unexpectedCharacters;
 
 @end
 

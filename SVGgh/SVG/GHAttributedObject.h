@@ -37,7 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
 /*! @brief basically just a wrapper around an NSDictionary. A convenient object when generating from XML
 */
 @interface GHAttributedObject : NSObject
-@property (strong, nonatomic, readonly) NSDictionary*  	attributes;
+@property (copy, nonatomic, readonly) NSDictionary*  	attributes;
 @property (readonly, nonatomic)  NSString* __nullable entityName;
 
 -(instancetype) initWithDictionary:(NSDictionary*)theAttributes;

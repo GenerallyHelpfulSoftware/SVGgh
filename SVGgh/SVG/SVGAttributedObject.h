@@ -82,10 +82,10 @@ NS_ASSUME_NONNULL_BEGIN
 @interface GHRenderableObject : SVGAttributedObject<GHRenderable>
 /*! @property fillColor the color to use for filling
 */
-@property (strong, nonatomic, strong) 	UIColor* __nullable 		fillColor;
+@property (copy, nonatomic) 	UIColor* __nullable 		fillColor;
 /*! @property defaultFillColor if the fillColor isn't explicitly set, this is what be used (typically black)
 */
-@property (strong, nonatomic, readonly)  NSString*                  defaultFillColor;
+@property (copy, nonatomic, readonly)  NSString*                  defaultFillColor;
 
 /*! @property transform 
 * @brief every renderable object can have its own transform which scales, translates, rotates or skews
@@ -186,10 +186,10 @@ NS_ASSUME_NONNULL_BEGIN
 @interface GHShapeGroup : SVGAttributedObject<GHRenderable>
 /*! @property children a collection of SVGAttributedObject that are beneath this object in the document's hierarchy
 */
-@property (strong, nonatomic, readonly)	NSArray* __nullable 	children;
+@property (copy, nonatomic, readonly)	NSArray* __nullable 	children;
 /*! @property childDefinitions a list of NSDictionarys' which can be used to create the children of this group. The intermediate form.
 */
-@property (strong, nonatomic, retain)  NSArray* __nullable  childDefinitions;
+@property (copy, nonatomic)  NSArray* __nullable  childDefinitions;
 
 -(void) addNamedObjects:(NSMutableDictionary*)namedObjectsMap;
 @end

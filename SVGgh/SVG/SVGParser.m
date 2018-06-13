@@ -35,9 +35,9 @@
 #import "NSData+IDZGunzip.h"
 
 @interface SVGParser ()
-@property(nonatomic, strong) NSError* __nullable 	parserError;
 @property(nonatomic, strong) NSMutableDictionary*	__nullable mutableRoot;
-@property(nonatomic, strong) NSDictionary*          __nullable root;
+@property(nonatomic, copy) NSError* __nullable 	parserError;
+@property(nonatomic, copy) NSDictionary*          __nullable root;
 @property(nonatomic, assign) BOOL					insideSVG;
 @property(nonatomic, strong) NSMutableArray*		__nullable groupStack;
 @end

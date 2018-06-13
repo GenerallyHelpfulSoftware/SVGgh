@@ -39,7 +39,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SVGParser : NSObject 
 @property(nonatomic, readonly)           NSError* __nullable 	parserError;
 @property(nonatomic, readonly)           NSDictionary* __nullable  root;
-@property(strong, nonatomic, readonly) NSURL* __nullable 	svgURL;
+@property(copy, nonatomic, readonly) NSURL* __nullable 	svgURL;
 
 /*! @brief init method which takes a URL reference to a .svg file
 * @param url a reference to a standard .svg or .svgz file

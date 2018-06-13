@@ -28,7 +28,6 @@
 #import "SVGRenderer.h"
 #import "GHText.h"
 #import "GHGradient.h"
-#import "NSData+Base64Additions.h"
 #import "SVGPathGenerator.h"
 #import "SVGUtilities.h"
 #import "SVGTextUtilities.h"
@@ -37,13 +36,13 @@
 @interface SVGRenderer()
 
 @property (strong, nonatomic)	NSMutableDictionary*	colorMap;
-@property (strong, nonatomic)   NSDictionary*   namedObjects;
-@property (strong, nonatomic)   GHStyle*        cssStyle;
+@property (copy, nonatomic)   NSDictionary*   namedObjects;
+@property (copy, nonatomic)   GHStyle*        cssStyle;
 @property (assign)              BOOL            styleChecked;
-@property (strong, nonatomic)   UIColor* currentColor;
+@property (copy, nonatomic)   UIColor* currentColor;
 @property (assign, nonatomic)   CGFloat opacity;
-@property (strong, nonatomic)   NSString* isoLanguage;
-@property (strong, nonatomic, readonly) GHShapeGroup*		contents;
+@property (copy, nonatomic)   NSString* isoLanguage;
+@property (copy, nonatomic, readonly) GHShapeGroup*		contents;
 +(NSDictionary*) defaultAttributes;
 @end
 

@@ -60,8 +60,8 @@ typedef enum GHSegmentType
 
 
 @interface GHSegmentDefinition : NSObject
-@property(nonatomic, strong) NSString* title;
-@property(nonatomic, strong) NSString* accessibilityLabel;
+@property(nonatomic, copy) NSString* title;
+@property(nonatomic, copy) NSString* accessibilityLabel;
 @property(nonatomic, strong) SVGRenderer* renderer;
 @property(nonatomic, assign) BOOL enabled;
 @property(nonatomic, assign) CGFloat width; // 0.0 means automatic
@@ -72,7 +72,7 @@ typedef enum GHSegmentType
 @end
 
 @interface GHSegmentedControlContentView: UIView
-@property(nonatomic, strong)        NSArray* definitions; //GHSegmentDefinition
+@property(nonatomic, copy)        NSArray* definitions; //GHSegmentDefinition
 @property(nonatomic,getter=isMomentary) BOOL momentary;
 @property(nonatomic)                NSInteger selectedSegmentIndex;
 @property(nonatomic, assign)        NSUInteger trackedSegmentIndex;
@@ -559,7 +559,7 @@ typedef enum GHSegmentType
 @end
 
 @interface GHSegmentedControl ()
-@property(nonatomic, strong) NSArray* definitions; //GHSegmentDefinition
+@property(nonatomic, copy) NSArray* definitions; //GHSegmentDefinition
 @end
 
 @implementation GHSegmentedControlContentView
@@ -1037,12 +1037,9 @@ typedef enum GHSegmentType
 
 -(void) invalidateAccessibility
 {
-    if([NSObject instancesRespondToSelector:@selector(setAccessibilityElements:)])
+    if([super accessibilityElements].count > 0)
     {
-        if([super accessibilityElements].count > 0)
-        {
-            [super setAccessibilityElements:nil];
-        }
+        [super setAccessibilityElements:nil];
     }
 }
 
@@ -1094,7 +1091,6 @@ typedef enum GHSegmentType
         [self invalidateAccessibility];
     }
 }
-
 
 - (void)removeAllSegments
 {
@@ -1316,8 +1312,6 @@ typedef enum GHSegmentType
         }
     }
 }
-
-
 
 -(NSInteger) indexOfTouch:(CGPoint)touchLocation
 {

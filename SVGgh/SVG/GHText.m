@@ -54,8 +54,8 @@
 @interface GHText()
 @property(nonatomic, readonly)              CTFontDescriptorRef fontDescriptor;
 @property(nonatomic, readonly)              CTFontRef			fontRef;
-@property(strong, nonatomic, readonly)      NSArray*			children;
-@property(strong, nonatomic, readonly)      NSArray*			contents; // svg version of children
+@property(copy, nonatomic, readonly)      NSArray*			children;
+@property(copy, nonatomic, readonly)      NSArray*			contents; // svg version of children
 -(void) setupFontDescriptorWithBaseDescriptor:(CTFontDescriptorRef)baseDescriptor andBaseFont:(CTFontRef)baseFont;
 @end
 

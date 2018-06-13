@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @brief optional subpath to an svg file inside the resources folder, svg is displayed inside the button at appropriate size
  * @attention do not append '.svg'
  */
-@property(nonatomic, strong) IBInspectable NSString*           artworkPath;
+@property(nonatomic, copy) IBInspectable NSString*           artworkPath;
 /*! @property selectedArtworkPath
  * @brief optional subpath to an svg file inside the resources folder, svg is displayed inside the button at appropriate size. When button is in selected state.
  * @attention do not append '.svg'
