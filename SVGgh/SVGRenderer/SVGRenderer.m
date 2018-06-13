@@ -250,21 +250,48 @@
     
     CGFloat scaledWidth = floor(documentSize.width*fittedScaling);
     CGFloat scaleHeight = floor(documentSize.height*fittedScaling);
+    CGSize scaledSize = CGSizeMake(scaledWidth, scaleHeight);
+    Class cgRendererClass = NSClassFromString(@"UIGraphicsImageRenderer");
+    if(cgRendererClass != nil)
+    {
+        UIGraphicsImageRendererFormat* format = [[UIGraphicsImageRendererFormat alloc] init];
+        format.prefersExtendedRange = NO;
+        format.scale = scale;
+        UIGraphicsImageRenderer* renderer = [[cgRendererClass alloc] initWithSize:scaledSize format:format];
+        UIImage* result = [renderer imageWithActions:^(UIGraphicsImageRendererContext * _Nonnull rendererContext) {
+            
+            CGContextRef quartzContext = rendererContext.CGContext;
+            CGContextClearRect(quartzContext, CGRectMake(0, 0, scaledWidth, scaleHeight));
+            
+            CGContextSaveGState(quartzContext);
+            CGContextScaleCTM(quartzContext,fittedScaling,fittedScaling);
+            CGContextTranslateCTM(quartzContext, -documentRect.origin.x*fittedScaling, -documentRect.origin.y*fittedScaling);
+            
+            // tell the renderer to draw into my context
+            [self renderIntoContext:quartzContext];
+            CGContextRestoreGState(quartzContext);
+        }];
+        return result;
+    }
+    else
+    {
+        
+        UIGraphicsBeginImageContextWithOptions(scaledSize, NO, scale);
+        CGContextRef quartzContext = UIGraphicsGetCurrentContext();
+        CGContextClearRect(quartzContext, CGRectMake(0, 0, scaledWidth, scaleHeight));
+        
+        CGContextSaveGState(quartzContext);
+        CGContextScaleCTM(quartzContext,fittedScaling,fittedScaling);
+        CGContextTranslateCTM(quartzContext, -documentRect.origin.x*fittedScaling, -documentRect.origin.y*fittedScaling);
+        
+        // tell the renderer to draw into my context
+        [self renderIntoContext:quartzContext];
+        CGContextRestoreGState(quartzContext);
+        UIImage* result = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        return result;
+    }
     
-    UIGraphicsBeginImageContextWithOptions(CGSizeMake(scaledWidth, scaleHeight), NO, scale);
-    CGContextRef quartzContext = UIGraphicsGetCurrentContext();
-    CGContextClearRect(quartzContext, CGRectMake(0, 0, scaledWidth, scaleHeight));
-    
-    CGContextSaveGState(quartzContext);
-    CGContextScaleCTM(quartzContext,fittedScaling,fittedScaling);
-    CGContextTranslateCTM(quartzContext, -documentRect.origin.x*fittedScaling, -documentRect.origin.y*fittedScaling);
-    
-    // tell the renderer to draw into my context
-    [self renderIntoContext:quartzContext];
-    CGContextRestoreGState(quartzContext);
-    UIImage* result = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return result;
 }
 
 - (id)debugQuickLookObject // select an SVGRenderer in Xcode debugger and hit the eye button
