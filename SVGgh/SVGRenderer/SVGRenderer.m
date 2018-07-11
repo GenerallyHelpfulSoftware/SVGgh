@@ -251,13 +251,13 @@
     CGFloat scaledWidth = floor(documentSize.width*fittedScaling);
     CGFloat scaleHeight = floor(documentSize.height*fittedScaling);
     CGSize scaledSize = CGSizeMake(scaledWidth, scaleHeight);
-    Class cgRendererClass = NSClassFromString(@"UIGraphicsImageRenderer");
-    if(cgRendererClass != nil)
+    
+    if (@available(iOS 10, tvOS 10, *)) 
     {
         UIGraphicsImageRendererFormat* format = [[UIGraphicsImageRendererFormat alloc] init];
         format.prefersExtendedRange = NO;
         format.scale = scale;
-        UIGraphicsImageRenderer* renderer = [[cgRendererClass alloc] initWithSize:scaledSize format:format];
+        UIGraphicsImageRenderer* renderer = [[UIGraphicsImageRenderer alloc] initWithSize:scaledSize format:format];
         UIImage* result = [renderer imageWithActions:^(UIGraphicsImageRendererContext * _Nonnull rendererContext) {
             
             CGContextRef quartzContext = rendererContext.CGContext;

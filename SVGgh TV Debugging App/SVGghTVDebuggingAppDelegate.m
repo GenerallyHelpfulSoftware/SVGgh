@@ -7,6 +7,7 @@
 //
 
 #import "SVGghTVDebuggingAppDelegate.h"
+#import "SVGgh.h"
 
 @interface SVGghTVDebuggingAppDelegate ()
 
@@ -14,6 +15,24 @@
 
 @implementation SVGghTVDebuggingAppDelegate
 
+
++(void) initialize
+{
+    [super initialize];
+    
+#if  __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_9_0 // otherwise, the asset files will not be properly created.
+    NSString* systemVersion = [UIDevice currentDevice].systemVersion;
+    
+    if(systemVersion.doubleValue >= 9.0) // normally you would not use this option unless your base target was iOS 9 or above
+    {
+        [SVGghLoaderManager setLoaderToType:SVGghLoaderTypeDataXCAsset];
+    }
+#else
+    // just use default resource method
+#endif
+    
+    
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
