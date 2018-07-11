@@ -960,6 +960,9 @@ iehp1OXpQ1AH/9k=" width="384.000000" clip-path="url(#clip_F4C745ED-E424-4951-95F
 <text stroke="none" font-size="40" font-family="Georgia" transform="matrix(0.559392 -0.583437 0.583437 0.559392 316.081 115.379)" fill="#228B22" color="#228B22"><textPath xlink:href="#CIRCLE_TEXT_PATH">Generally Helpful</textPath>
 </text>
 
+<g stroke="orange" color="none" stroke-width="4" vector-effect="non-scaling-stroke" fill="none" stroke-linecap="round" transform="translate(390, 73), scale(.8)">
+<path d="M50 0A50 50 0 1 0 50 100 50 50 0 1 0 50 0ZA60 60 0 0 0 50 100 60 60 0 0 0 50 0ZV100M0 50H100M88.5 18A75 75 0 0 1 11.5 18M11.5 82A75 75 0 0 1 88.5 82"/>
+</g>
 
 
       <path transform="translate(-395, 1200)"
