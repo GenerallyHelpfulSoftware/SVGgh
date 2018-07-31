@@ -1525,9 +1525,7 @@ int ParameterCountForOperator(unichar anOperator)
 				case 'Z':
 				case 'z': // close path
 				{
-                    CGPoint lastPoint = CGPathGetCurrentPoint(mutableResult); // Workaround for bug in iOS 12 beta 3
 					CGPathCloseSubpath(mutableResult);
-                    CGPathMoveToPoint(mutableResult, NULL, lastPoint.x, lastPoint.y); // Workaround for bug in iOS 12 beta 3
 					lastCubicControlX = CGFLOAT_MAX;
 					lastQuadraticControlX = CGFLOAT_MAX;
 					
