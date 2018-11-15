@@ -113,6 +113,37 @@
     return self;
 }
 
+-(instancetype) initWithResourceName:(NSString*)resourceName inBundle:(nullable NSBundle*)bundle
+{
+    if(nil != (self = [super initWithResourceName:resourceName inBundle:bundle]))
+    {
+        _colorMap = [[NSMutableDictionary alloc] init];
+        
+        CFArrayRef langs = CFLocaleCopyPreferredLanguages();
+        CFStringRef langCode = CFArrayGetValueAtIndex (langs, 0);
+        _isoLanguage = [[NSString stringWithString:(__bridge NSString*)langCode] substringToIndex:2];
+        CFRelease(langs);
+        self.opacity = 1.0;
+    }
+    return self;
+}
+
+-(nullable instancetype) initWithDataAssetNamed:(NSString*)assetName withBundle:(nullable NSBundle*)bundle
+{
+    if(nil != (self = [super initWithDataAssetNamed:assetName withBundle:bundle]))
+    {
+        _colorMap = [[NSMutableDictionary alloc] init];
+        
+        CFArrayRef langs = CFLocaleCopyPreferredLanguages();
+        CFStringRef langCode = CFArrayGetValueAtIndex (langs, 0);
+        _isoLanguage = [[NSString stringWithString:(__bridge NSString*)langCode] substringToIndex:2];
+        CFRelease(langs);
+        self.opacity = 1.0;
+    }
+    return self;
+}
+
+
 -(BOOL) hidden
 {
     BOOL result = self.contents.hidden;
