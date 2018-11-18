@@ -3,7 +3,7 @@
 //  SVGgh
 // The MIT License (MIT)
 
-//  Copyright (c) 2011-2014 Glenn R. Howes
+//  Copyright (c) 2011-2018 Glenn R. Howes
 
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -56,6 +56,39 @@ NS_ASSUME_NONNULL_BEGIN
 * @return a shared operation queue
 */
 +(NSOperationQueue*) rendererQueue;
+
+/*! @brief init method which takes a URL reference to a .svg file
+ * @param url a reference to a standard .svg or .svgz file
+ */
+-(instancetype)initWithContentsOfURL:(NSURL *)url;
+
+/*! @brief init method which takes a input stream from a SVG source
+ * @param inputStream a reference to a standard .svg or .svgz file
+ */
+-(instancetype)initWithInputStream:(NSInputStream *)inputStream;
+
+/*! @brief init method which the name of a resource based SVG
+ * @param resourceName string giving the name of the resource. This may include a file extension, if ommitted `svg` will be used.
+ * @param bundle optional bundle to look in
+ * @commment might be from XCAsset data
+ */
+-(nullable  instancetype) initWithResourceName:(NSString*)resourceName inBundle:(nullable NSBundle*)bundle;
+
+/*! @brief init method which takes an SVG document which already exists as a string
+ * @param utf8String string containing the SVG document
+ */
+-(instancetype)initWithString:(NSString*)utf8String;
+
+/*! @brief init method which takes an SVG document which already exists as a string
+ * @param assetName string which will be based to constructor of NSDataAsset
+ * @param bundle optional bundle, if nil, the main bundle will be used.
+ */
+-(nullable  instancetype) initWithDataAssetNamed:(NSString*)assetName withBundle:(nullable NSBundle*)bundle NS_AVAILABLE_IOS(9_0);
+
+
+/*! @brief not allowing a standard init method
+ */
+-(instancetype) init __attribute__((unavailable("init not available")));
 
 /*! @brief draw the SVG
 * @param quartzContext context into which to draw, could be a CALayer, a PDF, an offscreen bitmap, whatever
