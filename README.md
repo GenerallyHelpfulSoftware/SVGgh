@@ -19,7 +19,7 @@ The entire [SVG specification](http://www.w3.org/TR/SVG11/) is not implemented. 
 
 There are undoubtably bugs but I've used this library in all 8 apps I have in the App Store without issue so it is reasonably stable. Also, I would not label this a high performance renderer although I've never had cause to complain about it in the way I use it. 
 
-The included library assumes ARC style memory management. It's also been arbitrarily set to support iOS 7 and up. I've moved to using newer code annotations such as *nullable* so it requires a recent version of Xcode to compile. Supports both traditional and module based framework includes.
+The included library assumes ARC style memory management. It's also been set to support iOS 9 and up. I've moved to using code annotations such as *nullable* so it requires a recent version of Xcode to compile. Supports both traditional and module based framework includes.
 
 Originally, this was distributed as a static library, but that is not a modern way to use it. So the enclosed project will build a framework, and most developers will probably find the use of **CocoaPods** more enjoyable. Requires CocoaPods 0.39 or above.
 
