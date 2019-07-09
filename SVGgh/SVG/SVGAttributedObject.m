@@ -37,7 +37,7 @@
 
 @interface GHAttributedObject(SVGRenderer)
 
-+(NSDictionary*) overideObjectsForPrototype:(id)prototype withDictionary:(NSDictionary*)deltaDictionary;
++(NSDictionary*) overideObjectsForPrototype:(id<GHAttributedObjectProtocol>)prototype withDictionary:(NSDictionary*)deltaDictionary;
 -(instancetype) cloneWithOverridingDictionary:(NSDictionary*)overrideAttributes;
 @end
 
@@ -50,7 +50,7 @@
 
 @implementation GHAttributedObject(SVGRenderer)
 
-+(NSDictionary*) overideObjectsForPrototype:(id)prototype withDictionary:(NSDictionary*)deltaDictionary
++(NSDictionary*) overideObjectsForPrototype:(id<GHAttributedObjectProtocol>)prototype withDictionary:(NSDictionary*)deltaDictionary
 {
     NSDictionary* result = nil;
     if([prototype respondsToSelector:@selector(attributes)])

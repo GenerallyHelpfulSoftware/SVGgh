@@ -33,10 +33,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol GHAttributedObjectProtocol <NSObject>
+@property (copy, nonatomic, readonly) NSDictionary*      attributes;
+@property (readonly, nonatomic)  NSString* __nullable entityName;
+@end
 
 /*! @brief basically just a wrapper around an NSDictionary. A convenient object when generating from XML
 */
-@interface GHAttributedObject : NSObject
+@interface GHAttributedObject : NSObject <GHAttributedObjectProtocol>
 @property (copy, nonatomic, readonly) NSDictionary*  	attributes;
 @property (readonly, nonatomic)  NSString* __nullable entityName;
 
