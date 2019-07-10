@@ -84,7 +84,7 @@ NSString*	const kLengthIntoParentsContents = @"parentContentLocation"; // for ob
     
     if(!result && ([object class] == [self class]))
     {
-        result = [[object attributes] isEqual:self.attributes];
+        result = [[(id<GHAttributedObjectProtocol>)object attributes] isEqual:self.attributes];
     }
     
     return result;
