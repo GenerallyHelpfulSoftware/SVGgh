@@ -13,7 +13,7 @@ s.source   = { :git => 'https://github.com/GenerallyHelpfulSoftware/SVGgh.git', 
 
 s.ios.source_files = 'SVGgh/**/*{.h,m}'
 s.tvos.source_files = 'SVGgh/**/*{.h,m}'
-s.framework = 'CoreGraphics', 'CoreImage', 'CoreText', 'UIKit', 'Foundation', 'MobileCoreServices'
+s.framework = 'CoreGraphics', 'CoreImage', 'CoreText', 'UIKit', 'Foundation', 'CoreServices'
 s.libraries    = 'z'
 s.prefix_header_file = 'SVGgh/SVGgh-Prefix.pch'
 s.requires_arc = true
