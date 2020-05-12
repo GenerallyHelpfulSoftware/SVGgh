@@ -956,7 +956,7 @@ iehp1OXpQ1AH/9k=" width="384.000000" clip-path="url(#clip_F4C745ED-E424-4951-95F
 <circle fill="#000 icc-color(XCAsset, frog.background)" cx="42" cy="40" r="32" />
 <path fill="red icc-color(XCAsset, frog.stroke)" transform="scale(.20) translate(75,65)" d="M185 212C139 183 40 199 39 108A18 18 0 1 1 56 75Q67 53 91 45A18 18 0 1 1 127 38C170 29 193 62 220 161L225 110Q231 84 260 115C260 142 265 205 241 198Q216 189 227 230C236 249 161 249 125 248A5 5 325 1 0 122 259C192 264 248 249 237 226Q230 206 247 211  266 210 272 161C273 139 276 106 252 93 245 86 209 65 216 133 200 46 176 19 132 26A28 28 0 0 0 81 40Q61 46 52 63A27 28 0 0 0 27 110C33 192 70 192 145 205Z"/>
 
-<circle fill="#FFF icc-color(System, background)" cx="350" cy="300" r="34" />
+<circle fill="#FFF icc-color(System, systemBackground)" cx="350" cy="300" r="34" />
 <text fill="green icc-color(System, label)" font-family="Georgia" font-size="40"  x="318" y="312" >GH</text>
 
 
