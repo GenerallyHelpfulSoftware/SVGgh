@@ -30,6 +30,7 @@
 #import <SVGgh/SVGgh.h>
 #import "SVGUtilities.h"
 
+extern UIColor* UIColorFromSmanticColorString_PreIOS13(NSString* stringToLookup);
 
 @interface SVGghTests : XCTestCase
 
@@ -248,6 +249,68 @@
     });
     wantedDictionary = @{@"id":@"TEST", @"stroke-width":@"4", @"stroke":@"#CCC", @"fill":@"currentColor", @"opacity":@"0.5",@"color":@"orange"};
     XCTAssertEqualObjects(mergedDictionary, wantedDictionary, @"Expected fill to be changed");
+}
+
+-(void) testSystemColors
+{
+    NSArray<NSString*>* colorStrings = @[
+    @"systemTeal",
+    @"systemGray3",
+    @"secondarySystemFill",
+    @"systemGray2",
+       @"placeholderText",
+        @"link",
+        @"secondaryLabel",
+        @"tertiaryLabel",
+        @"quaternaryLabel",
+        @"systemGroupedBackground",
+        @"secondarySystemGroupedBackground",
+        @"tertiarySystemGroupedBackground",
+        @"systemGray",
+        @"systemGreen",
+        @"systemYellow",
+        @"systemRed",
+        @"systemBlue",
+        @"systemPink",
+        @"systemGray4",
+        @"systemGray5",
+        @"systemGray6",
+        @"systemFill",
+        @"tertiarySystemFill",
+        @"quaternarySystemFill",
+        @"systemIndigo",
+        @"systemOrange",
+        @"systemPurple",
+       @"systemBackground",
+       @"label",
+       @"separator",
+       @"secondarySystemBackground",
+       @"tertiarySystemBackground",
+       @"opaqueSeparator"
+              
+    ];
+    for(NSString* aColor in colorStrings)
+    {
+        NSString* testString = [NSString stringWithFormat:@"icc-color(System, %@)", aColor];
+        UIColor* result = UIColorFromSVGColorString(testString);
+        
+        XCTAssertNotNil(result, @"Unable to parse system color: %@", aColor);
+        
+        UIColor* oldColor = UIColorFromSmanticColorString_PreIOS13(aColor);
+        XCTAssertNotNil(oldColor, @"Unable to parse older color: %@", aColor);
+        
+        CGFloat resultRed, resultGreen, resultBlue, resultAlpha;
+        [result getRed:&resultRed green:&resultGreen blue:&resultBlue alpha:&resultAlpha];
+        
+        CGFloat oldRed, oldGreen, oldBlue, oldAlpha;
+        [oldColor getRed:&oldRed green:&oldGreen blue:&oldBlue alpha:&oldAlpha];
+        
+        XCTAssert(fabs(resultRed-oldRed) < 0.0015, @"Bad Red %@", aColor);
+        XCTAssert(fabs(resultGreen-oldGreen) < 0.0015, @"Bad Green %@", aColor);
+        XCTAssert(fabs(resultBlue-oldBlue) < 0.0015, @"Bad Blue %@", aColor);
+        XCTAssert(fabs(resultAlpha-oldAlpha) < 0.0015, @"Bad Alpha %@", aColor);
+        
+    }
 }
 
 

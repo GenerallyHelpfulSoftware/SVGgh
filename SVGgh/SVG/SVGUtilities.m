@@ -1233,11 +1233,154 @@ UIColor* UIColorFromWebName(NSString* stringToConvert)
     return result;
 }
 
+UIColor* UIColorFromSmanticColorString_PreIOS13(NSString* stringToLookup)
+{
+    CGFloat red, green, blue, alpha;
+    if([stringToLookup isEqualToString:@"systemBackground"])
+    {
+        red = 1.0; green = 1.0; blue = 1.0; alpha = 1.0;
+    }
+    else if([stringToLookup isEqualToString:@"label"])
+    {
+        red = 0.0; green = 0.0; blue = 0.0; alpha = 1.0;
+    }
+    else if([stringToLookup isEqualToString:@"separator"])
+    {
+        red = 0.235; green = 0.235; blue = 0.263; alpha = 0.290;
+    }
+    else if([stringToLookup isEqualToString:@"secondarySystemBackground"])
+    {
+        red = 0.949; green = 0.949; blue = 0.969; alpha = 1.0;
+    }
+    else if([stringToLookup isEqualToString:@"tertiarySystemBackground"])
+    {
+        red = 1.0; green = 1.0; blue = 1.0; alpha = 1.0;
+    }
+    else if([stringToLookup isEqualToString:@"opaqueSeparator"])
+    {
+        red = 0.776; green = 0.776; blue = 0.784; alpha = 1.0;
+    }
+    else if([stringToLookup isEqualToString:@"placeholderText"])
+    {
+        red = 0.235; green = 0.235; blue = 0.262; alpha = 0.3;
+    }
+    else if ([stringToLookup isEqualToString:@"link"])
+    {
+        red = 0.0; green = 0.478; blue = 1.0; alpha = 1.0;
+    }
+    else if([stringToLookup isEqualToString:@"secondaryLabel"])
+    {
+        red = 0.235; green = 0.235; blue = 0.263; alpha = 0.6;
+    }
+    else if([stringToLookup isEqualToString:@"tertiaryLabel"])
+    {
+        red = 0.235; green = 0.235; blue = 0.263; alpha = 0.3;
+    }
+    else if([stringToLookup isEqualToString:@"quaternaryLabel"])
+    {
+        red = 0.235; green = 0.235; blue = 0.263; alpha = 0.180;
+    }
+    else if([stringToLookup isEqualToString:@"systemGroupedBackground"])
+    {
+        red = 0.949; green = 0.949; blue = 0.968; alpha = 1.0;
+    }
+    else if([stringToLookup isEqualToString:@"secondarySystemGroupedBackground"])
+    {
+        red = 1.0; green = 1.0; blue = 1.0; alpha = 1.0;
+    }
+    else if([stringToLookup isEqualToString:@"tertiarySystemGroupedBackground"])
+    {
+        red = 0.949; green = 0.949; blue = 0.968; alpha = 1.0;
+    }
+    else if([stringToLookup isEqualToString:@"systemGray"])
+    {
+        red = 0.557; green = 0.557; blue = 0.576; alpha = 1.0;
+    }
+    else if([stringToLookup isEqualToString:@"systemGreen"])
+    {
+        red = 0.204; green = 0.780; blue = 0.349; alpha = 1.0;
+    }
+    else if([stringToLookup isEqualToString:@"systemYellow"])
+    {
+        red = 1.0; green = 0.8; blue = 0.0; alpha = 1.0;
+    }
+    else if([stringToLookup isEqualToString:@"systemRed"])
+    {
+        red = 1.0; green = 0.231; blue = 0.188; alpha = 1.0;
+    }
+    else if([stringToLookup isEqualToString:@"systemBlue"])
+    {
+        red = 0.0; green = 0.478; blue = 1.0; alpha = 1.0;
+    }
+    else if([stringToLookup isEqualToString:@"systemPink"])
+    {
+        red = 1.0; green = 0.176; blue = 0.333; alpha = 1.0;
+    }
+    else if([stringToLookup isEqualToString:@"systemTeal"])
+    {
+        red = 0.353; green = 0.784; blue = 0.980; alpha = 1.0;
+    }
+    else if([stringToLookup isEqualToString:@"systemGray2"])
+    {
+        red = 0.682; green = 0.682; blue = 0.698; alpha = 1.0;
+    }
+    else if([stringToLookup isEqualToString:@"systemGray3"])
+    {
+        red = 0.780; green = 0.780; blue = 0.800; alpha = 1.0;
+    }
+    else if([stringToLookup isEqualToString:@"systemGray4"])
+    {
+        red = 0.820; green = 0.820; blue = 0.839; alpha = 1.0;
+    }
+    else if([stringToLookup isEqualToString:@"systemGray5"])
+    {
+        red = 0.898; green = 0.898; blue = 0.918; alpha = 1.0;
+    }
+    else if([stringToLookup isEqualToString:@"systemGray6"])
+    {
+        red = 0.949; green = 0.949; blue = 0.969; alpha = 1.0;
+    }
+    else if([stringToLookup isEqualToString:@"systemFill"])
+    {
+        red = 0.471; green = 0.471; blue = 0.502; alpha = 0.2;
+    }
+    else if([stringToLookup isEqualToString:@"secondarySystemFill"])
+    {
+        red = 0.471; green = 0.471; blue = 0.502; alpha = 0.16;
+    }
+    else if([stringToLookup isEqualToString:@"tertiarySystemFill"])
+    {
+        red = 0.463; green = 0.463; blue = 0.502; alpha = 0.12;
+    }
+    else if([stringToLookup isEqualToString:@"quaternarySystemFill"])
+    {
+        red = 0.455; green = 0.455; blue = 0.502; alpha = 0.08;
+    }
+    else if([stringToLookup isEqualToString:@"systemIndigo"])
+    {
+        red = 0.345; green = 0.337; blue = 0.839; alpha = 1.0;
+    }
+    else if([stringToLookup isEqualToString:@"systemOrange"])
+    {
+        red = 1.0; green = 0.584; blue = 0.0; alpha = 1.0;
+    }
+    else if([stringToLookup isEqualToString:@"systemPurple"])
+    {
+        red = 0.686; green = 0.322; blue = 0.871; alpha = 1.0;
+    }
+    else
+    {
+        return NULL;
+    }
+    return [UIColor colorWithRed:red green:green blue:blue alpha:alpha];
+    
+}
+
 UIColor* UIColorFromSemanticColorString(NSString * stringToLookup)
 {
-    if (@available(iOS 13.0, *))
+    if (@available(iOS 13.0, tvOS 13.0, *))
     {
-        if([stringToLookup isEqualToString:@"background"])
+        if([stringToLookup isEqualToString:@"systemBackground"])
         {
             return [UIColor systemBackgroundColor];
         }
@@ -1245,18 +1388,136 @@ UIColor* UIColorFromSemanticColorString(NSString * stringToLookup)
         {
             return [UIColor  labelColor];
         }
+        else if([stringToLookup isEqualToString:@"separator"])
+        {
+            return [UIColor separatorColor];
+        }
+        else if([stringToLookup isEqualToString:@"secondarySystemBackground"])
+        {
+            return [UIColor secondarySystemBackgroundColor];
+        }
+        else if([stringToLookup isEqualToString:@"tertiarySystemBackground"])
+        {
+            return [UIColor tertiarySystemBackgroundColor];
+        }
+        else if([stringToLookup isEqualToString:@"opaqueSeparator"])
+        {
+            return [UIColor opaqueSeparatorColor];
+        }
+        else if([stringToLookup isEqualToString:@"placeholderText"])
+        {
+            return [UIColor placeholderTextColor];
+        }
+        else if ([stringToLookup isEqualToString:@"link"])
+        {
+            return [UIColor linkColor];
+        }
+        else if([stringToLookup isEqualToString:@"secondaryLabel"])
+        {
+            return [UIColor secondaryLabelColor];
+        }
+        else if([stringToLookup isEqualToString:@"tertiaryLabel"])
+        {
+            return [UIColor tertiaryLabelColor];
+        }
+        else if([stringToLookup isEqualToString:@"quaternaryLabel"])
+        {
+            return [UIColor quaternaryLabelColor];
+        }
+        else if([stringToLookup isEqualToString:@"systemGroupedBackground"])
+        {
+            return [UIColor systemGroupedBackgroundColor];
+        }
+        else if([stringToLookup isEqualToString:@"secondarySystemGroupedBackground"])
+        {
+            return [UIColor secondarySystemGroupedBackgroundColor];
+        }
+        else if([stringToLookup isEqualToString:@"tertiarySystemGroupedBackground"])
+        {
+            return [UIColor tertiarySystemGroupedBackgroundColor];
+        }
+        else if([stringToLookup isEqualToString:@"systemGray"])
+        {
+            return [UIColor systemGrayColor];
+        }
+        else if([stringToLookup isEqualToString:@"systemGreen"])
+        {
+            return [UIColor systemGreenColor];
+        }
+        else if([stringToLookup isEqualToString:@"systemYellow"])
+        {
+            return [UIColor systemYellowColor];
+        }
+        else if([stringToLookup isEqualToString:@"systemRed"])
+        {
+            return [UIColor systemRedColor];
+        }
+        else if([stringToLookup isEqualToString:@"systemBlue"])
+        {
+            return [UIColor systemBlueColor];
+        }
+        else if([stringToLookup isEqualToString:@"systemPink"])
+        {
+            return [UIColor systemPinkColor];
+        }
+        else if([stringToLookup isEqualToString:@"systemTeal"])
+        {
+            return [UIColor systemTealColor];
+        }
+        else if([stringToLookup isEqualToString:@"systemGray2"])
+        {
+            return [UIColor systemGray2Color];
+        }
+        else if([stringToLookup isEqualToString:@"systemGray3"])
+        {
+            return [UIColor systemGray3Color];
+        }
+        else if([stringToLookup isEqualToString:@"systemGray4"])
+        {
+            return [UIColor systemGray4Color];
+        }
+        else if([stringToLookup isEqualToString:@"systemGray5"])
+        {
+            return [UIColor systemGray5Color];
+        }
+        else if([stringToLookup isEqualToString:@"systemGray6"])
+        {
+            return [UIColor systemGray6Color];
+        }
+        else if([stringToLookup isEqualToString:@"systemFill"])
+        {
+            return [UIColor systemFillColor];
+        }
+        else if([stringToLookup isEqualToString:@"secondarySystemFill"])
+        {
+            return [UIColor secondarySystemFillColor];
+        }
+        else if([stringToLookup isEqualToString:@"tertiarySystemFill"])
+        {
+            return [UIColor tertiarySystemFillColor];
+        }
+        else if([stringToLookup isEqualToString:@"quaternarySystemFill"])
+        {
+            return [UIColor quaternarySystemFillColor];
+        }
+        else if([stringToLookup isEqualToString:@"systemIndigo"])
+        {
+            return [UIColor systemIndigoColor];
+        }
+        else if([stringToLookup isEqualToString:@"systemOrange"])
+        {
+            return [UIColor systemOrangeColor];
+        }
+        else if([stringToLookup isEqualToString:@"systemPurple"])
+        {
+            return [UIColor systemPurpleColor];
+        }
     }
     else
     {
-        if([stringToLookup isEqualToString:@"background"])
-        {
-            return [UIColor whiteColor];
-        }
-        else if([stringToLookup isEqualToString:@"label"])
-        {
-            return [UIColor  darkTextColor];
-        }
+        return UIColorFromSmanticColorString_PreIOS13(stringToLookup);
     }
+    
     return NULL;
 }
 
@@ -1308,9 +1569,12 @@ UIColor* UIColorFromSVGColorString (NSString * inputString)
         NSRange locationOfProfile = [stringToConvert rangeOfString:@"icc-color"];
         if(locationOfProfile.location != NSNotFound)
         {
+            if(locationOfProfile.location > 0)
+            {
             // if we can't use the icc-profile element, we will fall back to the beginning of the property
-            stringToConvert = [[stringToConvert substringToIndex:locationOfProfile.location-1] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-            
+                stringToConvert = [[stringToConvert substringToIndex:locationOfProfile.location-1] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+            }
+               
             if (@available(iOS 11, tvOS 11, *))
             {
                 NSString* profileDefinition = [trimmedString substringFromIndex:locationOfProfile.location + locationOfProfile.length];
