@@ -353,8 +353,6 @@ NSArray* ArrayForSVGAttribute(NSDictionary* svgAttributes, NSString* key)
 	return result;
 }
 
-
-
 NSDictionary* AttributesFromSVGCompactAttributes(NSString* compactedAttributes)
 {
     NSMutableDictionary* mutableResult = [NSMutableDictionary dictionary];
@@ -1235,40 +1233,129 @@ UIColor* UIColorFromWebName(NSString* stringToConvert)
     return result;
 }
 
-UIColor* UIColorFromSVGColorString (NSString * stringToConvert)
+UIColor* UIColorFromSemanticColorString(NSString * stringToLookup)
 {
-    
+    if (@available(iOS 13.0, *))
+    {
+        if([stringToLookup isEqualToString:@"background"])
+        {
+            return [UIColor systemBackgroundColor];
+        }
+        else if([stringToLookup isEqualToString:@"label"])
+        {
+            return [UIColor  labelColor];
+        }
+    }
+    else
+    {
+        if([stringToLookup isEqualToString:@"background"])
+        {
+            return [UIColor whiteColor];
+        }
+        else if([stringToLookup isEqualToString:@"label"])
+        {
+            return [UIColor  darkTextColor];
+        }
+    }
+    return NULL;
+}
+
+@interface ICCProfilePair : NSObject
+@property (nonatomic, strong) NSString* profileName;
+@property (nonatomic, strong) NSString* colorName;
+@end
+
+@implementation ICCProfilePair
+@end
+
+ICCProfilePair* ParseICCColorString(NSString* source)
+{
+    NSRange startParenthesis = [source rangeOfString:@"("];
+    NSRange endParenthesis  = [source rangeOfString:@")"];
+    if(startParenthesis.location != NSNotFound && endParenthesis.location != NSNotFound && startParenthesis.location < (endParenthesis.location-1))
+    {
+        NSString* pairString = [source substringWithRange:NSMakeRange(startParenthesis.location+1, endParenthesis.location-startParenthesis.location-1)];
+        NSArray<NSString*>* strings = [pairString componentsSeparatedByString:@","];
+        if(strings.count == 2)
+        {
+            NSString* profileName = [strings.firstObject stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+            NSString* colorName = [strings.lastObject stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+            ICCProfilePair* result = [ICCProfilePair new];
+            result.profileName = profileName;
+            result.colorName = colorName;
+            return result;
+        }
+    }
+    return NULL;
+}
+
+UIColor* UIColorFromSVGColorString (NSString * inputString)
+{
     static NSCache* sCache = nil;
     static dispatch_once_t  done;
     dispatch_once(&done, ^{
         sCache = [[NSCache alloc] init];
         sCache.name = @"Color Cache";
     });
+    UIColor* result = NULL;
+
+    NSString* trimmedString = [inputString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    NSString* stringToConvert = trimmedString;
     
-    UIColor* result = [sCache objectForKey:stringToConvert];
+    result = [sCache objectForKey:trimmedString];
     if(result == nil)
     {
-        NSString *cString = [stringToConvert stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        NSRange locationOfProfile = [stringToConvert rangeOfString:@"icc-color"];
+        if(locationOfProfile.location != NSNotFound)
+        {
+            // if we can't use the icc-profile element, we will fall back to the beginning of the property
+            stringToConvert = [[stringToConvert substringToIndex:locationOfProfile.location-1] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+            
+            if (@available(iOS 11, tvOS 11, *))
+            {
+                NSString* profileDefinition = [trimmedString substringFromIndex:locationOfProfile.location + locationOfProfile.length];
+        
+                ICCProfilePair* parseProfile = ParseICCColorString(profileDefinition);
+                
+                if(parseProfile != NULL)
+                {
+                    if([parseProfile.profileName isEqualToString:@"System"])
+                    {
+                        result = UIColorFromSemanticColorString(parseProfile.colorName);
+                    }
+                    else if([parseProfile.profileName isEqualToString:@"XCAsset"])
+                    {
+                        result = [UIColor colorNamed:parseProfile.colorName];
+                    }
+                }
+            }
+        }
+        
+        
         // strip 0X if it appears
         unsigned int r = 0, g = 0, b = 0;
         CGFloat alpha = 1.0;
-        if ([cString hasPrefix:@"#"])
+        if(result != nil)
         {
-            cString = [cString substringFromIndex:1];
+            
+        }
+        else if ([stringToConvert hasPrefix:@"#"])
+        {
+            stringToConvert = [stringToConvert substringFromIndex:1];
             
             // Separate into r, g, b substrings
             NSRange range;
             NSString *rString = nil;
             NSString *gString = nil;
             NSString *bString = nil;
-            NSUInteger stringLength = [cString length];
+            NSUInteger stringLength = [stringToConvert length];
             if(stringLength == 3)
             {
-                NSMutableString* mutableCString = [NSMutableString stringWithString:cString];
+                NSMutableString* mutableCString = [NSMutableString stringWithString:stringToConvert];
                 [mutableCString insertString:[mutableCString substringWithRange:NSMakeRange(0, 1)] atIndex:1];
                 [mutableCString insertString:[mutableCString substringWithRange:NSMakeRange(2, 1)] atIndex:3];
                 [mutableCString insertString:[mutableCString substringWithRange:NSMakeRange(4, 1)] atIndex:5];
-                cString = mutableCString;
+                stringToConvert = mutableCString;
                 stringLength = 6;
             }
             if(stringLength >= 2)
@@ -1276,19 +1363,19 @@ UIColor* UIColorFromSVGColorString (NSString * stringToConvert)
                 range.location = 0;
                 range.length = 2;
                 
-                rString = [cString substringWithRange:range];
+                rString = [stringToConvert substringWithRange:range];
             }
             
             if(stringLength >= 4)
             {
                 range.location = 2;
-                gString = [cString substringWithRange:range];
+                gString = [stringToConvert substringWithRange:range];
             }
             
             if(stringLength >= 6)
             {
                 range.location = 4;
-                bString = [cString substringWithRange:range];
+                bString = [stringToConvert substringWithRange:range];
             }
             if(gString == nil)
             {
@@ -1477,7 +1564,7 @@ UIColor* UIColorFromSVGColorString (NSString * stringToConvert)
                 result = UIColorFromWebName(lowerCaseStringToConvert);
                 if(result == nil)
                 {
-                    [sCache setObject:[NSNull null] forKey:stringToConvert cost:4];
+                    [sCache setObject:[NSNull null] forKey:trimmedString cost:4];
                     return nil;
                 }
             }
@@ -1496,7 +1583,7 @@ UIColor* UIColorFromSVGColorString (NSString * stringToConvert)
         
         if(result != nil)
         {
-            [sCache setObject:result forKey:stringToConvert cost:6];
+            [sCache setObject:result forKey:trimmedString cost:6];
         }
     }
     else if([result isKindOfClass:[NSNull class]])

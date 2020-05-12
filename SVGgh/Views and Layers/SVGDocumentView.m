@@ -120,6 +120,17 @@
     }
 }
 
+-(void) traitCollectionDidChange:(UITraitCollection *)previousTraitCollection
+{
+    [super traitCollectionDidChange:previousTraitCollection];
+    if (@available(iOS 12.0, *)) { // maybe xc or system colors have changed.
+        if(previousTraitCollection.userInterfaceStyle != self.traitCollection.userInterfaceStyle)
+        {
+            [self setNeedsDisplay];
+        }
+    }
+}
+
 -(void) setArtworkPath:(NSString *)artworkPath fromBundle:(NSBundle *)originalBundle {
     _artworkPath = artworkPath;
     

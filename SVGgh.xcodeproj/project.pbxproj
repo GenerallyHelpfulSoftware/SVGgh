@@ -94,6 +94,7 @@
 		21F6BCE31B29A52600DCEEC2 /* SVGghDebuggingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F6BCE11B29A52600DCEEC2 /* SVGghDebuggingViewController.m */; };
 		21F6BCE61B29A57C00DCEEC2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21F6BCE41B29A57C00DCEEC2 /* Main.storyboard */; };
 		21FF06DD245F982D00AAA5BB /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21FF06DC245F982D00AAA5BB /* CoreServices.framework */; };
+		21FF071824696F9300AAA5BB /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21FF071724696F9300AAA5BB /* Colors.xcassets */; };
 		37952A771DA55FD400874BE7 /* NSData+IDZGunzip.h in Headers */ = {isa = PBXBuildFile; fileRef = 37952A751DA55FD400874BE7 /* NSData+IDZGunzip.h */; };
 		37952A781DA55FD400874BE7 /* NSData+IDZGunzip.m in Sources */ = {isa = PBXBuildFile; fileRef = 37952A761DA55FD400874BE7 /* NSData+IDZGunzip.m */; };
 		37D39BA11DA2FE78002E8695 /* GzipInputStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 37D39B9F1DA2FE78002E8695 /* GzipInputStream.h */; };
@@ -260,6 +261,7 @@
 		21F6BCE51B29A57C00DCEEC2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		21F6BCE71B29A8FE00DCEEC2 /* Artwork */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Artwork; sourceTree = "<group>"; };
 		21FF06DC245F982D00AAA5BB /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/CoreServices.framework; sourceTree = DEVELOPER_DIR; };
+		21FF071724696F9300AAA5BB /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Colors.xcassets; path = "SVGgh TV Debugging App/Colors.xcassets"; sourceTree = "<group>"; };
 		37952A751DA55FD400874BE7 /* NSData+IDZGunzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+IDZGunzip.h"; sourceTree = "<group>"; };
 		37952A761DA55FD400874BE7 /* NSData+IDZGunzip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+IDZGunzip.m"; sourceTree = "<group>"; };
 		37952AAB1DA57ADD00874BE7 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
@@ -348,6 +350,7 @@
 		21F6BBD81B29A21E00DCEEC2 = {
 			isa = PBXGroup;
 			children = (
+				21FF071724696F9300AAA5BB /* Colors.xcassets */,
 				37952AAB1DA57ADD00874BE7 /* MobileCoreServices.framework */,
 				37D39BA61DA302E5002E8695 /* libz.tbd */,
 				211E709E1B2AEC1D00667BE9 /* SVGgh.podspec */,
@@ -772,6 +775,7 @@
 				2151A7B61CD059AC00D16C89 /* Artwork.xcassets in Resources */,
 				21F6BCE61B29A57C00DCEEC2 /* Main.storyboard in Resources */,
 				2194CD3F1B29FB4F00702F44 /* Artwork in Resources */,
+				21FF071824696F9300AAA5BB /* Colors.xcassets in Resources */,
 				21F6BC9B1B29A48600DCEEC2 /* LaunchScreen.xib in Resources */,
 				21F6BC981B29A48600DCEEC2 /* Images.xcassets in Resources */,
 			);

@@ -818,6 +818,17 @@
     return result;
 }
 
+-(void) traitCollectionDidChange:(UITraitCollection *)previousTraitCollection
+{
+    [super traitCollectionDidChange:previousTraitCollection];
+    if (@available(iOS 12.0, *)) {
+        if(previousTraitCollection.userInterfaceStyle != self.traitCollection.userInterfaceStyle)
+        {
+            [self setNeedsDisplay];
+        }
+    }
+}
+
 @end
 
 @implementation KeyboardPressedPopup
@@ -1090,6 +1101,17 @@
     if(self.artworkPath.length)
     {
         [self drawArtworkAtPath:self.artworkPath intoContext:quartzContext];
+    }
+}
+
+-(void) traitCollectionDidChange:(UITraitCollection *)previousTraitCollection
+{
+    [super traitCollectionDidChange:previousTraitCollection];
+    if (@available(iOS 12.0, *)) {
+        if(previousTraitCollection.userInterfaceStyle != self.traitCollection.userInterfaceStyle)
+        {
+            [self setNeedsDisplay];
+        }
     }
 }
 

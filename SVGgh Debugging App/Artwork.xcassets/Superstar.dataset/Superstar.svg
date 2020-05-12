@@ -953,6 +953,11 @@ iehp1OXpQ1AH/9k=" width="384.000000" clip-path="url(#clip_F4C745ED-E424-4951-95F
 
 <path fill="red" transform="translate(420, 320)" d="M 0 0 h10 v 10 h-10z m 20 0 h10 v 10 h-10zm 20 0 h10 v 10 h-10zm 20 0 h10 v 10 h-10z   M 10 10 h10 v 10 h-10z m 20 0 h10 v 10 h-10zm 20 0 h10 v 10 h-10zm 20 0 h10 v 10 h-10z   M 0 20 h10 v 10 h-10z m 20 0 h10 v 10 h-10zm 20 0 h10 v 10 h-10zm 20 0 h10 v 10 h-10z   M 10 30 h10 v 10 h-10z m 20 0 h10 v 10 h-10zm 20 0 h10 v 10 h-10zm 20 0 h10 v 10 h-10z   M 0 40 h10 v 10 h-10z m 20 0 h10 v 10 h-10zm 20 0 h10 v 10 h-10zm 20 0 h10 v 10 h-10z    M 10 50 h10 v 10 h-10z m 20 0 h10 v 10 h-10zm 20 0 h10 v 10 h-10zm 20 0 h10 v 10 h-10z    M 0 60 h10 v 10 h-10z m 20 0 h10 v 10 h-10zm 20 0 h10 v 10 h-10zm 20 0 h10 v 10 h-10z  M 10 70 h10 v 10 h-10z m 20 0 h10 v 10 h-10zm 20 0 h10 v 10 h-10zm 20 0 h10 v 10 h-10z" />
 
+<circle fill="#000 icc-color(XCAsset, frog.background)" cx="42" cy="40" r="32" />
+<path fill="red icc-color(XCAsset, frog.stroke)" transform="scale(.20) translate(75,65)" d="M185 212C139 183 40 199 39 108A18 18 0 1 1 56 75Q67 53 91 45A18 18 0 1 1 127 38C170 29 193 62 220 161L225 110Q231 84 260 115C260 142 265 205 241 198Q216 189 227 230C236 249 161 249 125 248A5 5 325 1 0 122 259C192 264 248 249 237 226Q230 206 247 211  266 210 272 161C273 139 276 106 252 93 245 86 209 65 216 133 200 46 176 19 132 26A28 28 0 0 0 81 40Q61 46 52 63A27 28 0 0 0 27 110C33 192 70 192 145 205Z"/>
+
+<circle fill="#FFF icc-color(System, background)" cx="350" cy="300" r="34" />
+<text fill="green icc-color(System, label)" font-family="Georgia" font-size="40"  x="318" y="312" >GH</text>
 
 
 <path stroke="blue" d="M 395 145 L 380 160 M 445 159 L 453 180"/>
@@ -963,7 +968,6 @@ iehp1OXpQ1AH/9k=" width="384.000000" clip-path="url(#clip_F4C745ED-E424-4951-95F
 <g stroke="orange" color="none" stroke-width="4" vector-effect="non-scaling-stroke" fill="none" stroke-linecap="round" transform="translate(390, 73), scale(.8)">
 <path d="M50 0A50 50 0 1 0 50 100 50 50 0 1 0 50 0ZA60 60 0 0 0 50 100 60 60 0 0 0 50 0ZV100M0 50H100M88.5 18A75 75 0 0 1 11.5 18M11.5 82A75 75 0 0 1 88.5 82"/>
 </g>
-
 
       <path transform="translate(-395, 1200)"
          d="m 470.62543,-1041.6816 0,-2.8127 2.68028,0 5.70981,-30.0817 3.24983,0 6.2897,30.0817 2.1644,0 0,2.8127 -7.37513,0 0,-2.8127 1.99038,0 -0.79484,-4.6099 -7.44035,0 -0.57473,4.6099 1.99028,0 0,2.8127 -7.88963,0 z m 13.27957,-10.7064 -3.2345,-16.1007 -3.02962,16.1007 6.26412,0 z m 0,0" />

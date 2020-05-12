@@ -904,6 +904,17 @@ typedef enum GHSegmentType
 {
 }
 
+-(void) traitCollectionDidChange:(UITraitCollection *)previousTraitCollection
+{
+    [super traitCollectionDidChange:previousTraitCollection];
+    if (@available(iOS 12.0, *)) {
+        if(previousTraitCollection.userInterfaceStyle != self.traitCollection.userInterfaceStyle)
+        {
+            [self setNeedsDisplay];
+        }
+    }
+}
+
 @end
 
 
@@ -1696,6 +1707,17 @@ typedef enum GHSegmentType
         aView.layer.shadowOpacity = 1.0;
     }
     self.beingPressed = NO;
+}
+
+-(void) traitCollectionDidChange:(UITraitCollection *)previousTraitCollection
+{
+    [super traitCollectionDidChange:previousTraitCollection];
+    if (@available(iOS 12.0, *)) {
+        if(previousTraitCollection.userInterfaceStyle != self.traitCollection.userInterfaceStyle)
+        {
+            [self setNeedsDisplay];
+        }
+    }
 }
 
 @end
