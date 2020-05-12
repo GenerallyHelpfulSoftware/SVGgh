@@ -1589,7 +1589,10 @@ UIColor* UIColorFromSVGColorString (NSString * inputString)
                     }
                     else if([parseProfile.profileName isEqualToString:@"XCAsset"])
                     {
+                        if (@available(iOS 13, tvOS 13, *))
+                        {
                         result = [UIColor colorNamed:parseProfile.colorName];
+                        }
                     }
                 }
             }

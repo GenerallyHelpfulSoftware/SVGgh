@@ -265,7 +265,8 @@ extern UIColor* UIColorFromSmanticColorString_PreIOS13(NSString* stringToLookup)
         @"quaternaryLabel",
         @"systemGroupedBackground",
         @"secondarySystemGroupedBackground",
-        @"tertiarySystemGroupedBackground",
+
+    @"tertiarySystemGroupedBackground",
         @"systemGray",
         @"systemGreen",
         @"systemYellow",
