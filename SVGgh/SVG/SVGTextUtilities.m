@@ -62,7 +62,7 @@ const double kStandardSVGFontScale = 1.2;
 	static double sResult = 0.0;
 	if(sResult == 0.0)
 	{
-		CTFontRef defaultFontRef = CTFontCreateUIFontForLanguage(kCTFontUIFontUser, 0.0, 0);
+		CTFontRef defaultFontRef = CTFontCreateUIFontForLanguage(kCTFontUIFontSystem, 0.0, 0);
 		if(defaultFontRef != 0)
 		{
 			sResult =  CTFontGetSize(defaultFontRef);
@@ -174,10 +174,20 @@ const double kStandardSVGFontScale = 1.2;
             NSMutableSet* specifiedAttributes = [NSMutableSet setWithArray:[coreTextAttributes allKeys]];
             
 
+            NSString* name = CFBridgingRelease(CTFontDescriptorCopyAttribute(unmatchedResult, kCTFontNameAttribute));
+            CTFontDescriptorRef missSizedResult = 0;
+            if ([name hasPrefix:@"."])
+            {
+                CTFontRef defaultFontRef = CTFontCreateUIFontForLanguage(kCTFontUIFontSystem, 0, 0);
+                missSizedResult = CTFontCopyFontDescriptor(defaultFontRef);
+                CFRelease(defaultFontRef);
+            }
             
-            CTFontDescriptorRef missSizedResult = CTFontDescriptorCreateMatchingFontDescriptor (unmatchedResult,
-                                                                                                (__bridge CFSetRef)specifiedAttributes
-                                                                                                );
+            if(missSizedResult == 0)
+            {
+                missSizedResult = CTFontDescriptorCreateMatchingFontDescriptor (unmatchedResult,
+                     (__bridge CFSetRef)specifiedAttributes);
+            }
             if(missSizedResult != 0)
             {
                 CFRelease(unmatchedResult);
@@ -219,7 +229,7 @@ const double kStandardSVGFontScale = 1.2;
 		}
 		else
 		{
-			CTFontRef defaultFontRef = CTFontCreateUIFontForLanguage(kCTFontUIFontUser, 0.0, 0);
+			CTFontRef defaultFontRef = CTFontCreateUIFontForLanguage(kCTFontUIFontSystem, 0.0, 0);
             if(defaultFontRef == 0)
             {
                 NSString* fontName = @"Helvetica";
@@ -261,8 +271,17 @@ const double kStandardSVGFontScale = 1.2;
         }
         CFRelease(fontSizeNumber);
     }
-    CTFontRef result = CTFontCreateWithFontDescriptor(fontDescriptor, fontSize, nil);
-    return result;
+    NSString* name = CFBridgingRelease(CTFontDescriptorCopyAttribute(fontDescriptor, kCTFontNameAttribute));
+    if ([name hasPrefix:@"."])
+    {
+        CTFontRef result = CTFontCreateUIFontForLanguage(kCTFontUIFontSystem, fontSize, 0);
+        return result;
+    }
+    else
+    {
+    CTFontRef result =  CTFontCreateWithFontDescriptor(fontDescriptor, fontSize, nil);
+        return result;
+    }
 }
 
 +(CTFontDescriptorRef) coreTextDescriptor:(CTFontDescriptorRef) baseFontDescriptor addingAttributes:(NSDictionary*) svgStyle CF_RETURNS_RETAINED
