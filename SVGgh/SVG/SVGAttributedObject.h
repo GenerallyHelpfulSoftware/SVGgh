@@ -85,7 +85,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (copy, nonatomic) 	UIColor* __nullable 		fillColor;
 /*! @property defaultFillColor if the fillColor isn't explicitly set, this is what be used (typically black)
 */
-@property (copy, nonatomic, readonly)  NSString*                  defaultFillColor;
+@property (copy, nonatomic, readonly)  NSString*       defaultFillColor;
 
 /*! @property transform 
 * @brief every renderable object can have its own transform which scales, translates, rotates or skews

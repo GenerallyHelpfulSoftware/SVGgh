@@ -54,7 +54,7 @@
         }
         if(artworkPathToUse.length)
         {
-            SVGRenderer* renderer = renderer = [[SVGghLoaderManager loader] loadRenderForSVGIdentifier:artworkPathToUse inBundle:nil];
+            SVGRenderer* renderer =  [[SVGghLoaderManager loader] loadRenderForSVGIdentifier:artworkPathToUse inBundle:nil];
             if(renderer != nil)
             {
                 renderer.currentColor = selectedColor;

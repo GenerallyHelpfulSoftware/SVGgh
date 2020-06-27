@@ -26,13 +26,19 @@
 //
 
 #import "SVGgh.h"
+#if defined(__has_feature) && __has_feature(modules)
+@import QuartzCore;
+#else
+#import <QuartzCore/QuartzCore.h>
+#endif
+
 
 CGContextRef	CreatePDFContext(const CGRect mediaRect, CFMutableDataRef theData)
 {
 	CGContextRef result = 0;
 	if(theData != 0)
 	{
-		CGDataConsumerRef theConsumer =CGDataConsumerCreateWithCFData(theData);
+		CGDataConsumerRef theConsumer = CGDataConsumerCreateWithCFData(theData);
 		if(theConsumer != 0)
 		{
 			result = CGPDFContextCreate(theConsumer, &mediaRect, NULL);

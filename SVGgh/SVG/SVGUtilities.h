@@ -119,7 +119,7 @@ __nullable CGContextRef BitmapContextCreate (size_t pixelsWide, size_t pixelsHig
 /*! an SVG path entity has a set of attributes it accepts. This returns them
 * \return a set of attributes like 'stroke-dashoffset' or 'fill'
 */
- NSSet*  StandardPathAttributes(void);
+ NSSet<NSString*> *  StandardPathAttributes(void);
 
 /*! \brief given a set of attributes, build a new set by selectiving merging in attributes from a superceding set
 * \param parentAttributes the starting attributes from higher up in the document

@@ -45,7 +45,7 @@ NSString*	const kLengthIntoParentsContents = @"parentContentLocation"; // for ob
 
 -(instancetype) initWithAttributes:(NSDictionary*)theAttributes
 {
-    if(nil != (self = [self init]))
+    if(nil != (self = [super init]))
 	{
 		_attributes = theAttributes;
 	}
@@ -57,10 +57,15 @@ NSString*	const kLengthIntoParentsContents = @"parentContentLocation"; // for ob
     NSDictionary* theAttributes = [theDefinition objectForKey:kAttributesElementName];
 	if(nil != (self = [self initWithAttributes:theAttributes]))
 	{
-		_attributes = theAttributes;
         _calculatedHash = NSNotFound;
 	}
 	return self;
+}
+
+-(instancetype) init
+{
+    [self doesNotRecognizeSelector:_cmd];
+    return nil;
 }
 
 -(NSUInteger) hash

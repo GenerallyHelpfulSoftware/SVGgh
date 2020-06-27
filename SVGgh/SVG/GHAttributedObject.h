@@ -45,8 +45,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly, nonatomic)  NSString* __nullable entityName;
 
 -(instancetype) initWithDictionary:(NSDictionary*)theAttributes;
--(instancetype) initWithAttributes:(NSDictionary*)theAttributes;
-
+-(instancetype) initWithAttributes:(NSDictionary*)theAttributes NS_DESIGNATED_INITIALIZER;
+-(instancetype) init NS_UNAVAILABLE;
 
 -(NSUInteger)calculatedHash; // attributed objects are immutable, I can calculate their hash once and be done with it.
 @end
