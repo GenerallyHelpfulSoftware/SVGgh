@@ -1944,6 +1944,11 @@
     return self;
 }
 
+-(void) renderIntoContext:(CGContextRef)quartzContext withSVGContext:(id<SVGContext>)theContext
+{// styles aren't renderable
+    
+}
+
 -(StyleElementType) styleType
 {
     StyleElementType result = kStyleTypeCSS;
