@@ -80,16 +80,12 @@ const double kStandardSVGFontScale = 1.2;
         CTFontRef defaultFontRef = CTFontCreateUIFontForLanguage(kCTFontUIFontSystem, 0.0, 0);
         if(defaultFontRef != 0)
         {
-            CFStringRef postscriptNameCF = CTFontCopyPostScriptName(defaultFontRef);
-            NSString* postscriptName = [NSString stringWithString:(__bridge NSString*)postscriptNameCF];
             CFDictionaryRef fontTraits = CTFontCopyTraits(defaultFontRef);
             
             NSMutableDictionary* mutableResult = [NSMutableDictionary dictionaryWithDictionary:(__bridge NSDictionary*)fontTraits];
-            mutableResult[(NSString*)kCTFontNameAttribute] = postscriptName;
             
             sResult = [mutableResult copy];
             CFRelease(defaultFontRef);
-            CFRelease(postscriptNameCF);
             CFRelease(fontTraits);
         }
 
@@ -1048,7 +1044,7 @@ const double kStandardSVGFontScale = 1.2;
 	}
     if(fallbacks != nil)
     {
-        [outAttributes setObject:(__bridge id _Nonnull)(fallbacks) forKey:UIFontDescriptorCascadeListAttribute];
+        [outAttributes setObject:(__bridge id _Nonnull)(fallbacks) forKey:(NSString*) kCTFontCascadeListAttribute];
         CFRelease(fallbacks);
     }
 	
