@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg x="0px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewport-fill="none" y="0px" viewBox="0, 0, 480, 690" version="1.1" height="690" width="480">
+	
+	<defs>
+		<clipPath id="boundary">
+			<path d="M 240 0 H 470 A 10 10 0 0 1 480 10 V 680 A 10 10 0 0 1 470 690 H 10 A 10 10 0 0 1 0 680 V 10 A 10 10 0 0 1 10 0Z" fill="none"/>
+		</clipPath>
+		<path  id="checkerboard" fill="currentColor"  d="M 0 0 h10 v 10 h-10z m 20 0 h10 v 10 h-10zm 20 0 h10 v 10 h-10zm 20 0 h10 v 10 h-10z   M 10 10 h10 v 10 h-10z m 20 0 h10 v 10 h-10zm 20 0 h10 v 10 h-10zm 20 0 h10 v 10 h-10z   M 0 20 h10 v 10 h-10z m 20 0 h10 v 10 h-10zm 20 0 h10 v 10 h-10zm 20 0 h10 v 10 h-10z   M 10 30 h10 v 10 h-10z m 20 0 h10 v 10 h-10zm 20 0 h10 v 10 h-10zm 20 0 h10 v 10 h-10z   M 0 40 h10 v 10 h-10z m 20 0 h10 v 10 h-10zm 20 0 h10 v 10 h-10zm 20 0 h10 v 10 h-10z    M 10 50 h10 v 10 h-10z m 20 0 h10 v 10 h-10zm 20 0 h10 v 10 h-10zm 20 0 h10 v 10 h-10z    M 0 60 h10 v 10 h-10z m 20 0 h10 v 10 h-10zm 20 0 h10 v 10 h-10zm 20 0 h10 v 10 h-10z  M 10 70 h10 v 10 h-10z m 20 0 h10 v 10 h-10zm 20 0 h10 v 10 h-10zm 20 0 h10 v 10 h-10z" />
+	
+	</defs>
+	<path fill="teal" stroke="grey" d="M 240 0 H 470 A 10 10 0 0 1 480 10 V 680 A 10 10 0 0 1 470 690 H 10 A 10 10 0 0 1 0 680 V 10 A 10 10 0 0 1 10 0Z" />
+		
+	<g clip-path="url(#boundary)" color="#B0E0E6">
+		<use xlink:href="#checkerboard"/>
+		<use xlink:href="#checkerboard" transform="translate(0,80)"/>
+		<use xlink:href="#checkerboard" transform="translate(0,160)"/>
+		<use xlink:href="#checkerboard" transform="translate(0,240)"/>
+		<use xlink:href="#checkerboard" transform="translate(0,320)"/>
+		<use xlink:href="#checkerboard" transform="translate(0,400)"/>
+		<use xlink:href="#checkerboard" transform="translate(0,480)"/>
+		<use xlink:href="#checkerboard" transform="translate(0,520)"/>
+		<use xlink:href="#checkerboard" transform="translate(0,600)"/>
+		<use xlink:href="#checkerboard" transform="translate(0,680)"/>
+		
+		
+		<use xlink:href="#checkerboard" transform="translate(80,0)"/>
+		<use xlink:href="#checkerboard" transform="translate(80,80)"/>
+		<use xlink:href="#checkerboard" transform="translate(80,160)"/>
+		<use xlink:href="#checkerboard" transform="translate(80,240)"/>
+		<use xlink:href="#checkerboard" transform="translate(80,320)"/>
+		<use xlink:href="#checkerboard" transform="translate(80,400)"/>
+		<use xlink:href="#checkerboard" transform="translate(80,480)"/>
+		<use xlink:href="#checkerboard" transform="translate(80,520)"/>
+		<use xlink:href="#checkerboard" transform="translate(80,600)"/>
+		<use xlink:href="#checkerboard" transform="translate(80,680)"/>
+		
+		
+		<use xlink:href="#checkerboard" transform="translate(160,0)"/>
+		<use xlink:href="#checkerboard" transform="translate(160,80)"/>
+		<use xlink:href="#checkerboard" transform="translate(160,160)"/>
+		<use xlink:href="#checkerboard" transform="translate(160,240)"/>
+		<use xlink:href="#checkerboard" transform="translate(160,320)"/>
+		<use xlink:href="#checkerboard" transform="translate(160,400)"/>
+		<use xlink:href="#checkerboard" transform="translate(160,480)"/>
+		<use xlink:href="#checkerboard" transform="translate(160,520)"/>
+		<use xlink:href="#checkerboard" transform="translate(160,600)"/>
+		<use xlink:href="#checkerboard" transform="translate(160,680)"/>
+		
+		
+		<use xlink:href="#checkerboard" transform="translate(240,0)"/>
+		<use xlink:href="#checkerboard" transform="translate(240,80)"/>
+		<use xlink:href="#checkerboard" transform="translate(240,160)"/>
+		<use xlink:href="#checkerboard" transform="translate(240,240)"/>
+		<use xlink:href="#checkerboard" transform="translate(240,320)"/>
+		<use xlink:href="#checkerboard" transform="translate(240,400)"/>
+		<use xlink:href="#checkerboard" transform="translate(240,480)"/>
+		<use xlink:href="#checkerboard" transform="translate(240,520)"/>
+		<use xlink:href="#checkerboard" transform="translate(240,600)"/>
+		<use xlink:href="#checkerboard" transform="translate(240,680)"/>
+		
+		
+		
+		<use xlink:href="#checkerboard" transform="translate(320,0)"/>
+		<use xlink:href="#checkerboard" transform="translate(320,80)"/>
+		<use xlink:href="#checkerboard" transform="translate(320,160)"/>
+		<use xlink:href="#checkerboard" transform="translate(320,240)"/>
+		<use xlink:href="#checkerboard" transform="translate(320,320)"/>
+		<use xlink:href="#checkerboard" transform="translate(320,400)"/>
+		<use xlink:href="#checkerboard" transform="translate(320,480)"/>
+		<use xlink:href="#checkerboard" transform="translate(320,520)"/>
+		<use xlink:href="#checkerboard" transform="translate(320,600)"/>
+		<use xlink:href="#checkerboard" transform="translate(320,680)"/>
+		
+		
+		
+		<use xlink:href="#checkerboard" transform="translate(400,0)"/>
+		<use xlink:href="#checkerboard" transform="translate(400,80)"/>
+		<use xlink:href="#checkerboard" transform="translate(400,160)"/>
+		<use xlink:href="#checkerboard" transform="translate(400,240)"/>
+		<use xlink:href="#checkerboard" transform="translate(400,320)"/>
+		<use xlink:href="#checkerboard" transform="translate(400,400)"/>
+		<use xlink:href="#checkerboard" transform="translate(400,480)"/>
+		<use xlink:href="#checkerboard" transform="translate(400,520)"/>
+		<use xlink:href="#checkerboard" transform="translate(400,600)"/>
+		<use xlink:href="#checkerboard" transform="translate(400,680)"/>
+	</g>
+</svg>

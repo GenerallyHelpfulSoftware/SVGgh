@@ -27,8 +27,14 @@
 //  Created by Glenn Howes on 2/2/11.
 //
 
+@import Foundation;
+
+#if TARGET_OS_OSX
+@import AppKit;
+#else
 @import UIKit;
-@import MobileCoreServices;
+@import CoreServices;
+#endif
 #import "SVGParser.h"
 #import "GHAttributedObject.h"
 #import "GzipInputStream.h"
@@ -233,10 +239,11 @@
     if(dataAssetClass != nil)
     {
         NSString* fileExtension = assetName.pathExtension;
-        
+        BOOL pathIsZip = NO;
         // Since the file extension is needed for initWithResourceName if using `.svgz` we will manually remove the extension here for API consistency.
         if (fileExtension.length && [fileExtension isEqualToString:@"svgz"]) {
             assetName = assetName.stringByDeletingPathExtension;
+            pathIsZip = YES;
         }
         
         NSDataAsset* asset = [(NSDataAsset*)[dataAssetClass alloc] initWithName:assetName bundle: bundle];
@@ -248,7 +255,7 @@
         {
             NSXMLParser* theParser;
             
-            if ([asset.typeIdentifier isEqualToString:(NSString *)kUTTypeScalableVectorGraphics]) {// Uncompressed SVG data
+            if ([asset.typeIdentifier isEqualToString:(NSString *)kUTTypeScalableVectorGraphics] && !pathIsZip) {// Uncompressed SVG data
                 theParser = [[NSXMLParser alloc] initWithData:asset.data];
             } else {
                 NSError *error;

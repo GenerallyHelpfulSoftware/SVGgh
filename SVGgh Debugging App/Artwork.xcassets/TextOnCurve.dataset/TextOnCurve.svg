@@ -14,17 +14,17 @@
 
 <rect fill="none" stroke="blue" x="252" y="354" width="180" height="10"/>
 
-<text stroke="none" font-size="150" font-family="Georgia"  fill="green" color="#228B22"><textPath xlink:href="#LINE_TEXT_PATH">W–––</textPath>
+<text stroke="none" font-size="150" font-family="Georgia"  fill="currentColor" color="#228B22"><textPath xlink:href="#LINE_TEXT_PATH">W–––</textPath>
 </text>
 
 
 <path d="M 500 100 A 400 400 0 1 1 500 900 " stroke="black" fill="none"/>
-<text stroke="none" font-size="150" font-family="Georgia"  x="24" y="120" fill="green" color="#228B22">G</text>
-<text stroke="none" font-size="150" font-family="Georgia"  fill="green" color="#228B22"><textPath xlink:href="#CIRCLE_TEXT_PATH">⊥––⊥</textPath>
+<text stroke="none" font-size="150" font-family="Georgia"  x="24" y="120" fill="green" color="currentColor">G</text>
+<text stroke="none" font-size="150" font-family="Georgia"  fill="currentColor" color="#228B22"><textPath xlink:href="#CIRCLE_TEXT_PATH">⊥––⊥</textPath>
 </text>
 
 
-<text stroke="none" font-size="25" font-family="Georgia"  fill="green" color="#228B22"><textPath xlink:href="#WAVE_TEXT_PATH">Wavy text oscilating up and down, and then back up. Relaxing really. But it all has to end.</textPath>
+<text stroke="none" font-size="25" font-family="Georgia"  fill="currentColor" color="#228B22"><textPath xlink:href="#WAVE_TEXT_PATH">Wavy text oscilating up and down, and then back up. Relaxing really. But it all has to end.</textPath>
 </text>
 
 <rect fill="none" stroke="blue" x="29" y="12" width="104" height="111" />

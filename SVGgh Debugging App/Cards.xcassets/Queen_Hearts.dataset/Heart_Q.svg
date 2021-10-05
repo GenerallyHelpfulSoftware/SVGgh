@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg x="0px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewport-fill="none" y="0px" viewBox="0, 0, 480, 690" version="1.1" height="690" width="480">
+  <defs>
+    <path id="Heart" d="M 50 95 C 116 36 101 -31 50 15 -1-31-26 36 50 95Z"/>
+    <text id="Label" font-size="90" font-family="Times">Q</text>
+
+    <g color="none" stroke-width="1" vector-effect="non-scaling-stroke" fill="none" stroke-linecap="round" id="crown">
+		<path fill="red" d="M30 120C-37 64 36 32 51 59Q90 32 129 59C144 32 217 64 150 120Q90 103 30 120Z"/>
+		<path fill="gold" d=" M90 100c26-8 26-51 0-30-26-21-26 22 0 30Z" stroke="white" stroke-width="2" />
+		<path fill="white" stroke="red" d="M30 120C-81 15 35-42 90 22 145-42 261 15 150 120Q141 117 136 117C224 39 164-36 90 40 16-36-44 39 44 117Q39 117 30 120Z" />
+		<path fill="red" d=" M90 15 c22-8 22-51 0-30-22-21-22 22 0 30Z" />
+	</g>
+
+  </defs>
+  <g>
+
+    <path fill="white" d="M 240 0 H 470 A 10 10 0 0 1 480 10 V 680 A 10 10 0 0 1 470 690 H 10 A 10 10 0 0 1 0 680 V 10 A 10 10 0 0 1 10 0Z" stroke="gray" />
+<rect fill="none" stroke="black" x="75" width="330" height="530" y="80"/>
+    <rect fill="none" stroke="black" x="75" width="330" height="530" y="80"/>
+
+    <use xlink:href="#Heart" transform="translate(10, 120) scale(.6)" fill="red"/>
+    <use xlink:href="#Label" transform="translate(5, 100)" fill="black"/>
+    <use xlink:href="#Heart" transform="translate(470, 570) scale(.6), rotate(180)" fill="red"/>
+    <use xlink:href="#Label" transform="translate(475, 590) rotate(180)"/>
+    <use xlink:href="#crown" transform="translate(150, 150)"/>
+    <use xlink:href="#crown" transform="translate(330, 520) rotate(180)"/>
+
+    </g>
+
+
+
+</svg>

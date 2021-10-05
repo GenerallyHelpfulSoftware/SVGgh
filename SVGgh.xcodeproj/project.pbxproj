@@ -25,9 +25,14 @@
 		2151A7BB1CD0AE3800D16C89 /* SVGghLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2151A7B91CD0AE3800D16C89 /* SVGghLoader.m */; };
 		2152F7271CCB697B00806438 /* ButtonsDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152F7261CCB697A00806438 /* ButtonsDemoViewController.swift */; };
 		2152F7291CCB699C00806438 /* SegmentedDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152F7281CCB699C00806438 /* SegmentedDemoViewController.swift */; };
+		216FFE5526F58F050077CB06 /* CrossPlatformImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 21C9AFB926F4C7F600AC642F /* CrossPlatformImage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		216FFE8926F8F73A0077CB06 /* SVGView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216FFE8826F8F73A0077CB06 /* SVGView.swift */; };
+		216FFE8B26F98CC10077CB06 /* SVGghDebuggingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216FFE8A26F98CC10077CB06 /* SVGghDebuggingViewController.swift */; };
 		2181F3A71B4F5D8F007617A7 /* SVGTabBarItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 2181F3A51B4F5D8F007617A7 /* SVGTabBarItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2181F3A81B4F5D8F007617A7 /* SVGTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2181F3A61B4F5D8F007617A7 /* SVGTabBarItem.m */; };
 		2194CD3F1B29FB4F00702F44 /* Artwork in Resources */ = {isa = PBXBuildFile; fileRef = 21F6BCE71B29A8FE00DCEEC2 /* Artwork */; };
+		21B2C8152703EC90008C891C /* Cards.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21B2C8142703EC90008C891C /* Cards.xcassets */; };
+		21C9AFBB26F5108400AC642F /* CrossPlatformImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 21C9AFBA26F5108400AC642F /* CrossPlatformImage.m */; };
 		21DEC8AC1BAD89C90044BAD7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 21DEC8AB1BAD89C90044BAD7 /* main.m */; };
 		21DEC8AF1BAD89C90044BAD7 /* SVGghTVDebuggingAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 21DEC8AE1BAD89C90044BAD7 /* SVGghTVDebuggingAppDelegate.m */; };
 		21DEC8B51BAD89C90044BAD7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21DEC8B31BAD89C90044BAD7 /* Main.storyboard */; };
@@ -176,9 +181,25 @@
 		2152F7251CCB697900806438 /* SVGgh Debugging App-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SVGgh Debugging App-Bridging-Header.h"; sourceTree = "<group>"; };
 		2152F7261CCB697A00806438 /* ButtonsDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonsDemoViewController.swift; sourceTree = "<group>"; };
 		2152F7281CCB699C00806438 /* SegmentedDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedDemoViewController.swift; sourceTree = "<group>"; };
+		216FFE7926F6CBF70077CB06 /* TestSVGghApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSVGghApp.swift; sourceTree = "<group>"; };
+		216FFE7B26F6CBF70077CB06 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		216FFE7D26F6CBF90077CB06 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		216FFE8026F6CBF90077CB06 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		216FFE8226F6CBF90077CB06 /* TestSVGgh.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TestSVGgh.entitlements; sourceTree = "<group>"; };
+		216FFE8626F6CC670077CB06 /* SVGgh Debugging App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "SVGgh Debugging App.entitlements"; sourceTree = "<group>"; };
+		216FFE8826F8F73A0077CB06 /* SVGView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVGView.swift; sourceTree = "<group>"; };
+		216FFE8A26F98CC10077CB06 /* SVGghDebuggingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVGghDebuggingViewController.swift; sourceTree = "<group>"; };
 		2181F3A51B4F5D8F007617A7 /* SVGTabBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVGTabBarItem.h; sourceTree = "<group>"; };
 		2181F3A61B4F5D8F007617A7 /* SVGTabBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVGTabBarItem.m; sourceTree = "<group>"; };
+		21A2BF0926E7CABC004F5824 /* SVGgh_TesterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVGgh_TesterApp.swift; sourceTree = "<group>"; };
+		21A2BF0A26E7CABC004F5824 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		21A2BF0B26E7CABD004F5824 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		21A2BF2226E7CCD7004F5824 /* SVGgh-Tester--macOS--Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "SVGgh-Tester--macOS--Info.plist"; sourceTree = "<group>"; };
+		21A2BF9726EC4889004F5824 /* SVGgh copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "SVGgh copy-Info.plist"; path = "/Users/glenn/Projects/SVGgh/SVGgh copy-Info.plist"; sourceTree = "<absolute>"; };
+		21B2C8142703EC90008C891C /* Cards.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Cards.xcassets; sourceTree = "<group>"; };
 		21B7993A1B9A60080014F13D /* DebugApp_UI_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugApp_UI_Tests.m; sourceTree = "<group>"; };
+		21C9AFB926F4C7F600AC642F /* CrossPlatformImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CrossPlatformImage.h; sourceTree = "<group>"; };
+		21C9AFBA26F5108400AC642F /* CrossPlatformImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CrossPlatformImage.m; sourceTree = "<group>"; };
 		21DEC8A81BAD89C90044BAD7 /* SVGgh TV Debugging App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SVGgh TV Debugging App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		21DEC8AB1BAD89C90044BAD7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		21DEC8AD1BAD89C90044BAD7 /* SVGghTVDebuggingAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SVGghTVDebuggingAppDelegate.h; sourceTree = "<group>"; };
@@ -305,6 +326,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		216FFE7826F6CBF70077CB06 /* TestSVGgh */ = {
+			isa = PBXGroup;
+			children = (
+				216FFE7926F6CBF70077CB06 /* TestSVGghApp.swift */,
+				216FFE7B26F6CBF70077CB06 /* ContentView.swift */,
+				216FFE7D26F6CBF90077CB06 /* Assets.xcassets */,
+				216FFE8226F6CBF90077CB06 /* TestSVGgh.entitlements */,
+				216FFE7F26F6CBF90077CB06 /* Preview Content */,
+			);
+			path = TestSVGgh;
+			sourceTree = "<group>";
+		};
+		216FFE7F26F6CBF90077CB06 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				216FFE8026F6CBF90077CB06 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		216FFE8726F8F6F00077CB06 /* SVGgh+SwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				216FFE8826F8F73A0077CB06 /* SVGView.swift */,
+			);
+			path = "SVGgh+SwiftUI";
+			sourceTree = "<group>";
+		};
+		21A2BF0826E7CABB004F5824 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				21A2BF0926E7CABC004F5824 /* SVGgh_TesterApp.swift */,
+				21A2BF0A26E7CABC004F5824 /* ContentView.swift */,
+				21A2BF0B26E7CABD004F5824 /* Assets.xcassets */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
 		21DEC8A91BAD89C90044BAD7 /* SVGgh TV Debugging App */ = {
 			isa = PBXGroup;
 			children = (
@@ -348,18 +407,23 @@
 		21F6BBD81B29A21E00DCEEC2 = {
 			isa = PBXGroup;
 			children = (
+				21A2BF2226E7CCD7004F5824 /* SVGgh-Tester--macOS--Info.plist */,
 				37952AAB1DA57ADD00874BE7 /* MobileCoreServices.framework */,
 				37D39BA61DA302E5002E8695 /* libz.tbd */,
 				211E709E1B2AEC1D00667BE9 /* SVGgh.podspec */,
 				21F6BBE41B29A21E00DCEEC2 /* SVGgh */,
+				216FFE8726F8F6F00077CB06 /* SVGgh+SwiftUI */,
 				21F6BBF11B29A21E00DCEEC2 /* SVGghTests */,
 				21F6BC891B29A48600DCEEC2 /* SVGgh Debugging App */,
 				21F6BCA31B29A48600DCEEC2 /* SVGgh Debugging AppTests */,
 				21DEC8A91BAD89C90044BAD7 /* SVGgh TV Debugging App */,
 				21DEC8C21BAD89E50044BAD7 /* SVGghtv */,
 				21DEC8D01BAD89E50044BAD7 /* SVGghtvTests */,
+				21A2BF0826E7CABB004F5824 /* Shared */,
+				216FFE7826F6CBF70077CB06 /* TestSVGgh */,
 				21F6BBE31B29A21E00DCEEC2 /* Products */,
 				21FF06DB245F982D00AAA5BB /* Frameworks */,
+				21A2BF9726EC4889004F5824 /* SVGgh copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -500,6 +564,8 @@
 				21F6BC5C1B29A42800DCEEC2 /* SVGAttributedObject.h */,
 				21F6BC5D1B29A42800DCEEC2 /* SVGAttributedObject.m */,
 				21F6BC5E1B29A42800DCEEC2 /* SVGContext.h */,
+				21C9AFB926F4C7F600AC642F /* CrossPlatformImage.h */,
+				21C9AFBA26F5108400AC642F /* CrossPlatformImage.m */,
 				21F6BC5F1B29A42800DCEEC2 /* SVGGradientUtilities.h */,
 				21F6BC601B29A42800DCEEC2 /* SVGGradientUtilities.m */,
 				21F6BC611B29A42800DCEEC2 /* SVGParser.h */,
@@ -515,16 +581,19 @@
 		21F6BC891B29A48600DCEEC2 /* SVGgh Debugging App */ = {
 			isa = PBXGroup;
 			children = (
+				216FFE8626F6CC670077CB06 /* SVGgh Debugging App.entitlements */,
 				21F6BCE71B29A8FE00DCEEC2 /* Artwork */,
 				21F6BCDE1B29A52600DCEEC2 /* SVGghDebuggingAppDelegate.h */,
 				21F6BCDF1B29A52600DCEEC2 /* SVGghDebuggingAppDelegate.m */,
 				21F6BCE01B29A52600DCEEC2 /* SVGghDebuggingViewController.h */,
 				21F6BCE11B29A52600DCEEC2 /* SVGghDebuggingViewController.m */,
+				216FFE8A26F98CC10077CB06 /* SVGghDebuggingViewController.swift */,
 				2152F7261CCB697A00806438 /* ButtonsDemoViewController.swift */,
 				2152F7281CCB699C00806438 /* SegmentedDemoViewController.swift */,
 				21F6BC971B29A48600DCEEC2 /* Images.xcassets */,
 				21E3DBB31CC9A4300076B332 /* TVAssets.xcassets */,
 				2151A7B51CD059AC00D16C89 /* Artwork.xcassets */,
+				21B2C8142703EC90008C891C /* Cards.xcassets */,
 				21F6BCE41B29A57C00DCEEC2 /* Main.storyboard */,
 				21F6BC991B29A48600DCEEC2 /* LaunchScreen.xib */,
 				21F6BC8A1B29A48600DCEEC2 /* Supporting Files */,
@@ -575,6 +644,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				216FFE5526F58F050077CB06 /* CrossPlatformImage.h in Headers */,
 				21F6BC7E1B29A42800DCEEC2 /* SVGTextUtilities.h in Headers */,
 				21F6BC461B29A41C00DCEEC2 /* GHControlFactory.h in Headers */,
 				21F6BC4C1B29A41C00DCEEC2 /* SVGDocumentView.h in Headers */,
@@ -694,7 +764,7 @@
 		21F6BBD91B29A21E00DCEEC2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0730;
+				LastSwiftUpdateCheck = 1300;
 				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = "Generally Helpful";
 				TargetAttributes = {
@@ -711,6 +781,7 @@
 					};
 					21F6BC871B29A48600DCEEC2 = {
 						CreatedOnToolsVersion = 6.3.2;
+						DevelopmentTeam = 626532Z6AM;
 						LastSwiftMigration = 1100;
 					};
 				};
@@ -770,6 +841,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2151A7B61CD059AC00D16C89 /* Artwork.xcassets in Resources */,
+				21B2C8152703EC90008C891C /* Cards.xcassets in Resources */,
 				21F6BCE61B29A57C00DCEEC2 /* Main.storyboard in Resources */,
 				2194CD3F1B29FB4F00702F44 /* Artwork in Resources */,
 				21F6BC9B1B29A48600DCEEC2 /* LaunchScreen.xib in Resources */,
@@ -829,6 +901,7 @@
 				21F6BC441B29A41C00DCEEC2 /* GHControl.m in Sources */,
 				21F6BC351B29A41C00DCEEC2 /* SVGtoPDFConverter.m in Sources */,
 				21F6BC3E1B29A41C00DCEEC2 /* GHImageCache.m in Sources */,
+				21C9AFBB26F5108400AC642F /* CrossPlatformImage.m in Sources */,
 				21F6BC6F1B29A42800DCEEC2 /* GHText.m in Sources */,
 				21F6BC4A1B29A41C00DCEEC2 /* GHSegmentedControl.m in Sources */,
 				21F6BC751B29A42800DCEEC2 /* SVGAttributedObject.m in Sources */,
@@ -861,6 +934,8 @@
 				21F6BCE31B29A52600DCEEC2 /* SVGghDebuggingViewController.m in Sources */,
 				2152F7291CCB699C00806438 /* SegmentedDemoViewController.swift in Sources */,
 				2152F7271CCB697B00806438 /* ButtonsDemoViewController.swift in Sources */,
+				216FFE8926F8F73A0077CB06 /* SVGView.swift in Sources */,
+				216FFE8B26F98CC10077CB06 /* SVGghDebuggingViewController.swift in Sources */,
 				21F6BCE21B29A52600DCEEC2 /* SVGghDebuggingAppDelegate.m in Sources */,
 				21F6BC8D1B29A48600DCEEC2 /* main.m in Sources */,
 			);
@@ -1084,7 +1159,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.genhelp.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos appletvsimulator appletvos macOS";
 				SWIFT_VERSION = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "arm64 armv7 armv7s x86_64";
 			};
 			name = Debug;
@@ -1105,7 +1182,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.genhelp.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos appletvsimulator appletvos macOS";
 				SWIFT_VERSION = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -1161,20 +1240,25 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CODE_SIGN_ENTITLEMENTS = "SVGgh Debugging App/SVGgh Debugging App.entitlements";
+				DEVELOPMENT_TEAM = 626532Z6AM;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "SVGgh Debugging App/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.genhelp.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "SVGgh Debugging App/SVGgh Debugging App-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 				VALID_ARCHS = "x86_64 arm64 armv7 armv7s";
 			};
 			name = Debug;
@@ -1185,13 +1269,18 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CODE_SIGN_ENTITLEMENTS = "SVGgh Debugging App/SVGgh Debugging App.entitlements";
+				DEVELOPMENT_TEAM = 626532Z6AM;
 				INFOPLIST_FILE = "SVGgh Debugging App/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.genhelp.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "SVGgh Debugging App/SVGgh Debugging App-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 			};
 			name = Release;
 		};

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg x="0px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewport-fill="none" y="0px" viewBox="0, 0, 480, 690" version="1.1" height="690" width="480">
+<defs>
+
+    <path id="Suite" d="M0 0 q10-3 20 0c-6-10-5-18-1-23 4 9 43-5-9-41-52 37-13 50-9 41 5 13 4 10-1 23Z" fill="black"/>
+	<text id="Label" font-size="90" font-family="Times">Q</text>
+		<g stroke="black" color="none" id="crown" stroke-width="1" vector-effect="non-scaling-stroke" fill="none" stroke-linecap="round">
+	<path d="M34 53C56-15 124-15 146 53Q90 63 34 53Z" fill="gold" />
+	<path id="PATH" d="M30 120A60 60 0 0 1 6 47Q90 69 174 47A60 60 0 0 1 150 120Q90 100 30 120Z" fill="black" stroke="gold" stroke-width="2"/>
+	<path transform="translate(82, 55), scale(.7)" d="M0 0 q10-3 20 0c-6-10-5-18-1-23 4 9 43-5-9-41-52 37-13 50-9 41 5 13 4 10-1 23Z" fill="black"  />
+	<path transform="translate(82, 104), scale(.7)" d="M0 0 q10-3 20 0c-6-10-5-18-1-23 4 9 43-5-9-41-52 37-13 50-9 41 5 13 4 10-1 23Z" fill="gold"/>
+</g>
+	</defs>
+<g>
+
+	<path fill="white" stroke="grey" d="M 240 0 H 470 A 10 10 0 0 1 480 10 V 680 A 10 10 0 0 1 470 690 H 10 A 10 10 0 0 1 0 680 V 10 A 10 10 0 0 1 10 0Z" />
+<rect fill="none" stroke="black" x="75" width="330" height="530" y="80"/>
+
+<use xlink:href="#Suite" transform="translate(28, 180)"/>
+<use xlink:href="#Suite" transform="translate(453, 512), rotate(180)"/>
+<use xlink:href="#Label" transform="translate(8, 102)"/>
+
+
+<use xlink:href="#Label" transform="translate(473, 590), rotate(180)"/>
+
+    <use xlink:href="#crown" transform="translate(150, 150)"/>
+    <use xlink:href="#crown" transform="translate(330, 520), rotate(180)"/>
+
+</g>
+
+
+
+</svg>

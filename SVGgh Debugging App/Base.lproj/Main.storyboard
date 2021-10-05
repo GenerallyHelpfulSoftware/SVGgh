@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
+    <device id="retina3_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
-        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -17,14 +16,16 @@
                         <viewControllerLayoutGuide type="bottom" id="djh-o8-TJ1"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="1000" text="Refresh Button just redraws the view." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8K3-3e-JYk">
+                                <rect key="frame" x="16" y="455" width="288" height="17"/>
                                 <fontDescription key="fontDescription" type="italicSystem" pointSize="14"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dcx-QT-sUV" customClass="GHButton">
+                                <rect key="frame" x="176" y="381" width="66" height="66"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <accessibility key="accessibilityConfiguration" hint="Print the current view" identifier="Print Button" label="Print">
                                     <accessibilityTraits key="traits" button="YES"/>
@@ -50,6 +51,7 @@
                                 </connections>
                             </view>
                             <view opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="1000" placeholderIntrinsicWidth="280" placeholderIntrinsicHeight="30" translatesAutoresizingMaskIntoConstraints="NO" id="uoD-rr-R4J" customClass="GHSegmentedControl">
+                                <rect key="frame" x="10" y="8" width="300" height="44"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="tintColor" red="0.098100321044329669" green="0.67385912698412698" blue="0.14746175900577321" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <accessibility key="accessibilityConfiguration" hint="Choose a View" identifier="View  Selector" label="Chooser"/>
@@ -79,12 +81,14 @@
                                 </connections>
                             </view>
                             <containerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LDH-8f-BQz">
+                                <rect key="frame" x="16" y="60" width="288" height="313"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <segue destination="Ux3-B9-VgV" kind="embed" identifier="initialEmbed" id="JTJ-Ke-eWm"/>
                                 </connections>
                             </containerView>
                             <view contentMode="scaleAspectFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="M1t-pk-vRl" customClass="GHButton">
+                                <rect key="frame" x="78" y="381" width="66" height="66"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="tintColor" red="0.95613634586334229" green="0.47907036542892456" blue="0.099335446953773499" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <accessibility key="accessibilityConfiguration" hint="Refresh the View" identifier="Refresh Button" label="Refresh">
@@ -146,12 +150,13 @@
                     <connections>
                         <outlet property="containerView" destination="LDH-8f-BQz" id="uKc-uG-6p3"/>
                         <outlet property="printButton" destination="dcx-QT-sUV" id="bUm-n8-Jzc"/>
+                        <outlet property="reloadButton" destination="M1t-pk-vRl" id="gif-Q9-oPX"/>
                         <outlet property="segmentedControl" destination="uoD-rr-R4J" id="XyH-qs-C9w"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="440" y="345"/>
+            <point key="canvasLocation" x="53" y="298"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="1wy-f4-wgK">
@@ -271,20 +276,22 @@
                         <viewControllerLayoutGuide type="bottom" id="u0n-pI-cNP"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="CUq-3R-tk5">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="56" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="um6-8g-rbh">
+                                <rect key="frame" x="16" y="8" width="288" height="415"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SegmentCell" id="XXq-K3-qJi" customClass="SegmentedDemoTableCell" customModule="SVGgh_Debugging_App" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="343" height="56"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="288" height="56"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XXq-K3-qJi" id="Fo6-U8-qOO">
-                                            <frame key="frameInset" width="343" height="56"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="288" height="56"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BWe-Hh-CmN" customClass="GHSegmentedControl">
+                                                    <rect key="frame" x="16" y="11" width="256" height="34"/>
                                                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="textColorPressed">
@@ -338,7 +345,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hPh-sI-YVO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1952" y="360"/>
+            <point key="canvasLocation" x="2226" y="334"/>
         </scene>
         <!--Buttons-->
         <scene sceneID="kDx-nq-FXg">
@@ -349,10 +356,11 @@
                         <viewControllerLayoutGuide type="bottom" id="w05-Ie-bhc"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="ryT-uM-hYN">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="esd-Xo-2sa">
+                                <rect key="frame" x="16" y="60" width="288" height="363"/>
                                 <color key="backgroundColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="PXN-0O-G5b">
                                     <size key="itemSize" width="60" height="60"/>
@@ -369,6 +377,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view opaque="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="Y9e-7H-JDt" customClass="GHButton">
+                                                    <rect key="frame" x="8" y="8" width="44" height="44"/>
                                                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="artworkPath" value="PrintButton"/>
@@ -446,7 +455,21 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rqq-Ve-IQ1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1103" y="360"/>
+            <point key="canvasLocation" x="810" y="-631"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="BWe-Hh-CmN">
+            <size key="intrinsicContentSize" width="296.00000762939453" height="36.70703125"/>
+        </designable>
+        <designable name="M1t-pk-vRl">
+            <size key="intrinsicContentSize" width="55" height="59"/>
+        </designable>
+        <designable name="dcx-QT-sUV">
+            <size key="intrinsicContentSize" width="43" height="59"/>
+        </designable>
+        <designable name="uoD-rr-R4J">
+            <size key="intrinsicContentSize" width="280" height="30"/>
+        </designable>
+    </designables>
 </document>

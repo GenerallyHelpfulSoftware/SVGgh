@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg x="0px" height="155" viewport-fill="none" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink" width="230" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0, 0, 230, 155">
+
+<g color="none" id="LAYER" stroke-width="1" vector-effect="non-scaling-stroke" fill="none" stroke-linecap="round" transform="translate(24,24)">
+<path fill="red" d="M30 120C-37 64 36 32 51 59Q90 32 129 59C144 32 217 64 150 120Q90 103 30 120Z"/>
+<path fill="gold" d=" M90 100c26-8 26-51 0-30-26-21-26 22 0 30Z" stroke="white" stroke-width="2" />
+<path fill="white" stroke="red" d="M30 120C-81 15 35-42 90 22 145-42 261 15 150 120Q141 117 136 117C224 39 164-36 90 40 16-36-44 39 44 117Q39 117 30 120Z" />
+<path fill="red" d=" M90 15 c22-8 22-51 0-30-22-21-22 22 0 30Z" />
+</g>
+</svg>

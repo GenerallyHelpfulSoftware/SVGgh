@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="14113" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="appleTV" orientation="landscape">
-        <adaptation id="light"/>
-    </device>
+<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="19162" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="appleTV" appearance="light"/>
     <dependencies>
         <deployment identifier="tvOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -24,10 +20,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="s3b-Jy-c85">
-                                <rect key="frame" x="110" y="68" width="1700" height="944"/>
+                                <rect key="frame" x="96" y="68" width="1728" height="944"/>
                                 <subviews>
                                     <view opaque="NO" tag="6" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="O3e-Ee-Zru" customClass="GHSegmentedControl">
-                                        <rect key="frame" x="450" y="0.0" width="800" height="100"/>
+                                        <rect key="frame" x="464" y="0.0" width="800" height="100"/>
                                         <color key="backgroundColor" red="0.71372549019999998" green="0.78039215689999997" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="100" id="ah7-QP-evg"/>
@@ -52,7 +48,7 @@
                                         </connections>
                                     </view>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n8B-f7-LQU">
-                                        <rect key="frame" x="498" y="120" width="704" height="704"/>
+                                        <rect key="frame" x="512" y="120" width="704" height="704"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="n8B-f7-LQU" secondAttribute="height" multiplier="1:1" priority="750" id="EwD-tJ-kfR"/>
                                         </constraints>
@@ -61,7 +57,7 @@
                                         </connections>
                                     </containerView>
                                     <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="EFb-bb-chr" customClass="GHButton">
-                                        <rect key="frame" x="550" y="844" width="600" height="100"/>
+                                        <rect key="frame" x="564" y="844" width="600" height="100"/>
                                         <color key="tintColor" red="0.4823529412" green="0.4823529412" blue="0.50196078430000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="600" id="FHh-BI-lFs"/>
@@ -97,6 +93,7 @@
                     </view>
                     <connections>
                         <outlet property="containerView" destination="n8B-f7-LQU" id="RVG-Dh-lUb"/>
+                        <outlet property="reloadButton" destination="EFb-bb-chr" id="Zes-2A-d2V"/>
                         <outlet property="segmentedControl" destination="O3e-Ee-Zru" id="NS6-9W-1so"/>
                     </connections>
                 </viewController>
@@ -208,4 +205,9 @@
             <point key="canvasLocation" x="997" y="1079"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="O3e-Ee-Zru">
+            <size key="intrinsicContentSize" width="839.99996948242188" height="67.734375"/>
+        </designable>
+    </designables>
 </document>

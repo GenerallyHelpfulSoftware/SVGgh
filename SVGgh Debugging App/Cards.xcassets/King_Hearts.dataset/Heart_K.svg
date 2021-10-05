@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg x="0px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewport-fill="none" y="0px" viewBox="0, 0, 480, 690" version="1.1" height="690" width="480">
+<defs>
+
+    <path id="Suite" d="M 50 95 C 116 36 101 -31 50 15 -1-31-26 36 50 95Z" fill="red"/>
+	<text id="Label" font-size="90" font-family="Times">K</text>
+	<g stroke="black" color="#DCDCDC" id="crown" stroke-width="1" vector-effect="non-scaling-stroke" fill="#DCDCDC" stroke-linecap="round">
+<path fill="gold" d="M30 120Q24 81 0 57 22 79 35 36 79 83 90 10 101 83 145 36 158 79 180 57 156 81 150 120C122 105 58 105 30 120Z"/>
+<path fill="red" d="M0 57Q87-40 180 57 158 79 145 36 101 83 90 10 79 83 35 36 22 79 0 57Z" stroke="black" stroke-width="2"/>
+
+<path transform="translate(90, 100), scale(0.75)" d="M0 0 c43-35 29-71 0-55-29-16-43 20 0 55Z" fill="red" stroke="black" stroke-width="2"/>
+</g>
+	</defs>
+<g>
+
+	<path fill="white" stroke="grey" d="M 240 0 H 470 A 10 10 0 0 1 480 10 V 680 A 10 10 0 0 1 470 690 H 10 A 10 10 0 0 1 0 680 V 10 A 10 10 0 0 1 10 0Z" />
+<rect fill="none" stroke="black" x="75" width="330" height="530" y="80"/>
+
+<use xlink:href="#Suite" transform="translate(10, 110), scale(.6)"/>
+<use xlink:href="#Label" transform="translate(8, 102)"/>
+
+
+<use xlink:href="#Suite" transform="translate(472, 580), scale(.6), rotate(180)"/>
+<use xlink:href="#Label" transform="translate(473, 590), rotate(180)"/>
+
+    <use xlink:href="#crown" transform="translate(150, 150)"/>
+    <use xlink:href="#crown" transform="translate(330, 520), rotate(180)"/>
+
+</g>
+
+
+
+</svg>

@@ -28,13 +28,14 @@
 
 #import "SVGghDebuggingViewController.h"
 #import <SVGgh/SVGgh.h>
-
+#import "SVGgh_Debugging_App-Swift.h"
 
 @interface SVGghDebuggingViewController ()
 @property (weak, nonatomic) IBOutlet GHSegmentedControl *segmentedControl;
 @property (weak, nonatomic) IBOutlet UIView *containerView;
 @property (assign, nonatomic) NSInteger lastSelectedSegment;
 @property (weak, nonatomic) IBOutlet GHButton* printButton;
+@property (weak, nonatomic) IBOutlet GHButton* reloadButton;
 
 @end
 
@@ -57,15 +58,22 @@
 	
 	[self.segmentedControl insertSegmentWithRenderer:aRenderer accessibilityLabel:NSLocalizedString(@"Eye", @"") atIndex:1 animated:NO];
 	
+	
+	aRenderer = [[SVGRenderer alloc] initWithDataAssetNamed:@"Card_Icon" withBundle:nil];
+	
+	[self.segmentedControl insertSegmentWithRenderer:aRenderer accessibilityLabel:NSLocalizedString(@"Card", @"") atIndex:2 animated:NO];
+	
+	
 	aRenderer = [[SVGRenderer alloc] initWithResourceName:@"Artwork/Widgets" inBundle:nil];
 #if TARGET_OS_TV
 	
-	[self.segmentedControl insertSegmentWithTitle:NSLocalizedString(@"Curvy", @"") atIndex:2 animated:NO];
+	[self.segmentedControl insertSegmentWithTitle:NSLocalizedString(@"Curvy", @"") atIndex:3 animated:NO];
 #else
 	
-	[self.segmentedControl insertSegmentWithRenderer:aRenderer accessibilityLabel:NSLocalizedString(@"Widgets", @"") atIndex:2 animated:NO];
+	[self.segmentedControl insertSegmentWithRenderer:aRenderer accessibilityLabel:NSLocalizedString(@"Widgets", @"") atIndex:3 animated:NO];
 	[self.segmentedControl insertSegmentWithTitle:NSLocalizedString(@"Curvy", @"") atIndex:4 animated:NO];
 #endif
+	
     self.segmentedControl.selectedSegmentIndex = 0;
 
 	// Do any additional setup after loading the view, typically from a nib.
@@ -134,6 +142,7 @@
 -(void)chooseArtworkIndex:(NSInteger)selectedSegment
 {
     NSString* controlIdentifier = nil;
+	UIViewController* embeddedController = NULL;
     switch(selectedSegment)
     {
         case 0:
@@ -142,19 +151,31 @@
 		case 1:
 			controlIdentifier = @"eyesGzip";
 		break;
-        case 2:
+		case 2:
+			if (@available(iOS 14.0, *)) {
+				embeddedController = [self createSwiftUIExample];
+			} else {
+				// Fallback on earlier versions
+				controlIdentifier = @"textOnCurve";
+			}
+		break;
+        case 3:
 			#if TARGET_OS_TV
-            controlIdentifier = @"textOnCurve";
+			controlIdentifier = @"textOnCurve";
 			# else
 			controlIdentifier = @"widgets";
 			#endif
         break;
-        case 3:
+        case 4:
             controlIdentifier = @"textOnCurve";
         break;
     }
-    
-    UIViewController* embeddedController = [self.storyboard instantiateViewControllerWithIdentifier:controlIdentifier];
+	
+    if(controlIdentifier != NULL)
+	{
+		embeddedController = [self.storyboard instantiateViewControllerWithIdentifier:controlIdentifier];
+	}
+	
     UIViewController* oldController = nil;
     CGRect endBounds = self.containerView.bounds;
     CGRect leftStartRect = CGRectMake(-endBounds.size.width, endBounds.origin.y, endBounds.size.width, endBounds.size.height);
@@ -187,11 +208,14 @@
 	{
 		self.svgView = (SVGDocumentView*)embeddedController.view;
 		self.printButton.enabled = YES;
+		self.reloadButton.enabled = YES;
+		
 	}
 	else
 	{
 		self.svgView = nil;
 		self.printButton.enabled = NO;
+		self.reloadButton.enabled = NO;
 	}
 	
     if(oldController == nil)

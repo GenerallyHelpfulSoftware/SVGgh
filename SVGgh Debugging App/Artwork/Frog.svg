@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg x="0px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewport-fill="none" y="0px" viewBox="0, 0, 184, 184" version="1.1" height="184" width="184">
+<defs id="Defs">
+	<path id="Frog Head" d="M5 50Q51-25 95 50 48 102 5 50Z M5 50Q50 63 95 50 Q50 27 5 50Z"/>
+
+	<path id="Frog Eye" d="M50 95A45 45 0 1 1 50.0001 95Z M50 70A20 20 0 1 0 49.99999 70Z"/>
+
+	<g  id="Pencil" stroke="currentColor">
+				<path stroke="none" fill= "currentColor" d="M29 38 H80 L100 50 L80 62H29A 40 40 0 0 1 29 38z M 80 40 A 40 40 0 0 0 80 60 L94 53 A2 2 0 0 1 94 47 L 80 40Z" />
+	</g>
+</defs>
+<g>
+	<g color="#cd853f" stroke="none" fill="#cd853f" transform="scale(.5)">
+		<g transform="translate(-65,-75)">
+			<use xlink:href="#Frog Eye" transform="translate(128, 100)" fill="#32CD32"/>
+			<use xlink:href="#Pencil" transform="matrix(3 0 0 1.25 62 340)" color="#32CD32"/>
+			<use xlink:href="#Frog Head" transform="matrix(3 0 0 3 95 112)" fill="#32CD32"/>
+			<use xlink:href="#Frog Eye" transform="translate(270, 100)" fill="#32CD32"/>
+		</g>
+	</g>
+	
+</g>
+</svg>
