@@ -37,7 +37,6 @@
 
 @interface GHAttributedObject(SVGRenderer)
 
-+(NSDictionary*) overideObjectsForPrototype:(id<GHAttributedObjectProtocol>)prototype withDictionary:(NSDictionary*)deltaDictionary;
 -(instancetype) cloneWithOverridingDictionary:(NSDictionary*)overrideAttributes;
 @end
 
@@ -48,8 +47,8 @@
 }
 @end
 
-@implementation GHAttributedObject(SVGRenderer)
 
+@implementation GHAttributedObject(Prototyping)
 +(NSDictionary*) overideObjectsForPrototype:(id<GHAttributedObjectProtocol>)prototype withDictionary:(NSDictionary*)deltaDictionary
 {
     NSDictionary* result = nil;
@@ -112,11 +111,17 @@
     
     return result;
 }
+@end
+
+
+@implementation GHAttributedObject(SVGRenderer)
+
+
 
 
 -(id) cloneWithOverridingDictionary:(NSDictionary*)overrideAttributes
 {
-    NSDictionary* newDefinition = [GHAttributedObject overideObjectsForPrototype:self withDictionary:overrideAttributes];
+    NSDictionary* newDefinition = [[self class] overideObjectsForPrototype:self withDictionary:overrideAttributes];
     id result = [[[self class] alloc] initWithDictionary:newDefinition];
     
     return result;

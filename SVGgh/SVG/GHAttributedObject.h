@@ -49,7 +49,14 @@ NS_ASSUME_NONNULL_BEGIN
 -(instancetype) init NS_UNAVAILABLE;
 
 -(NSUInteger)calculatedHash; // attributed objects are immutable, I can calculate their hash once and be done with it.
+
+
 @end
+
+@interface GHAttributedObject(Prototyping)
++(NSDictionary*) overideObjectsForPrototype:(id<GHAttributedObjectProtocol>)prototype withDictionary:(NSDictionary*)deltaDictionary;
+@end
+
 // useful in parsing XML
 extern  NSString*  	const kAttributesElementName;
 extern  NSString*  	const kContentsElementName;

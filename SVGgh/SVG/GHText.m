@@ -29,6 +29,7 @@
 #if defined(__has_feature) && __has_feature(modules)
 @import Foundation;
 @import CoreText;
+
 #else
 #import <Foundation/Foundation.h>
 #import <CoreText/CoreText.h>
@@ -255,6 +256,27 @@
     {
         [aChild addGlyphsToArray:glyphList withSVGContext:svgContext];
     }
+}
+
++(NSDictionary*) overideObjectsForPrototype:(id<GHAttributedObjectProtocol>)prototype withDictionary:(NSDictionary*)deltaDictionary
+{
+    NSDictionary* basicOverride = [GHAttributedObject overideObjectsForPrototype:prototype withDictionary:deltaDictionary];
+    
+    if([prototype isKindOfClass:[GHText class]])
+    {
+        NSMutableDictionary* result = [basicOverride mutableCopy];
+        GHText* protoText = (GHText*)prototype;
+        if(protoText.contents != NULL)
+        {
+            [result setObject:protoText.contents forKey:kContentsElementName];
+        }
+        return [result copy];
+    }
+    else
+    {
+        return basicOverride;
+    }
+
 }
 
 -(instancetype) initWithDictionary:(NSDictionary*)theDefinition
