@@ -90,13 +90,40 @@ NSString* const kFacesURLsAddedKey = @"urls";
         NSLog(@"Tried to set an image Cache without an URL");
     }
 }
-
-+(void) cacheImage:(GHImageWrapper*)anImage forName:(NSString*)aName
+#if TARGET_OS_OSX
++(void) cacheImage:(NSImage*)anImage forName:(NSString*)aName
+#else
++(void) cacheImage:(UIImage*)anImage forName:(NSString*)aName
+#endif
 {
-    if(anImage != nil && aName.length)
+    if(anImage != nil && aName.length && anImage.CGImage != NULL)
     {
-        [[GHImageCache imageCache] setObject:anImage forKey:aName cost:2];
+        GHImageWrapper* wrapper = [[GHImageWrapper alloc] initWithCGImage:anImage.CGImage];
+        [[GHImageCache imageCache] setObject:wrapper forKey:aName cost:2];
     }
+}
+
+#if TARGET_OS_OSX
++(NSImage*) uncacheImageForName:(NSString*)aName
+#else
++(UIImage*) uncacheImageForName:(NSString*)aName
+#endif
+{
+    NSCache* myCache = [GHImageCache imageCache];
+    GHImageWrapper* wrapper = [myCache objectForKey:aName];
+    if([wrapper isKindOfClass:[NSNull class]])
+    {
+        return NULL;
+    }
+#if TARGET_OS_OSX
+    CGFloat width = CGImageGetWidth(wrapper.cgImage);
+    CGFloat height = CGImageGetHeight(wrapper.cgImage);
+    
+    NSSize size = NSSize NSMakeSize(width, height);
+    return [[NSImage alloc] initWithCGImage: wrapper.cgImage size: size];
+#else
+    return [[UIImage alloc] initWithCGImage:wrapper.cgImage];
+#endif
 }
 
 +(void) invalidateImageWithName:(NSString*)aName
@@ -107,16 +134,6 @@ NSString* const kFacesURLsAddedKey = @"urls";
     }
 }
 
-+(GHImageWrapper*) uncacheImageForName:(NSString*)aName
-{
-    NSCache* myCache = [GHImageCache imageCache];
-    GHImageWrapper* result = [myCache objectForKey:aName];
-    if([result isKindOfClass:[NSNull class]])
-    {
-        return NULL;
-    }
-    return result;
-}
 
 +(void) retrieveCachedImageFromURL:(NSURL*)aURL intoCallback:(handleRetrievedImage_t)retrievalCallback
 {

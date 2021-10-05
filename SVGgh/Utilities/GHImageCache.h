@@ -58,18 +58,28 @@ typedef void (^handleExtractedFaces_t)( NSError* __nullable  error,  NSArray* __
 */
 @interface GHImageCache : NSObject
 
+#if TARGET_OS_OSX
+
 /*! @brief  method to store an image which can savely thrown away under low memory
  * @param anImage image to cache
  * @param aName unique name to associate with this image
  
 */
-+(void) cacheImage:(GHImageWrapper*)anImage forName:(NSString*)aName;
-
-/*! @brief method to remove an image from the cache
- * @param aName unique name of the image to be removed
++(void) cacheImage:(NSImage*)anImage forName:(NSString*)aName;
+/*! @brief  retrieve the image of the given name
+* @warning May return nil if there was a low memory situation
+* @param uniqueName the unique name of the image to retrieve
+* @return retrieved UIImage or NSImage
+ 
 */
-
-+(void) invalidateImageWithName:(NSString*)aName;
++(nullable NSImage*) uncacheImageForName:(NSString*)uniqueName;
+#else
+/*! @brief  method to store an image which can savely thrown away under low memory
+ * @param anImage image to cache
+ * @param aName unique name to associate with this image
+ 
+*/
++(void) cacheImage:(UIImage*)anImage forName:(NSString*)aName;
 
 /*! @brief  retrieve the image of the given name
 * @warning May return nil if there was a low memory situation
@@ -77,7 +87,17 @@ typedef void (^handleExtractedFaces_t)( NSError* __nullable  error,  NSArray* __
 * @return retrieved UIImage or NSImage
  
 */
-+(nullable GHImageWrapper*) uncacheImageForName:(NSString*)uniqueName;
++(nullable UIImage*) uncacheImageForName:(NSString*)uniqueName;
+#endif
+
+
+/*! @brief method to remove an image from the cache
+ * @param aName unique name of the image to be removed
+*/
+
++(void) invalidateImageWithName:(NSString*)aName;
+
+
 
 /*! @brief  if you have an image in an NSData this will create an image, store it and return it
 * @param imageData data in some standard format like PNG or JPEG
