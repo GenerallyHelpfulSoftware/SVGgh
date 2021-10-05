@@ -4,6 +4,9 @@
 
 Author [Glenn R. Howes](mailto:glenn@genhelp.com), *owner [Generally Helpful Software](http://genhelp.com)*
 
+### A Note on the Future
+At this point (2021), I'd strongly suggest looking into using SFSymbols for much of what I've used SVGgh for in the past. Still SVGs are a bit less complicated to make than a fully weighted SFSymbol. 
+
 ### Introduction
 In my own apps, I've often wished to avoid using bitmapped images for my interface elements. Often, I'll need to add PNG files for Retina, and non-retina, iPhone and iPad, and find myself confined to what I can do with an interface in terms of stretching elements. And all this artwork made my app bulky. So, I decided to implement an SVG renderer which could use standard **Scalable Vector Graphics** documents to draw button icons, background art or whatever my art needs were. I have Apps in the App Store like [SVG Paths](http://AppStore.com/SVGPaths) whose only PNG files are the required icons. 
 
@@ -11,6 +14,8 @@ In my own apps, I've often wished to avoid using bitmapped images for my interfa
 Handles shapes quite well such as paths, ellipses, circles, rectangles, polygons, polylines, and arcs with all the standard style attributes. Implements basic text and font handling, including rough text along a path. Implements both linear and radial gradients, including applying gradients to strokes and text. Implements scale invariant line widths. Provides a static UIView subclass, a UIControl button, and a segmented control. All are configurable from either nib or storyboards. Supports embedded bitmap images in standard formats. 
 
 Can export to PDF, create UIImages, and print via the UIPrintInteractionController mechanism.
+
+Can be integrated into SwiftUI Views. See the card example in the Debugging App.
 
 In the Xcode debugger, you can use the QuickLook button (the eye icon) to see the contents of an SVGRenderer. 
 
