@@ -26,15 +26,16 @@
 //  Created by Glenn Howes on 10/5/13.
 //
 
-
 #if defined(__has_feature) && __has_feature(modules)
-@import Foundation;
 @import ImageIO;
+@import CoreServices;
+@import Foundation;
 @import UIKit;
 #else
+
 #import <Foundation/Foundation.h>
-#import <ImageIO/ImageIO.h>
 #import <UIKit/UIKit.h>
+#import <ImageIO/ImageIO.h>
 #endif
 
 #import "GHImageCache.h"
@@ -74,7 +75,7 @@ NSString* const kFacesURLsAddedKey = @"urls";
     return sResult;
 }
 
-+(void) setCachedImage:(UIImage*)anImage forURL:(NSURL*) aFileURL
++(void) setCachedImage:(GHImageWrapper*) anImage forURL:(NSURL*) aFileURL
 {
     if(anImage == nil && aFileURL != nil)
     {
@@ -90,7 +91,7 @@ NSString* const kFacesURLsAddedKey = @"urls";
     }
 }
 
-+(void) cacheImage:(UIImage*)anImage forName:(NSString*)aName
++(void) cacheImage:(GHImageWrapper*)anImage forName:(NSString*)aName
 {
     if(anImage != nil && aName.length)
     {
@@ -106,25 +107,29 @@ NSString* const kFacesURLsAddedKey = @"urls";
     }
 }
 
-+(UIImage*) uncacheImageForName:(NSString*)aName
++(GHImageWrapper*) uncacheImageForName:(NSString*)aName
 {
     NSCache* myCache = [GHImageCache imageCache];
-    UIImage* result = [myCache objectForKey:aName];
+    GHImageWrapper* result = [myCache objectForKey:aName];
+    if([result isKindOfClass:[NSNull class]])
+    {
+        return NULL;
+    }
     return result;
 }
 
 +(void) retrieveCachedImageFromURL:(NSURL*)aURL intoCallback:(handleRetrievedImage_t)retrievalCallback
 {
-    UIImage* result = [[GHImageCache imageCache] objectForKey:aURL.absoluteString];
+    GHImageWrapper*  result = [[GHImageCache imageCache] objectForKey:aURL.absoluteString];
     if(result != nil)
     {
-        if([result isKindOfClass:[UIImage class]])
+        if([result isKindOfClass:[NSNull class]])
         {
-            retrievalCallback(result, aURL);
+            retrievalCallback(nil, aURL);
         }
         else
         {
-            retrievalCallback(nil, aURL);
+            retrievalCallback(result, aURL);
         }
     }
     else
@@ -152,12 +157,22 @@ NSString* const kFacesURLsAddedKey = @"urls";
 		}
 		else
 		{
-			result = [[UIImage alloc] initWithContentsOfFile:[aURL path]];
+            CGDataProviderRef otherProvider = CGDataProviderCreateWithURL((__bridge CFURLRef) aURL);
+            if(otherProvider != 0)
+            {
+                CGImageSourceRef imageSource = CGImageSourceCreateWithDataProvider(otherProvider, NULL);
+                if(imageSource != 0)
+                {
+                    imageRef = CGImageSourceCreateImageAtIndex(imageSource, 0, NULL);
+                    CFRelease(imageSource);
+                }
+                CFRelease(otherProvider);
+            }
 		}
 		if(imageRef != 0)
 		{
-			result = [[UIImage alloc] initWithCGImage:imageRef];
-			CFRelease(imageRef);
+			result = [[GHImageWrapper alloc] initWithCGImage: imageRef];
+            CFRelease(imageRef);
             [self setCachedImage:result forURL:aURL];
 		}
         else // put a null into here so I don't spend time trying over and over to get something that doesn't exist.
@@ -207,7 +222,7 @@ NSString* const kFacesURLsAddedKey = @"urls";
         NSURL* theURL = [NSURL fileURLWithPath:pathToImage];
         if([localFileManager fileExistsAtPath:pathToImage]) // already have this one.
         {
-            [self retrieveCachedImageFromURL:theURL intoCallback:^(UIImage *anImage, NSURL *location) {
+            [self retrieveCachedImageFromURL:theURL intoCallback:^(GHImageWrapper* anImage, NSURL *location) {
                 if(anImage != nil)
                 {
                     callback(anImage, location);
@@ -218,12 +233,32 @@ NSString* const kFacesURLsAddedKey = @"urls";
                     [imageData writeToFile:pathToImage options:NSDataWritingAtomic | NSDataWritingFileProtectionCompleteUnlessOpen  error:&fileError];
                     if(fileError == nil)
                     {
-                        UIImage* myImage = [[UIImage alloc] initWithData:imageData];
-                        
-                        [self setCachedImage:myImage forURL:theURL];
-                        
-                        [[NSNotificationCenter defaultCenter] postNotificationName:kImageAddedToCacheNotificationName object:self userInfo:@{kImageAddedKey:myImage, kImageURLAddedKey:theURL}];
-                        callback(myImage, theURL);
+                        CGDataProviderRef imageProvider = CGDataProviderCreateWithCFData((__bridge CFDataRef)imageData);
+                        if(imageProvider != 0)
+                        {
+                            CGImageSourceRef imageSource = CGImageSourceCreateWithDataProvider(imageProvider, NULL);
+                            if(imageSource != 0)
+                            {
+                                CGImageRef myImage = CGImageSourceCreateImageAtIndex(imageSource, 0, NULL);
+                                
+                                GHImageWrapper* wrappedImage = [[GHImageWrapper alloc] initWithCGImage:myImage];
+                                CFRelease(myImage);
+                                [self setCachedImage:wrappedImage forURL:theURL];
+                                
+                                [[NSNotificationCenter defaultCenter] postNotificationName:kImageAddedToCacheNotificationName object:self userInfo:@{kImageAddedKey:wrappedImage, kImageURLAddedKey:theURL}];
+                                callback(wrappedImage, theURL);
+                                CFRelease(imageSource);
+                            }
+                            else
+                            {
+                                callback(nil, nil);
+                            }
+                            CFRelease(imageProvider);
+                        }
+                        else
+                        {
+                            callback(nil, nil);
+                        }
                     }
                     else
                     {
@@ -237,12 +272,24 @@ NSString* const kFacesURLsAddedKey = @"urls";
             [imageData writeToFile:pathToImage options:NSDataWritingAtomic | NSDataWritingFileProtectionCompleteUnlessOpen  error:&fileError];
             if(fileError == nil)
             {
-                UIImage* myImage = [[UIImage alloc] initWithData:imageData];
-                
-                [self setCachedImage:myImage forURL:theURL];
-                
-                [[NSNotificationCenter defaultCenter] postNotificationName:kImageAddedToCacheNotificationName object:self userInfo:@{kImageAddedKey:myImage, kImageURLAddedKey:theURL}];
-                callback(myImage, theURL);
+                CGDataProviderRef imageProvider = CGDataProviderCreateWithCFData((__bridge CFDataRef)imageData);
+                if(imageProvider != 0)
+                {
+                    CGImageSourceRef imageSource = CGImageSourceCreateWithDataProvider(imageProvider, NULL);
+                    if(imageSource != 0)
+                    {
+                        CGImageRef myImage = CGImageSourceCreateImageAtIndex(imageSource, 0, NULL);
+                        
+                        GHImageWrapper* wrappedImage = [[GHImageWrapper alloc] initWithCGImage:myImage];
+                        CFRelease(myImage);
+                        [self setCachedImage:wrappedImage forURL:theURL];
+                        
+                        [[NSNotificationCenter defaultCenter] postNotificationName:kImageAddedToCacheNotificationName object:self userInfo:@{kImageAddedKey:wrappedImage, kImageURLAddedKey:theURL}];
+                        callback(wrappedImage, theURL);
+                        CFRelease(imageSource);
+                    }
+                    CFRelease(imageProvider);
+                }
             }
         }
     }
@@ -259,184 +306,84 @@ NSString* const kFacesURLsAddedKey = @"urls";
     return result;
 }
 
-+(void) saveImage:(UIImage*)anImage withCallback:(handleExtractedFaces_t)callback
++(void) saveImageData:(NSData*) imageData withExtension:(NSString*)extension forImage:(CGImageARCRef) anImage withCallback:(handleExtractedFaces_t)callback
 {
-    if(anImage != nil)
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    if(paths.count == 0)
     {
-        NSString* extension = @"png";
-        NSData* imageData = UIImagePNGRepresentation(anImage);
-        if(imageData.length > 65535)
-        {// ok, this is a biggish thing, try JPEG compression
-            extension = @"jpg";
-            imageData = UIImageJPEGRepresentation(anImage, 0.5);
-        }
-        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        if(paths.count == 0)
-        {
-            return; // should never happen
-        }
-        NSString *basePath = [paths objectAtIndex:0];
-        NSFileManager* localFileManager = [[NSFileManager alloc] init];
-        NSString* pathToImages = [basePath stringByAppendingPathComponent:@"Photos"];
-        NSError* fileError = nil;
-        if(![localFileManager fileExistsAtPath:pathToImages])
-        {
-            [localFileManager createDirectoryAtPath:pathToImages withIntermediateDirectories:YES attributes:nil error:&fileError];
-        }
+        return; // should never happen
+    }
+    NSString *basePath = [paths objectAtIndex:0];
+    NSFileManager* localFileManager = [[NSFileManager alloc] init];
+    NSString* pathToImages = [basePath stringByAppendingPathComponent:@"Photos"];
+    NSError* fileError = nil;
+    if(![localFileManager fileExistsAtPath:pathToImages])
+    {
+        [localFileManager createDirectoryAtPath:pathToImages withIntermediateDirectories:YES attributes:nil error:&fileError];
+    }
+    GHImageWrapper* imageWrapper = [[GHImageWrapper alloc] initWithCGImage:anImage];
+    if(fileError == nil)
+    {
+        NSString* pathToImage = [pathToImages stringByAppendingPathComponent: [self uniqueFilenameWithExtension:extension]];
+        [imageData writeToFile:pathToImage options:NSDataWritingAtomic | NSDataWritingFileProtectionCompleteUnlessOpen  error:&fileError];
         if(fileError == nil)
         {
-            NSString* pathToImage = [pathToImages stringByAppendingPathComponent: [self uniqueFilenameWithExtension:extension]];
-            [imageData writeToFile:pathToImage options:NSDataWritingAtomic | NSDataWritingFileProtectionCompleteUnlessOpen  error:&fileError];
-            if(fileError == nil)
-            {
-                NSURL* theURL = [NSURL fileURLWithPath:pathToImage];
-                [self setCachedImage:anImage forURL:theURL];
-                callback(nil, @[anImage], @[theURL]);
-            }
+            NSURL* theURL = [NSURL fileURLWithPath:pathToImage];
+            [self setCachedImage:imageWrapper forURL:theURL];
+            callback(nil, @[imageWrapper], @[theURL]);
         }
-        
-        if(fileError != nil)
-        {
-            callback(fileError, @[anImage], nil);
-        }
+    }
+    
+    if(fileError != nil)
+    {
+        callback(fileError, @[imageWrapper], nil);
     }
 }
 
-+(void) extractFaceImageFromPickedImage:(UIImage*) startImage withCallback:(handleExtractedFaces_t)callback
++(void) saveImage:(CGImageARCRef)anImage withCallback:(handleExtractedFaces_t)callback
 {
-    [[GHImageCache loadQueue] addOperationWithBlock:^{
+    if(anImage != nil)
+    {
+        CFMutableDataRef dataToFill = CFDataCreateMutable(nil, 0);
+        CGImageDestinationRef destination = CGImageDestinationCreateWithData(dataToFill, kUTTypePNG, 1, nil);
         
-        int exifOrientation = 1;
-        switch (startImage.imageOrientation) {
-            case UIImageOrientationUp:
-                exifOrientation = 1;
-                break;
-            case UIImageOrientationDown:
-                exifOrientation = 3;
-                break;
-            case UIImageOrientationLeft:
-                exifOrientation = 8;
-                break;
-            case UIImageOrientationRight:
-                exifOrientation = 6;
-                break;
-            case UIImageOrientationUpMirrored:
-                exifOrientation = 2;
-                break;
-            case UIImageOrientationDownMirrored:
-                exifOrientation = 4;
-                break;
-            case UIImageOrientationLeftMirrored:
-                exifOrientation = 5;
-                break;
-            case UIImageOrientationRightMirrored:
-                exifOrientation = 7;
-                break;
-            default:
-                break;
-        }
-        
-        NSNumber *orientation = [NSNumber numberWithInt:exifOrientation];
-        NSDictionary *imageOptions =
-        [NSDictionary dictionaryWithObject:orientation
-                                    forKey:CIDetectorImageOrientation];
-        
-        CIImage *ciimage = [CIImage imageWithCGImage:[startImage CGImage]
-                                             options:imageOptions];
-        
-        
-        NSDictionary *detectorOptions =
-        [NSDictionary dictionaryWithObject:CIDetectorAccuracyHigh
-                                    forKey:CIDetectorAccuracy];
-        CIDetector *detector = [CIDetector detectorOfType:CIDetectorTypeFace
-                                                  context:nil
-                                                  options:detectorOptions];
-        
-        __block NSMutableArray* faceImages = [[NSMutableArray alloc] initWithCapacity:64];
-        __block NSMutableArray* urls = [[NSMutableArray alloc] initWithCapacity:64];
-        
-        NSArray *features = [detector featuresInImage:ciimage];
-        
-        __block NSError* saveError = nil;
-        
-        for(id aFeature in features)
+        if(destination != 0)
         {
-            if([aFeature isKindOfClass:[CIFaceFeature class]])
+            CGImageDestinationAddImage(destination, anImage, nil);
+            if (CGImageDestinationFinalize(destination))
             {
-#if TARGET_IPHONE_SIMULATOR
-                NSDictionary* options = @{};
-#else 
-                NSDictionary* options =@{kCIContextUseSoftwareRenderer:@1};
-#endif
-                
-                CIContext* coreImageContext = [CIContext contextWithOptions:options];
-                CIFaceFeature* faceFeature = (CIFaceFeature*)aFeature;
-                CGRect faceRect = faceFeature.bounds;
-                if(faceRect.size.height >= 128 && faceRect.size.width >= 128)
+                if(CFDataGetLength(dataToFill) > 65635)
                 {
-                    CGFloat extraForehead = faceRect.size.height*.38;
-                    CGFloat extraChin = faceRect.size.height*.06;
-                    CGRect imageExtent = [ciimage extent];
-                    switch(exifOrientation)
+                    CFRelease(dataToFill);
+                    CFRelease(destination);
+                    dataToFill = CFDataCreateMutable(nil, 0);
+                    destination = CGImageDestinationCreateWithData(dataToFill, kUTTypeJPEG, 1, nil);
+                    
+                    if(destination != 0)
                     {
-                        case 1:
+                        CGImageDestinationAddImage(destination, anImage, nil);
+                        if (CGImageDestinationFinalize(destination))
                         {
-                            CGFloat availableForehead = imageExtent.size.height-(faceRect.origin.y+faceRect.size.height);
-                            if(extraForehead > availableForehead)extraForehead = availableForehead;
-                            faceRect.size.height+=extraForehead;
-                            CGFloat availableChin = faceRect.origin.y;
-                            if(extraChin > availableChin) extraChin = availableChin;
-                            
-                            faceRect.origin.y-=extraChin;
-                            faceRect.size.height+=extraChin;
-                            
+                            [self saveImageData:CFBridgingRelease(dataToFill) withExtension:@"jpg" forImage:anImage withCallback:callback];
                         }
-                        break;
-                        case 3:
-                        {
-                            CGFloat availableForehead = faceRect.origin.y;
-                            if(extraForehead > availableForehead)extraForehead = availableForehead;
-                            faceRect.origin.y-=extraForehead;
-                            faceRect.size.height+=extraForehead;
-                            
-                            CGFloat availableChin = imageExtent.size.height-(faceRect.origin.y+faceRect.size.height);
-                            if(extraChin > availableChin)extraChin = availableChin;
-                            faceRect.size.height+=extraChin;
-
-                        }
-                        break;
+                        
+                        CFRelease(destination);
+                        destination = 0;
                     }
                     
-                    
-                    CGImageRef cgImage = [coreImageContext createCGImage:ciimage fromRect:faceRect];
-                    UIImage *croppedFace = [UIImage imageWithCGImage:cgImage];
-                    CGImageRelease(cgImage);
-                    
-                    [self saveImage:croppedFace withCallback:^(NSError* anError, NSArray* oneImageArray, NSArray* oneLocationArray) {
-                        if(anError != nil)
-                        {
-                            saveError = anError;
-                        }
-                        else
-                        {
-                            [faceImages addObjectsFromArray:oneImageArray];
-                            [urls addObjectsFromArray:oneLocationArray];
-                        }
-                    }];
-                    if(saveError != nil)
-                    {
-                        break;
-                    }
+                }
+                else
+                {
+                    [self saveImageData:CFBridgingRelease(dataToFill) withExtension:@"png" forImage:anImage withCallback:callback];
                 }
             }
+            if(destination != 0)
+            {
+                CFRelease(destination);
+            }
         }
-        if(faceImages.count)
-        {
-            [[NSNotificationCenter defaultCenter] postNotificationName:kFacesAddedToCacheNotificationName object:self userInfo:@{kFacesAddedKey:faceImages, kFacesURLsAddedKey:urls}];
-        }
-        callback(saveError, faceImages, urls);
-        
-    }];
+        CFRelease(dataToFill);
+    }
 }
 
 @end

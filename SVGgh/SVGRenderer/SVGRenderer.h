@@ -25,12 +25,16 @@
 //
 //  Created by Glenn Howes on 1/12/11.
 
+
 #if defined(__has_feature) && __has_feature(modules)
-@import Foundation;
+    @import Foundation;
+    @import UIKit;
 #else
-#import <Foundation/Foundation.h>
+    #import <Foundation/Foundation.h>
+    #import <UIKit/UIKit.h>
 #endif
 
+#import "CrossPlatformImage.h"
 #import "SVGParser.h"
 #import "GHRenderable.h"
 #import "SVGContext.h"
@@ -104,10 +108,13 @@ NS_ASSUME_NONNULL_BEGIN
 /*! @brief make a scaled image from the renderer
  * @param maximumSize the maximum dimension in points to render into.
  * @param scale same as a UIWindow's scale
- * @return a UIImage
+ * @return a UIImage or NSImage depending on platform
  */
+#if TARGET_OS_OSX
+-(nullable NSImage*) asImageWithSize:(CGSize)maximumSize andScale:(CGFloat)scale;
+#else
 -(UIImage*)asImageWithSize:(CGSize)maximumSize andScale:(CGFloat)scale;
-
+#endif
 @end
 
 NS_ASSUME_NONNULL_END

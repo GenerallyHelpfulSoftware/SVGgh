@@ -34,6 +34,7 @@
 #import "SVGPathGenerator.h"
 #import "GHText.h"
 #import "SVGTextUtilities.h"
+#import "CrossPlatformImage.h"
 
 @interface GHAttributedObject(SVGRenderer)
 
@@ -407,20 +408,20 @@
     CGRect result = CGRectMake(xLocation, yLocation, width, height);
     return result;
 }
+
 -(NSString*) entityName
 {
     return @"image";
 }
 
-
--(UIImage*) newNativeImageWithSVGContext:(id<SVGContext>)svgContext
+-(GHImageWrapper*) newNativeImageWithSVGContext:(id<SVGContext>)svgContext
 {
-    __block UIImage* result = nil;
+    __block GHImageWrapper* result = nil;
     NSString* subPath = [self.attributes objectForKey:@"xlink:href"];
     NSString* basePath = [self.attributes objectForKey:@"xml:base"];
     
     [SVGToQuartz imageAtXLinkPath:subPath orAtRelativeFilePath:basePath withSVGContext:svgContext
-                     intoCallback:^(UIImage *anImage, NSURL *location) {
+                     intoCallback:^(GHImageWrapper* anImage, NSURL *location) {
                          result = anImage;
                      }];
     return result;
@@ -454,8 +455,8 @@
     NSString* subPath = [self.attributes objectForKey:@"xlink:href"];
     if([subPath length] && !CGRectIsEmpty(myRect))
     {
-        UIImage* myImage = [self newNativeImageWithSVGContext:svgContext];
-        if(myImage != nil && myImage.CGImage != 0)
+        GHImageWrapper* myImage = [self newNativeImageWithSVGContext:svgContext];
+        if(myImage != nil)
         {
             CGContextSaveGState(quartzContext);
             CGContextConcatCTM(quartzContext, self.transform);
@@ -472,7 +473,7 @@
             CGContextTranslateCTM(quartzContext, 0, myRect.size.height); // now flip the context upside down to render the image.
             CGContextScaleCTM(quartzContext, 1.0, -1);
             
-            CGImageRef   quartzImage =  myImage.CGImage;
+            CGImageRef   quartzImage =  myImage.cgImage;
             if(quartzImage != 0)
             {
                 NSString*	viewPortColorString = [self.attributes objectForKey:@"viewport-fill"];
@@ -544,8 +545,8 @@
     NSString* subPath = [self.attributes objectForKey:@"xlink:href"];
     if([subPath length] && !CGRectIsEmpty(myRect))
     {
-        UIImage* myImage = [self newNativeImageWithSVGContext:svgContext];
-        if(myImage != nil && myImage.CGImage != 0)
+        GHImageWrapper* myImage = [self newNativeImageWithSVGContext:svgContext];
+        if(myImage != nil)
         {
             CGAffineTransform oldTransform = CGContextGetCTM(quartzContext);
             CGContextConcatCTM(quartzContext, self.transform);
@@ -555,7 +556,7 @@
             CGContextTranslateCTM(quartzContext, 0, myRect.size.height);
             CGContextScaleCTM(quartzContext, 1.0, -1);
             
-            CGImageRef   quartzImage =  myImage.CGImage;
+            CGImageRef   quartzImage =  myImage.cgImage;
             
             CGRect	drawRect = myRect;
             NSString* preserveAspectRatioString = [self.attributes objectForKey:@"preserveAspectRatio"];
@@ -1711,9 +1712,9 @@
     CGContextRestoreGState(quartzContext);
 }
 
--(UIImage*) newClipMaskWithSVGContext:(id<SVGContext>)svgContext andObjectBox:(CGRect)objectBox
+-(CGImageARCRef) newClipMaskWithSVGContext:(id<SVGContext>)svgContext andObjectBox:(CGRect)objectBox
 {
-    UIImage* result = nil;
+    CGImageARCRef result = nil;
     CGRect clipRect = [self getBoundingBoxWithSVGContext:svgContext];
     if(!CGRectIsNull(clipRect))
     {
@@ -1726,8 +1727,7 @@
         CGImageRef bitmap = CGBitmapContextCreateImage (bitmapContext);
         if(bitmap != 0)
         {
-            result  = [UIImage imageWithCGImage:bitmap];
-            CGImageRelease(bitmap);
+            result  = bitmap;
         }
         
         CFRelease(bitmapContext);
@@ -1745,12 +1745,13 @@
     
     if(type == kMixedClippingType || type == kFontGlyphClippingType)
     {
-        UIImage* maskImage = [self newClipMaskWithSVGContext:svgContext andObjectBox:objectBox];
+        CGImageRef maskImage = [self newClipMaskWithSVGContext:svgContext andObjectBox:objectBox];
         if(maskImage != nil)
         {
             CGRect clipRect = [GHRenderableObject boundingBoxForRenderableObject:self withSVGContext:svgContext  givenParentObjectsBounds:objectBox];
             
-            CGContextClipToMask(quartzContext, clipRect, maskImage.CGImage);
+            CGContextClipToMask(quartzContext, clipRect, maskImage);
+            CFRelease(maskImage);
         }
     }
     else
@@ -2031,9 +2032,9 @@
     return result;
 }
 
--(UIImage*) newClipMaskWithSVGContext:(id<SVGContext>)svgContext andObjectBox:(CGRect)objectBox
+-(CGImageARCRef) newClipMaskWithSVGContext:(id<SVGContext>)svgContext andObjectBox:(CGRect)objectBox
 {
-    UIImage* result = 0;
+    CGImageARCRef result = 0;
     CGRect clipRect = [GHRenderableObject boundingBoxForRenderableObject:self withSVGContext:svgContext  givenParentObjectsBounds:objectBox];
     
     if(CGRectIsNull(clipRect))
@@ -2115,8 +2116,7 @@
             CFRelease(greyData);
             if(mask != 0)
             {
-                result = [UIImage imageWithCGImage:mask];
-                CGImageRelease(mask);
+                result = mask;
             }
             CFRelease(bitmapData);
         }

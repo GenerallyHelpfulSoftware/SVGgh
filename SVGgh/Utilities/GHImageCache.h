@@ -27,14 +27,14 @@
 
 
 #if defined(__has_feature) && __has_feature(modules)
-@import Foundation;
-@import CoreGraphics;
-@import UIKit;
+    @import Foundation;
+    @import UIKit;
 #else
-#import <Foundation/Foundation.h>
-#import <CoreGraphics/CoreGraphics.h>
-#import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+    #import <UIKit/UIKit.h>
 #endif
+
+#import "CrossPlatformImage.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -42,7 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
 * @param anImage resulting image
 * @param location where image was located
 */
-typedef void (^handleRetrievedImage_t)(UIImage* __nullable  anImage, NSURL* __nullable  location);
+typedef void (^handleRetrievedImage_t)(GHImageWrapper* __nullable  anImage, NSURL* __nullable  location);
 
 /*! @brief  definition of a block callback after a list of faces (and locations) were extracted from a parent image
  * @param error if failed this will be non-nil
@@ -63,7 +63,7 @@ typedef void (^handleExtractedFaces_t)( NSError* __nullable  error,  NSArray* __
  * @param aName unique name to associate with this image
  
 */
-+(void) cacheImage:(UIImage*)anImage forName:(NSString*)aName;
++(void) cacheImage:(GHImageWrapper*)anImage forName:(NSString*)aName;
 
 /*! @brief method to remove an image from the cache
  * @param aName unique name of the image to be removed
@@ -74,10 +74,10 @@ typedef void (^handleExtractedFaces_t)( NSError* __nullable  error,  NSArray* __
 /*! @brief  retrieve the image of the given name
 * @warning May return nil if there was a low memory situation
 * @param uniqueName the unique name of the image to retrieve
-* @return retrieved UIImage
+* @return retrieved UIImage or NSImage
  
 */
-+(nullable UIImage*) uncacheImageForName:(NSString*)uniqueName;
++(nullable GHImageWrapper*) uncacheImageForName:(NSString*)uniqueName;
 
 /*! @brief  if you have an image in an NSData this will create an image, store it and return it
 * @param imageData data in some standard format like PNG or JPEG
@@ -91,7 +91,7 @@ typedef void (^handleExtractedFaces_t)( NSError* __nullable  error,  NSArray* __
 * @param anImage to be stored, maybe be nil
 * @param aFileURL to allow reload, cannot be nil
 */
-+(void) setCachedImage:(nullable UIImage*)anImage forURL:(NSURL*) aFileURL;
++(void) setCachedImage:(nullable GHImageWrapper*)anImage forURL:(NSURL*) aFileURL;
 
 /*! @brief  makes a filename that is unigue (via a GUID) with a given extension
 * @param extension extension like "jpg"
@@ -108,15 +108,10 @@ typedef void (^handleExtractedFaces_t)( NSError* __nullable  error,  NSArray* __
 
 /*! @brief  using a separate operation queue to grab the image either from the cache or the url
 * @param aURL file URL to grab the image from if need be and to use as cache key
-* @param retrievalCallback to accetp the resulting image
+* @param retrievalCallback to accept the resulting image
 */
 +(void) aSyncRetrieveCachedImageFromURL:(NSURL*)aURL intoCallback:(handleRetrievedImage_t)retrievalCallback;
 
-/*! @brief  this will take an image, and extract faces from it, put them in the cache and store them to disk
-* @param anImage image which may have human faces in it.
-* @param callback returns a possible error or the faces and their locations
-*/
-+(void) extractFaceImageFromPickedImage:(UIImage*) anImage withCallback:(handleExtractedFaces_t)callback;
 @end
 
 /*! @brief  If you want to be notified when an image is added to the cache use NSNotificationCenter to register this string
