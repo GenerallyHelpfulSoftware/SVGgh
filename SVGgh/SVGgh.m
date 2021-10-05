@@ -28,8 +28,11 @@
 
 void MakeSureSVGghLinks()
 {
+#if TARGET_OS_OSX
+#else
     [SVGDocumentView makeSureLoaded];
     [GHButton makeSureLoaded];
     [GHSegmentedControl makeSureLoaded];
     [SVGTabBarItem makeSureLoaded];
+#endif
 }

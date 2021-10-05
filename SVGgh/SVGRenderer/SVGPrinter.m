@@ -38,6 +38,9 @@
     }];
 }
 
+#if TARGET_OS_OSX
+
+#else
 +(void) printRenderer:(SVGRenderer*)renderer  withJobName:(NSString*)jobName fromAnchorView:(UIView*)anchorView withCallback:(printingCallback_t)callback
 {
 #if !TARGET_OS_TV
@@ -100,5 +103,5 @@
     NSLog(@"Printing not supported on tvOS");
 #endif
 }
-
+#endif
 @end

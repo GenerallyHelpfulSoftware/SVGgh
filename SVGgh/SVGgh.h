@@ -30,20 +30,23 @@
 #import <Foundation/Foundation.h>
 #endif
 
-#import <SVGgh/GHButton.h>
-#import <SVGgh/GHControl.h>
-#import <SVGgh/GHControlFactory.h>
 #import <SVGgh/GHImageCache.h>
-#import <SVGgh/GHSegmentedControl.h>
 #import <SVGgh/GHRenderable.h>
-#import <SVGgh/SVGDocumentView.h>
 #import <SVGgh/SVGRendererLayer.h>
 #import <SVGgh/SVGParser.h>
 #import <SVGgh/SVGRenderer.h>
 #import <SVGgh/SVGPrinter.h>
 #import <SVGgh/SVGtoPDFConverter.h>
 #import <SVGgh/SVGPathGenerator.h>
+#if TARGET_OS_OSX
+#else
+#import <SVGgh/SVGDocumentView.h>
+#import <SVGgh/GHButton.h>
+#import <SVGgh/GHControl.h>
+#import <SVGgh/GHControlFactory.h>
+#import <SVGgh/GHSegmentedControl.h>
 #import <SVGgh/SVGTabBarItem.h>
+#endif
 #import <SVGgh/SVGghLoader.h>
 #import <SVGgh/GHCSSStyle.h> // not yet implemented, somebody want to implement a CSS parser?
 

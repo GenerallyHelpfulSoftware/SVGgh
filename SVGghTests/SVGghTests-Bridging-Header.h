@@ -3,3 +3,4 @@
 //
 
 #import <SVGgh/SVGgh.h>
+#import <SVGgh/GHPathUtilities.h>

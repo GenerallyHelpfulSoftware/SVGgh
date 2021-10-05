@@ -25,14 +25,12 @@
 //  Created by Glenn Howes on 2/4/14.
 //
 
-
-
 #if defined(__has_feature) && __has_feature(modules)
-@import Foundation;
-@import UIKit;
+    @import Foundation;
+    @import UIKit;
 #else
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+    #import <UIKit/UIKit.h>
 #endif
 
 @class SVGRenderer;
@@ -52,8 +50,11 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SVGPrinter :NSObject
 +(void) printRenderer:(SVGRenderer*)renderer  withJobName:(NSString*)jobName withCallback:(printingCallback_t)callback;
 
-+(void) printRenderer:(SVGRenderer*)renderer  withJobName:(NSString*)jobName fromAnchorView:(nullable UIView*)anchorView withCallback:(printingCallback_t)callback;
+#if TARGET_OS_OSX
 
+#else
++(void) printRenderer:(SVGRenderer*)renderer  withJobName:(NSString*)jobName fromAnchorView:(nullable UIView*)anchorView withCallback:(printingCallback_t)callback;
+#endif
 @end
 
 NS_ASSUME_NONNULL_END

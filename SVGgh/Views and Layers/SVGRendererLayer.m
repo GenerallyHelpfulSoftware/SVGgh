@@ -104,6 +104,22 @@
 
 @end
 
+@implementation CALayer(GH_Utilities)
++(CGFloat) globalContentScale
+{
+#if TARGET_OS_OSX
+    CGFloat result = NSApp.windows.firstObject.backingScaleFactor;
+#else
+    CGFloat result = [UIScreen mainScreen].scale;
+#endif
+    
+    if(result == 0)
+    {
+        result = 2.0;
+    }
+    return result;
+}
+@end
 
 
 @implementation SVGRendererLayer
@@ -111,8 +127,7 @@
 {
     if(nil != (self = [super init]))
     {
-        CGFloat screenScale = [UIScreen mainScreen].scale;
-        self.contentsScale = screenScale;
+        self.contentsScale = [CALayer globalContentScale];
         self.needsDisplayOnBoundsChange = YES;
     }
     return self;
@@ -121,8 +136,7 @@
 {
     if(nil != (self = [super initWithLayer:layer]))
     {
-        CGFloat screenScale = [UIScreen mainScreen].scale;
-        self.contentsScale = screenScale;
+        self.contentsScale = [CALayer globalContentScale];
         self.needsDisplayOnBoundsChange = YES;
 
     }
@@ -133,8 +147,7 @@
 {
     if(nil != (self = [super initWithCoder:aDecoder]))
     {
-        CGFloat screenScale = [UIScreen mainScreen].scale;
-        self.contentsScale = screenScale;
+        self.contentsScale = [CALayer globalContentScale];
         self.needsDisplayOnBoundsChange = YES;
 
     }
@@ -274,7 +287,7 @@
 		
 		if(fillColor != nil && ![fillColor isEqualToString:@"none"])
 		{
-			UIColor*	theColor = UIColorFromSVGColorString(fillColor);
+            UIColor*	theColor = UIColorFromSVGColorString(fillColor);
 			if(theColor != nil)
 			{
 				CGContextSaveGState(quartzContext);

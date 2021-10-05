@@ -31,6 +31,10 @@
 #import "SVGAttributedObject.h"
 #import "GHImageCache.h"
 #import "SVGUtilities.h"
+#import "CrossPlatformImage.h"
+
+NSDictionary<NSString*, NSString*>* WebNameMapping(void);
+NSDictionary<NSString*, NSNumber*>* stringToBlendMode(void);
 
 const CGFloat kDegreesToRadiansConstant = (CGFloat)(M_PI/180.0);
 
@@ -1044,9 +1048,20 @@ NSString* MorphColorString(NSString* oldSVGColorString, NSString* newSVGColorStr
             UIColor* newColor = UIColorFromSVGColorString(newSVGColorString);
             CGFloat oldRed, oldGreen, oldBlue, oldAlpha;
             CGFloat newRed, newGreen, newBlue, newAlpha;
-            if([oldColor getRed:&oldRed green:&oldGreen blue:&oldBlue alpha:&oldAlpha]
-               && [newColor getRed:&newRed green:&newGreen blue:&newBlue alpha:&newAlpha])
+#if TARGET_OS_OSX
+            if(oldColor.numberOfComponents == 4 && newColor.numberOfComponents == 4)
+    
             {
+                [oldColor getRed:&oldRed green:&oldGreen blue:&oldBlue alpha:&oldAlpha];
+                [newColor getRed:&newRed green:&newGreen blue:&newBlue alpha:&newAlpha];
+#else
+            if(
+               [oldColor getRed:&oldRed green:&oldGreen blue:&oldBlue alpha:&oldAlpha]
+               &&
+               [newColor getRed:&newRed green:&newGreen blue:&newBlue alpha:&newAlpha])
+            {
+#endif
+            
                 CGFloat morphedRed = oldRed+(newRed-oldRed)*fractionThere;
                 CGFloat morphedGreen = oldGreen+(newGreen-oldGreen)*fractionThere;
                 CGFloat morphedBlue = oldBlue+(newBlue-oldBlue)*fractionThere;
@@ -1062,7 +1077,7 @@ NSString* MorphColorString(NSString* oldSVGColorString, NSString* newSVGColorStr
     return result;
 }
 
-NSDictionary<NSString*, NSString*>* WebNameMapping()
+NSDictionary<NSString*, NSString*>* WebNameMapping(void)
 {
     static NSDictionary<NSString*, NSString*>* sResult = nil;
     static dispatch_once_t  done;
@@ -1949,7 +1964,7 @@ void AddSVGArcToPath(CGMutablePathRef thePath,
 	}
 }
 
-NSDictionary<NSString*, NSNumber*>* stringToBlendMode()
+NSDictionary<NSString*, NSNumber*>* stringToBlendMode(void)
 {
   static NSDictionary<NSString*, NSNumber*>* sDict = nil;
   static dispatch_once_t done;
@@ -2184,7 +2199,7 @@ NSDictionary<NSString*, NSNumber*>* stringToBlendMode()
 
 +(void)imageAtXLinkPath:(NSString*)xLinkPath orAtRelativeFilePath:(NSString*)relativeFilePath withSVGContext:(id<SVGContext>)svgContext intoCallback:(handleRetrievedImage_t)retrievalCallback
 {
-    UIImage* result = nil;
+    CGImageRef result = nil;
     
 	if([xLinkPath hasPrefix:@"data:image/"])
 	{// embedded in the svg itself as a base 64
@@ -2223,12 +2238,20 @@ NSDictionary<NSString*, NSNumber*>* stringToBlendMode()
 				}
 				if(imageRef != 0)
 				{
-					result = [[UIImage alloc] initWithCGImage:imageRef];
-					CFRelease(imageRef);
+					result = imageRef;
 				}
 			}
 		}
-        retrievalCallback(result, nil);
+        if(result != 0)
+        {
+            GHImageWrapper* wrapper = [[GHImageWrapper alloc] initWithCGImage:result];
+            CFRelease(result);
+            retrievalCallback(wrapper, nil);
+        }
+        else
+        {
+            retrievalCallback(nil, nil);
+        }
 	}
 	else
 	{
@@ -2248,7 +2271,7 @@ NSDictionary<NSString*, NSNumber*>* stringToBlendMode()
             fileURL = [NSURL fileURLWithPath:xLinkPath];
         }
         
-		[GHImageCache retrieveCachedImageFromURL:fileURL intoCallback:^(UIImage *anImage, NSURL *location) {
+		[GHImageCache retrieveCachedImageFromURL:fileURL intoCallback:^(GHImageWrapper* anImage, NSURL *location) {
             retrievalCallback(anImage, location);
         }];
 	}

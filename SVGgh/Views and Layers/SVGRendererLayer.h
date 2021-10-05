@@ -33,7 +33,6 @@
 #import <QuartzCore/QuartzCore.h>
 #endif
 
-
 #import "SVGRenderer.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -67,6 +66,10 @@ NS_ASSUME_NONNULL_BEGIN
  * @return an object hit by the point
  */
 -(nullable id<GHRenderable>) findRenderableObject:(CGPoint)testPoint;
+@end
+
+@interface CALayer(GH_Utilities)
++(CGFloat) globalContentScale;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -34,7 +34,7 @@ import CoreGraphics
 
 public extension CGPath
 {
-    public func asString() -> String
+    func asString() -> String
     {
         let result = NSMutableString()
         

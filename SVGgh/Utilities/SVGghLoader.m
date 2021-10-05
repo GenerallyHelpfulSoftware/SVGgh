@@ -38,6 +38,17 @@ static id<SVGghLoader> gLoader = nil;
     return result;
 }
 
++(BOOL) assetLoadingAvailable
+{
+#if TARGET_OS_OSX
+    return YES;
+#else
+    NSString* systemVersion = [UIDevice currentDevice].systemVersion;
+    return systemVersion.doubleValue >= 9.0;
+#endif
+    
+}
+
 +(void) setLoader:(nullable id<SVGghLoader>)loader
 {
     gLoader = loader;
@@ -55,8 +66,7 @@ static id<SVGghLoader> gLoader = nil;
         break;
         case SVGghLoaderTypeDataXCAsset:
         {
-            NSString* systemVersion = [UIDevice currentDevice].systemVersion;
-            if(systemVersion.doubleValue >= 9.0)
+            if([SVGghLoaderManager assetLoadingAvailable])
             {
                 [self setLoader:[SVGXCAssetLoader new]];
             }

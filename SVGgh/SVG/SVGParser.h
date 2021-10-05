@@ -67,7 +67,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @param assetName string which will be based to constructor of NSDataAsset
  * @param bundle optional bundle, if nil, the main bundle will be used.
  */
--(nullable  instancetype) initWithDataAssetNamed:(NSString*)assetName withBundle:(nullable NSBundle*)bundle NS_AVAILABLE_IOS(9_0);
+-(nullable  instancetype) initWithDataAssetNamed:(NSString*)assetName withBundle:(nullable NSBundle*)bundle API_AVAILABLE(ios(9.0), macos(10.11), tvos(9.0), watchos(2.0));
 
 
 /*! @brief not allowing a standard init method
