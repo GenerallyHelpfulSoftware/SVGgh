@@ -1965,6 +1965,12 @@
     }
     return result;
 }
+
+-(void) renderIntoContext:(CGContextRef)quartzContext withSVGContext:(id<SVGContext>)svgContext
+{
+    
+}
+
 @end
 
 @implementation GHClipGroup
