@@ -34,7 +34,7 @@
 #import <UIKit/UIKit.h>
 #endif
 
-#import "GHRenderable.h"
+#import <SVGgh/GHRenderable.h>
 
 #ifndef IBInspectable
 #define IBInspectable

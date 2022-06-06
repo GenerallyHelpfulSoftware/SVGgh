@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import SVGgh
 
 class SVGPerformanceTests: XCTestCase {
     

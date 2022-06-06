@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import SwiftUI
+import SVGgh
 
 @available(iOS 14.0, *)
 struct SVGCardView : View, Animatable

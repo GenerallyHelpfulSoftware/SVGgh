@@ -33,7 +33,7 @@
 #import <QuartzCore/QuartzCore.h>
 #endif
 
-#import "SVGRenderer.h"
+#import <SVGgh/SVGRenderer.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

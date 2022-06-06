@@ -34,11 +34,11 @@
     #import <UIKit/UIKit.h>
 #endif
 
-#import "CrossPlatformImage.h"
-#import "SVGParser.h"
-#import "GHRenderable.h"
-#import "SVGContext.h"
-#import "GHCSSStyle.h"
+#import <SVGgh/CrossPlatformImage.h>
+#import <SVGgh/SVGParser.h>
+#import <SVGgh/GHRenderable.h>
+#import <SVGgh/SVGContext.h>
+#import <SVGgh/GHCSSStyle.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

@@ -3,5 +3,4 @@
 //
 
 
-#import <SVGgh/SVGgh.h>
 #import "SVGghDebuggingViewController.h"

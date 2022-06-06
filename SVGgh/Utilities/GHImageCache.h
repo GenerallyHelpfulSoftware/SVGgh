@@ -34,7 +34,7 @@
     #import <UIKit/UIKit.h>
 #endif
 
-#import "CrossPlatformImage.h"
+#import <SVGgh/CrossPlatformImage.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

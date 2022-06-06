@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVGgh
 
 class SegmentedDemoTableCell: UITableViewCell
 {

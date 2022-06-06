@@ -39,7 +39,7 @@
   Will make a lightly chromed button with the contents of a file in your app's bundle with the path /Artwork/MenuButton.svg
 */
 
-#import "GHControl.h"
+#import <SVGgh/GHControl.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

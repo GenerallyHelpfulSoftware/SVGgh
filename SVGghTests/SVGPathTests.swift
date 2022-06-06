@@ -7,7 +7,7 @@
 //
 
 import XCTest
-
+import SVGgh
 
 class SVGPathTests: XCTestCase {
     

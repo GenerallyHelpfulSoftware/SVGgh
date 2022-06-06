@@ -28,7 +28,7 @@
 //
 // Interface deliberately similar to UISegmentedControl
 
-#import "GHControl.h"
+#import <SVGgh/GHControl.h>
 
 @class SVGRenderer;
 
